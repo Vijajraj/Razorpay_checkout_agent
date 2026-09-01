@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Shield, Settings, Bot, X, Cpu, Lock, CheckCircle2 } from 'lucide-react';
+import { Shield, Settings, Bot, X, Cpu, Lock, CheckCircle2, Sun, Moon } from 'lucide-react';
 
 export default function Header({
+  theme,
+  onToggleTheme,
   backendConnected,
   spendCap = 10000,
   auditOpen,
@@ -21,6 +23,16 @@ export default function Header({
         </div>
 
         <div className="header-controls">
+          {/* Light / Dark Mode Toggle Button */}
+          <button
+            className="icon-btn"
+            onClick={onToggleTheme}
+            title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+          >
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
+
+          {/* Audit Log Drawer Toggle */}
           <button
             className={`icon-btn ${auditOpen ? 'active' : ''}`}
             onClick={onToggleAudit}
@@ -44,6 +56,7 @@ export default function Header({
             )}
           </button>
 
+          {/* Settings Icon */}
           <button
             className="icon-btn"
             onClick={() => setShowSettings(true)}
@@ -88,7 +101,7 @@ export default function Header({
                 <span style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <CheckCircle2 size={14} /> Guardrail Engine
                 </span>
-                <span style={{ color: '#10b981', fontWeight: 600 }}>Active (Code Enforced)</span>
+                <span style={{ color: 'var(--accent-success)', fontWeight: 600 }}>Active (Code Enforced)</span>
               </div>
 
               <div className="settings-row">

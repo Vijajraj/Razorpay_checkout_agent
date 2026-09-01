@@ -5,9 +5,22 @@ import AuditLogPanel from './components/AuditLogPanel';
 import { sendChatMessage, checkBackendHealth } from './services/api';
 
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme_pref') || 'dark';
+  });
+
   const [backendConnected, setBackendConnected] = useState(false);
   const [auditOpen, setAuditOpen] = useState(false);
   const [sessionId] = useState(() => `sess_${Math.random().toString(36).substring(2, 9)}`);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme_pref', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const [messages, setMessages] = useState([
     {
@@ -63,7 +76,6 @@ export default function App() {
 
       if (res.data.auditEntry) {
         setAuditLogs((prev) => [res.data.auditEntry, ...prev]);
-        // Auto-open drawer if an attack/block occurs so user notices
         if (res.data.blocked) {
           setAuditOpen(true);
         }
@@ -84,6 +96,8 @@ export default function App() {
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header
+        theme={theme}
+        onToggleTheme={toggleTheme}
         backendConnected={backendConnected}
         spendCap={10000}
         auditOpen={auditOpen}
