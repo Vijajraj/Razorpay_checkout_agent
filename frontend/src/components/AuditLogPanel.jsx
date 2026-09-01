@@ -1,12 +1,12 @@
 import React from 'react';
-import { ShieldCheck, ShieldAlert, FileText, CheckCircle2, XCircle, Download, Trash2 } from 'lucide-react';
+import { ShieldCheck, X, Download, Trash2, ShieldAlert } from 'lucide-react';
 
-export default function AuditLogPanel({ auditLogs, onClearLogs, spendCap = 10000 }) {
-  const totalOrdersAmount = auditLogs
+export default function AuditLogPanel({ open, onClose, auditLogs, onClearLogs, spendCap = 10000 }) {
+  const totalSpent = auditLogs
     .filter((log) => log.action === 'create_order' && log.result === 'SUCCESS')
     .reduce((sum, log) => sum + (log.amount || 0), 0);
 
-  const totalBlockedAttacks = auditLogs.filter((log) => log.result === 'BLOCKED').length;
+  const blockedCount = auditLogs.filter((log) => log.result === 'BLOCKED').length;
 
   const handleExportJSON = () => {
     const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(auditLogs, null, 2));
@@ -19,101 +19,69 @@ export default function AuditLogPanel({ auditLogs, onClearLogs, spendCap = 10000
   };
 
   return (
-    <div className="audit-section">
-      <div className="audit-header">
-        <div className="audit-title">
-          <ShieldCheck size={18} color="#3b82f6" />
-          <span>Live Guardrail & Audit Log</span>
+    <aside className={`audit-drawer ${open ? 'open' : ''}`}>
+      <div className="drawer-header">
+        <div className="drawer-title">
+          <ShieldCheck size={16} color="#6366f1" />
+          <span>Guardrail & Audit Log</span>
         </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <button
-            onClick={handleExportJSON}
-            className="preset-btn"
-            title="Export JSON Audit Log"
-            style={{ fontSize: '11px', padding: '4px 8px' }}
-          >
-            <Download size={12} /> Export
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <button onClick={handleExportJSON} className="icon-btn" title="Export JSON" style={{ padding: '4px 8px', fontSize: '11px' }}>
+            <Download size={13} />
           </button>
-          <button
-            onClick={onClearLogs}
-            className="preset-btn"
-            title="Clear Logs"
-            style={{ fontSize: '11px', padding: '4px 8px' }}
-          >
-            <Trash2 size={12} /> Clear
+          <button onClick={onClearLogs} className="icon-btn" title="Clear Logs" style={{ padding: '4px 8px', fontSize: '11px' }}>
+            <Trash2 size={13} />
+          </button>
+          <button onClick={onClose} className="icon-btn" style={{ padding: '4px' }}>
+            <X size={16} />
           </button>
         </div>
       </div>
 
-      <div className="metrics-row">
-        <div className="metric-card">
-          <span className="metric-label">Spent / Cap Limit</span>
-          <span className="metric-val green">
-            ₹{totalOrdersAmount.toLocaleString()} / ₹{spendCap.toLocaleString()}
-          </span>
+      <div className="drawer-metrics">
+        <div className="stat-box">
+          <span className="label">Spent / Spend Cap</span>
+          <span className="val">₹{totalSpent.toLocaleString()} / ₹{spendCap.toLocaleString()}</span>
         </div>
 
-        <div className="metric-card">
-          <span className="metric-label">Attacks Blocked</span>
-          <span className={`metric-val ${totalBlockedAttacks > 0 ? 'red' : 'green'}`}>
-            {totalBlockedAttacks} Threats
-          </span>
-        </div>
-
-        <div className="metric-card">
-          <span className="metric-label">Guardrail Engine</span>
-          <span className="metric-val green" style={{ fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <CheckCircle2 size={14} color="#10b981" /> 100% Enforced
+        <div className="stat-box">
+          <span className="label">Blocked Threats</span>
+          <span className="val" style={{ color: blockedCount > 0 ? '#ef4444' : '#10b981' }}>
+            {blockedCount} Atttempts
           </span>
         </div>
       </div>
 
-      <div className="audit-feed">
+      <div className="drawer-feed">
         {auditLogs.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '40px 20px', color: '#9ca3af', fontSize: '13px' }}>
-            <FileText size={32} color="#374151" style={{ marginBottom: '10px' }} />
-            <p>No audit events logged yet.</p>
-            <p style={{ fontSize: '11px', marginTop: '4px' }}>Interact with the agent or trigger a Red-Team preset to view live enforcement logs.</p>
+          <div style={{ textAlign: 'center', padding: '40px 10px', color: 'var(--text-dim)', fontSize: '12px' }}>
+            No audit logs captured yet. Try testing a quick-action prompt.
           </div>
         ) : (
           auditLogs.map((log) => (
             <div
               key={log.id}
-              className={`audit-item ${log.result === 'BLOCKED' ? 'blocked' : 'passed'}`}
+              className={`timeline-item ${log.result === 'BLOCKED' ? 'blocked' : 'passed'}`}
             >
-              <div className="audit-item-top">
-                <span className={`audit-action ${log.action === 'create_order' ? 'create_order' : log.result === 'BLOCKED' ? 'guardrail_block' : 'catalog_lookup'}`}>
-                  {log.action}
-                </span>
-
-                <span className={`audit-badge ${log.result === 'BLOCKED' ? 'blocked' : 'passed'}`}>
+              <div className="timeline-top">
+                <span className="timeline-action">{log.action}</span>
+                <span className={`timeline-badge ${log.result === 'BLOCKED' ? 'blocked' : 'passed'}`}>
                   {log.result === 'BLOCKED' ? 'BLOCKED' : 'PASSED'}
                 </span>
               </div>
 
-              {log.sku && log.sku !== 'N/A' && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontWeight: 600 }}>
-                  <span>SKU: {log.sku}</span>
-                  {log.amount > 0 && <span>₹{log.amount.toLocaleString()}</span>}
-                </div>
-              )}
-
-              <div className="audit-reason">
-                <strong>Reasoning:</strong> {log.reasoning}
+              <div className="timeline-reason">
+                {log.reasoning}
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '10px', color: log.result === 'BLOCKED' ? '#ef4444' : '#10b981', fontWeight: 600 }}>
-                  Cap Check: {log.spend_cap_check}
-                </span>
-                <span className="audit-time">
-                  {new Date(log.timestamp).toLocaleTimeString()}
-                </span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: 'var(--text-dim)', marginTop: '2px' }}>
+                <span>Cap Check: {log.spend_cap_check}</span>
+                <span>{new Date(log.timestamp).toLocaleTimeString()}</span>
               </div>
             </div>
           ))
         )}
       </div>
-    </div>
+    </aside>
   );
 }

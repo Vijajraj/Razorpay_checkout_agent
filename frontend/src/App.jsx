@@ -6,13 +6,14 @@ import { sendChatMessage, checkBackendHealth } from './services/api';
 
 export default function App() {
   const [backendConnected, setBackendConnected] = useState(false);
+  const [auditOpen, setAuditOpen] = useState(false);
   const [sessionId] = useState(() => `sess_${Math.random().toString(36).substring(2, 9)}`);
-  
+
   const [messages, setMessages] = useState([
     {
       id: 1,
       sender: 'assistant',
-      text: `Hello! 👋 I am your Conversational Checkout Agent powered by **Groq (openai/gpt-oss-120b)** and integrated with **Razorpay test-mode**.\n\nI can help you search our catalog (running shoes, smartwatches, headphones, backpacks) and complete purchases with verified spend-cap guardrails.\n\nHow can I help you today?`,
+      text: `Hello! I am your AI Checkout Assistant powered by Groq (openai/gpt-oss-120b).\n\nI can help you search products, answer questions, and complete purchases on Razorpay test-mode under code-enforced guardrails.\n\nWhat are you shopping for today?`,
       products: [],
     },
   ]);
@@ -24,7 +25,7 @@ export default function App() {
       action: 'system_init',
       sku: 'N/A',
       amount: 0,
-      reasoning: 'Guardrail Engine initialized. Hard spend cap limit set to ₹10,000.',
+      reasoning: 'Guardrail Engine initialized. Merchant hard spend cap limit active at ₹10,000.',
       spend_cap_check: 'PASSED',
       result: 'SUCCESS',
     },
@@ -62,6 +63,10 @@ export default function App() {
 
       if (res.data.auditEntry) {
         setAuditLogs((prev) => [res.data.auditEntry, ...prev]);
+        // Auto-open drawer if an attack/block occurs so user notices
+        if (res.data.blocked) {
+          setAuditOpen(true);
+        }
       }
     }
   };
@@ -74,11 +79,19 @@ export default function App() {
     setAuditLogs([]);
   };
 
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <Header backendConnected={backendConnected} spendCap={10000} />
+  const blockedCount = auditLogs.filter((l) => l.result === 'BLOCKED').length;
 
-      <main className="main-container">
+  return (
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Header
+        backendConnected={backendConnected}
+        spendCap={10000}
+        auditOpen={auditOpen}
+        onToggleAudit={() => setAuditOpen(!auditOpen)}
+        blockedCount={blockedCount}
+      />
+
+      <div className="app-layout">
         <ChatPanel
           messages={messages}
           onSendMessage={handleSendMessage}
@@ -86,11 +99,13 @@ export default function App() {
         />
 
         <AuditLogPanel
+          open={auditOpen}
+          onClose={() => setAuditOpen(false)}
           auditLogs={auditLogs}
           onClearLogs={handleClearLogs}
           spendCap={10000}
         />
-      </main>
+      </div>
     </div>
   );
 }

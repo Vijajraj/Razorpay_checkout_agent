@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, ShieldAlert, ShoppingCart, ExternalLink, CheckCircle, AlertTriangle } from 'lucide-react';
+import { ArrowUp, Bot, User, ShieldAlert, ShoppingBag, ExternalLink, CheckCircle2 } from 'lucide-react';
 import RedTeamPresets from './RedTeamPresets';
 import { createRazorpayOrder } from '../services/api';
 
 export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
   const [input, setInput] = useState('');
-  const [activePaymentOrder, setActivePaymentOrder] = useState(null);
+  const [activeOrder, setActiveOrder] = useState(null);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -14,7 +14,7 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, activePaymentOrder]);
+  }, [messages, activeOrder]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,9 +35,9 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
       }
 
       if (orderResult.success) {
-        setActivePaymentOrder(orderResult);
+        setActiveOrder(orderResult);
       } else {
-        alert(`Order Blocked by Guardrail Engine: ${orderResult.reason}`);
+        alert(`Guardrail Block: ${orderResult.reason}`);
       }
     } catch (err) {
       alert(`Error creating order: ${err.message}`);
@@ -45,99 +45,109 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
   };
 
   return (
-    <div className="chat-section">
-      <RedTeamPresets onSelectPreset={handleSelectPreset} />
-
-      <div className="messages-container">
+    <div className="chat-container">
+      <div className="messages-scroll-area">
         {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`message-bubble ${msg.sender} ${msg.blocked ? 'blocked' : ''}`}
-          >
-            <div className="avatar">
-              {msg.sender === 'user' ? <User size={16} /> : <Bot size={16} />}
-            </div>
+          <div key={msg.id} className={`message-row ${msg.sender}`}>
+            {msg.sender === 'assistant' && (
+              <div className="message-avatar">
+                <Bot size={16} />
+              </div>
+            )}
 
-            <div className="message-content">
+            <div className="message-body">
               {msg.blocked && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#ef4444', fontWeight: 700, marginBottom: '8px' }}>
-                  <ShieldAlert size={16} />
-                  <span>GUARDRAIL ENFORCED BLOCK</span>
+                <div className="blocked-banner">
+                  <ShieldAlert size={14} />
+                  <span>Guardrail Enforcement Blocked Action</span>
                 </div>
               )}
 
               <div style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</div>
 
-              {/* Products list if recommended */}
+              {/* Product recommendation cards */}
               {msg.products && msg.products.length > 0 && (
-                <div className="products-grid">
+                <div className="products-container">
                   {msg.products.map((item) => (
-                    <div key={item.sku} className="product-card">
+                    <div key={item.sku} className="product-item">
                       <div>
                         <div className="product-sku">{item.sku}</div>
-                        <div className="product-title">{item.name}</div>
+                        <div className="product-name">{item.name}</div>
                         <div className="product-price">₹{item.price.toLocaleString()}</div>
-                        <div className={`stock-badge ${item.stock > 0 ? 'in-stock' : 'out-stock'}`}>
+                        <div className="stock-tag">
                           {item.stock > 0 ? `${item.stock} in stock` : 'Out of stock'}
                         </div>
                       </div>
 
                       <button
-                        className="buy-btn"
+                        className="order-btn"
                         disabled={item.stock === 0}
                         onClick={() => handleCheckoutClick(item)}
                       >
-                        <ShoppingCart size={14} />
-                        <span>Order via Razorpay</span>
+                        <ShoppingBag size={14} />
+                        <span>Checkout via Razorpay</span>
                       </button>
                     </div>
                   ))}
                 </div>
               )}
 
-              {/* Razorpay Active Payment Box */}
-              {activePaymentOrder && msg.sender === 'assistant' && msg.id === messages[messages.length - 1].id && (
-                <div className="razorpay-link-box">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#60a5fa', fontWeight: 700 }}>
-                    <CheckCircle size={16} color="#10b981" />
-                    <span>Razorpay Order Created: #{activePaymentOrder.orderId}</span>
+              {/* Active Razorpay Link Card */}
+              {activeOrder && msg.sender === 'assistant' && msg.id === messages[messages.length - 1].id && (
+                <div className="razorpay-link-card">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#818cf8', fontWeight: 600, fontSize: '13px' }}>
+                    <CheckCircle2 size={15} color="#34d399" />
+                    <span>Razorpay Order Ready: #{activeOrder.orderId}</span>
                   </div>
-                  <div style={{ fontSize: '12px', color: '#9ca3af' }}>
-                    Item: <strong>{activePaymentOrder.productName}</strong> | Amount: <strong>₹{activePaymentOrder.amount.toLocaleString()}</strong>
+                  <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+                    Total Amount: <strong>₹{activeOrder.amount.toLocaleString()}</strong>
                   </div>
                   <a
-                    href={activePaymentOrder.paymentLink}
+                    href={activeOrder.paymentLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="pay-now-btn"
+                    className="pay-btn"
                     onClick={(e) => {
                       e.preventDefault();
-                      alert(`[Razorpay Test Mode Simulated Payment Success]\n\nOrder ID: ${activePaymentOrder.orderId}\nPayment Link: ${activePaymentOrder.paymentLink}\nStatus: PAID`);
+                      alert(`[Razorpay Test Mode Payment Simulated]\n\nOrder ID: ${activeOrder.orderId}\nStatus: SUCCESS (PAID)`);
                     }}
                   >
-                    <span>Pay with Razorpay (Test Mode)</span>
-                    <ExternalLink size={14} />
+                    <span>Complete Test Payment</span>
+                    <ExternalLink size={13} />
                   </a>
                 </div>
               )}
             </div>
+
+            {msg.sender === 'user' && (
+              <div className="message-avatar">
+                <User size={16} />
+              </div>
+            )}
           </div>
         ))}
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={handleSubmit} className="input-container">
-        <input
-          type="text"
-          className="chat-input"
-          placeholder="Ask agent to search catalog or purchase (e.g. 'I need running shoes under ₹3000')"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button type="submit" className="send-btn">
-          <Send size={18} />
-        </button>
-      </form>
+      {/* Floating Input Dock */}
+      <div className="input-dock">
+        <div className="input-box-wrapper">
+          <RedTeamPresets onSelectPreset={handleSelectPreset} />
+
+          <form onSubmit={handleSubmit} className="input-form">
+            <input
+              type="text"
+              className="chat-input-field"
+              placeholder="Ask agent to search catalog or purchase items..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <button type="submit" className="send-circle-btn" title="Send Message">
+              <ArrowUp size={18} />
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
