@@ -26,7 +26,7 @@ export default function App() {
     {
       id: 1,
       sender: 'assistant',
-      text: `Hello! I am your AI Checkout Assistant powered by Groq (openai/gpt-oss-120b).\n\nI can help you search products, answer questions, and complete purchases on Razorpay test-mode under code-enforced guardrails.\n\nWhat are you shopping for today?`,
+      text: `Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.`,
       products: [],
     },
   ]);

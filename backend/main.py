@@ -405,7 +405,7 @@ def _fallback_chat(req: ChatRequest):
         }
 
     return {
-        "reply": "Hello! I am your AI Checkout Agent powered by Groq (openai/gpt-oss-120b). I can help you search products and complete purchases safely. What are you looking for?",
+        "reply": "Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.",
         "products": catalog[:3], "auditEntry": None,
     }
 

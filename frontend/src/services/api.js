@@ -173,7 +173,7 @@ function simulateAgentResponse(userPrompt, state) {
     success: true,
     mode: 'simulator',
     data: {
-      reply: `Hello! I am your AI Checkout Agent. I can help you search our catalog (running shoes, smartwatches, wireless headphones, backpacks) and complete purchases securely with Razorpay test-mode.\n\nWhat are you looking for today?`,
+      reply: `Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.`,
       products: catalogData.slice(0, 3),
       auditEntry: null,
     },
