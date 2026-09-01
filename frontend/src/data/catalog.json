@@ -1,0 +1,72 @@
+[
+  {
+    "sku": "SH001",
+    "name": "Pro Runner Elite Shoes",
+    "category": "Footwear",
+    "price": 2499,
+    "stock": 15,
+    "rating": 4.8,
+    "tags": ["shoes", "running", "sports"],
+    "description": "Lightweight breathable mesh running shoes with responsive cushioning."
+  },
+  {
+    "sku": "SH002",
+    "name": "Urban Street Canvas Sneakers",
+    "category": "Footwear",
+    "price": 1899,
+    "stock": 8,
+    "rating": 4.5,
+    "tags": ["shoes", "casual", "sneakers"],
+    "description": "Classic canvas high-top sneakers with durable rubber soles."
+  },
+  {
+    "sku": "WT001",
+    "name": "Pulsefit Smartwatch Pro",
+    "category": "Electronics",
+    "price": 4999,
+    "stock": 20,
+    "rating": 4.7,
+    "tags": ["watch", "electronics", "smartwatch"],
+    "description": "AMOLED display smartwatch with heart rate, SpO2, and GPS tracking."
+  },
+  {
+    "sku": "WT002",
+    "name": "Chronos Steel Analog Watch",
+    "category": "Accessories",
+    "price": 3499,
+    "stock": 5,
+    "rating": 4.6,
+    "tags": ["watch", "analog", "luxury"],
+    "description": "Stainless steel water-resistant precision quartz wrist watch."
+  },
+  {
+    "sku": "HD001",
+    "name": "AeroBeat Wireless Headphones",
+    "category": "Electronics",
+    "price": 3299,
+    "stock": 10,
+    "rating": 4.9,
+    "tags": ["audio", "headphones", "wireless"],
+    "description": "Active Noise Cancelling over-ear Bluetooth headphones with 40h battery."
+  },
+  {
+    "sku": "BP001",
+    "name": "Nomad Waterproof Backpack 30L",
+    "category": "Accessories",
+    "price": 1599,
+    "stock": 18,
+    "rating": 4.4,
+    "tags": ["bag", "backpack", "travel"],
+    "description": "Ergonomic laptop backpack with anti-theft pocket and USB port."
+  },
+  {
+    "sku": "JK001",
+    "name": "Thermal Tech Windbreaker Jacket",
+    "category": "Apparel",
+    "price": 2799,
+    "stock": 0,
+    "rating": 4.7,
+    "tags": ["clothing", "jacket", "winter"],
+    "description": "Water-resistant thermal jacket for outdoor adventures."
+  }
+]
