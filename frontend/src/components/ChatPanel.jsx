@@ -132,8 +132,6 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
       {/* Floating Input Dock */}
       <div className="input-dock">
         <div className="input-box-wrapper">
-          <RedTeamPresets onSelectPreset={handleSelectPreset} />
-
           <form onSubmit={handleSubmit} className="input-form">
             <input
               type="text"
