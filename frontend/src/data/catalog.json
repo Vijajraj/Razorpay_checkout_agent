@@ -9,22 +9,121 @@
       "shoes",
       "running"
     ],
-    "image": "https://images.unsplash.com/photo-1738958668282-4c7446241e9e?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH002",
-    "name": "Wireless Earbuds",
-    "category": "electronics",
-    "price": 1899,
-    "stock": 8,
+    "name": "Running Shoes - Black",
+    "category": "footwear",
+    "price": 2599,
+    "stock": 10,
     "tags": [
-      "audio",
-      "electronics"
+      "shoes",
+      "running"
     ],
-    "image": "https://images.unsplash.com/photo-1572569979132-b4f10c9ec185?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH003",
+    "name": "Casual Sneakers - White",
+    "category": "footwear",
+    "price": 2199,
+    "stock": 9,
+    "tags": [
+      "shoes",
+      "sneakers",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH004",
+    "name": "Casual Sneakers - Grey",
+    "category": "footwear",
+    "price": 2299,
+    "stock": 14,
+    "tags": [
+      "shoes",
+      "sneakers",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH005",
+    "name": "Training Shoes - Black",
+    "category": "footwear",
+    "price": 2799,
+    "stock": 7,
+    "tags": [
+      "shoes",
+      "training",
+      "gym"
+    ],
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH006",
+    "name": "Walking Shoes - Grey",
+    "category": "footwear",
+    "price": 2399,
+    "stock": 11,
+    "tags": [
+      "shoes",
+      "walking"
+    ],
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH007",
+    "name": "Classic Loafers - Brown",
+    "category": "footwear",
+    "price": 2899,
+    "stock": 6,
+    "tags": [
+      "loafers",
+      "formal"
+    ],
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH008",
+    "name": "Canvas Slip-Ons",
+    "category": "footwear",
+    "price": 1499,
+    "stock": 13,
+    "tags": [
+      "shoes",
+      "slip-ons"
+    ],
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH009",
+    "name": "High-Top Sneakers - Black",
+    "category": "footwear",
+    "price": 2999,
+    "stock": 8,
+    "tags": [
+      "shoes",
+      "high-top"
+    ],
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH010",
+    "name": "Sports Sandals",
+    "category": "footwear",
+    "price": 1699,
+    "stock": 16,
+    "tags": [
+      "sandals",
+      "outdoor"
+    ],
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH011",
     "name": "Classic Hoodie - Black",
     "category": "apparel",
     "price": 1599,
@@ -33,10 +132,118 @@
       "hoodie",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1499972777470-6a932ea55420?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH004",
+    "sku": "SH012",
+    "name": "Classic Hoodie - Grey",
+    "category": "apparel",
+    "price": 1599,
+    "stock": 12,
+    "tags": [
+      "hoodie",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH013",
+    "name": "Oversized T-Shirt - White",
+    "category": "apparel",
+    "price": 899,
+    "stock": 20,
+    "tags": [
+      "tshirt",
+      "streetwear"
+    ],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH014",
+    "name": "Oversized T-Shirt - Grey",
+    "category": "apparel",
+    "price": 899,
+    "stock": 18,
+    "tags": [
+      "tshirt",
+      "streetwear"
+    ],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH015",
+    "name": "Premium Cotton T-Shirt - Navy",
+    "category": "apparel",
+    "price": 1099,
+    "stock": 16,
+    "tags": [
+      "tshirt",
+      "cotton"
+    ],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH016",
+    "name": "Slim Fit Jeans - Blue",
+    "category": "apparel",
+    "price": 1999,
+    "stock": 11,
+    "tags": [
+      "jeans",
+      "denim"
+    ],
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH017",
+    "name": "Slim Fit Jeans - Black",
+    "category": "apparel",
+    "price": 2099,
+    "stock": 9,
+    "tags": [
+      "jeans",
+      "denim"
+    ],
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH018",
+    "name": "Denim Jacket - Blue",
+    "category": "apparel",
+    "price": 2499,
+    "stock": 8,
+    "tags": [
+      "jacket",
+      "denim"
+    ],
+    "image": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH019",
+    "name": "Casual Shirt - White",
+    "category": "apparel",
+    "price": 1399,
+    "stock": 13,
+    "tags": [
+      "shirt",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH020",
+    "name": "Casual Dress - Floral",
+    "category": "apparel",
+    "price": 1899,
+    "stock": 7,
+    "tags": [
+      "dress",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH021",
     "name": "Smart Watch",
     "category": "electronics",
     "price": 3299,
@@ -45,10 +252,214 @@
       "watch",
       "fitness"
     ],
-    "image": "https://images.unsplash.com/photo-1523395451704-22c6fb0522cf?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH005",
+    "sku": "SH022",
+    "name": "Fitness Smart Band",
+    "category": "electronics",
+    "price": 1799,
+    "stock": 10,
+    "tags": [
+      "fitness",
+      "wearable"
+    ],
+    "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH023",
+    "name": "Everyday Analog Watch",
+    "category": "electronics",
+    "price": 1999,
+    "stock": 9,
+    "tags": [
+      "watch",
+      "accessories"
+    ],
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH024",
+    "name": "Premium Chronograph Watch",
+    "category": "electronics",
+    "price": 4499,
+    "stock": 5,
+    "tags": [
+      "watch",
+      "premium"
+    ],
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH025",
+    "name": "Wireless Earbuds",
+    "category": "electronics",
+    "price": 1899,
+    "stock": 8,
+    "tags": [
+      "audio",
+      "earbuds"
+    ],
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH026",
+    "name": "Noise Cancelling Headphones",
+    "category": "electronics",
+    "price": 4999,
+    "stock": 6,
+    "tags": [
+      "audio",
+      "headphones"
+    ],
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH027",
+    "name": "Portable Bluetooth Speaker",
+    "category": "electronics",
+    "price": 2399,
+    "stock": 7,
+    "tags": [
+      "speaker",
+      "audio"
+    ],
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH028",
+    "name": "Smartphone - 128GB",
+    "category": "electronics",
+    "price": 17999,
+    "stock": 6,
+    "tags": [
+      "phone",
+      "mobile"
+    ],
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH029",
+    "name": "Smartphone - 256GB",
+    "category": "electronics",
+    "price": 22999,
+    "stock": 5,
+    "tags": [
+      "phone",
+      "mobile"
+    ],
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH030",
+    "name": "Ultrabook Laptop 14-inch",
+    "category": "electronics",
+    "price": 54999,
+    "stock": 4,
+    "tags": [
+      "laptop",
+      "computer"
+    ],
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH031",
+    "name": "Gaming Laptop",
+    "category": "electronics",
+    "price": 78999,
+    "stock": 3,
+    "tags": [
+      "laptop",
+      "gaming"
+    ],
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH032",
+    "name": "Mechanical Keyboard",
+    "category": "electronics",
+    "price": 2799,
+    "stock": 5,
+    "tags": [
+      "keyboard",
+      "gaming"
+    ],
+    "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH033",
+    "name": "Wireless Mouse",
+    "category": "electronics",
+    "price": 899,
+    "stock": 15,
+    "tags": [
+      "mouse",
+      "computer"
+    ],
+    "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH034",
+    "name": "Mirrorless Camera",
+    "category": "electronics",
+    "price": 64999,
+    "stock": 3,
+    "tags": [
+      "camera",
+      "photography"
+    ],
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH035",
+    "name": "4K Monitor 27-inch",
+    "category": "electronics",
+    "price": 24999,
+    "stock": 4,
+    "tags": [
+      "monitor",
+      "display"
+    ],
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH036",
+    "name": "Android Tablet 11-inch",
+    "category": "electronics",
+    "price": 19999,
+    "stock": 5,
+    "tags": [
+      "tablet",
+      "display"
+    ],
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH037",
+    "name": "65W GaN Charger",
+    "category": "electronics",
+    "price": 1999,
+    "stock": 12,
+    "tags": [
+      "charger",
+      "usb-c"
+    ],
+    "image": "https://images.unsplash.com/photo-1609592424748-2f0f73a8a2f7?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH038",
+    "name": "Portable Power Bank 20000mAh",
+    "category": "electronics",
+    "price": 1799,
+    "stock": 10,
+    "tags": [
+      "powerbank",
+      "travel"
+    ],
+    "image": "https://images.unsplash.com/photo-1609592424748-2f0f73a8a2f7?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH039",
     "name": "Canvas Backpack",
     "category": "bags",
     "price": 1299,
@@ -60,44 +471,91 @@
     "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH006",
-    "name": "Casual Sneakers - White",
-    "category": "footwear",
-    "price": 2199,
-    "stock": 9,
+    "sku": "SH040",
+    "name": "Laptop Backpack 15-inch",
+    "category": "bags",
+    "price": 2499,
+    "stock": 8,
     "tags": [
-      "shoes",
-      "sneakers",
+      "backpack",
+      "laptop"
+    ],
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH041",
+    "name": "Compact Daypack",
+    "category": "bags",
+    "price": 1499,
+    "stock": 12,
+    "tags": [
+      "backpack",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1738958668282-4c7446241e9e?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH007",
-    "name": "Oversized T-Shirt - Grey",
-    "category": "apparel",
-    "price": 899,
-    "stock": 20,
+    "sku": "SH042",
+    "name": "Leather Crossbody Bag",
+    "category": "bags",
+    "price": 2999,
+    "stock": 6,
     "tags": [
-      "tshirt",
-      "streetwear"
+      "bag",
+      "leather"
     ],
-    "image": "https://images.unsplash.com/photo-1563902603-e9dc831ed947?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH008",
-    "name": "Portable Bluetooth Speaker",
-    "category": "electronics",
-    "price": 2399,
+    "sku": "SH043",
+    "name": "Laptop Sleeve - Black",
+    "category": "bags",
+    "price": 899,
+    "stock": 10,
+    "tags": [
+      "laptop",
+      "sleeve"
+    ],
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH044",
+    "name": "Weekender Travel Bag",
+    "category": "bags",
+    "price": 3499,
     "stock": 7,
     "tags": [
-      "speaker",
-      "audio"
+      "travel",
+      "weekender"
     ],
-    "image": "https://images.unsplash.com/photo-1632247541401-3d4a8d516595?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH009",
+    "sku": "SH045",
+    "name": "Hard Shell Cabin Luggage",
+    "category": "bags",
+    "price": 4999,
+    "stock": 5,
+    "tags": [
+      "luggage",
+      "travel"
+    ],
+    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH046",
+    "name": "Large Check-in Luggage",
+    "category": "bags",
+    "price": 6499,
+    "stock": 4,
+    "tags": [
+      "luggage",
+      "travel"
+    ],
+    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH047",
     "name": "Leather Wallet - Brown",
     "category": "accessories",
     "price": 999,
@@ -106,10 +564,22 @@
       "wallet",
       "leather"
     ],
-    "image": "https://images.unsplash.com/photo-1579014134953-1580d7f123f3?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH010",
+    "sku": "SH048",
+    "name": "Leather Wallet - Black",
+    "category": "accessories",
+    "price": 999,
+    "stock": 10,
+    "tags": [
+      "wallet",
+      "leather"
+    ],
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH049",
     "name": "Polarized Sunglasses",
     "category": "accessories",
     "price": 1199,
@@ -118,34 +588,94 @@
       "sunglasses",
       "eyewear"
     ],
-    "image": "https://images.unsplash.com/photo-1584036553516-bf83210aa16c?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH011",
-    "name": "Fitness Resistance Bands",
-    "category": "fitness",
+    "sku": "SH050",
+    "name": "Blue Light Glasses",
+    "category": "accessories",
+    "price": 899,
+    "stock": 15,
+    "tags": [
+      "glasses",
+      "screen"
+    ],
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH051",
+    "name": "Classic Leather Belt - Black",
+    "category": "accessories",
+    "price": 1099,
+    "stock": 12,
+    "tags": [
+      "belt",
+      "leather"
+    ],
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH052",
+    "name": "Classic Leather Belt - Brown",
+    "category": "accessories",
+    "price": 1099,
+    "stock": 9,
+    "tags": [
+      "belt",
+      "leather"
+    ],
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH053",
+    "name": "Cotton Baseball Cap - Navy",
+    "category": "accessories",
     "price": 699,
-    "stock": 18,
+    "stock": 16,
     "tags": [
-      "fitness",
-      "workout"
+      "cap",
+      "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1530021356476-0a6375ffe73b?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH012",
-    "name": "Ceramic Coffee Mug",
-    "category": "home",
-    "price": 499,
-    "stock": 25,
+    "sku": "SH054",
+    "name": "Cotton Baseball Cap - Black",
+    "category": "accessories",
+    "price": 699,
+    "stock": 14,
     "tags": [
-      "mug",
-      "kitchen"
+      "cap",
+      "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1571388821745-6773b68201df?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH013",
+    "sku": "SH055",
+    "name": "Minimalist Card Holder",
+    "category": "accessories",
+    "price": 599,
+    "stock": 13,
+    "tags": [
+      "wallet",
+      "cardholder"
+    ],
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH056",
+    "name": "Travel Organizer Pouch",
+    "category": "accessories",
+    "price": 799,
+    "stock": 10,
+    "tags": [
+      "organizer",
+      "travel"
+    ],
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH057",
     "name": "Desk Lamp - White",
     "category": "home",
     "price": 1399,
@@ -154,46 +684,166 @@
       "lamp",
       "desk"
     ],
-    "image": "https://images.unsplash.com/photo-1731762524352-b5663f83a830?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH014",
-    "name": "Mechanical Keyboard",
-    "category": "electronics",
-    "price": 2799,
+    "sku": "SH058",
+    "name": "Bedside Table Lamp",
+    "category": "home",
+    "price": 1599,
+    "stock": 10,
+    "tags": [
+      "lamp",
+      "home"
+    ],
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH059",
+    "name": "Ceramic Coffee Mug",
+    "category": "home",
+    "price": 499,
+    "stock": 25,
+    "tags": [
+      "mug",
+      "kitchen"
+    ],
+    "image": "https://images.unsplash.com/photo-1514228742587-6f7f2d3b1b1b?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH060",
+    "name": "Insulated Travel Mug",
+    "category": "home",
+    "price": 899,
+    "stock": 18,
+    "tags": [
+      "mug",
+      "travel"
+    ],
+    "image": "https://images.unsplash.com/photo-1514228742587-6f7f2d3b1b1b?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH061",
+    "name": "Ergonomic Office Chair",
+    "category": "home",
+    "price": 8999,
+    "stock": 4,
+    "tags": [
+      "chair",
+      "office"
+    ],
+    "image": "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH062",
+    "name": "Memory Foam Seat Cushion",
+    "category": "home",
+    "price": 1299,
+    "stock": 12,
+    "tags": [
+      "cushion",
+      "office"
+    ],
+    "image": "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH063",
+    "name": "Premium Cotton Bedsheet",
+    "category": "home",
+    "price": 1799,
+    "stock": 8,
+    "tags": [
+      "bedding",
+      "bedroom"
+    ],
+    "image": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH064",
+    "name": "Indoor Planter",
+    "category": "home",
+    "price": 699,
+    "stock": 16,
+    "tags": [
+      "plant",
+      "home"
+    ],
+    "image": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH065",
+    "name": "Non-Stick Cookware Set",
+    "category": "home",
+    "price": 4999,
     "stock": 5,
     "tags": [
-      "keyboard",
-      "gaming"
+      "cookware",
+      "kitchen"
     ],
-    "image": "https://images.unsplash.com/photo-1762117643785-f05364c2f44d?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH015",
-    "name": "Everyday Analog Watch",
-    "category": "accessories",
-    "price": 1999,
+    "sku": "SH066",
+    "name": "Cordless Vacuum Cleaner",
+    "category": "home",
+    "price": 6999,
+    "stock": 4,
+    "tags": [
+      "vacuum",
+      "cleaning"
+    ],
+    "image": "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH067",
+    "name": "Fitness Resistance Bands",
+    "category": "fitness",
+    "price": 699,
+    "stock": 18,
+    "tags": [
+      "fitness",
+      "workout"
+    ],
+    "image": "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH068",
+    "name": "Adjustable Dumbbells",
+    "category": "fitness",
+    "price": 4999,
+    "stock": 6,
+    "tags": [
+      "fitness",
+      "weights"
+    ],
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH069",
+    "name": "Yoga Mat - Black",
+    "category": "fitness",
+    "price": 999,
+    "stock": 15,
+    "tags": [
+      "yoga",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH070",
+    "name": "Premium Yoga Mat",
+    "category": "fitness",
+    "price": 1599,
     "stock": 9,
     "tags": [
-      "watch",
-      "accessories"
+      "yoga",
+      "fitness"
     ],
-    "image": "https://images.unsplash.com/photo-1610435883879-06a09cc1e45b?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH016",
-    "name": "Running Shorts - Navy",
-    "category": "apparel",
-    "price": 1099,
-    "stock": 13,
-    "tags": [
-      "shorts",
-      "running"
-    ],
-    "image": "https://images.unsplash.com/photo-1673505705688-db10359dbf48?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    "sku": "SH017",
+    "sku": "SH071",
     "name": "Insulated Water Bottle",
     "category": "fitness",
     "price": 799,
@@ -205,15 +855,39 @@
     "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "SH018",
-    "name": "Laptop Sleeve - Black",
-    "category": "bags",
-    "price": 899,
-    "stock": 10,
+    "sku": "SH072",
+    "name": "Steel Sports Bottle",
+    "category": "fitness",
+    "price": 999,
+    "stock": 14,
     "tags": [
-      "laptop",
-      "sleeve"
+      "bottle",
+      "sports"
     ],
-    "image": "https://images.unsplash.com/photo-1673505705688-db10359dbf48?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH073",
+    "name": "Workout Training Gloves",
+    "category": "fitness",
+    "price": 899,
+    "stock": 11,
+    "tags": [
+      "fitness",
+      "gym"
+    ],
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH074",
+    "name": "Foam Roller",
+    "category": "fitness",
+    "price": 1299,
+    "stock": 8,
+    "tags": [
+      "recovery",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=900&q=80"
   }
 ]
