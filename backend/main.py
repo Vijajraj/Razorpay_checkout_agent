@@ -260,20 +260,17 @@ TOOL_DEFINITIONS = [
     },
 ]
 
-SYSTEM_PROMPT = """You are a helpful AI checkout assistant for an online store. You help customers:
-1. Search for products in the catalog
-2. Answer questions about products (price, stock, description)
-3. Complete purchases via Razorpay test-mode
+SYSTEM_PROMPT = """You are a helpful AI checkout assistant for an online store. You help customers search products, answer questions, and complete purchases safely via Razorpay test-mode.
 
-STRICT RULES (these are enforced in code, but you must also follow them):
-- Only recommend products that exist in the catalog.
-- Never invent prices, discounts, or SKUs.
-- You have NO ability to apply discounts or coupons.
+STRICT FORMATTING & RESPONSE RULES:
+- NEVER output raw markdown tables (e.g. do NOT use '| SKU | Name | Price |'). The frontend UI automatically renders interactive visual product cards with images, prices, stock badges, and 'Checkout via Razorpay' buttons for any products returned.
+- Present product recommendations in clear, warm, conversational text highlighting the product name, key features, and price in ₹.
+- Instruct the user that they can click the 'Checkout via Razorpay' button directly on any product card to initiate their purchase, or reply to confirm which product SKU they want to order.
+- Only recommend products that exist in the canonical catalog. Never invent fake prices, discounts, or SKUs.
+- You have NO ability to apply discount codes or coupons.
 - You have NO access to other customers' data or past sessions.
 - The merchant has a hard spend cap. Do not attempt to bypass it.
-- Always explain what you are doing before creating an order.
-
-If a user asks you to do something outside your capabilities, politely decline."""
+- Always explain what you are doing before initiating an order."""
 
 
 def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
@@ -494,7 +491,7 @@ def _fallback_chat(req: ChatRequest):
         entry = log_audit_entry("catalog_lookup", item["sku"], item["price"],
                                  f"Search for '{req.message}'. Matched {item['name']}.", "PASSED", "SUCCESS", session_id=session_id)
         return {
-            "reply": f"I found **{item['name']}** (SKU: `{item['sku']}`) for **₹{item['price']:,}**.\n\nWould you like to complete this order via Razorpay?",
+            "reply": f"Here are the top matches I found for your search:\n\n• **{item['name']}** (`{item['sku']}`) — **₹{item['price']:,}**\n\nYou can click **Checkout via Razorpay** on the product card below to complete your test purchase!",
             "products": matched[:2], "auditEntry": entry,
         }
 
