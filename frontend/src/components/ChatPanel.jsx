@@ -70,6 +70,11 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
                 <div className="products-container">
                   {msg.products.map((item) => (
                     <div key={item.sku} className="product-item">
+                      {item.image && (
+                        <div className="product-img-wrapper">
+                          <img src={item.image} alt={item.name} className="product-img" loading="lazy" />
+                        </div>
+                      )}
                       <div>
                         <div className="product-sku">{item.sku}</div>
                         <div className="product-name">{item.name}</div>

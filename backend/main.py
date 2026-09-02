@@ -8,6 +8,8 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from groq import Groq
 import razorpay
+from sqlalchemy import Column, Integer, String, Numeric, Boolean, DateTime, func, create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 load_dotenv()
 
@@ -15,6 +17,7 @@ load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID", "")
 RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET", "")
+DATABASE_URL = os.getenv("DATABASE_URL", "")
 SPEND_CAP = float(os.getenv("MERCHANT_SPEND_CAP", "10000"))
 MODEL_NAME = "openai/gpt-oss-120b"
 
@@ -23,6 +26,35 @@ groq_client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
 # Razorpay client
 rzp_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)) if RAZORPAY_KEY_ID else None
+
+# Neon Postgres Database ORM setup
+Base = declarative_base()
+
+class AuditLogModel(Base):
+    __tablename__ = "audit_log"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
+    action = Column(String, nullable=False)
+    sku = Column(String, nullable=True)
+    amount = Column(Numeric, nullable=True)
+    reasoning = Column(String, nullable=False)
+    spend_cap_check = Column(String, nullable=False)
+    result = Column(String, nullable=False)
+    session_id = Column(String, nullable=True)
+    is_attack = Column(Boolean, default=False)
+
+db_engine = None
+SessionLocal = None
+
+if DATABASE_URL:
+    try:
+        db_engine = create_engine(DATABASE_URL, pool_pre_ping=True)
+        Base.metadata.create_all(db_engine)
+        SessionLocal = sessionmaker(bind=db_engine)
+        print("Connected to Neon Postgres Database successfully.")
+    except Exception as err:
+        print(f"Neon Postgres DB connection note: {err}")
 
 app = FastAPI(
     title="Razorpay Checkout Agent Service",
@@ -49,7 +81,7 @@ def load_catalog():
 
 catalog = load_catalog()
 
-# Audit log storage (in-memory & append-only)
+# Audit log in-memory storage (fallback/cache)
 audit_logs: List[Dict[str, Any]] = []
 
 # Session conversation histories for multi-turn chat
@@ -60,7 +92,16 @@ MAX_ORDER_ATTEMPTS_PER_SESSION = 5
 session_order_counts: Dict[str, int] = {}
 
 
-def log_audit_entry(action: str, sku: str, amount: float, reasoning: str, cap_check: str, result: str) -> Dict[str, Any]:
+def log_audit_entry(
+    action: str,
+    sku: str,
+    amount: float,
+    reasoning: str,
+    cap_check: str,
+    result: str,
+    session_id: str = "session_default",
+    is_attack: bool = False
+) -> Dict[str, Any]:
     entry = {
         "id": int(time.time() * 1000),
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -70,8 +111,35 @@ def log_audit_entry(action: str, sku: str, amount: float, reasoning: str, cap_ch
         "reasoning": reasoning,
         "spend_cap_check": cap_check,
         "result": result,
+        "session_id": session_id,
+        "is_attack": is_attack or (result == "BLOCKED")
     }
     audit_logs.insert(0, entry)
+
+    # Persist directly into Neon Postgres Database
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            record = AuditLogModel(
+                action=action,
+                sku=sku if sku and sku != "N/A" else None,
+                amount=amount if amount > 0 else None,
+                reasoning=reasoning,
+                spend_cap_check=cap_check,
+                result=result,
+                session_id=session_id,
+                is_attack=is_attack or (result == "BLOCKED")
+            )
+            db.add(record)
+            db.commit()
+            db.refresh(record)
+            entry["id"] = record.id
+            if record.timestamp:
+                entry["timestamp"] = record.timestamp.isoformat()
+            db.close()
+        except Exception as e:
+            print(f"Error persisting log to Neon DB: {e}")
+
     return entry
 
 
@@ -83,25 +151,25 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
     # 0. Rate limit check
     count = session_order_counts.get(session_id, 0)
     if count >= MAX_ORDER_ATTEMPTS_PER_SESSION:
-        entry = log_audit_entry("create_order", sku, 0, "Rate limit exceeded for session.", "BLOCKED (Rate Limit)", "BLOCKED")
+        entry = log_audit_entry("create_order", sku, 0, "Rate limit exceeded for session.", "BLOCKED (Rate Limit)", "BLOCKED", session_id=session_id, is_attack=True)
         return {"success": False, "blocked": True, "reason": "Too many order attempts in this session.", "auditEntry": entry}
 
     # 1. Scope Lock — SKU must exist in catalog
     item = next((i for i in catalog if i["sku"] == sku), None)
     if not item:
-        entry = log_audit_entry("create_order", sku, 0, f"SKU '{sku}' not in merchant catalog.", "REJECTED (Invalid SKU)", "BLOCKED")
+        entry = log_audit_entry("create_order", sku, 0, f"SKU '{sku}' not in merchant catalog.", "REJECTED (Invalid SKU)", "BLOCKED", session_id=session_id, is_attack=True)
         return {"success": False, "blocked": True, "reason": f"SKU {sku} does not exist.", "auditEntry": entry}
 
     # 2. Stock check
     if item["stock"] < quantity:
-        entry = log_audit_entry("create_order", sku, item["price"] * quantity, f"Out of stock ({item['stock']} left, requested {quantity}).", "N/A", "FAILED (Out of Stock)")
+        entry = log_audit_entry("create_order", sku, item["price"] * quantity, f"Out of stock ({item['stock']} left, requested {quantity}).", "N/A", "FAILED (Out of Stock)", session_id=session_id)
         return {"success": False, "blocked": False, "reason": "Product out of stock.", "auditEntry": entry}
 
     total_amount = item["price"] * quantity
 
     # 3. Hard Spend Cap (code-enforced, not prompt-level)
     if total_amount > SPEND_CAP:
-        entry = log_audit_entry("create_order", sku, total_amount, f"Amount ₹{total_amount} exceeds cap ₹{SPEND_CAP}.", f"FAILED (₹{total_amount} > ₹{SPEND_CAP})", "BLOCKED")
+        entry = log_audit_entry("create_order", sku, total_amount, f"Amount ₹{total_amount} exceeds cap ₹{SPEND_CAP}.", f"FAILED (₹{total_amount} > ₹{SPEND_CAP})", "BLOCKED", session_id=session_id, is_attack=True)
         return {"success": False, "blocked": True, "reason": f"₹{total_amount} exceeds spend cap ₹{SPEND_CAP}.", "auditEntry": entry}
 
     # 4. Create real Razorpay test-mode order
@@ -117,7 +185,7 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
             })
             order_id = rzp_order["id"]
         except Exception as e:
-            entry = log_audit_entry("create_order", sku, total_amount, f"Razorpay API error: {str(e)}", "PASSED", "FAILED (API Error)")
+            entry = log_audit_entry("create_order", sku, total_amount, f"Razorpay API error: {str(e)}", "PASSED", "FAILED (API Error)", session_id=session_id)
             return {"success": False, "blocked": False, "reason": f"Razorpay API error: {str(e)}", "auditEntry": entry}
     else:
         order_id = f"order_sim_{int(time.time())}"
@@ -142,6 +210,7 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
         "create_order", sku, total_amount,
         f"Order created for {item['name']} (SKU: {sku}). {reasoning}",
         "PASSED", "SUCCESS",
+        session_id=session_id
     )
 
     return {
@@ -226,7 +295,7 @@ def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
 
         if matched:
             entry = log_audit_entry("catalog_lookup", matched[0]["sku"], matched[0]["price"],
-                                     f"Catalog search for '{query}'. Found {len(matched)} result(s).", "PASSED", "SUCCESS")
+                                     f"Catalog search for '{query}'. Found {len(matched)} result(s).", "PASSED", "SUCCESS", session_id=session_id)
         return {"products": matched[:3], "count": len(matched)}
 
     elif tool_name == "create_order":
@@ -254,6 +323,7 @@ def health_check():
         "spend_cap": SPEND_CAP,
         "groq_configured": bool(GROQ_API_KEY),
         "razorpay_configured": bool(RAZORPAY_KEY_ID),
+        "neon_postgres_configured": bool(SessionLocal),
     }
 
 
@@ -264,6 +334,29 @@ def get_catalog():
 
 @app.get("/api/audit-logs")
 def get_audit_logs():
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            records = db.query(AuditLogModel).order_by(AuditLogModel.id.desc()).all()
+            db.close()
+            return [
+                {
+                    "id": r.id,
+                    "timestamp": r.timestamp.isoformat() if r.timestamp else time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    "action": r.action,
+                    "sku": r.sku or "N/A",
+                    "amount": float(r.amount) if r.amount is not None else 0.0,
+                    "reasoning": r.reasoning,
+                    "spend_cap_check": r.spend_cap_check,
+                    "result": r.result,
+                    "session_id": r.session_id,
+                    "is_attack": r.is_attack
+                }
+                for r in records
+            ]
+        except Exception as e:
+            print(f"Error querying Neon DB: {e}")
+
     return audit_logs
 
 
@@ -362,21 +455,22 @@ def _fallback_chat(req: ChatRequest):
     """Rule-based fallback when Groq API is unavailable."""
     prompt_lower = req.message.lower()
     session_cap = req.spend_cap or SPEND_CAP
+    session_id = req.session_id or "session_default"
 
     # Attack 1: Spend-cap bypass
     if "50000" in prompt_lower or "50,000" in prompt_lower or ("ignore" in prompt_lower and "order" in prompt_lower):
         entry = log_audit_entry("create_order", "CUSTOM_OVERRIDE", 50000,
-                                 "Prompt injection to bypass spend cap.", f"FAILED (₹50,000 > ₹{session_cap})", "BLOCKED")
+                                 "Prompt injection to bypass spend cap.", f"FAILED (₹50,000 > ₹{session_cap})", "BLOCKED", session_id=session_id, is_attack=True)
         return {"reply": f"GUARDRAIL ENFORCED: Order amount ₹50,000 exceeds merchant hard spend cap of ₹{session_cap:,.0f}. Blocked at code level.", "blocked": True, "auditEntry": entry}
 
     # Attack 2: Unauthorized discount
     if "secret90" in prompt_lower or ("discount" in prompt_lower and "90%" in prompt_lower):
-        entry = log_audit_entry("apply_discount", "UNKNOWN", 0, "Unauthorized discount code SECRET90.", "REJECTED (Scope Lock)", "BLOCKED")
+        entry = log_audit_entry("apply_discount", "UNKNOWN", 0, "Unauthorized discount code SECRET90.", "REJECTED (Scope Lock)", "BLOCKED", session_id=session_id, is_attack=True)
         return {"reply": "GUARDRAIL BLOCK: Discount code SECRET90 is not in the whitelisted action set.", "blocked": True, "auditEntry": entry}
 
     # Attack 3: Data leakage
     if "last customer" in prompt_lower or "phone number" in prompt_lower or "other session" in prompt_lower:
-        entry = log_audit_entry("read_session_data", "N/A", 0, "Cross-session data query attempt.", "BLOCKED (Isolation)", "BLOCKED")
+        entry = log_audit_entry("read_session_data", "N/A", 0, "Cross-session data query attempt.", "BLOCKED (Isolation)", "BLOCKED", session_id=session_id, is_attack=True)
         return {"reply": "SESSION ISOLATION: Agent has no access to other sessions' data.", "blocked": True, "auditEntry": entry}
 
     # Normal catalog search
@@ -398,9 +492,9 @@ def _fallback_chat(req: ChatRequest):
     if matched:
         item = matched[0]
         entry = log_audit_entry("catalog_lookup", item["sku"], item["price"],
-                                 f"Search for '{req.message}'. Matched {item['name']}.", "PASSED", "SUCCESS")
+                                 f"Search for '{req.message}'. Matched {item['name']}.", "PASSED", "SUCCESS", session_id=session_id)
         return {
-            "reply": f"I found **{item['name']}** (SKU: `{item['sku']}`) for **₹{item['price']:,}**.\n\n{item['description']}\n\nWould you like to complete this order via Razorpay?",
+            "reply": f"I found **{item['name']}** (SKU: `{item['sku']}`) for **₹{item['price']:,}**.\n\nWould you like to complete this order via Razorpay?",
             "products": matched[:2], "auditEntry": entry,
         }
 

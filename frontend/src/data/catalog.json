@@ -1,72 +1,219 @@
 [
   {
     "sku": "SH001",
-    "name": "Pro Runner Elite Shoes",
-    "category": "Footwear",
+    "name": "Running Shoes - Blue",
+    "category": "footwear",
     "price": 2499,
-    "stock": 15,
-    "rating": 4.8,
-    "tags": ["shoes", "running", "sports"],
-    "description": "Lightweight breathable mesh running shoes with responsive cushioning."
+    "stock": 12,
+    "tags": [
+      "shoes",
+      "running"
+    ],
+    "image": "https://images.unsplash.com/photo-1738958668282-4c7446241e9e?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH002",
-    "name": "Urban Street Canvas Sneakers",
-    "category": "Footwear",
+    "name": "Wireless Earbuds",
+    "category": "electronics",
     "price": 1899,
     "stock": 8,
-    "rating": 4.5,
-    "tags": ["shoes", "casual", "sneakers"],
-    "description": "Classic canvas high-top sneakers with durable rubber soles."
+    "tags": [
+      "audio",
+      "electronics"
+    ],
+    "image": "https://images.unsplash.com/photo-1572569979132-b4f10c9ec185?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "WT001",
-    "name": "Pulsefit Smartwatch Pro",
-    "category": "Electronics",
-    "price": 4999,
-    "stock": 20,
-    "rating": 4.7,
-    "tags": ["watch", "electronics", "smartwatch"],
-    "description": "AMOLED display smartwatch with heart rate, SpO2, and GPS tracking."
-  },
-  {
-    "sku": "WT002",
-    "name": "Chronos Steel Analog Watch",
-    "category": "Accessories",
-    "price": 3499,
-    "stock": 5,
-    "rating": 4.6,
-    "tags": ["watch", "analog", "luxury"],
-    "description": "Stainless steel water-resistant precision quartz wrist watch."
-  },
-  {
-    "sku": "HD001",
-    "name": "AeroBeat Wireless Headphones",
-    "category": "Electronics",
-    "price": 3299,
-    "stock": 10,
-    "rating": 4.9,
-    "tags": ["audio", "headphones", "wireless"],
-    "description": "Active Noise Cancelling over-ear Bluetooth headphones with 40h battery."
-  },
-  {
-    "sku": "BP001",
-    "name": "Nomad Waterproof Backpack 30L",
-    "category": "Accessories",
+    "sku": "SH003",
+    "name": "Classic Hoodie - Black",
+    "category": "apparel",
     "price": 1599,
-    "stock": 18,
-    "rating": 4.4,
-    "tags": ["bag", "backpack", "travel"],
-    "description": "Ergonomic laptop backpack with anti-theft pocket and USB port."
+    "stock": 15,
+    "tags": [
+      "hoodie",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1499972777470-6a932ea55420?auto=format&fit=crop&w=900&q=80"
   },
   {
-    "sku": "JK001",
-    "name": "Thermal Tech Windbreaker Jacket",
-    "category": "Apparel",
+    "sku": "SH004",
+    "name": "Smart Watch",
+    "category": "electronics",
+    "price": 3299,
+    "stock": 6,
+    "tags": [
+      "watch",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1523395451704-22c6fb0522cf?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH005",
+    "name": "Canvas Backpack",
+    "category": "bags",
+    "price": 1299,
+    "stock": 10,
+    "tags": [
+      "backpack",
+      "travel"
+    ],
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH006",
+    "name": "Casual Sneakers - White",
+    "category": "footwear",
+    "price": 2199,
+    "stock": 9,
+    "tags": [
+      "shoes",
+      "sneakers",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1738958668282-4c7446241e9e?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH007",
+    "name": "Oversized T-Shirt - Grey",
+    "category": "apparel",
+    "price": 899,
+    "stock": 20,
+    "tags": [
+      "tshirt",
+      "streetwear"
+    ],
+    "image": "https://images.unsplash.com/photo-1563902603-e9dc831ed947?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH008",
+    "name": "Portable Bluetooth Speaker",
+    "category": "electronics",
+    "price": 2399,
+    "stock": 7,
+    "tags": [
+      "speaker",
+      "audio"
+    ],
+    "image": "https://images.unsplash.com/photo-1632247541401-3d4a8d516595?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH009",
+    "name": "Leather Wallet - Brown",
+    "category": "accessories",
+    "price": 999,
+    "stock": 14,
+    "tags": [
+      "wallet",
+      "leather"
+    ],
+    "image": "https://images.unsplash.com/photo-1579014134953-1580d7f123f3?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH010",
+    "name": "Polarized Sunglasses",
+    "category": "accessories",
+    "price": 1199,
+    "stock": 11,
+    "tags": [
+      "sunglasses",
+      "eyewear"
+    ],
+    "image": "https://images.unsplash.com/photo-1584036553516-bf83210aa16c?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH011",
+    "name": "Fitness Resistance Bands",
+    "category": "fitness",
+    "price": 699,
+    "stock": 18,
+    "tags": [
+      "fitness",
+      "workout"
+    ],
+    "image": "https://images.unsplash.com/photo-1530021356476-0a6375ffe73b?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH012",
+    "name": "Ceramic Coffee Mug",
+    "category": "home",
+    "price": 499,
+    "stock": 25,
+    "tags": [
+      "mug",
+      "kitchen"
+    ],
+    "image": "https://images.unsplash.com/photo-1571388821745-6773b68201df?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH013",
+    "name": "Desk Lamp - White",
+    "category": "home",
+    "price": 1399,
+    "stock": 8,
+    "tags": [
+      "lamp",
+      "desk"
+    ],
+    "image": "https://images.unsplash.com/photo-1731762524352-b5663f83a830?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH014",
+    "name": "Mechanical Keyboard",
+    "category": "electronics",
     "price": 2799,
-    "stock": 0,
-    "rating": 4.7,
-    "tags": ["clothing", "jacket", "winter"],
-    "description": "Water-resistant thermal jacket for outdoor adventures."
+    "stock": 5,
+    "tags": [
+      "keyboard",
+      "gaming"
+    ],
+    "image": "https://images.unsplash.com/photo-1762117643785-f05364c2f44d?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH015",
+    "name": "Everyday Analog Watch",
+    "category": "accessories",
+    "price": 1999,
+    "stock": 9,
+    "tags": [
+      "watch",
+      "accessories"
+    ],
+    "image": "https://images.unsplash.com/photo-1610435883879-06a09cc1e45b?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH016",
+    "name": "Running Shorts - Navy",
+    "category": "apparel",
+    "price": 1099,
+    "stock": 13,
+    "tags": [
+      "shorts",
+      "running"
+    ],
+    "image": "https://images.unsplash.com/photo-1673505705688-db10359dbf48?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH017",
+    "name": "Insulated Water Bottle",
+    "category": "fitness",
+    "price": 799,
+    "stock": 16,
+    "tags": [
+      "bottle",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH018",
+    "name": "Laptop Sleeve - Black",
+    "category": "bags",
+    "price": 899,
+    "stock": 10,
+    "tags": [
+      "laptop",
+      "sleeve"
+    ],
+    "image": "https://images.unsplash.com/photo-1673505705688-db10359dbf48?auto=format&fit=crop&w=900&q=80"
   }
 ]
