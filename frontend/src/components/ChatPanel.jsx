@@ -1,11 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowUp, Bot, User, ShieldAlert, ShoppingBag, ExternalLink, CheckCircle2, Plus, Minus } from 'lucide-react';
-import CheckoutFlowModal from './CheckoutFlowModal';
-import AgentActivityTracker from './AgentActivityTracker';
+import { ArrowUp, Bot, User, ShieldAlert, ShoppingBag, Plus, Minus, CheckCircle2, Search, ArrowRight } from 'lucide-react';
+import AgentWorkflowBar from './AgentWorkflowBar';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';
 
-function ProductCardItem({ item, onStartCheckout }) {
+const SUGGESTION_CHIPS = [
+  'Running shoes under ₹3000',
+  'Black sneakers',
+  'Oversized T-shirts',
+  'Show me products under ₹1500',
+];
+
+function ProductCardItem({ item, onSelectForPurchase }) {
   const [qty, setQty] = useState(1);
   const [imgSrc, setImgSrc] = useState(item.image || DEFAULT_FALLBACK_IMAGE);
 
@@ -84,7 +90,7 @@ function ProductCardItem({ item, onStartCheckout }) {
             <button
               type="button"
               className="buy-now-btn"
-              onClick={() => onStartCheckout(item, qty)}
+              onClick={() => onSelectForPurchase(item, qty)}
             >
               <ShoppingBag size={14} />
               <span>Buy Now • ₹{subtotal.toLocaleString()}</span>
@@ -100,11 +106,13 @@ function ProductCardItem({ item, onStartCheckout }) {
   );
 }
 
-export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
+export default function ChatPanel({
+  messages,
+  activeStep,
+  onSendMessage,
+  onSelectProduct
+}) {
   const [input, setInput] = useState('');
-  const [checkoutProduct, setCheckoutProduct] = useState(null);
-  const [checkoutQty, setCheckoutQty] = useState(1);
-  const [activeStep, setActiveStep] = useState(1); // 1: Searched, 2: Selected, 3: Verified, 4: Created, 5: Paid
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -113,39 +121,23 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
 
   useEffect(() => {
     scrollToBottom();
-    // Update active step based on message history
-    if (messages.length > 1) {
-      const lastMsg = messages[messages.length - 1];
-      if (lastMsg.products && lastMsg.products.length > 0) {
-        setActiveStep(2); // Product Selected
-      }
-    }
   }, [messages]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-    setActiveStep(1); // Searched
     onSendMessage(input);
     setInput('');
   };
 
-  const handleStartCheckout = (product, initialQty) => {
-    setActiveStep(3); // Stock Verified
-    setCheckoutProduct(product);
-    setCheckoutQty(initialQty);
-  };
-
-  const handleOrderComplete = (orderData) => {
-    setActiveStep(5); // Payment Verified
-    if (onAuditLogged && orderData.auditEntry) {
-      onAuditLogged(orderData.auditEntry);
-    }
+  const handleChipClick = (chipText) => {
+    onSendMessage(chipText);
   };
 
   return (
-    <div className="chat-container">
-      <AgentActivityTracker activeStep={activeStep} />
+    <div className="chat-panel-container">
+      {/* Top Compact Workflow Indicator Bar */}
+      <AgentWorkflowBar activeStep={activeStep} />
 
       <div className="messages-scroll-area">
         {messages.map((msg) => (
@@ -164,6 +156,14 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
                 </div>
               )}
 
+              {/* In-Chat Agent Activity Card */}
+              {msg.agentActivity && (
+                <div className="in-chat-activity-card">
+                  <CheckCircle2 size={14} color="var(--accent-success)" />
+                  <span>{msg.agentActivity}</span>
+                </div>
+              )}
+
               <div style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</div>
 
               {/* Product recommendation cards */}
@@ -173,7 +173,7 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
                     <ProductCardItem
                       key={item.sku}
                       item={item}
-                      onStartCheckout={handleStartCheckout}
+                      onSelectForPurchase={onSelectProduct}
                     />
                   ))}
                 </div>
@@ -190,14 +190,29 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Floating Input Dock */}
+      {/* Fixed Bottom AI Shopping Command Bar */}
       <div className="input-dock">
         <div className="input-box-wrapper">
+          {/* Quick Suggestion Chips */}
+          <div className="suggestion-chips-row">
+            {SUGGESTION_CHIPS.map((chip, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className="chip-pill"
+                onClick={() => handleChipClick(chip)}
+              >
+                <Search size={11} />
+                <span>{chip}</span>
+              </button>
+            ))}
+          </div>
+
           <form onSubmit={handleSubmit} className="input-form">
             <input
               type="text"
               className="chat-input-field"
-              placeholder="Ask agent to search products (e.g. 'Show me running shoes under ₹3000')..."
+              placeholder="Ask the agent to find products, compare options, or start a purchase..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
@@ -207,16 +222,6 @@ export default function ChatPanel({ messages, onSendMessage, onAuditLogged }) {
           </form>
         </div>
       </div>
-
-      {/* Structured Checkout Modal */}
-      {checkoutProduct && (
-        <CheckoutFlowModal
-          product={checkoutProduct}
-          initialQuantity={checkoutQty}
-          onClose={() => setCheckoutProduct(null)}
-          onOrderComplete={handleOrderComplete}
-        />
-      )}
     </div>
   );
 }
