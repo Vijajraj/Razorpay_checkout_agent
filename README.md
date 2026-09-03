@@ -21,7 +21,7 @@ This project builds a **Conversational Checkout Agent** that enables customers t
 The agent **never** returns product results as raw Markdown tables or raw SKU listings in chat text:
 
 ```
-❌ OLD / UNACCEPTABLE:
+ OLD / UNACCEPTABLE:
 | SKU | Name | Price (₹) | Stock |
 | SH007 | Oversized T-Shirt - Grey | 899 | 20 |
 
