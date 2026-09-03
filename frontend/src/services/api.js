@@ -76,6 +76,47 @@ export async function verifyPaymentOnServer(verifyPayload) {
   }
 }
 
+export async function verifyStock(sku, quantity = 1, sessionId = 'session_default') {
+  try {
+    const res = await fetch(`${API_BASE_URL}/verify-stock`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sku, quantity, session_id: sessionId }),
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+    const errData = await res.json();
+    return {
+      type: 'stock_verified',
+      verified: false,
+      sku,
+      requested_quantity: quantity,
+      available_stock: 0,
+      message: errData.detail || 'Stock verification failed.',
+    };
+  } catch (err) {
+    // Fallback: check local catalog
+    const item = catalogData.find((i) => i.sku === sku);
+    if (!item) {
+      return { type: 'stock_verified', verified: false, sku, message: 'Product not found.' };
+    }
+    return {
+      type: 'stock_verified',
+      verified: item.stock >= quantity,
+      sku,
+      product_name: item.name,
+      requested_quantity: quantity,
+      available_stock: item.stock,
+      unit_price: item.price,
+      total_amount: item.price * quantity,
+      message: item.stock >= quantity
+        ? `Stock verified: ${item.stock} units available.`
+        : `Insufficient stock. Only ${item.stock} units available.`,
+    };
+  }
+}
+
 function simulateAgentResponse(userPrompt, state) {
   const promptLower = userPrompt.toLowerCase();
 
@@ -173,26 +214,26 @@ function simulateAgentResponse(userPrompt, state) {
     const item = matchedItems[0];
     const isOutOfStock = item.stock === 0;
 
-    let responseReply = `Here are the top matches I found for your search:\n\n• **${item.name}** (\`${item.sku}\`) — **₹${item.price.toLocaleString()}**\n\nYou can select your quantity and click **Buy Now** on the product card below!`;
+    const count = matchedItems.length;
+    let responseReply = `I found ${count} product${count > 1 ? 's' : ''} matching your search.`;
     if (isOutOfStock) {
-      responseReply += `\n\n⚠️ *Note: This item is currently OUT OF STOCK (${item.stock} available).*`;
+      responseReply += ` Note: some items may be out of stock.`;
     }
 
     return {
       success: true,
       mode: 'simulator',
       data: {
+        type: 'product_search',
         reply: responseReply,
         products: matchedItems.slice(0, 4),
-        selectedSku: item.sku,
-        outOfStock: isOutOfStock,
         auditEntry: {
           id: Date.now(),
           timestamp: new Date().toISOString(),
           action: 'catalog_lookup',
           sku: item.sku,
           amount: item.price,
-          reasoning: `Found ${matchedItems.length} matching products for query '${userPrompt}'. Selected SKU ${item.sku}.`,
+          reasoning: `Found ${count} matching products for query '${userPrompt}'.`,
           spend_cap_check: 'PASSED (Under ₹10,000 Cap)',
           result: 'SUCCESS',
         },
@@ -204,8 +245,9 @@ function simulateAgentResponse(userPrompt, state) {
     success: true,
     mode: 'simulator',
     data: {
+      type: 'text',
       reply: `Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.`,
-      products: catalogData.slice(0, 4),
+      products: [],
       auditEntry: null,
     },
   };

@@ -16,7 +16,7 @@ export default function Header({
     <header className="app-header">
       <div className="brand-title">
         <div className="brand-icon">
-          <ShoppingBag size={16} />
+          <img src="/agent-logo.png" alt="Agent Logo" className="brand-logo-img" />
         </div>
         <h1>Razorpay Agentic Store</h1>
 

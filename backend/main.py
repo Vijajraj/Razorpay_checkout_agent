@@ -187,6 +187,53 @@ def verify_razorpay_signature(razorpay_order_id: str, razorpay_payment_id: str, 
         return False
 
 
+def clean_agent_reply(text: str) -> str:
+    """Safety filter to strip ALL markdown formatting and product data from agent text.
+
+    The agent must ONLY return short conversational sentences.
+    Product data is delivered via structured JSON, never via text.
+    This function is a safety net in case the LLM still generates Markdown.
+    """
+    import re
+    if not text:
+        return ""
+    lines = text.splitlines()
+    clean_lines = []
+    in_table = False
+    for line in lines:
+        stripped = line.strip()
+        # Skip markdown table rows (header, separator, data)
+        if "|" in line and ("---" in line or "SKU" in line or "Price" in line or "Stock" in line or "Name" in line):
+            in_table = True
+            continue
+        if in_table and "|" in line:
+            continue
+        if in_table and "|" not in line:
+            in_table = False
+        # Skip bulleted product listings
+        if stripped.startswith("• ") and ("SKU" in line or "₹" in line or "price" in line.lower()):
+            continue
+        if stripped.startswith("- ") and ("SKU" in line or "₹" in line):
+            continue
+        # Skip lines that are just product details
+        if re.match(r'^\*\*[A-Z]{2}\d{3}\*\*', stripped):
+            continue
+        if re.match(r'^SKU:\s*[A-Z]{2}\d{3}', stripped):
+            continue
+        clean_lines.append(line)
+
+    res = "\n".join(clean_lines).strip()
+
+    # Strip inline markdown formatting
+    res = re.sub(r'\*\*(.+?)\*\*', r'\1', res)  # **bold** -> bold
+    res = re.sub(r'`([^`]+)`', r'\1', res)       # `code` -> code
+    res = re.sub(r'₹[\d,]+', '', res)             # Remove price mentions
+    res = re.sub(r'\bSKU[:\s]+[A-Z]{2}\d{3}\b', '', res)  # Remove SKU references
+    res = re.sub(r'\s{2,}', ' ', res).strip()     # Collapse whitespace
+
+    return res if res else "Here are the matching products from our catalog."
+
+
 # ---------- Guardrail Engine ----------
 
 def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, session_id: str):
@@ -206,7 +253,6 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
         entry = log_audit_entry("create_order", sku, item["price"] * quantity, f"Out of stock ({item['stock']} left, requested {quantity}).", "N/A", "FAILED (Out of Stock)", session_id=session_id)
         return {"success": False, "blocked": False, "reason": f"Product out of stock. Only {item['stock']} available.", "auditEntry": entry}
 
-    # Server-side price calculation
     total_amount = float(item["price"]) * quantity
 
     if total_amount > SPEND_CAP:
@@ -215,14 +261,12 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
 
     session_order_counts[session_id] = count + 1
     order_id = f"ORD-{random.randint(100000, 999999)}"
-
     rzp_order_id = f"rzp_order_{int(time.time())}"
-    payment_link = f"https://rzp.io/i/test_{order_id}"
 
     if rzp_client:
         try:
             rzp_order = rzp_client.order.create({
-                "amount": int(total_amount * 100),  # Razorpay uses paise
+                "amount": int(total_amount * 100),
                 "currency": "INR",
                 "receipt": order_id,
                 "notes": {"sku": sku, "reasoning": reasoning[:200]},
@@ -242,7 +286,6 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
         "success": True,
         "order_id": order_id,
         "razorpay_order_id": rzp_order_id,
-        "payment_link": payment_link,
         "amount": total_amount,
         "currency": "INR",
         "sku": sku,
@@ -259,11 +302,12 @@ TOOL_DEFINITIONS = [
         "type": "function",
         "function": {
             "name": "search_catalog",
-            "description": "Search the product catalog by keyword, category, or tag. Returns matching products.",
+            "description": "Search the product catalog by keyword, category, tag, or price ceiling. Returns matching products.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "query": {"type": "string", "description": "Search keyword (e.g. 'running shoes', 'watch', 'headphones')"},
+                    "query": {"type": "string", "description": "Search keyword (e.g. 'running shoes', 'watch', 't-shirt')"},
+                    "max_price": {"type": "number", "description": "Optional maximum price filter in INR"},
                 },
                 "required": ["query"],
             },
@@ -273,7 +317,7 @@ TOOL_DEFINITIONS = [
         "type": "function",
         "function": {
             "name": "create_order",
-            "description": "Create a Razorpay order for a product SKU after the customer confirms. Enforced by guardrail engine.",
+            "description": "Create a Razorpay order for a product SKU after customer confirms. Enforced by guardrail engine.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -287,23 +331,51 @@ TOOL_DEFINITIONS = [
     },
 ]
 
-SYSTEM_PROMPT = """You are a helpful AI checkout assistant for an online store. You help customers search products, answer questions, and complete purchases safely via Razorpay test-mode.
+SYSTEM_PROMPT = """You are a helpful AI shopping assistant for an online store.
 
-STRICT FORMATTING & RESPONSE RULES:
-- NEVER output raw markdown tables (e.g. do NOT use '| SKU | Name | Price |'). The frontend UI automatically renders interactive visual product cards with images, prices, stock badges, quantity selectors, and 'Buy Now' buttons for any products returned.
-- Present product recommendations in clear, warm, conversational text highlighting the product name, key features, and price in ₹.
-- Instruct the user that they can click the 'Buy Now' button directly on any product card to initiate their purchase, or reply to confirm which product SKU they want to order.
-- Only recommend products that exist in the canonical catalog. Never invent fake prices, discounts, or SKUs.
+ABSOLUTE RESPONSE CONTRACT — VIOLATION = SYSTEM FAILURE:
+
+1. Your text response must be ONE short conversational sentence. Nothing more.
+2. The frontend renders interactive ProductCards automatically from tool results.
+3. You must NEVER include ANY of the following in your text:
+   - Markdown tables: | SKU | Name | Price |
+   - Bold text: **anything**
+   - Backtick code: `anything`
+   - Bullet points with product data: • Product Name — ₹price
+   - SKU codes: SH001, SH007, etc.
+   - Prices: ₹899, ₹2499, etc.
+   - Stock counts: "20 available", "12 in stock"
+   - Product descriptions or specifications
+   - "Click Buy Now", "Specify quantity", "Continue to Shipping"
+
+CORRECT RESPONSES (use these patterns):
+  - "I found 3 products matching your search."
+  - "Here are the oversized T-shirts from our catalog."
+  - "I found 1 product under ₹1500."
+  - "Product selected. You can proceed with your purchase."
+  - "Stock has been verified."
+
+FORBIDDEN RESPONSES (never do this):
+  - "Here are the matches:\n\n• **Running Shoes** (`SH001`) — **₹2,499**"
+  - "| SKU | Name | Price |\n|---|---|---|\n| SH001 | Running Shoes | ₹2499 |"
+  - "Selected **Running Shoes** (SKU: SH001). Specify quantity..."
+  - "I found Running Shoes - Blue for ₹2,499 with 12 in stock."
+
+STRICT GUARDRAILS (enforced in code):
+- Only recommend products that exist in the canonical catalog.
+- Never invent fake prices, discounts, or SKUs.
 - You have NO ability to apply discount codes or coupons.
 - You have NO access to other customers' data or past sessions.
-- The merchant has a hard spend cap. Do not attempt to bypass it.
-- Always explain what you are doing before initiating an order."""
+- Hard spend cap is active at ₹10,000.
+"""
 
 
 def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
-    """Execute a tool call from the LLM and return the result."""
+    """Execute a tool call from the LLM and return structured JSON."""
     if tool_name == "search_catalog":
         query = tool_args.get("query", "").lower()
+        max_price = tool_args.get("max_price")
+
         matched = [
             item for item in catalog
             if any(tag in query for tag in item.get("tags", []))
@@ -311,15 +383,20 @@ def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
             or query in item.get("category", "").lower()
             or query in item.get("description", "").lower()
         ]
+
         if not matched:
             for word in query.split():
-                matched.extend([i for i in catalog if word in " ".join(i.get("tags", [])) or word in i["name"].lower()])
+                if len(word) > 2 and word not in ["the", "for", "some", "under", "with", "show", "find", "want"]:
+                    matched.extend([i for i in catalog if word in " ".join(i.get("tags", [])) or word in i["name"].lower() or word in i.get("category", "").lower()])
             matched = list({item["sku"]: item for item in matched}.values())
+
+        if max_price:
+            matched = [i for i in matched if i["price"] <= max_price]
 
         if matched:
             entry = log_audit_entry("catalog_lookup", matched[0]["sku"], matched[0]["price"],
                                      f"Catalog search for '{query}'. Found {len(matched)} result(s).", "PASSED", "SUCCESS", session_id=session_id)
-        return {"products": matched[:4], "count": len(matched)}
+        return {"products": matched[:6], "count": len(matched)}
 
     elif tool_name == "create_order":
         sku = tool_args.get("sku", "")
@@ -354,6 +431,48 @@ class VerifyPaymentRequest(BaseModel):
     razorpay_order_id: str
     razorpay_payment_id: str
     razorpay_signature: str
+
+class VerifyStockRequest(BaseModel):
+    sku: str
+    quantity: int = 1
+    session_id: Optional[str] = "session_default"
+
+
+@app.post("/api/verify-stock")
+def verify_stock_endpoint(req: VerifyStockRequest):
+    """Dedicated stock verification endpoint — real backend operation, not just a UI state change."""
+    item = next((i for i in catalog if i["sku"] == req.sku), None)
+    if not item:
+        entry = log_audit_entry(
+            "stock_check", req.sku, 0,
+            f"Stock check failed: SKU '{req.sku}' not found in catalog.",
+            "N/A", "FAILED", session_id=req.session_id
+        )
+        raise HTTPException(status_code=404, detail=f"Product SKU '{req.sku}' not found.")
+
+    available = item["stock"]
+    verified = available >= req.quantity
+
+    entry = log_audit_entry(
+        "stock_check", req.sku, item["price"] * req.quantity,
+        f"Stock verification for {item['name']} (SKU: {req.sku}): requested {req.quantity}, available {available}.",
+        "PASSED" if verified else "FAILED (Insufficient Stock)",
+        "SUCCESS" if verified else "FAILED",
+        session_id=req.session_id
+    )
+
+    return {
+        "type": "stock_verified",
+        "verified": verified,
+        "sku": req.sku,
+        "product_name": item["name"],
+        "requested_quantity": req.quantity,
+        "available_stock": available,
+        "unit_price": item["price"],
+        "total_amount": item["price"] * req.quantity,
+        "message": f"Stock verified: {available} units available." if verified else f"Insufficient stock. Only {available} units available.",
+        "auditEntry": entry
+    }
 
 
 @app.get("/api/health")
@@ -414,7 +533,6 @@ def create_order_endpoint(req: CreateOrderRequest):
     if item["stock"] < req.quantity:
         raise HTTPException(status_code=400, detail=f"Insufficient stock. Only {item['stock']} units available for {item['name']}.")
 
-    # Server-side price calculation
     unit_price = float(item["price"])
     subtotal = unit_price * req.quantity
     shipping_fee = 0.0
@@ -445,7 +563,6 @@ def create_order_endpoint(req: CreateOrderRequest):
 
     address_str = f"{req.address_line1}, {req.address_line2 + ', ' if req.address_line2 else ''}{req.city}, {req.state} - {req.pin_code}"
 
-    # Save order to database
     order_data = {
         "id": order_id,
         "session_id": req.session_id,
@@ -533,13 +650,11 @@ def verify_payment_endpoint(req: VerifyPaymentRequest):
 
     new_status = "PAID" if valid_signature else "PAYMENT_FAILED"
 
-    # Update in-memory cache
     if req.order_id in orders_cache:
         orders_cache[req.order_id]["status"] = new_status
         orders_cache[req.order_id]["razorpay_payment_id"] = req.razorpay_payment_id
         orders_cache[req.order_id]["razorpay_signature"] = req.razorpay_signature
 
-    # Update Postgres DB
     if SessionLocal:
         try:
             db = SessionLocal()
@@ -555,7 +670,6 @@ def verify_payment_endpoint(req: VerifyPaymentRequest):
         except Exception as err:
             print(f"Postgres order update error: {err}")
 
-    # Decrement stock if payment succeeded
     if valid_signature:
         order_info = orders_cache.get(req.order_id, {})
         sku = order_info.get("sku")
@@ -672,13 +786,20 @@ def chat_endpoint(req: ChatRequest):
                 temperature=0.7,
             )
 
-            reply_text = follow_up.choices[0].message.content or ""
-            history.append({"role": "assistant", "content": reply_text})
+            raw_reply = follow_up.choices[0].message.content or ""
+            clean_reply = clean_agent_reply(raw_reply)
+            history.append({"role": "assistant", "content": clean_reply})
 
-            response_data = {"reply": reply_text, "auditEntry": audit_entry}
+            response_type = "product_search" if all_products else "text"
+            response_data = {
+                "type": response_type,
+                "reply": clean_reply or f"I found {len(all_products)} matching product{'s' if len(all_products)!=1 else ''} in the catalog.",
+                "auditEntry": audit_entry
+            }
             if all_products:
-                response_data["products"] = all_products[:4]
+                response_data["products"] = all_products[:6]
             if order_result and order_result.get("success"):
+                response_data["type"] = "order_created"
                 response_data["order"] = order_result
             if audit_entry and audit_entry.get("result") == "BLOCKED":
                 response_data["blocked"] = True
@@ -686,9 +807,10 @@ def chat_endpoint(req: ChatRequest):
             return response_data
 
         else:
-            reply_text = msg.content or ""
-            history.append({"role": "assistant", "content": reply_text})
-            return {"reply": reply_text, "auditEntry": None}
+            raw_reply = msg.content or ""
+            clean_reply = clean_agent_reply(raw_reply)
+            history.append({"role": "assistant", "content": clean_reply})
+            return {"type": "text", "reply": clean_reply, "auditEntry": None}
 
     except Exception as e:
         print(f"Groq API error: {e}")
@@ -704,15 +826,15 @@ def _fallback_chat(req: ChatRequest):
     if "50000" in prompt_lower or "50,000" in prompt_lower or ("ignore" in prompt_lower and "order" in prompt_lower):
         entry = log_audit_entry("create_order", "CUSTOM_OVERRIDE", 50000,
                                  "Prompt injection to bypass spend cap.", f"FAILED (₹50,000 > ₹{session_cap})", "BLOCKED", session_id=session_id, is_attack=True)
-        return {"reply": f"GUARDRAIL ENFORCED: Order amount ₹50,000 exceeds merchant hard spend cap of ₹{session_cap:,.0f}. Blocked at code level.", "blocked": True, "auditEntry": entry}
+        return {"type": "blocked", "reply": f"GUARDRAIL ENFORCED: Order amount ₹50,000 exceeds merchant hard spend cap of ₹{session_cap:,.0f}. Blocked at code level.", "blocked": True, "auditEntry": entry}
 
     if "secret90" in prompt_lower or ("discount" in prompt_lower and "90%" in prompt_lower):
         entry = log_audit_entry("apply_discount", "UNKNOWN", 0, "Unauthorized discount code SECRET90.", "REJECTED (Scope Lock)", "BLOCKED", session_id=session_id, is_attack=True)
-        return {"reply": "GUARDRAIL BLOCK: Discount code SECRET90 is not in the whitelisted action set.", "blocked": True, "auditEntry": entry}
+        return {"type": "blocked", "reply": "GUARDRAIL BLOCK: Discount code SECRET90 is not in the whitelisted action set.", "blocked": True, "auditEntry": entry}
 
     if "last customer" in prompt_lower or "phone number" in prompt_lower or "other session" in prompt_lower:
         entry = log_audit_entry("read_session_data", "N/A", 0, "Cross-session data query attempt.", "BLOCKED (Isolation)", "BLOCKED", session_id=session_id, is_attack=True)
-        return {"reply": "SESSION ISOLATION: Agent has no access to other sessions' data.", "blocked": True, "auditEntry": entry}
+        return {"type": "blocked", "reply": "SESSION ISOLATION: Agent has no access to other sessions' data.", "blocked": True, "auditEntry": entry}
 
     matched = [
         item for item in catalog
@@ -726,21 +848,27 @@ def _fallback_chat(req: ChatRequest):
             matched = [i for i in catalog if "shoes" in i["tags"]]
         elif "watch" in prompt_lower:
             matched = [i for i in catalog if "watch" in i["tags"]]
-        elif "headphone" in prompt_lower or "audio" in prompt_lower:
-            matched = [i for i in catalog if "audio" in i["tags"]]
+        elif "headphone" in prompt_lower or "audio" in prompt_lower or "speaker" in prompt_lower:
+            matched = [i for i in catalog if "audio" in i["tags"] or "speaker" in i["tags"]]
+        elif "shirt" in prompt_lower or "tshirt" in prompt_lower or "apparel" in prompt_lower:
+            matched = [i for i in catalog if "tshirt" in i["tags"] or "shirt" in i["tags"]]
 
     if matched:
         item = matched[0]
         entry = log_audit_entry("catalog_lookup", item["sku"], item["price"],
                                  f"Search for '{req.message}'. Matched {item['name']}.", "PASSED", "SUCCESS", session_id=session_id)
         return {
-            "reply": f"Here are the top matches I found for your search:\n\n• **{item['name']}** (`{item['sku']}`) — **₹{item['price']:,}**\n\nYou can select the quantity and click **Buy Now** on the product card below to place your order!",
-            "products": matched[:2], "auditEntry": entry,
+            "type": "product_search",
+            "reply": f"I found {len(matched)} product{'s' if len(matched)>1 else ''} matching your search.",
+            "products": matched[:4],
+            "auditEntry": entry,
         }
 
     return {
+        "type": "text",
         "reply": "Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.",
-        "products": catalog[:4], "auditEntry": None,
+        "products": [],
+        "auditEntry": None,
     }
 
 

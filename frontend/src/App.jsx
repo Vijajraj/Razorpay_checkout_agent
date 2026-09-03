@@ -63,13 +63,13 @@ export default function App() {
   const handleSelectProduct = (product, initialQty = 1) => {
     setSelectedProduct(product);
     setSelectedQty(initialQty);
-    setActiveStep(3); // STOCK VERIFIED
+    setActiveStep(2); // Step 2: Product Selected
 
     const selectMsg = {
       id: Date.now(),
       sender: 'assistant',
-      text: `Selected **${product.name}** (\`${product.sku}\`). Specify quantity or click **Continue to Shipping** in the Purchase Summary panel to complete your order.`,
-      agentActivity: `Product selected: ${product.name} (SKU: ${product.sku}) • ${product.stock} available in stock`,
+      text: `${product.name} selected.`,
+      agentActivity: `Product selected: ${product.name}`,
     };
 
     setMessages((prev) => [...prev, selectMsg]);
@@ -89,7 +89,23 @@ export default function App() {
     };
 
     setMessages((prev) => [...prev, userMsg]);
-    const lowerText = userText.toLowerCase();
+    const lowerText = userText.toLowerCase().trim();
+
+    // Handle quantity update from chat if product is selected (e.g. "2", "buy 3", "qty 4")
+    if (selectedProduct) {
+      const qtyMatch = lowerText.match(/^(?:buy\s+|qty\s+|quantity\s+)?(\d+)$/i) || lowerText.match(/(?:buy|set|make\s+it)\s+(\d+)/i);
+      if (qtyMatch) {
+        const newQty = Math.max(1, Math.min(selectedProduct.stock, parseInt(qtyMatch[1], 10)));
+        setSelectedQty(newQty);
+        const qtyMsg = {
+          id: Date.now() + 1,
+          sender: 'assistant',
+          text: `Quantity updated to ${newQty}.`,
+        };
+        setMessages((prev) => [...prev, qtyMsg]);
+        return;
+      }
+    }
 
     // Check for natural language selection e.g. "buy the second one", "buy 2 of the first one"
     if ((lowerText.includes('second') || lowerText.includes('first') || lowerText.includes('third') || lowerText.includes('buy the')) && messages.length > 0) {
@@ -111,7 +127,6 @@ export default function App() {
       }
     }
 
-    setActiveStep(1); // SEARCH
     const res = await sendChatMessage(userText, { sessionId });
 
     if (res.success) {
@@ -132,7 +147,7 @@ export default function App() {
       setMessages((prev) => [...prev, botMsg]);
 
       if (returnedProducts.length > 0) {
-        setActiveStep(2); // SELECT
+        setActiveStep(1); // Step 1: Product Searched
       }
 
       if (res.data.auditEntry) {
@@ -148,8 +163,22 @@ export default function App() {
     setAuditLogs((prev) => [newEntry, ...prev]);
   };
 
+  const handleStockVerified = (stockData) => {
+    setActiveStep(3); // Step 3: Stock Verified
+    if (stockData?.auditEntry) {
+      setAuditLogs((prev) => [stockData.auditEntry, ...prev]);
+    }
+  };
+
+  const handleOrderCreated = (orderData) => {
+    setActiveStep(4); // Step 4: Order Created
+    if (orderData?.auditEntry) {
+      setAuditLogs((prev) => [orderData.auditEntry, ...prev]);
+    }
+  };
+
   const handleOrderSuccess = (orderData) => {
-    setActiveStep(5); // PAID
+    setActiveStep(5); // Step 5: Payment Verified
     if (orderData?.auditEntry) {
       setAuditLogs((prev) => [orderData.auditEntry, ...prev]);
     }
@@ -192,7 +221,10 @@ export default function App() {
             quantity={selectedQty}
             onQtyChange={setSelectedQty}
             onResetSelection={handleResetSelection}
+            onStockVerified={handleStockVerified}
+            onOrderCreated={handleOrderCreated}
             onOrderSuccess={handleOrderSuccess}
+            sessionId={sessionId}
           />
         </div>
       </div>

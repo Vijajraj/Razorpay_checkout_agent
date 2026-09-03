@@ -3,11 +3,11 @@ import { Check, Circle } from 'lucide-react';
 
 export default function AgentWorkflowBar({ activeStep = 1 }) {
   const steps = [
-    { id: 1, label: 'SEARCH' },
-    { id: 2, label: 'SELECT' },
-    { id: 3, label: 'VERIFY' },
-    { id: 4, label: 'ORDER' },
-    { id: 5, label: 'PAY' },
+    { id: 1, label: 'Product Searched' },
+    { id: 2, label: 'Product Selected' },
+    { id: 3, label: 'Stock Verified' },
+    { id: 4, label: 'Order Created' },
+    { id: 5, label: 'Payment Verified' },
   ];
 
   return (

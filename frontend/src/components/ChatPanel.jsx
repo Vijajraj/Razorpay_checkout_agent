@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowUp, Bot, User, ShieldAlert, ShoppingBag, Plus, Minus, CheckCircle2, Search, ArrowRight } from 'lucide-react';
+import { ArrowUp, Bot, User, ShieldAlert, ShoppingBag, Plus, Minus, CheckCircle2, Search } from 'lucide-react';
 import AgentWorkflowBar from './AgentWorkflowBar';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';
@@ -11,7 +11,7 @@ const SUGGESTION_CHIPS = [
   'Show me products under ₹1500',
 ];
 
-function ProductCardItem({ item, onSelectForPurchase }) {
+function ProductCard({ item, onSelectForPurchase }) {
   const [qty, setQty] = useState(1);
   const [imgSrc, setImgSrc] = useState(item.image || DEFAULT_FALLBACK_IMAGE);
 
@@ -41,9 +41,9 @@ function ProductCardItem({ item, onSelectForPurchase }) {
 
       <div className="product-card-content">
         <div className="product-header-row">
-          <span className="product-sku">{item.sku}</span>
+          <span className="product-sku">SKU: {item.sku}</span>
           <span className={`stock-badge ${isOutOfStock ? 'out-stock' : isLowStock ? 'low-stock' : 'in-stock'}`}>
-            {isOutOfStock ? 'Out of Stock' : isLowStock ? `Only ${item.stock} left` : 'In Stock'}
+            {isOutOfStock ? 'Out of Stock' : `✓ ${item.stock} available`}
           </span>
         </div>
 
@@ -52,18 +52,7 @@ function ProductCardItem({ item, onSelectForPurchase }) {
 
         <div className="product-price-row">
           <span className="product-price">₹{(item.price || 0).toLocaleString()}</span>
-          {item.stock > 0 && (
-            <span className="stock-count-muted">{item.stock} available</span>
-          )}
         </div>
-
-        {item.tags && item.tags.length > 0 && (
-          <div className="product-tags">
-            {item.tags.map((tag, idx) => (
-              <span key={idx} className="tag-pill">#{tag}</span>
-            ))}
-          </div>
-        )}
 
         {!isOutOfStock ? (
           <div className="card-action-row">
@@ -144,7 +133,7 @@ export default function ChatPanel({
           <div key={msg.id} className={`message-row ${msg.sender}`}>
             {msg.sender === 'assistant' && (
               <div className="message-avatar">
-                <Bot size={16} />
+                <img src="/agent-logo.png" alt="Agent Logo" className="agent-avatar-img" />
               </div>
             )}
 
@@ -164,13 +153,23 @@ export default function ChatPanel({
                 </div>
               )}
 
-              <div style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</div>
+              <div style={{ whiteSpace: 'pre-wrap' }}>
+                {msg.sender === 'assistant'
+                  ? msg.text
+                      .split('\n')
+                      .filter((line) => !line.includes('|'))
+                      .join('\n')
+                      .replace(/\*\*(.*?)\*\*/g, '$1')
+                      .replace(/`([^`]+)`/g, '$1')
+                      .trim()
+                  : msg.text}
+              </div>
 
-              {/* Product recommendation cards */}
+              {/* Render Product Cards when type is product_search or products exist */}
               {msg.products && msg.products.length > 0 && (
                 <div className="products-container">
                   {msg.products.map((item) => (
-                    <ProductCardItem
+                    <ProductCard
                       key={item.sku}
                       item={item}
                       onSelectForPurchase={onSelectProduct}
@@ -190,10 +189,9 @@ export default function ChatPanel({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Fixed Bottom AI Shopping Command Bar */}
+      {/* Fixed Bottom Command Dock */}
       <div className="input-dock">
         <div className="input-box-wrapper">
-          {/* Quick Suggestion Chips */}
           <div className="suggestion-chips-row">
             {SUGGESTION_CHIPS.map((chip, idx) => (
               <button

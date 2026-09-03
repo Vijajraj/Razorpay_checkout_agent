@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ShoppingBag, Plus, Minus, ArrowRight, ArrowLeft, ShieldCheck, CheckCircle2, CreditCard, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
-import { createOrderOnServer, verifyPaymentOnServer } from '../services/api';
+import { createOrderOnServer, verifyPaymentOnServer, verifyStock } from '../services/api';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';
 
@@ -9,7 +9,10 @@ export default function PurchaseSummaryPanel({
   quantity,
   onQtyChange,
   onResetSelection,
-  onOrderSuccess
+  onOrderSuccess,
+  onStockVerified,
+  onOrderCreated,
+  sessionId = 'session_default',
 }) {
   const [step, setStep] = useState(1); // 1: Product Selected, 2: Shipping Form, 3: Order Review, 4: Paid Success
   const [imgSrc, setImgSrc] = useState(selectedProduct?.image || DEFAULT_FALLBACK_IMAGE);
@@ -67,6 +70,27 @@ export default function PurchaseSummaryPanel({
     }
   };
 
+  const handleContinueToShipping = async () => {
+    setLoading(true);
+    setPaymentError(null);
+    try {
+      const stockRes = await verifyStock(selectedProduct.sku, quantity, sessionId);
+      if (stockRes && stockRes.verified === false) {
+        setPaymentError(stockRes.message || `Insufficient stock. Only ${stockRes.available_stock || 0} units available.`);
+        setLoading(false);
+        return;
+      }
+      if (onStockVerified) {
+        onStockVerified(stockRes);
+      }
+      setStep(2);
+    } catch (err) {
+      setPaymentError(err.message || 'Stock verification failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const validateAddressForm = () => {
     const newErrors = {};
     if (!shipping.fullName.trim()) newErrors.fullName = 'Full name is required';
@@ -106,6 +130,7 @@ export default function PurchaseSummaryPanel({
         city: shipping.city,
         state: shipping.state,
         pin_code: shipping.pinCode,
+        session_id: sessionId,
       };
 
       const serverRes = await createOrderOnServer(payload);
@@ -115,6 +140,9 @@ export default function PurchaseSummaryPanel({
       }
 
       setOrderResult(serverRes);
+      if (onOrderCreated) {
+        onOrderCreated(serverRes);
+      }
 
       // 2. Razorpay Checkout Modal
       if (window.Razorpay) {
@@ -237,9 +265,25 @@ export default function PurchaseSummaryPanel({
               </div>
             </div>
 
-            <button className="primary-action-btn" onClick={() => setStep(2)}>
-              <span>Continue to Shipping</span>
-              <ArrowRight size={16} />
+            {paymentError && (
+              <div className="error-alert" style={{ marginBottom: '12px' }}>
+                <AlertCircle size={15} />
+                <span>{paymentError}</span>
+              </div>
+            )}
+
+            <button className="primary-action-btn" disabled={loading} onClick={handleContinueToShipping}>
+              {loading ? (
+                <>
+                  <Loader2 size={16} className="spin-icon" />
+                  <span>Verifying Stock...</span>
+                </>
+              ) : (
+                <>
+                  <span>Continue to Shipping</span>
+                  <ArrowRight size={16} />
+                </>
+              )}
             </button>
           </div>
         )}
