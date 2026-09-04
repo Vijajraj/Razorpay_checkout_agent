@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowUp, Bot, User, ShieldAlert, ShoppingBag, Plus, Minus, CheckCircle2, Search } from 'lucide-react';
+import { ArrowUp, User, ShieldAlert, ShoppingBag, Plus, Minus, CheckCircle2, Search, Database } from 'lucide-react';
 import AgentWorkflowBar from './AgentWorkflowBar';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';

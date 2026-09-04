@@ -4,7 +4,6 @@ import ChatPanel from './components/ChatPanel';
 import PurchaseSummaryPanel from './components/PurchaseSummaryPanel';
 import AuditLogPanel from './components/AuditLogPanel';
 import { sendChatMessage, checkBackendHealth, sendChatConsent, getChatHistory, deleteChatHistory } from './services/api';
-import catalogData from './data/catalog.json';
 
 export default function App() {
   const [theme, setTheme] = useState(() => {

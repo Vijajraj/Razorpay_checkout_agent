@@ -4,6 +4,7 @@ import time
 import hmac
 import hashlib
 import random
+import re
 from typing import List, Optional, Dict, Any
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,6 +16,16 @@ from sqlalchemy import Column, Integer, String, Numeric, Boolean, DateTime, func
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 load_dotenv()
+
+def safe_log(msg: Any):
+    try:
+        print(msg, flush=True)
+    except Exception:
+        try:
+            print(str(msg).encode('ascii', 'replace').decode('ascii'), flush=True)
+        except Exception:
+            pass
+
 
 # Configuration
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
@@ -91,9 +102,9 @@ if DATABASE_URL:
         db_engine = create_engine(DATABASE_URL, pool_pre_ping=True)
         Base.metadata.create_all(db_engine)
         SessionLocal = sessionmaker(bind=db_engine)
-        print("Connected to Neon Postgres Database successfully.")
+        safe_log("Connected to Neon Postgres Database successfully.")
     except Exception as err:
-        print(f"Neon Postgres DB connection note: {err}")
+        safe_log(f"Neon Postgres DB connection note: {err}")
 
 app = FastAPI(
     title="Razorpay Checkout Agent Service",
@@ -135,6 +146,25 @@ session_consent_status: Dict[str, Optional[bool]] = {}
 # Rate limiting: max order attempts per session
 MAX_ORDER_ATTEMPTS_PER_SESSION = 5
 session_order_counts: Dict[str, int] = {}
+MAX_IN_MEMORY_SESSIONS = 500
+
+
+def trim_in_memory_caches():
+    """Prevent memory leaks by capping maximum stored in-memory sessions and logs."""
+    if len(session_histories) > MAX_IN_MEMORY_SESSIONS:
+        for k in list(session_histories.keys())[:-MAX_IN_MEMORY_SESSIONS]:
+            session_histories.pop(k, None)
+    if len(orders_cache) > MAX_IN_MEMORY_SESSIONS:
+        for k in list(orders_cache.keys())[:-MAX_IN_MEMORY_SESSIONS]:
+            orders_cache.pop(k, None)
+    if len(session_consent_status) > MAX_IN_MEMORY_SESSIONS:
+        for k in list(session_consent_status.keys())[:-MAX_IN_MEMORY_SESSIONS]:
+            session_consent_status.pop(k, None)
+    if len(session_order_counts) > MAX_IN_MEMORY_SESSIONS:
+        for k in list(session_order_counts.keys())[:-MAX_IN_MEMORY_SESSIONS]:
+            session_order_counts.pop(k, None)
+    if len(audit_logs) > 1000:
+        del audit_logs[1000:]
 
 
 def get_session_consent(session_id: str) -> Optional[bool]:
@@ -151,7 +181,7 @@ def get_session_consent(session_id: str) -> Optional[bool]:
                 session_consent_status[session_id] = record.consent_given
                 return record.consent_given
         except Exception as e:
-            print(f"Error checking session consent: {e}")
+            safe_log(f"Error checking session consent: {e}")
 
     return None
 
@@ -178,7 +208,7 @@ def persist_chat_message(session_id: str, role: str, content: Optional[str]):
             db.commit()
             db.close()
         except Exception as e:
-            print(f"Error persisting chat history message: {e}")
+            safe_log(f"Error persisting chat history message: {e}")
 
 
 
@@ -205,6 +235,7 @@ def log_audit_entry(
         "is_attack": is_attack or (result == "BLOCKED")
     }
     audit_logs.insert(0, entry)
+    trim_in_memory_caches()
 
     if SessionLocal:
         try:
@@ -227,7 +258,7 @@ def log_audit_entry(
                 entry["timestamp"] = record.timestamp.isoformat()
             db.close()
         except Exception as e:
-            print(f"Error persisting log to Neon DB: {e}")
+            safe_log(f"Error persisting log to Neon DB: {e}")
 
     return entry
 
@@ -241,7 +272,7 @@ def verify_razorpay_signature(razorpay_order_id: str, razorpay_payment_id: str, 
         generated = hmac.new(RAZORPAY_KEY_SECRET.encode("utf-8"), msg, hashlib.sha256).hexdigest()
         return hmac.compare_digest(generated, razorpay_signature)
     except Exception as err:
-        print(f"Signature verification error: {err}")
+        safe_log(f"Signature verification error: {err}")
         return False
 
 
@@ -252,7 +283,6 @@ def clean_agent_reply(text: str) -> str:
     Product data is delivered via structured JSON, never via text.
     This function is a safety net in case the LLM still generates Markdown.
     """
-    import re
     if not text:
         return ""
     lines = text.splitlines()
@@ -269,9 +299,9 @@ def clean_agent_reply(text: str) -> str:
         if in_table and "|" not in line:
             in_table = False
         # Skip bulleted product listings
-        if stripped.startswith("• ") and ("SKU" in line or "₹" in line or "price" in line.lower()):
+        if stripped.startswith("- ") and ("SKU" in line or "\u20b9" in line or "price" in line.lower()):
             continue
-        if stripped.startswith("- ") and ("SKU" in line or "₹" in line):
+        if stripped.startswith("- ") and ("SKU" in line or "\u20b9" in line):
             continue
         # Skip lines that are just product details
         if re.match(r'^\*\*[A-Z]{2}\d{3}\*\*', stripped):
@@ -285,7 +315,7 @@ def clean_agent_reply(text: str) -> str:
     # Strip inline markdown formatting
     res = re.sub(r'\*\*(.+?)\*\*', r'\1', res)  # **bold** -> bold
     res = re.sub(r'`([^`]+)`', r'\1', res)       # `code` -> code
-    res = re.sub(r'₹[\d,]+', '', res)             # Remove price mentions
+    res = re.sub(r'\u20b9[\d,]+', '', res)             # Remove price mentions
     res = re.sub(r'\bSKU[:\s]+[A-Z]{2}\d{3}\b', '', res)  # Remove SKU references
     res = re.sub(r'\s{2,}', ' ', res).strip()     # Collapse whitespace
 
@@ -314,8 +344,8 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
     total_amount = float(item["price"]) * quantity
 
     if total_amount > SPEND_CAP:
-        entry = log_audit_entry("create_order", sku, total_amount, f"Amount ₹{total_amount} exceeds cap ₹{SPEND_CAP}.", f"FAILED (₹{total_amount} > ₹{SPEND_CAP})", "BLOCKED", session_id=session_id, is_attack=True)
-        return {"success": False, "blocked": True, "reason": f"Order amount ₹{total_amount:,.0f} exceeds merchant spend cap of ₹{SPEND_CAP:,.0f}.", "auditEntry": entry}
+        entry = log_audit_entry("create_order", sku, total_amount, f"Amount \u20b9{total_amount} exceeds cap \u20b9{SPEND_CAP}.", f"FAILED (\u20b9{total_amount} > \u20b9{SPEND_CAP})", "BLOCKED", session_id=session_id, is_attack=True)
+        return {"success": False, "blocked": True, "reason": f"Order amount \u20b9{total_amount:,.0f} exceeds merchant spend cap of \u20b9{SPEND_CAP:,.0f}.", "auditEntry": entry}
 
     session_order_counts[session_id] = count + 1
     order_id = f"ORD-{random.randint(100000, 999999)}"
@@ -331,7 +361,7 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
             })
             rzp_order_id = rzp_order["id"]
         except Exception as e:
-            print(f"Razorpay order create note: {e}")
+            safe_log(f"Razorpay order create note: {e}")
 
     entry = log_audit_entry(
         "create_order", sku, total_amount,
@@ -391,7 +421,7 @@ TOOL_DEFINITIONS = [
 
 SYSTEM_PROMPT = """You are a helpful AI shopping assistant for an online store.
 
-ABSOLUTE RESPONSE CONTRACT — VIOLATION = SYSTEM FAILURE:
+ABSOLUTE RESPONSE CONTRACT - VIOLATION = SYSTEM FAILURE:
 
 1. Your text response must be ONE short conversational sentence. Nothing more.
 2. The frontend renders interactive ProductCards automatically from tool results.
@@ -399,32 +429,32 @@ ABSOLUTE RESPONSE CONTRACT — VIOLATION = SYSTEM FAILURE:
    - Markdown tables: | SKU | Name | Price |
    - Bold text: **anything**
    - Backtick code: `anything`
-   - Bullet points with product data: • Product Name — ₹price
+   - Bullet points with product data: - Product Name - price
    - SKU codes: SH001, SH007, etc.
-   - Prices: ₹899, ₹2499, etc.
+   - Prices: Rs. 899, Rs. 2499, etc.
    - Stock counts: "20 available", "12 in stock"
    - Product descriptions or specifications
    - "Click Buy Now", "Specify quantity", "Continue to Shipping"
 
 CORRECT RESPONSES (use these patterns):
-  - "I found 3 products matching your search."
-  - "Here are the oversized T-shirts from our catalog."
-  - "I found 1 product under ₹1500."
-  - "Product selected. You can proceed with your purchase."
-  - "Stock has been verified."
+   - "I found 3 products matching your search."
+   - "Here are the oversized T-shirts from our catalog."
+   - "I found 1 product under Rs. 1500."
+   - "Product selected. You can proceed with your purchase."
+   - "Stock has been verified."
 
 FORBIDDEN RESPONSES (never do this):
-  - "Here are the matches:\n\n• **Running Shoes** (`SH001`) — **₹2,499**"
-  - "| SKU | Name | Price |\n|---|---|---|\n| SH001 | Running Shoes | ₹2499 |"
-  - "Selected **Running Shoes** (SKU: SH001). Specify quantity..."
-  - "I found Running Shoes - Blue for ₹2,499 with 12 in stock."
+   - "Here are the matches: Running Shoes (SH001)"
+   - "| SKU | Name | Price |"
+   - "Selected Running Shoes (SKU: SH001). Specify quantity..."
+   - "I found Running Shoes - Blue for Rs. 2499 with 12 in stock."
 
 STRICT GUARDRAILS (enforced in code):
 - Only recommend products that exist in the canonical catalog.
 - Never invent fake prices, discounts, or SKUs.
 - You have NO ability to apply discount codes or coupons.
-- You have NO access to other customers' data or past sessions.
-- Hard spend cap is active at ₹10,000.
+- You have NO access to other customer data or past sessions.
+- Hard spend cap is active at Rs. 10000.
 """
 
 
@@ -502,7 +532,7 @@ class ChatConsentRequest(BaseModel):
 
 @app.post("/api/verify-stock")
 def verify_stock_endpoint(req: VerifyStockRequest):
-    """Dedicated stock verification endpoint — real backend operation, not just a UI state change."""
+    """Dedicated stock verification endpoint - real backend operation, not just a UI state change."""
     item = next((i for i in catalog if i["sku"] == req.sku), None)
     if not item:
         entry = log_audit_entry(
@@ -577,7 +607,7 @@ def get_audit_logs():
                 for r in records
             ]
         except Exception as e:
-            print(f"Error querying Neon DB: {e}")
+            safe_log(f"Error querying Neon DB: {e}")
 
     return audit_logs
 
@@ -601,8 +631,8 @@ def create_order_endpoint(req: CreateOrderRequest):
     total_amount = subtotal + shipping_fee
 
     if total_amount > SPEND_CAP:
-        log_audit_entry("create_order", req.sku, total_amount, f"Order total ₹{total_amount} exceeds spend cap ₹{SPEND_CAP}.", f"FAILED (Exceeds ₹{SPEND_CAP} Cap)", "BLOCKED", session_id=req.session_id, is_attack=True)
-        raise HTTPException(status_code=400, detail=f"Order total ₹{total_amount:,.0f} exceeds merchant hard spend cap of ₹{SPEND_CAP:,.0f}.")
+        log_audit_entry("create_order", req.sku, total_amount, f"Order total \u20b9{total_amount} exceeds spend cap \u20b9{SPEND_CAP}.", f"FAILED (Exceeds \u20b9{SPEND_CAP} Cap)", "BLOCKED", session_id=req.session_id, is_attack=True)
+        raise HTTPException(status_code=400, detail=f"Order total \u20b9{total_amount:,.0f} exceeds merchant hard spend cap of \u20b9{SPEND_CAP:,.0f}.")
 
     order_id = f"ORD-{random.randint(100000, 999999)}"
     rzp_order_id = f"rzp_order_{int(time.time())}"
@@ -621,7 +651,7 @@ def create_order_endpoint(req: CreateOrderRequest):
             })
             rzp_order_id = rzp_order["id"]
         except Exception as e:
-            print(f"Razorpay order create error: {e}")
+            safe_log(f"Razorpay order create error: {e}")
 
     address_str = f"{req.address_line1}, {req.address_line2 + ', ' if req.address_line2 else ''}{req.city}, {req.state} - {req.pin_code}"
 
@@ -676,7 +706,7 @@ def create_order_endpoint(req: CreateOrderRequest):
             db.commit()
             db.close()
         except Exception as err:
-            print(f"Postgres order save error: {err}")
+            safe_log(f"Postgres order save error: {err}")
 
     log_audit_entry(
         "create_order", req.sku, total_amount,
@@ -730,7 +760,7 @@ def verify_payment_endpoint(req: VerifyPaymentRequest):
                 db.commit()
             db.close()
         except Exception as err:
-            print(f"Postgres order update error: {err}")
+            safe_log(f"Postgres order update error: {err}")
 
     if valid_signature:
         order_info = orders_cache.get(req.order_id, {})
@@ -783,7 +813,7 @@ def get_order_endpoint(order_id: str):
                     "created_at": order_rec.created_at.isoformat() if order_rec.created_at else None
                 }
         except Exception as e:
-            print(f"Postgres order query note: {e}")
+            safe_log(f"Postgres order query note: {e}")
 
     if order_id in orders_cache:
         return orders_cache[order_id]
@@ -826,7 +856,7 @@ def set_chat_consent_endpoint(req: ChatConsentRequest):
                 db.commit()
             db.close()
         except Exception as e:
-            print(f"Error setting chat consent: {e}")
+            safe_log(f"Error setting chat consent: {e}")
 
     return {
         "success": True,
@@ -868,7 +898,7 @@ def get_chat_history_endpoint(session_id: str):
                 ]
             }
         except Exception as e:
-            print(f"Error querying chat history: {e}")
+            safe_log(f"Error querying chat history: {e}")
 
     return {"session_id": session_id, "consent_given": True, "messages": []}
 
@@ -890,7 +920,7 @@ def delete_chat_history_endpoint(session_id: str):
             db.commit()
             db.close()
         except Exception as e:
-            print(f"Error deleting chat history: {e}")
+            safe_log(f"Error deleting chat history: {e}")
 
     return {
         "success": True,
@@ -991,7 +1021,7 @@ def chat_endpoint(req: ChatRequest):
             return {"type": "text", "reply": clean_reply, "auditEntry": None, "needs_consent": needs_consent}
 
     except Exception as e:
-        print(f"Groq API error: {e}")
+        safe_log(f"Groq API error: {e}")
         res = _fallback_chat(req)
         res["needs_consent"] = needs_consent
         return res
@@ -1004,12 +1034,10 @@ def _fallback_chat(req: ChatRequest):
     session_id = req.session_id or "session_default"
     needs_consent = (get_session_consent(session_id) is None)
 
-    persist_chat_message(session_id, "user", req.message)
-
     if "50000" in prompt_lower or "50,000" in prompt_lower or ("ignore" in prompt_lower and "order" in prompt_lower):
         entry = log_audit_entry("create_order", "CUSTOM_OVERRIDE", 50000,
-                                 "Prompt injection to bypass spend cap.", f"FAILED (₹50,000 > ₹{session_cap})", "BLOCKED", session_id=session_id, is_attack=True)
-        res_reply = f"GUARDRAIL ENFORCED: Order amount ₹50,000 exceeds merchant hard spend cap of ₹{session_cap:,.0f}. Blocked at code level."
+                                 "Prompt injection to bypass spend cap.", f"FAILED (\u20b950,000 > \u20b9{session_cap})", "BLOCKED", session_id=session_id, is_attack=True)
+        res_reply = f"GUARDRAIL ENFORCED: Order amount \u20b950,000 exceeds merchant hard spend cap of \u20b9{session_cap:,.0f}. Blocked at code level."
         persist_chat_message(session_id, "assistant", res_reply)
         return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
