@@ -214,3 +214,28 @@ def test_get_chat_sessions():
     assert isinstance(data["sessions"], list)
 
 
+def test_vague_pant_query_clarifying():
+    from backend.main import _fallback_chat, ChatRequest
+    sess_id = "test_vague_pant_sess"
+    req = ChatRequest(message="i want to get an pant", session_id=sess_id)
+    res = _fallback_chat(req)
+    assert res["type"] == "text"
+    assert "?" in res["reply"]
+    assert "jeans" in res["reply"] or "trousers" in res["reply"] or "pants" in res["reply"]
+    assert res["products"] == []
+
+
+def test_pant_category_accuracy():
+    from backend.main import search_catalog_items
+    items = search_catalog_items("i want to buy an pant")
+    assert len(items) > 0
+    categories = [i.get("category", "") for i in items]
+    tags = [t for i in items for t in i.get("tags", [])]
+
+    # Verify returned items belong to bottomwear/apparel and contain NO footwear
+    assert all(c == "apparel" for c in categories)
+    assert not any(t in ["shoes", "sandals", "boots", "heels", "electronics", "home"] for t in tags)
+    assert any(t in ["jeans", "trousers", "chinos", "joggers", "shorts"] for t in tags)
+
+
+

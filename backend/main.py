@@ -1150,7 +1150,8 @@ def _fallback_chat(req: ChatRequest):
         return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
     # Check for single-round clarifying question on vague single/two-word category requests
-    clean_prompt = prompt_lower.replace("i want to buy", "").replace("i want to get", "").replace("i want", "").replace("show me", "").replace("need", "").replace("buy", "").replace("get", "").replace("an", "").replace("a", "").strip()
+    clean_prompt = re.sub(r'\b(i|want|to|buy|get|an|a|show|me|need|find|some|the|looking|for)\b', '', prompt_lower)
+    clean_prompt = re.sub(r'\s+', ' ', clean_prompt).strip()
 
     history = session_histories.get(session_id, [])
     already_asked_clarifying = any(
