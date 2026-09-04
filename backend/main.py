@@ -420,7 +420,7 @@ TOOL_DEFINITIONS = [
     },
 ]
 
-SYSTEM_PROMPT = """You are a helpful AI shopping assistant for an online store with a 129-SKU catalog spanning Footwear, Apparel, Electronics, Bags, Accessories, Home, and Fitness.
+SYSTEM_PROMPT = f"""You are a helpful AI shopping assistant for an online store with a {len(catalog)}-SKU catalog spanning Footwear, Apparel, Electronics, Bags, Accessories, Home, and Fitness.
 
 PRODUCT MATCHING & CLARIFYING QUESTION RULES:
 
