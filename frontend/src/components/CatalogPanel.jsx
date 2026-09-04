@@ -10,7 +10,7 @@ export default function CatalogPanel({ open, onClose, products, onSelectProduct 
           <Library size={16} color="#6366f1" />
           <span>Browse Catalog</span>
         </div>
-        <button onClick={onClose} className="icon-btn" style={{ padding: '4px' }}>
+        <button type="button" onClick={onClose} className="icon-btn" style={{ padding: '4px' }}>
           <X size={16} />
         </button>
       </div>
@@ -23,12 +23,10 @@ export default function CatalogPanel({ open, onClose, products, onSelectProduct 
       </div>
 
       <div className="drawer-feed catalog-grid">
-        {products.map((item) => (
-          <ProductCard
-            key={item.sku}
-            item={item}
-            onSelectForPurchase={onSelectProduct}
-          />
+        {products.length === 0 ? (
+          <div className="catalog-empty-state">Loading catalog products…</div>
+        ) : products.map((item) => (
+          <ProductCard key={item.sku} item={item} onSelectForPurchase={onSelectProduct} />
         ))}
       </div>
     </aside>

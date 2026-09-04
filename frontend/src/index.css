@@ -1143,6 +1143,14 @@ body {
   margin-top: 12px;
 }
 
+.catalog-empty-state {
+  grid-column: 1 / -1;
+  padding: 28px 12px;
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 13px;
+}
+
 .drawer-header {
   height: 56px;
   padding: 0 16px;
@@ -1179,6 +1187,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+/* The catalog feed is a responsive card grid; keep this override after the
+   shared drawer feed rule so flex-column styles cannot collapse its cards. */
+.drawer-feed.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  align-content: start;
+  gap: 12px;
 }
 
 .timeline-item {
