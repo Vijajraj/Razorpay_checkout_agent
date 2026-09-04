@@ -73,6 +73,16 @@ class OrderModel(Base):
     razorpay_signature = Column(String, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
+class ChatHistoryModel(Base):
+    __tablename__ = "chat_history"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    session_id = Column(String, index=True, nullable=False)
+    role = Column(String, nullable=False)
+    content = Column(String, nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    consent_given = Column(Boolean, default=False, nullable=False)
+
 db_engine = None
 SessionLocal = None
 
@@ -119,9 +129,57 @@ orders_cache: Dict[str, Dict[str, Any]] = {}
 # Session conversation histories for multi-turn chat
 session_histories: Dict[str, list] = {}
 
+# Consent tracking per session (None = undecided, True = consented, False = declined)
+session_consent_status: Dict[str, Optional[bool]] = {}
+
 # Rate limiting: max order attempts per session
 MAX_ORDER_ATTEMPTS_PER_SESSION = 5
 session_order_counts: Dict[str, int] = {}
+
+
+def get_session_consent(session_id: str) -> Optional[bool]:
+    """Check if session consent has been given, declined, or is undecided."""
+    if session_id in session_consent_status:
+        return session_consent_status[session_id]
+
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            record = db.query(ChatHistoryModel).filter(ChatHistoryModel.session_id == session_id).order_by(ChatHistoryModel.id.desc()).first()
+            db.close()
+            if record:
+                session_consent_status[session_id] = record.consent_given
+                return record.consent_given
+        except Exception as e:
+            print(f"Error checking session consent: {e}")
+
+    return None
+
+
+def persist_chat_message(session_id: str, role: str, content: Optional[str]):
+    """Store chat message in Neon Postgres DB if consent is given. Never store if consent is declined/undecided."""
+    consent = get_session_consent(session_id)
+    if consent is not True:
+        return  # Privacy guard: Do NOT write message content if consent is not explicitly True
+
+    if not content:
+        return
+
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            rec = ChatHistoryModel(
+                session_id=session_id,
+                role=role,
+                content=str(content),
+                consent_given=True
+            )
+            db.add(rec)
+            db.commit()
+            db.close()
+        except Exception as e:
+            print(f"Error persisting chat history message: {e}")
+
 
 
 def log_audit_entry(
@@ -437,6 +495,10 @@ class VerifyStockRequest(BaseModel):
     quantity: int = 1
     session_id: Optional[str] = "session_default"
 
+class ChatConsentRequest(BaseModel):
+    session_id: str
+    consent: bool
+
 
 @app.post("/api/verify-stock")
 def verify_stock_endpoint(req: VerifyStockRequest):
@@ -729,18 +791,131 @@ def get_order_endpoint(order_id: str):
     raise HTTPException(status_code=404, detail=f"Order '{order_id}' not found.")
 
 
+@app.post("/api/chat-history/consent")
+def set_chat_consent_endpoint(req: ChatConsentRequest):
+    """Set or update privacy consent choice for storing chat history for a session."""
+    session_id = req.session_id
+    session_consent_status[session_id] = req.consent
+
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            if req.consent:
+                # Store all existing in-memory messages for this session
+                in_mem = session_histories.get(session_id, [])
+                for msg in in_mem:
+                    if isinstance(msg, dict):
+                        role = msg.get("role", "user")
+                        content = msg.get("content", "")
+                        if role != "system" and content:
+                            db.add(ChatHistoryModel(
+                                session_id=session_id,
+                                role=role,
+                                content=str(content),
+                                consent_given=True
+                            ))
+                db.commit()
+            else:
+                # Insert marker record with consent_given=False & content=None
+                db.add(ChatHistoryModel(
+                    session_id=session_id,
+                    role="system",
+                    content=None,
+                    consent_given=False
+                ))
+                db.commit()
+            db.close()
+        except Exception as e:
+            print(f"Error setting chat consent: {e}")
+
+    return {
+        "success": True,
+        "session_id": session_id,
+        "consent_given": req.consent,
+        "message": "Consent granted. Chat history will be stored." if req.consent else "Consent declined. History will remain in memory only."
+    }
+
+
+@app.get("/api/chat-history/{session_id}")
+def get_chat_history_endpoint(session_id: str):
+    """Retrieve stored chat history for a session (strictly filtered by session_id)."""
+    consent = get_session_consent(session_id)
+    if consent is not True:
+        return {"session_id": session_id, "consent_given": False, "messages": []}
+
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            # Session isolation: filter strictly by session_id
+            records = db.query(ChatHistoryModel)\
+                .filter(ChatHistoryModel.session_id == session_id)\
+                .filter(ChatHistoryModel.consent_given == True)\
+                .filter(ChatHistoryModel.content.isnot(None))\
+                .order_by(ChatHistoryModel.id.asc())\
+                .all()
+            db.close()
+            return {
+                "session_id": session_id,
+                "consent_given": True,
+                "messages": [
+                    {
+                        "id": r.id,
+                        "role": r.role,
+                        "content": r.content,
+                        "created_at": r.created_at.isoformat() if r.created_at else None
+                    }
+                    for r in records
+                ]
+            }
+        except Exception as e:
+            print(f"Error querying chat history: {e}")
+
+    return {"session_id": session_id, "consent_given": True, "messages": []}
+
+
+@app.delete("/api/chat-history/{session_id}")
+def delete_chat_history_endpoint(session_id: str):
+    """Clear stored history for a session from DB & reset session state."""
+    session_consent_status.pop(session_id, None)
+    session_order_counts.pop(session_id, None)
+    if session_id in session_histories:
+        session_histories[session_id] = [{"role": "system", "content": SYSTEM_PROMPT}]
+
+    deleted_count = 0
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            # Session isolation: filter strictly by session_id
+            deleted_count = db.query(ChatHistoryModel).filter(ChatHistoryModel.session_id == session_id).delete(synchronize_session=False)
+            db.commit()
+            db.close()
+        except Exception as e:
+            print(f"Error deleting chat history: {e}")
+
+    return {
+        "success": True,
+        "session_id": session_id,
+        "deleted_count": deleted_count,
+        "message": f"Chat history for session '{session_id}' cleared."
+    }
+
+
 @app.post("/api/chat")
 def chat_endpoint(req: ChatRequest):
     session_id = req.session_id or "session_default"
+    needs_consent = (get_session_consent(session_id) is None)
 
     if session_id not in session_histories:
         session_histories[session_id] = [{"role": "system", "content": SYSTEM_PROMPT}]
 
     history = session_histories[session_id]
     history.append({"role": "user", "content": req.message})
+    persist_chat_message(session_id, "user", req.message)
 
     if not groq_client:
-        return _fallback_chat(req)
+        res = _fallback_chat(req)
+        res["needs_consent"] = needs_consent
+        return res
 
     try:
         response = groq_client.chat.completions.create(
@@ -789,12 +964,14 @@ def chat_endpoint(req: ChatRequest):
             raw_reply = follow_up.choices[0].message.content or ""
             clean_reply = clean_agent_reply(raw_reply)
             history.append({"role": "assistant", "content": clean_reply})
+            persist_chat_message(session_id, "assistant", clean_reply)
 
             response_type = "product_search" if all_products else "text"
             response_data = {
                 "type": response_type,
                 "reply": clean_reply or f"I found {len(all_products)} matching product{'s' if len(all_products)!=1 else ''} in the catalog.",
-                "auditEntry": audit_entry
+                "auditEntry": audit_entry,
+                "needs_consent": needs_consent,
             }
             if all_products:
                 response_data["products"] = all_products[:6]
@@ -810,11 +987,14 @@ def chat_endpoint(req: ChatRequest):
             raw_reply = msg.content or ""
             clean_reply = clean_agent_reply(raw_reply)
             history.append({"role": "assistant", "content": clean_reply})
-            return {"type": "text", "reply": clean_reply, "auditEntry": None}
+            persist_chat_message(session_id, "assistant", clean_reply)
+            return {"type": "text", "reply": clean_reply, "auditEntry": None, "needs_consent": needs_consent}
 
     except Exception as e:
         print(f"Groq API error: {e}")
-        return _fallback_chat(req)
+        res = _fallback_chat(req)
+        res["needs_consent"] = needs_consent
+        return res
 
 
 def _fallback_chat(req: ChatRequest):
@@ -822,19 +1002,28 @@ def _fallback_chat(req: ChatRequest):
     prompt_lower = req.message.lower()
     session_cap = req.spend_cap or SPEND_CAP
     session_id = req.session_id or "session_default"
+    needs_consent = (get_session_consent(session_id) is None)
+
+    persist_chat_message(session_id, "user", req.message)
 
     if "50000" in prompt_lower or "50,000" in prompt_lower or ("ignore" in prompt_lower and "order" in prompt_lower):
         entry = log_audit_entry("create_order", "CUSTOM_OVERRIDE", 50000,
                                  "Prompt injection to bypass spend cap.", f"FAILED (₹50,000 > ₹{session_cap})", "BLOCKED", session_id=session_id, is_attack=True)
-        return {"type": "blocked", "reply": f"GUARDRAIL ENFORCED: Order amount ₹50,000 exceeds merchant hard spend cap of ₹{session_cap:,.0f}. Blocked at code level.", "blocked": True, "auditEntry": entry}
+        res_reply = f"GUARDRAIL ENFORCED: Order amount ₹50,000 exceeds merchant hard spend cap of ₹{session_cap:,.0f}. Blocked at code level."
+        persist_chat_message(session_id, "assistant", res_reply)
+        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
     if "secret90" in prompt_lower or ("discount" in prompt_lower and "90%" in prompt_lower):
         entry = log_audit_entry("apply_discount", "UNKNOWN", 0, "Unauthorized discount code SECRET90.", "REJECTED (Scope Lock)", "BLOCKED", session_id=session_id, is_attack=True)
-        return {"type": "blocked", "reply": "GUARDRAIL BLOCK: Discount code SECRET90 is not in the whitelisted action set.", "blocked": True, "auditEntry": entry}
+        res_reply = "GUARDRAIL BLOCK: Discount code SECRET90 is not in the whitelisted action set."
+        persist_chat_message(session_id, "assistant", res_reply)
+        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
     if "last customer" in prompt_lower or "phone number" in prompt_lower or "other session" in prompt_lower:
         entry = log_audit_entry("read_session_data", "N/A", 0, "Cross-session data query attempt.", "BLOCKED (Isolation)", "BLOCKED", session_id=session_id, is_attack=True)
-        return {"type": "blocked", "reply": "SESSION ISOLATION: Agent has no access to other sessions' data.", "blocked": True, "auditEntry": entry}
+        res_reply = "SESSION ISOLATION: Agent has no access to other sessions' data or stored chat history."
+        persist_chat_message(session_id, "assistant", res_reply)
+        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
     matched = [
         item for item in catalog
@@ -857,18 +1046,24 @@ def _fallback_chat(req: ChatRequest):
         item = matched[0]
         entry = log_audit_entry("catalog_lookup", item["sku"], item["price"],
                                  f"Search for '{req.message}'. Matched {item['name']}.", "PASSED", "SUCCESS", session_id=session_id)
+        res_reply = f"I found {len(matched)} product{'s' if len(matched)>1 else ''} matching your search."
+        persist_chat_message(session_id, "assistant", res_reply)
         return {
             "type": "product_search",
-            "reply": f"I found {len(matched)} product{'s' if len(matched)>1 else ''} matching your search.",
+            "reply": res_reply,
             "products": matched[:4],
             "auditEntry": entry,
+            "needs_consent": needs_consent,
         }
 
+    res_reply = "Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase."
+    persist_chat_message(session_id, "assistant", res_reply)
     return {
         "type": "text",
-        "reply": "Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.",
+        "reply": res_reply,
         "products": [],
         "auditEntry": None,
+        "needs_consent": needs_consent,
     }
 
 

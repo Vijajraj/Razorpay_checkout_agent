@@ -99,7 +99,9 @@ export default function ChatPanel({
   messages,
   activeStep,
   onSendMessage,
-  onSelectProduct
+  onSelectProduct,
+  showConsentPrompt,
+  onConsentChoice,
 }) {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef(null);
@@ -127,6 +129,24 @@ export default function ChatPanel({
     <div className="chat-panel-container">
       {/* Top Compact Workflow Indicator Bar */}
       <AgentWorkflowBar activeStep={activeStep} />
+
+      {/* Privacy Consent Prompt Banner */}
+      {showConsentPrompt && (
+        <div className="consent-banner-bar">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Database size={15} color="var(--accent-primary)" />
+            <span>Save this conversation so I can pick up where we left off?</span>
+          </div>
+          <div className="consent-btn-group">
+            <button type="button" className="consent-btn yes" onClick={() => onConsentChoice(true)}>
+              Yes
+            </button>
+            <button type="button" className="consent-btn no" onClick={() => onConsentChoice(false)}>
+              No
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="messages-scroll-area">
         {messages.map((msg) => (

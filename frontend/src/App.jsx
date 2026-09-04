@@ -3,7 +3,7 @@ import Header from './components/Header';
 import ChatPanel from './components/ChatPanel';
 import PurchaseSummaryPanel from './components/PurchaseSummaryPanel';
 import AuditLogPanel from './components/AuditLogPanel';
-import { sendChatMessage, checkBackendHealth } from './services/api';
+import { sendChatMessage, checkBackendHealth, sendChatConsent, getChatHistory, deleteChatHistory } from './services/api';
 import catalogData from './data/catalog.json';
 
 export default function App() {
@@ -19,6 +19,10 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedQty, setSelectedQty] = useState(1);
   const [activeStep, setActiveStep] = useState(1); // 1: SEARCH, 2: SELECT, 3: VERIFY, 4: ORDER, 5: PAY
+
+  // Privacy Consent & Chat History State
+  const [showConsentPrompt, setShowConsentPrompt] = useState(false);
+  const [consentGiven, setConsentGiven] = useState(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -55,9 +59,22 @@ export default function App() {
     async function verifyHealth() {
       const health = await checkBackendHealth();
       setBackendConnected(health.online);
+
+      // Check if stored chat history exists for this session
+      const historyRes = await getChatHistory(sessionId);
+      if (historyRes && historyRes.consent_given && historyRes.messages && historyRes.messages.length > 0) {
+        const loaded = historyRes.messages.map((m, idx) => ({
+          id: m.id || idx + 10,
+          sender: m.role === 'user' ? 'user' : 'assistant',
+          text: m.content,
+        }));
+        setMessages(loaded);
+        setConsentGiven(true);
+        setShowConsentPrompt(false);
+      }
     }
     verifyHealth();
-  }, []);
+  }, [sessionId]);
 
   // Handle user selecting a product card via "Buy Now" button
   const handleSelectProduct = (product, initialQty = 1) => {
@@ -130,6 +147,10 @@ export default function App() {
     const res = await sendChatMessage(userText, { sessionId });
 
     if (res.success) {
+      if (res.data.needs_consent && consentGiven === null) {
+        setShowConsentPrompt(true);
+      }
+
       const returnedProducts = res.data.products || [];
       const botMsg = {
         id: Date.now() + 1,
@@ -157,6 +178,26 @@ export default function App() {
         }
       }
     }
+  };
+
+  const handleConsentChoice = async (consent) => {
+    setShowConsentPrompt(false);
+    setConsentGiven(consent);
+    await sendChatConsent(sessionId, consent);
+  };
+
+  const handleClearChatHistory = async () => {
+    await deleteChatHistory(sessionId);
+    setMessages([
+      {
+        id: Date.now(),
+        sender: 'assistant',
+        text: 'Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.',
+        products: [],
+      },
+    ]);
+    setConsentGiven(null);
+    setShowConsentPrompt(false);
   };
 
   const handleAuditLogged = (newEntry) => {
@@ -200,6 +241,7 @@ export default function App() {
         auditOpen={auditOpen}
         onToggleAudit={() => setAuditOpen(!auditOpen)}
         blockedCount={blockedCount}
+        onClearChatHistory={handleClearChatHistory}
       />
 
       <div className="app-main-layout">
@@ -211,6 +253,8 @@ export default function App() {
             onSendMessage={handleSendMessage}
             onSelectProduct={handleSelectProduct}
             onAuditLogged={handleAuditLogged}
+            showConsentPrompt={showConsentPrompt}
+            onConsentChoice={handleConsentChoice}
           />
         </div>
 

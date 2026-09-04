@@ -117,6 +117,46 @@ export async function verifyStock(sku, quantity = 1, sessionId = 'session_defaul
   }
 }
 
+export async function sendChatConsent(sessionId, consent) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/chat-history/consent`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId, consent: Boolean(consent) }),
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Error sending consent choice:', err.message);
+  }
+  return { success: true, consent_given: consent };
+}
+
+export async function getChatHistory(sessionId) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/chat-history/${sessionId}`, { method: 'GET' });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Error fetching chat history:', err.message);
+  }
+  return { session_id: sessionId, consent_given: false, messages: [] };
+}
+
+export async function deleteChatHistory(sessionId) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/chat-history/${sessionId}`, { method: 'DELETE' });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Error deleting chat history:', err.message);
+  }
+  return { success: true, session_id: sessionId };
+}
+
 function simulateAgentResponse(userPrompt, state) {
   const promptLower = userPrompt.toLowerCase();
 

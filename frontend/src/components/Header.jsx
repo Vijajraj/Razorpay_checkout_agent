@@ -8,7 +8,8 @@ export default function Header({
   spendCap = 10000,
   auditOpen,
   onToggleAudit,
-  blockedCount = 0
+  blockedCount = 0,
+  onClearChatHistory
 }) {
   const [showSettings, setShowSettings] = useState(false);
 
@@ -92,6 +93,23 @@ export default function Header({
                 {backendConnected ? 'FastAPI Active' : 'Fallback Simulator Active'}
               </span>
             </div>
+
+            {onClearChatHistory && (
+              <div className="settings-row" style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px solid var(--border-subtle)' }}>
+                <span>Chat History Privacy:</span>
+                <button
+                  type="button"
+                  className="secondary-btn"
+                  style={{ padding: '4px 10px', fontSize: '11.5px', color: 'var(--accent-blocked)' }}
+                  onClick={() => {
+                    onClearChatHistory();
+                    setShowSettings(false);
+                  }}
+                >
+                  Clear Stored History
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
