@@ -39,7 +39,7 @@ MODEL_NAME = "openai/gpt-oss-120b"
 groq_client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
 # Razorpay client
-rzp_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)) if RAZORPAY_KEY_ID else None
+rzp_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)) if RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET else None
 
 # Neon Postgres Database ORM setup
 Base = declarative_base()
@@ -350,7 +350,8 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
 
     session_order_counts[session_id] = count + 1
     order_id = f"ORD-{random.randint(100000, 999999)}"
-    rzp_order_id = f"rzp_order_{int(time.time())}"
+    rzp_order_id = f"demo_order_{int(time.time())}"
+    razorpay_order_created = False
 
     if rzp_client:
         try:
@@ -361,6 +362,7 @@ def guardrail_create_razorpay_order(sku: str, quantity: int, reasoning: str, ses
                 "notes": {"sku": sku, "reasoning": reasoning[:200]},
             })
             rzp_order_id = rzp_order["id"]
+            razorpay_order_created = True
         except Exception as e:
             safe_log(f"Razorpay order create note: {e}")
 
@@ -845,7 +847,8 @@ def create_order_endpoint(req: CreateOrderRequest):
         raise HTTPException(status_code=400, detail=f"Order total \u20b9{total_amount:,.0f} exceeds merchant hard spend cap of \u20b9{SPEND_CAP:,.0f}.")
 
     order_id = f"ORD-{random.randint(100000, 999999)}"
-    rzp_order_id = f"rzp_order_{int(time.time())}"
+    rzp_order_id = f"demo_order_{int(time.time())}"
+    razorpay_order_created = False
 
     if rzp_client:
         try:
@@ -860,6 +863,7 @@ def create_order_endpoint(req: CreateOrderRequest):
                 }
             })
             rzp_order_id = rzp_order["id"]
+            razorpay_order_created = True
         except Exception as e:
             safe_log(f"Razorpay order create error: {e}")
 
@@ -928,8 +932,8 @@ def create_order_endpoint(req: CreateOrderRequest):
         "success": True,
         "order_id": order_id,
         "razorpay_order_id": rzp_order_id,
-        "razorpay_key_id": RAZORPAY_KEY_ID or "rzp_test_mockkey123",
-        "payment_mode": "razorpay" if rzp_client else "demo",
+        "payment_mode": "razorpay" if razorpay_order_created else "demo",
+        "razorpay_key_id": RAZORPAY_KEY_ID if razorpay_order_created else None,
         "amount": total_amount,
         "currency": "INR",
         "product": item,

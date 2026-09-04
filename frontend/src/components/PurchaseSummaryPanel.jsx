@@ -144,8 +144,10 @@ export default function PurchaseSummaryPanel({
         return;
       }
 
-      // 2. Razorpay Checkout Modal
-      if (window.Razorpay && serverRes.razorpay_key_id && serverRes.razorpay_order_id) {
+      // Live checkout is an explicit deployment opt-in. A partial backend
+      // configuration must never launch Razorpay with an invalid order.
+      const livePaymentsEnabled = import.meta.env.VITE_ENABLE_RAZORPAY === 'true';
+      if (livePaymentsEnabled && window.Razorpay && serverRes.payment_mode === 'razorpay' && serverRes.razorpay_key_id && serverRes.razorpay_order_id) {
         const options = {
           key: serverRes.razorpay_key_id,
           amount: Math.round(totalAmount * 100),
