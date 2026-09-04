@@ -1,8 +1,53 @@
 import catalogData from '../data/catalog.json';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+// Use the Vite proxy in local development and a configured backend URL in deployments.
+// A hard-coded localhost URL makes a deployed frontend call the visitor's computer.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 const SPEND_CAP = 10000; // Hard spend cap ceiling in INR
 const CHAT_HELP_REPLY = "I'm having a little trouble processing that right now - mind trying again in a moment?";
+const SEARCH_STOP_WORDS = new Set([
+  'a', 'an', 'and', 'are', 'can', 'catalog', 'find', 'for', 'get', 'i', 'in',
+  'is', 'me', 'my', 'of', 'please', 'product', 'products', 'show', 'the', 'to',
+  'want', 'with', 'you', 'your', 'buy', 'looking', 'need', 'some', 'on', 'one',
+]);
+
+function normalizedTerms(text) {
+  return String(text || '')
+    .toLowerCase()
+    .match(/[a-z0-9]+/g)
+    ?.filter((term) => !SEARCH_STOP_WORDS.has(term))
+    .map((term) => term.endsWith('s') ? term.slice(0, -1) : term) || [];
+}
+
+function localCatalogSearchReply(query) {
+  const terms = normalizedTerms(query);
+  const products = catalogData.filter((product) => {
+    const searchable = normalizedTerms([
+      product.name,
+      product.category,
+      product.description,
+      ...(product.tags || []),
+    ].join(' '));
+    return terms.length > 0 && terms.every((term) => searchable.some((value) => value.includes(term)));
+  }).slice(0, 6);
+
+  const categories = [...new Set(catalogData.map((product) => product.category).filter(Boolean))].slice(0, 3);
+  const reply = products.length > 0
+    ? `I found ${products.length} product${products.length === 1 ? '' : 's'} matching your search.`
+    : `I couldn't find that in our catalog - here's what we do have: ${categories.join(', ')}. Want to see one of those?`;
+
+  return {
+    success: true,
+    mode: 'local-catalog',
+    data: {
+      type: products.length > 0 ? 'product_search' : 'text',
+      reply,
+      products,
+      comparison: [],
+      auditEntry: null,
+    },
+  };
+}
 
 export async function checkBackendHealth() {
   try {
@@ -103,11 +148,11 @@ export async function sendChatMessage(userPrompt, conversationState) {
         return chatErrorResponse();
       }
     }
-    console.warn(`Backend chat API returned HTTP ${res.status}.`);
-    return chatErrorResponse();
+    console.warn(`Backend chat API returned HTTP ${res.status}; using local catalog search.`);
+    return localCatalogSearchReply(userPrompt);
   } catch (err) {
-    console.warn('Backend chat API unavailable:', err.message);
-    return chatErrorResponse();
+    console.warn('Backend chat API unavailable; using local catalog search:', err.message);
+    return localCatalogSearchReply(userPrompt);
   }
 }
 
