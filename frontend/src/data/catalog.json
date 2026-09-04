@@ -7,431 +7,257 @@
     "stock": 12,
     "tags": [
       "shoes",
-      "running"
+      "running",
+      "sports"
     ],
-    "image": "https://images.pexels.com/photos/2286871/pexels-photo-2286871.jpeg?auto=compress&cs=tinysrgb&w=900"
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH002",
+    "name": "Wireless Earbuds",
+    "category": "electronics",
+    "price": 1899,
+    "stock": 8,
+    "tags": [
+      "audio",
+      "electronics",
+      "wireless"
+    ],
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&h=600&fit=crop"
   },
   {
     "sku": "SH003",
-    "name": "Casual Sneakers - White",
-    "category": "footwear",
-    "price": 2199,
-    "stock": 9,
+    "name": "Noise Cancelling Headphones",
+    "category": "electronics",
+    "price": 4999,
+    "stock": 6,
     "tags": [
-      "shoes",
-      "sneakers",
+      "audio",
+      "headphones",
+      "wireless"
+    ],
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH004",
+    "name": "Slim Fit Laptop Backpack",
+    "category": "accessories",
+    "price": 1799,
+    "stock": 15,
+    "tags": [
+      "bag",
+      "travel",
+      "laptop"
+    ],
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH005",
+    "name": "Smart Watch Series X",
+    "category": "electronics",
+    "price": 6999,
+    "stock": 10,
+    "tags": [
+      "wearable",
+      "smartwatch",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH006",
+    "name": "Classic Aviator Sunglasses",
+    "category": "accessories",
+    "price": 1299,
+    "stock": 20,
+    "tags": [
+      "eyewear",
+      "fashion",
+      "summer"
+    ],
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH007",
+    "name": "Premium Cotton T-Shirt",
+    "category": "apparel",
+    "price": 799,
+    "stock": 25,
+    "tags": [
+      "clothing",
+      "casual",
+      "cotton"
+    ],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH008",
+    "name": "Slim Fit Denim Jeans",
+    "category": "apparel",
+    "price": 2199,
+    "stock": 14,
+    "tags": [
+      "clothing",
+      "denim",
       "casual"
     ],
-    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
-    "colors": [
-      "White",
-      "Black",
-      "Grey",
-      "Navy",
-      "Beige"
+    "image": "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH009",
+    "name": "Leather Wallet - Brown",
+    "category": "accessories",
+    "price": 999,
+    "stock": 18,
+    "tags": [
+      "wallet",
+      "leather",
+      "men"
     ],
-    "sizes": [
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12"
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH010",
+    "name": "Fast Charge USB-C Cable",
+    "category": "electronics",
+    "price": 499,
+    "stock": 30,
+    "tags": [
+      "cable",
+      "charger",
+      "accessories"
     ],
-    "variant_count": 35,
-    "size_system": "US/India footwear",
-    "variant_stock": {
-      "White|6": 1,
-      "White|7": 1,
-      "White|8": 1,
-      "White|9": 1,
-      "White|10": 1,
-      "White|11": 1,
-      "White|12": 1,
-      "Black|6": 1,
-      "Black|7": 1,
-      "Black|8": 1,
-      "Black|9": 1,
-      "Black|10": 1,
-      "Black|11": 1,
-      "Black|12": 1,
-      "Grey|6": 1,
-      "Grey|7": 1,
-      "Grey|8": 1,
-      "Grey|9": 1,
-      "Grey|10": 1,
-      "Grey|11": 1,
-      "Grey|12": 1,
-      "Navy|6": 1,
-      "Navy|7": 1,
-      "Navy|8": 1,
-      "Navy|9": 1,
-      "Navy|10": 1,
-      "Navy|11": 1,
-      "Navy|12": 1,
-      "Beige|6": 1,
-      "Beige|7": 1,
-      "Beige|8": 1,
-      "Beige|9": 1,
-      "Beige|10": 1,
-      "Beige|11": 1,
-      "Beige|12": 1
-    }
+    "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600&h=600&fit=crop"
   },
   {
     "sku": "SH011",
-    "name": "Classic Hoodie - Black",
-    "category": "apparel",
-    "price": 1599,
-    "stock": 15,
+    "name": "Portable Bluetooth Speaker",
+    "category": "electronics",
+    "price": 2499,
+    "stock": 9,
     "tags": [
-      "hoodie",
-      "casual"
+      "audio",
+      "speaker",
+      "portable"
     ],
-    "image": "https://images.pexels.com/photos/1322054/pexels-photo-1322054.jpeg?auto=compress&cs=tinysrgb&w=900",
-    "colors": [
-      "Black",
-      "Charcoal",
-      "Grey",
-      "Navy",
-      "Olive",
-      "Maroon"
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH012",
+    "name": "Minimalist Desk Lamp",
+    "category": "home",
+    "price": 1599,
+    "stock": 11,
+    "tags": [
+      "lighting",
+      "desk",
+      "home"
     ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "variant_count": 36,
-    "size_system": "Standard",
-    "variant_stock": {
-      "Black|XS": 3,
-      "Black|S": 3,
-      "Black|M": 3,
-      "Black|L": 3,
-      "Black|XL": 3,
-      "Black|XXL": 3,
-      "Charcoal|XS": 3,
-      "Charcoal|S": 3,
-      "Charcoal|M": 3,
-      "Charcoal|L": 3,
-      "Charcoal|XL": 3,
-      "Charcoal|XXL": 3,
-      "Grey|XS": 3,
-      "Grey|S": 3,
-      "Grey|M": 3,
-      "Grey|L": 3,
-      "Grey|XL": 3,
-      "Grey|XXL": 3,
-      "Navy|XS": 3,
-      "Navy|S": 3,
-      "Navy|M": 3,
-      "Navy|L": 3,
-      "Navy|XL": 3,
-      "Navy|XXL": 3,
-      "Olive|XS": 3,
-      "Olive|S": 3,
-      "Olive|M": 3,
-      "Olive|L": 3,
-      "Olive|XL": 3,
-      "Olive|XXL": 3,
-      "Maroon|XS": 3,
-      "Maroon|S": 3,
-      "Maroon|M": 3,
-      "Maroon|L": 3,
-      "Maroon|XL": 3,
-      "Maroon|XXL": 3
-    }
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&h=600&fit=crop"
   },
   {
     "sku": "SH013",
-    "name": "Oversized T-Shirt - White",
-    "category": "apparel",
+    "name": "Yoga Mat - Non Slip",
+    "category": "fitness",
     "price": 899,
-    "stock": 20,
+    "stock": 16,
     "tags": [
-      "tshirt",
-      "streetwear"
+      "yoga",
+      "fitness",
+      "mat"
     ],
-    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
-    "colors": [
-      "Black",
-      "White",
-      "Grey",
-      "Navy",
-      "Olive",
-      "Maroon",
-      "Cream"
+    "image": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH014",
+    "name": "Ceramic Coffee Mug Set",
+    "category": "home",
+    "price": 699,
+    "stock": 22,
+    "tags": [
+      "kitchen",
+      "mug",
+      "ceramic"
     ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
+    "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH015",
+    "name": "Wireless Mouse - Ergonomic",
+    "category": "electronics",
+    "price": 1199,
+    "stock": 13,
+    "tags": [
+      "computer",
+      "mouse",
+      "wireless"
     ],
-    "variant_count": 42,
-    "size_system": "Standard",
-    "variant_stock": {
-      "Black|XS": 4,
-      "Black|S": 4,
-      "Black|M": 4,
-      "Black|L": 4,
-      "Black|XL": 4,
-      "Black|XXL": 4,
-      "White|XS": 4,
-      "White|S": 4,
-      "White|M": 4,
-      "White|L": 4,
-      "White|XL": 4,
-      "White|XXL": 4,
-      "Grey|XS": 4,
-      "Grey|S": 4,
-      "Grey|M": 4,
-      "Grey|L": 4,
-      "Grey|XL": 4,
-      "Grey|XXL": 4,
-      "Navy|XS": 4,
-      "Navy|S": 4,
-      "Navy|M": 4,
-      "Navy|L": 4,
-      "Navy|XL": 4,
-      "Navy|XXL": 4,
-      "Olive|XS": 4,
-      "Olive|S": 4,
-      "Olive|M": 4,
-      "Olive|L": 4,
-      "Olive|XL": 4,
-      "Olive|XXL": 4,
-      "Maroon|XS": 4,
-      "Maroon|S": 4,
-      "Maroon|M": 4,
-      "Maroon|L": 4,
-      "Maroon|XL": 4,
-      "Maroon|XXL": 4,
-      "Cream|XS": 4,
-      "Cream|S": 4,
-      "Cream|M": 4,
-      "Cream|L": 4,
-      "Cream|XL": 4,
-      "Cream|XXL": 4
-    }
+    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH016",
+    "name": "Canvas Tote Bag",
+    "category": "accessories",
+    "price": 649,
+    "stock": 19,
+    "tags": [
+      "bag",
+      "tote",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=600&fit=crop"
+  },
+  {
+    "sku": "SH017",
+    "name": "Mechanical Keyboard",
+    "category": "electronics",
+    "price": 3499,
+    "stock": 7,
+    "tags": [
+      "keyboard",
+      "gaming",
+      "computer"
+    ],
+    "image": "https://images.unsplash.com/photo-1511467687898-710079714dbd?w=600&h=600&fit=crop"
   },
   {
     "sku": "SH018",
-    "name": "Denim Jacket - Blue",
-    "category": "apparel",
-    "price": 2499,
-    "stock": 8,
+    "name": "Sport Water Bottle 750ml",
+    "category": "fitness",
+    "price": 549,
+    "stock": 28,
     "tags": [
-      "jacket",
-      "denim"
+      "bottle",
+      "hydration",
+      "sports"
     ],
-    "image": "https://images.pexels.com/photos/16428589/pexels-photo-16428589.jpeg?auto=compress&cs=tinysrgb&w=900",
-    "colors": [
-      "Black",
-      "Navy",
-      "Olive",
-      "Tan",
-      "Blue",
-      "Grey"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "variant_count": 36,
-    "size_system": "Standard",
-    "variant_stock": {
-      "Black|XS": 1,
-      "Black|S": 1,
-      "Black|M": 1,
-      "Black|L": 1,
-      "Black|XL": 1,
-      "Black|XXL": 1,
-      "Navy|XS": 1,
-      "Navy|S": 1,
-      "Navy|M": 1,
-      "Navy|L": 1,
-      "Navy|XL": 1,
-      "Navy|XXL": 1,
-      "Olive|XS": 1,
-      "Olive|S": 1,
-      "Olive|M": 1,
-      "Olive|L": 1,
-      "Olive|XL": 1,
-      "Olive|XXL": 1,
-      "Tan|XS": 1,
-      "Tan|S": 1,
-      "Tan|M": 1,
-      "Tan|L": 1,
-      "Tan|XL": 1,
-      "Tan|XXL": 1,
-      "Blue|XS": 1,
-      "Blue|S": 1,
-      "Blue|M": 1,
-      "Blue|L": 1,
-      "Blue|XL": 1,
-      "Blue|XXL": 1,
-      "Grey|XS": 1,
-      "Grey|S": 1,
-      "Grey|M": 1,
-      "Grey|L": 1,
-      "Grey|XL": 1,
-      "Grey|XXL": 1
-    }
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&h=600&fit=crop"
   },
   {
     "sku": "SH019",
-    "name": "Casual Shirt - White",
-    "category": "apparel",
-    "price": 1399,
-    "stock": 13,
+    "name": "Travel Neck Pillow",
+    "category": "accessories",
+    "price": 799,
+    "stock": 12,
     "tags": [
-      "shirt",
-      "casual"
+      "travel",
+      "comfort",
+      "pillow"
     ],
-    "image": "https://images.pexels.com/photos/9489817/pexels-photo-9489817.jpeg?auto=compress&cs=tinysrgb&w=900",
-    "colors": [
-      "White",
-      "Black",
-      "Navy",
-      "Sky Blue",
-      "Olive",
-      "Beige",
-      "Maroon"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "variant_count": 42,
-    "size_system": "Standard",
-    "variant_stock": {
-      "White|XS": 2,
-      "White|S": 2,
-      "White|M": 2,
-      "White|L": 2,
-      "White|XL": 2,
-      "White|XXL": 2,
-      "Black|XS": 2,
-      "Black|S": 2,
-      "Black|M": 2,
-      "Black|L": 2,
-      "Black|XL": 2,
-      "Black|XXL": 2,
-      "Navy|XS": 2,
-      "Navy|S": 2,
-      "Navy|M": 2,
-      "Navy|L": 2,
-      "Navy|XL": 2,
-      "Navy|XXL": 2,
-      "Sky Blue|XS": 2,
-      "Sky Blue|S": 2,
-      "Sky Blue|M": 2,
-      "Sky Blue|L": 2,
-      "Sky Blue|XL": 2,
-      "Sky Blue|XXL": 2,
-      "Olive|XS": 2,
-      "Olive|S": 2,
-      "Olive|M": 2,
-      "Olive|L": 2,
-      "Olive|XL": 2,
-      "Olive|XXL": 2,
-      "Beige|XS": 2,
-      "Beige|S": 2,
-      "Beige|M": 2,
-      "Beige|L": 2,
-      "Beige|XL": 2,
-      "Beige|XXL": 2,
-      "Maroon|XS": 2,
-      "Maroon|S": 2,
-      "Maroon|M": 2,
-      "Maroon|L": 2,
-      "Maroon|XL": 2,
-      "Maroon|XXL": 2
-    }
+    "image": "https://images.unsplash.com/photo-1520256862855-398228c41684?w=600&h=600&fit=crop"
   },
   {
     "sku": "SH020",
-    "name": "Casual Dress - Floral",
-    "category": "apparel",
-    "price": 1899,
-    "stock": 7,
+    "name": "LED Desk Organizer",
+    "category": "home",
+    "price": 1299,
+    "stock": 10,
     "tags": [
-      "dress",
-      "casual"
+      "desk",
+      "organizer",
+      "office"
     ],
-    "image": "https://images.pexels.com/photos/12169001/pexels-photo-12169001.jpeg?auto=compress&cs=tinysrgb&w=900",
-    "colors": [
-      "Black",
-      "Navy",
-      "Red",
-      "Emerald",
-      "Ivory",
-      "Floral"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "variant_count": 36,
-    "size_system": "Standard",
-    "variant_stock": {
-      "Black|XS": 1,
-      "Black|S": 1,
-      "Black|M": 1,
-      "Black|L": 1,
-      "Black|XL": 1,
-      "Black|XXL": 1,
-      "Navy|XS": 1,
-      "Navy|S": 1,
-      "Navy|M": 1,
-      "Navy|L": 1,
-      "Navy|XL": 1,
-      "Navy|XXL": 1,
-      "Red|XS": 1,
-      "Red|S": 1,
-      "Red|M": 1,
-      "Red|L": 1,
-      "Red|XL": 1,
-      "Red|XXL": 1,
-      "Emerald|XS": 1,
-      "Emerald|S": 1,
-      "Emerald|M": 1,
-      "Emerald|L": 1,
-      "Emerald|XL": 1,
-      "Emerald|XXL": 1,
-      "Ivory|XS": 1,
-      "Ivory|S": 1,
-      "Ivory|M": 1,
-      "Ivory|L": 1,
-      "Ivory|XL": 1,
-      "Ivory|XXL": 1,
-      "Floral|XS": 1,
-      "Floral|S": 1,
-      "Floral|M": 1,
-      "Floral|L": 1,
-      "Floral|XL": 1,
-      "Floral|XXL": 1
-    }
+    "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=600&fit=crop"
   },
   {
     "sku": "SH021",
