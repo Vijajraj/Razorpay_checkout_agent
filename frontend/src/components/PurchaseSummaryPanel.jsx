@@ -135,10 +135,19 @@ export default function PurchaseSummaryPanel({
         onOrderCreated(serverRes);
       }
 
+      // A locally simulated order does not have a real Razorpay order ID. Never
+      // send it to Razorpay; their SDK correctly rejects fabricated order IDs.
+      if (serverRes.payment_mode === 'demo') {
+        setStep(4);
+        setLoading(false);
+        if (onOrderSuccess) onOrderSuccess(serverRes);
+        return;
+      }
+
       // 2. Razorpay Checkout Modal
-      if (window.Razorpay) {
+      if (window.Razorpay && serverRes.razorpay_key_id && serverRes.razorpay_order_id) {
         const options = {
-          key: serverRes.razorpay_key_id || 'rzp_test_mockkey123',
+          key: serverRes.razorpay_key_id,
           amount: Math.round(totalAmount * 100),
           currency: 'INR',
           name: 'Razorpay Agentic Store',
@@ -181,18 +190,8 @@ export default function PurchaseSummaryPanel({
         const rzp = new window.Razorpay(options);
         rzp.open();
       } else {
-        // Fallback simulation mode
-        setTimeout(async () => {
-          await verifyPaymentOnServer({
-            order_id: serverRes.order_id,
-            razorpay_order_id: serverRes.razorpay_order_id,
-            razorpay_payment_id: `pay_test_${Date.now()}`,
-            razorpay_signature: 'sig_test_valid',
-          });
-          setStep(4);
-          setLoading(false);
-          if (onOrderSuccess) onOrderSuccess(serverRes);
-        }, 1200);
+        setPaymentError('Secure checkout is unavailable right now. Please try again shortly.');
+        setLoading(false);
       }
     } catch (err) {
       setPaymentError(err.message || 'Order process failed.');

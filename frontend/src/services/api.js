@@ -167,9 +167,17 @@ export async function createOrderOnServer(orderPayload) {
       const data = await res.json();
       return data;
     }
-    const errData = await res.json();
-    throw new Error(errData.detail || 'Failed to create order.');
+    let detail = 'Unable to create the order.';
+    try {
+      detail = (await res.json()).detail || detail;
+    } catch {
+      // Keep the generic message for a non-JSON error response.
+    }
+    throw new Error(detail);
   } catch (err) {
+    if (!(err instanceof TypeError)) {
+      throw err;
+    }
     console.warn('Server order creation unavailable. Using local order simulation:', err.message);
     return createRazorpayOrderLocally(orderPayload);
   }
@@ -337,7 +345,7 @@ function createRazorpayOrderLocally(payload) {
     success: true,
     order_id: orderId,
     razorpay_order_id: rzpOrderId,
-    razorpay_key_id: 'rzp_test_mockkey123',
+    payment_mode: 'demo',
     amount: totalAmount,
     currency: 'INR',
     product: item,

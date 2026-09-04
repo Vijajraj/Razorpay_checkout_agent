@@ -929,6 +929,7 @@ def create_order_endpoint(req: CreateOrderRequest):
         "order_id": order_id,
         "razorpay_order_id": rzp_order_id,
         "razorpay_key_id": RAZORPAY_KEY_ID or "rzp_test_mockkey123",
+        "payment_mode": "razorpay" if rzp_client else "demo",
         "amount": total_amount,
         "currency": "INR",
         "product": item,
