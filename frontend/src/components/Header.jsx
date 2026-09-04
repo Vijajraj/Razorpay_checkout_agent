@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Moon, Sun, ShieldCheck, Settings, CheckCircle2 } from 'lucide-react';
+import { ShoppingBag, Moon, Sun, ShieldCheck, Settings, CheckCircle2, PanelLeft } from 'lucide-react';
 
 export default function Header({
   theme,
@@ -9,13 +9,25 @@ export default function Header({
   auditOpen,
   onToggleAudit,
   blockedCount = 0,
-  onClearChatHistory
+  onClearChatHistory,
+  sidebarCollapsed = false,
+  onToggleSidebar,
 }) {
   const [showSettings, setShowSettings] = useState(false);
 
   return (
     <header className="app-header">
       <div className="brand-title">
+        {onToggleSidebar && (
+          <button
+            className={`icon-btn sidebar-toggle-header ${!sidebarCollapsed ? 'active' : ''}`}
+            onClick={onToggleSidebar}
+            title="Toggle Saved Chats Sidebar"
+            style={{ marginRight: '6px' }}
+          >
+            <PanelLeft size={16} />
+          </button>
+        )}
         <div className="brand-icon">
           <img src="/agent-logo.png" alt="Agent Logo" className="brand-logo-img" />
         </div>

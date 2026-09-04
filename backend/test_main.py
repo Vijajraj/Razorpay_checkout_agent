@@ -205,3 +205,12 @@ def test_chat_guardrail_attacks():
     assert api_res.status_code == 200
     assert "reply" in api_res.json()
 
+
+def test_get_chat_sessions():
+    res = client.get("/api/chat-sessions")
+    assert res.status_code == 200
+    data = res.json()
+    assert "sessions" in data
+    assert isinstance(data["sessions"], list)
+
+

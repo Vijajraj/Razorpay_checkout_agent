@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header';
+import ChatSidebar from './components/ChatSidebar';
 import ChatPanel from './components/ChatPanel';
 import PurchaseSummaryPanel from './components/PurchaseSummaryPanel';
 import AuditLogPanel from './components/AuditLogPanel';
-import { sendChatMessage, checkBackendHealth, sendChatConsent, getChatHistory, deleteChatHistory } from './services/api';
+import {
+  sendChatMessage,
+  checkBackendHealth,
+  sendChatConsent,
+  getChatHistory,
+  deleteChatHistory,
+  getChatSessions,
+} from './services/api';
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -12,7 +20,11 @@ export default function App() {
 
   const [backendConnected, setBackendConnected] = useState(false);
   const [auditOpen, setAuditOpen] = useState(false);
-  const [sessionId] = useState(() => `sess_${Math.random().toString(36).substring(2, 9)}`);
+
+  // Dynamic active session ID & saved sessions list
+  const [sessionId, setSessionId] = useState(() => `sess_${Math.random().toString(36).substring(2, 9)}`);
+  const [sessions, setSessions] = useState([]);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Selected product & checkout state for Right Column Purchase Summary Panel
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -32,14 +44,14 @@ export default function App() {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      sender: 'assistant',
-      text: `Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.`,
-      products: [],
-    },
-  ]);
+  const DEFAULT_WELCOME_MESSAGE = {
+    id: 1,
+    sender: 'assistant',
+    text: `Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.`,
+    products: [],
+  };
+
+  const [messages, setMessages] = useState([DEFAULT_WELCOME_MESSAGE]);
 
   const [auditLogs, setAuditLogs] = useState([
     {
@@ -54,12 +66,21 @@ export default function App() {
     },
   ]);
 
+  const refreshSessionsList = useCallback(async () => {
+    const res = await getChatSessions();
+    if (res && res.sessions) {
+      setSessions(res.sessions);
+    }
+  }, []);
+
   useEffect(() => {
-    async function verifyHealth() {
+    async function verifyHealthAndLoad() {
       const health = await checkBackendHealth();
       setBackendConnected(health.online);
 
-      // Check if stored chat history exists for this session
+      await refreshSessionsList();
+
+      // Check if stored chat history exists for active sessionId
       const historyRes = await getChatHistory(sessionId);
       if (historyRes && historyRes.consent_given && historyRes.messages && historyRes.messages.length > 0) {
         const loaded = historyRes.messages.map((m, idx) => ({
@@ -72,8 +93,53 @@ export default function App() {
         setShowConsentPrompt(false);
       }
     }
-    verifyHealth();
-  }, [sessionId]);
+    verifyHealthAndLoad();
+  }, [sessionId, refreshSessionsList]);
+
+  // Handle switching to a past session from the sidebar
+  const handleSelectSession = async (sid) => {
+    if (sid === sessionId) return;
+    setSessionId(sid);
+    setSelectedProduct(null);
+    setSelectedQty(1);
+    setActiveStep(1);
+
+    const historyRes = await getChatHistory(sid);
+    if (historyRes && historyRes.messages && historyRes.messages.length > 0) {
+      const loaded = historyRes.messages.map((m, idx) => ({
+        id: m.id || idx + 10,
+        sender: m.role === 'user' ? 'user' : 'assistant',
+        text: m.content,
+      }));
+      setMessages(loaded);
+      setConsentGiven(true);
+      setShowConsentPrompt(false);
+    } else {
+      setMessages([DEFAULT_WELCOME_MESSAGE]);
+    }
+  };
+
+  // Handle starting a fresh session (+ New Chat)
+  const handleNewChat = () => {
+    const newId = `sess_${Math.random().toString(36).substring(2, 9)}`;
+    setSessionId(newId);
+    setMessages([DEFAULT_WELCOME_MESSAGE]);
+    setSelectedProduct(null);
+    setSelectedQty(1);
+    setActiveStep(1);
+    setConsentGiven(null);
+    setShowConsentPrompt(false);
+  };
+
+  // Handle deleting a session
+  const handleDeleteSession = async (sid) => {
+    await deleteChatHistory(sid);
+    await refreshSessionsList();
+
+    if (sid === sessionId) {
+      handleNewChat();
+    }
+  };
 
   // Handle user selecting a product card via "Buy Now" button
   const handleSelectProduct = (product, initialQty = 1) => {
@@ -107,7 +173,7 @@ export default function App() {
     setMessages((prev) => [...prev, userMsg]);
     const lowerText = userText.toLowerCase().trim();
 
-    // Handle quantity update from chat if product is selected (e.g. "2", "buy 3", "qty 4")
+    // Handle quantity update from chat if product is selected
     if (selectedProduct) {
       const qtyMatch = lowerText.match(/^(?:buy\s+|qty\s+|quantity\s+)?(\d+)$/i) || lowerText.match(/(?:buy|set|make\s+it)\s+(\d+)/i);
       if (qtyMatch) {
@@ -123,7 +189,7 @@ export default function App() {
       }
     }
 
-    // Check for natural language selection e.g. "buy the second one", "buy 2 of the first one"
+    // Check for natural language selection e.g. "buy the second one"
     if ((lowerText.includes('second') || lowerText.includes('first') || lowerText.includes('third') || lowerText.includes('buy the')) && messages.length > 0) {
       const lastMsgWithProducts = [...messages].reverse().find((m) => m.products && m.products.length > 0);
       if (lastMsgWithProducts) {
@@ -176,6 +242,9 @@ export default function App() {
           setAuditOpen(true);
         }
       }
+
+      // Refresh saved sessions list
+      refreshSessionsList();
     }
   };
 
@@ -183,20 +252,15 @@ export default function App() {
     setShowConsentPrompt(false);
     setConsentGiven(consent);
     await sendChatConsent(sessionId, consent);
+    refreshSessionsList();
   };
 
   const handleClearChatHistory = async () => {
     await deleteChatHistory(sessionId);
-    setMessages([
-      {
-        id: Date.now(),
-        sender: 'assistant',
-        text: 'Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.',
-        products: [],
-      },
-    ]);
+    setMessages([DEFAULT_WELCOME_MESSAGE]);
     setConsentGiven(null);
     setShowConsentPrompt(false);
+    refreshSessionsList();
   };
 
   const handleAuditLogged = (newEntry) => {
@@ -241,10 +305,23 @@ export default function App() {
         onToggleAudit={() => setAuditOpen(!auditOpen)}
         blockedCount={blockedCount}
         onClearChatHistory={handleClearChatHistory}
+        sidebarCollapsed={sidebarCollapsed}
+        onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
       />
 
       <div className="app-main-layout">
-        {/* Left / Center Column: Conversation & Product Discovery */}
+        {/* Left Column: Persistent Saved Chat History Sidebar */}
+        <ChatSidebar
+          sessions={sessions}
+          activeSessionId={sessionId}
+          onSelectSession={handleSelectSession}
+          onNewChat={handleNewChat}
+          onDeleteSession={handleDeleteSession}
+          collapsed={sidebarCollapsed}
+          onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        />
+
+        {/* Center Column: Conversation & Product Discovery */}
         <div className="chat-discovery-column">
           <ChatPanel
             messages={messages}

@@ -157,6 +157,18 @@ export async function deleteChatHistory(sessionId) {
   return { success: true, session_id: sessionId };
 }
 
+export async function getChatSessions() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/chat-sessions`, { method: 'GET' });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Error fetching chat sessions:', err.message);
+  }
+  return { sessions: [] };
+}
+
 function simulateAgentResponse(userPrompt, state) {
   const promptLower = userPrompt.toLowerCase();
 

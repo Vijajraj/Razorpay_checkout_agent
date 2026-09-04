@@ -866,6 +866,48 @@ def set_chat_consent_endpoint(req: ChatConsentRequest):
     }
 
 
+@app.get("/api/chat-sessions")
+def get_chat_sessions_endpoint():
+    """Retrieve list of distinct saved chat sessions stored in Neon DB with consent."""
+    sessions_list = []
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            subq = db.query(ChatHistoryModel.session_id)\
+                .filter(ChatHistoryModel.consent_given == True)\
+                .filter(ChatHistoryModel.content.isnot(None))\
+                .distinct().all()
+
+            session_ids = [s[0] for s in subq if s[0]]
+
+            for sid in session_ids:
+                first_msg = db.query(ChatHistoryModel)\
+                    .filter(ChatHistoryModel.session_id == sid)\
+                    .filter(ChatHistoryModel.role == "user")\
+                    .filter(ChatHistoryModel.content.isnot(None))\
+                    .order_by(ChatHistoryModel.id.asc()).first()
+
+                count = db.query(ChatHistoryModel)\
+                    .filter(ChatHistoryModel.session_id == sid)\
+                    .filter(ChatHistoryModel.content.isnot(None)).count()
+
+                title = (first_msg.content[:36] + "...") if first_msg and len(first_msg.content or "") > 36 else (first_msg.content if first_msg else "Shopping Chat")
+                created_at = first_msg.created_at.isoformat() if first_msg and first_msg.created_at else None
+
+                sessions_list.append({
+                    "session_id": sid,
+                    "title": title,
+                    "created_at": created_at,
+                    "message_count": count
+                })
+            db.close()
+            sessions_list.sort(key=lambda s: s["created_at"] or "", reverse=True)
+        except Exception as e:
+            safe_log(f"Error querying chat sessions: {e}")
+
+    return {"sessions": sessions_list}
+
+
 @app.get("/api/chat-history/{session_id}")
 def get_chat_history_endpoint(session_id: str):
     """Retrieve stored chat history for a session (strictly filtered by session_id)."""
