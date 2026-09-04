@@ -10,7 +10,7 @@
       "running",
       "sports"
     ],
-    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH002",
@@ -23,7 +23,7 @@
       "electronics",
       "wireless"
     ],
-    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH003",
@@ -36,7 +36,7 @@
       "headphones",
       "wireless"
     ],
-    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH004",
@@ -49,7 +49,7 @@
       "travel",
       "laptop"
     ],
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1560769629-975ec94e516a?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH005",
@@ -62,7 +62,7 @@
       "smartwatch",
       "fitness"
     ],
-    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH006",
@@ -75,7 +75,7 @@
       "fashion",
       "summer"
     ],
-    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH007",
@@ -88,7 +88,7 @@
       "casual",
       "cotton"
     ],
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH008",
@@ -101,7 +101,7 @@
       "denim",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1604001307862-2d953b875079?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH009",
@@ -114,7 +114,7 @@
       "leather",
       "men"
     ],
-    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH010",
@@ -127,7 +127,7 @@
       "charger",
       "accessories"
     ],
-    "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH011",
@@ -140,7 +140,7 @@
       "speaker",
       "portable"
     ],
-    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH012",
@@ -153,7 +153,7 @@
       "desk",
       "home"
     ],
-    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH013",
@@ -166,7 +166,7 @@
       "fitness",
       "mat"
     ],
-    "image": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH014",
@@ -179,7 +179,7 @@
       "mug",
       "ceramic"
     ],
-    "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH015",
@@ -192,7 +192,7 @@
       "mouse",
       "wireless"
     ],
-    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH016",
@@ -205,7 +205,7 @@
       "tote",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH017",
@@ -218,7 +218,7 @@
       "gaming",
       "computer"
     ],
-    "image": "https://images.unsplash.com/photo-1511467687898-710079714dbd?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH018",
@@ -231,7 +231,7 @@
       "hydration",
       "sports"
     ],
-    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH019",
@@ -244,7 +244,7 @@
       "comfort",
       "pillow"
     ],
-    "image": "https://images.unsplash.com/photo-1520256862855-398228c41684?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH020",
@@ -257,7 +257,7 @@
       "organizer",
       "office"
     ],
-    "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=600&fit=crop"
+    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH021",
@@ -413,7 +413,7 @@
       "backpack",
       "travel"
     ],
-    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -434,7 +434,7 @@
       "laptop",
       "sleeve"
     ],
-    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80",
+    "image": "https://images.unsplash.com/photo-1603199506016-5f3e3a5c1b2e?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -476,7 +476,7 @@
       "wallet",
       "leather"
     ],
-    "image": "https://images.pexels.com/photos/27467357/pexels-photo-27467357.jpeg?auto=compress&cs=tinysrgb&w=900",
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "Brown",
@@ -706,7 +706,7 @@
       "formal",
       "office"
     ],
-    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
+    "image": "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "Charcoal",
@@ -782,7 +782,7 @@
       "winter",
       "puffer"
     ],
-    "image": "https://images.pexels.com/photos/14810197/pexels-photo-14810197.jpeg?auto=compress&cs=tinysrgb&w=900",
+    "image": "https://images.unsplash.com/photo-1544923246-77307dd270cb?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "Navy",
@@ -851,7 +851,7 @@
       "formal",
       "oversized"
     ],
-    "image": "https://images.pexels.com/photos/26761831/pexels-photo-26761831.jpeg?auto=compress&cs=tinysrgb&w=900",
+    "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "Navy",
@@ -913,7 +913,7 @@
       "ethnic",
       "women"
     ],
-    "image": "https://images.pexels.com/photos/27575174/pexels-photo-27575174.jpeg?auto=compress&cs=tinysrgb&w=900",
+    "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Blue",
       "Green",
@@ -947,7 +947,7 @@
       "ethnic",
       "women"
     ],
-    "image": "https://images.pexels.com/photos/9502223/pexels-photo-9502223.jpeg?auto=compress&cs=tinysrgb&w=900",
+    "image": "https://images.unsplash.com/photo-1597983073493-88cd35cf93d0?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "White",
       "Black",
