@@ -472,33 +472,70 @@ STRICT GUARDRAILS (enforced in code):
 """
 
 
+SYNONYM_MAP = {
+    "pant": ["trousers", "jeans", "chinos", "joggers", "shorts", "leggings"],
+    "pants": ["trousers", "jeans", "chinos", "joggers", "shorts", "leggings"],
+    "trouser": ["trousers", "jeans", "chinos", "joggers"],
+    "trousers": ["trousers", "jeans", "chinos", "joggers"],
+    "bottom": ["trousers", "jeans", "chinos", "joggers", "shorts"],
+    "bottoms": ["trousers", "jeans", "chinos", "joggers", "shorts"],
+    "shoe": ["shoes", "sneakers", "boots", "loafers", "sandals", "heels"],
+    "shoes": ["shoes", "sneakers", "boots", "loafers", "sandals", "heels"],
+    "sneaker": ["sneakers", "shoes"],
+    "sneakers": ["sneakers", "shoes"],
+    "tee": ["tshirt"],
+    "tees": ["tshirt"],
+    "t-shirt": ["tshirt"],
+    "tshirt": ["tshirt"],
+    "shirt": ["shirt", "tshirt", "polo", "kurta"],
+    "top": ["tshirt", "shirt", "hoodie", "sweater", "blazer", "dress", "kurta"],
+    "tops": ["tshirt", "shirt", "hoodie", "sweater", "blazer", "dress", "kurta"],
+}
+
+
+def search_catalog_items(query: str, max_price: Optional[float] = None) -> List[Dict[str, Any]]:
+    query_clean = query.lower().strip()
+    words = [w for w in re.findall(r'\b\w+\b', query_clean) if w not in ["the", "for", "some", "under", "with", "show", "find", "want", "buy", "get", "an", "a", "i", "me", "products", "item", "items", "like", "to", "in"]]
+
+    search_keywords = set(words)
+    for w in words:
+        if w in SYNONYM_MAP:
+            search_keywords.update(SYNONYM_MAP[w])
+
+    matched_dict = {}
+    for item in catalog:
+        item_name = item["name"].lower()
+        item_cat = item.get("category", "").lower()
+        item_tags = [t.lower() for t in item.get("tags", [])]
+
+        name_words = set(re.findall(r'\b\w+\b', item_name))
+        cat_words = set(re.findall(r'\b\w+\b', item_cat))
+        tag_words = set(item_tags)
+
+        if any(kw in name_words or kw in cat_words or kw in tag_words or kw in item_name or kw in item_cat for kw in search_keywords):
+            matched_dict[item["sku"]] = item
+
+    matched = list(matched_dict.values())
+
+    if max_price:
+        matched = [i for i in matched if i["price"] <= max_price]
+
+    return matched
+
+
 def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
     """Execute a tool call from the LLM and return structured JSON."""
     if tool_name == "search_catalog":
         query = tool_args.get("query", "").lower()
         max_price = tool_args.get("max_price")
 
-        matched = [
-            item for item in catalog
-            if any(tag in query for tag in item.get("tags", []))
-            or query in item["name"].lower()
-            or query in item.get("category", "").lower()
-            or query in item.get("description", "").lower()
-        ]
+        matched = search_catalog_items(query, max_price)
 
-        if not matched:
-            for word in query.split():
-                if len(word) > 2 and word not in ["the", "for", "some", "under", "with", "show", "find", "want"]:
-                    matched.extend([i for i in catalog if word in " ".join(i.get("tags", [])) or word in i["name"].lower() or word in i.get("category", "").lower()])
-            matched = list({item["sku"]: item for item in matched}.values())
-
-        if max_price:
-            matched = [i for i in matched if i["price"] <= max_price]
-
+        entry = None
         if matched:
             entry = log_audit_entry("catalog_lookup", matched[0]["sku"], matched[0]["price"],
                                      f"Catalog search for '{query}'. Found {len(matched)} result(s).", "PASSED", "SUCCESS", session_id=session_id)
-        return {"products": matched[:6], "count": len(matched)}
+        return {"products": matched[:6], "count": len(matched), "auditEntry": entry}
 
     elif tool_name == "create_order":
         sku = tool_args.get("sku", "")
@@ -1049,6 +1086,9 @@ def chat_endpoint(req: ChatRequest):
 
             raw_reply = follow_up.choices[0].message.content or ""
             clean_reply = clean_agent_reply(raw_reply)
+            if all_products:
+                clean_reply = f"I found {len(all_products)} product{'s' if len(all_products)!=1 else ''} matching your search."
+
             history.append({"role": "assistant", "content": clean_reply})
             persist_chat_message(session_id, "assistant", clean_reply)
 
@@ -1085,7 +1125,7 @@ def chat_endpoint(req: ChatRequest):
 
 def _fallback_chat(req: ChatRequest):
     """Rule-based fallback when Groq API is unavailable."""
-    prompt_lower = req.message.lower()
+    prompt_lower = req.message.lower().strip()
     session_cap = req.spend_cap or SPEND_CAP
     session_id = req.session_id or "session_default"
     needs_consent = (get_session_consent(session_id) is None)
@@ -1109,38 +1149,49 @@ def _fallback_chat(req: ChatRequest):
         persist_chat_message(session_id, "assistant", res_reply)
         return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
-    matched = [
-        item for item in catalog
-        if any(tag in prompt_lower for tag in item.get("tags", []))
-        or item["name"].lower() in prompt_lower
-        or item["category"].lower() in prompt_lower
-    ]
+    # Check for single-round clarifying question on vague single/two-word category requests
+    clean_prompt = prompt_lower.replace("i want to buy", "").replace("i want to get", "").replace("i want", "").replace("show me", "").replace("need", "").replace("buy", "").replace("get", "").replace("an", "").replace("a", "").strip()
 
-    if not matched:
-        if "shoe" in prompt_lower or "sneaker" in prompt_lower or "running" in prompt_lower:
-            matched = [i for i in catalog if "shoes" in i["tags"]]
-        elif "watch" in prompt_lower:
-            matched = [i for i in catalog if "watch" in i["tags"]]
-        elif "headphone" in prompt_lower or "audio" in prompt_lower or "speaker" in prompt_lower:
-            matched = [i for i in catalog if "audio" in i["tags"] or "speaker" in i["tags"]]
-        elif "shirt" in prompt_lower or "tshirt" in prompt_lower or "apparel" in prompt_lower:
-            matched = [i for i in catalog if "tshirt" in i["tags"] or "shirt" in i["tags"]]
+    history = session_histories.get(session_id, [])
+    already_asked_clarifying = any(
+        isinstance(m, dict) and m.get("role") == "assistant" and "?" in m.get("content", "")
+        for m in history
+    )
+
+    if not already_asked_clarifying:
+        if clean_prompt in ["pant", "pants", "trouser", "trousers", "bottom", "bottoms"]:
+            res_reply = "Are you looking for casual jeans, formal trousers, cargo pants, or chinos?"
+            persist_chat_message(session_id, "assistant", res_reply)
+            return {"type": "text", "reply": res_reply, "products": [], "auditEntry": None, "needs_consent": needs_consent}
+
+        elif clean_prompt in ["shoe", "shoes", "sneaker", "sneakers", "footwear"]:
+            res_reply = "Are you looking for running shoes, casual sneakers, training shoes, or formal loafers?"
+            persist_chat_message(session_id, "assistant", res_reply)
+            return {"type": "text", "reply": res_reply, "products": [], "auditEntry": None, "needs_consent": needs_consent}
+
+        elif clean_prompt in ["shirt", "tshirt", "t-shirt", "top", "apparel", "clothes"]:
+            res_reply = "Are you looking for casual T-shirts, formal Oxford shirts, hoodies, or polo shirts?"
+            persist_chat_message(session_id, "assistant", res_reply)
+            return {"type": "text", "reply": res_reply, "products": [], "auditEntry": None, "needs_consent": needs_consent}
+
+    # Execute intelligent catalog search
+    matched = search_catalog_items(req.message)
 
     if matched:
         item = matched[0]
         entry = log_audit_entry("catalog_lookup", item["sku"], item["price"],
-                                 f"Search for '{req.message}'. Matched {item['name']}.", "PASSED", "SUCCESS", session_id=session_id)
+                                 f"Catalog search for '{req.message}'. Found {len(matched)} result(s).", "PASSED", "SUCCESS", session_id=session_id)
         res_reply = f"I found {len(matched)} product{'s' if len(matched)>1 else ''} matching your search."
         persist_chat_message(session_id, "assistant", res_reply)
         return {
             "type": "product_search",
             "reply": res_reply,
-            "products": matched[:4],
+            "products": matched[:6],
             "auditEntry": entry,
             "needs_consent": needs_consent,
         }
 
-    res_reply = "Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase."
+    res_reply = "I couldn't find any items matching your request. Feel free to search for shoes, hoodies, jeans, smart watches, or backpacks."
     persist_chat_message(session_id, "assistant", res_reply)
     return {
         "type": "text",
