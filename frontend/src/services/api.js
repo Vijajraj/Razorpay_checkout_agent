@@ -1,8 +1,9 @@
 import catalogData from '../data/catalog.json';
 
-// Use the Vite proxy in local development and a configured backend URL in deployments.
-// A hard-coded localhost URL makes a deployed frontend call the visitor's computer.
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+// Local development uses Vite's /api proxy. Production uses the Render
+// service unless Vercel supplies a different VITE_API_BASE_URL at build time.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+  || (import.meta.env.DEV ? '/api' : 'https://razorpay-checkout-agent.onrender.com/api');
 const SPEND_CAP = 10000; // Hard spend cap ceiling in INR
 const CHAT_HELP_REPLY = "I'm having a little trouble processing that right now - mind trying again in a moment?";
 const SEARCH_STOP_WORDS = new Set([
