@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Moon, Sun, ShieldCheck, Settings, CheckCircle2, PanelLeft, Library } from 'lucide-react';
+import { Moon, Sun, ShieldCheck, Settings, PanelLeft, Library } from 'lucide-react';
 
 export default function Header({
   theme,

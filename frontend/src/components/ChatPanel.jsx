@@ -97,6 +97,7 @@ export default function ChatPanel({
   onConsentChoice,
 }) {
   const [input, setInput] = useState('');
+  const [isSending, setIsSending] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -107,11 +108,18 @@ export default function ChatPanel({
     scrollToBottom();
   }, [messages]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
-    onSendMessage(input);
+    const message = input.trim();
+    if (!message || isSending) return;
+
     setInput('');
+    setIsSending(true);
+    try {
+      await onSendMessage(message);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -220,8 +228,9 @@ export default function ChatPanel({
               placeholder="Ask the agent to find products, compare options, or start a purchase..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              disabled={isSending}
             />
-            <button type="submit" className="send-circle-btn" title="Send Message">
+            <button type="submit" className="send-circle-btn" title="Send Message" disabled={!input.trim() || isSending}>
               <ArrowUp size={18} />
             </button>
           </form>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Plus, Minus, ArrowRight, ArrowLeft, ShieldCheck, CheckCircle2, CreditCard, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, ArrowRight, ArrowLeft, CheckCircle2, CreditCard, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
 import { createOrderOnServer, verifyPaymentOnServer, verifyStock } from '../services/api';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';
@@ -31,15 +31,6 @@ export default function PurchaseSummaryPanel({
   const [loading, setLoading] = useState(false);
   const [orderResult, setOrderResult] = useState(null);
   const [paymentError, setPaymentError] = useState(null);
-
-  // Update fallback image when selected product changes
-  React.useEffect(() => {
-    if (selectedProduct) {
-      setImgSrc(selectedProduct.image || DEFAULT_FALLBACK_IMAGE);
-      setStep(1);
-      setPaymentError(null);
-    }
-  }, [selectedProduct]);
 
   if (!selectedProduct) {
     return (

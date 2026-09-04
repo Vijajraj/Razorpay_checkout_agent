@@ -105,7 +105,7 @@ export async function sendChatMessage(userPrompt, conversationState) {
     }
     console.warn(`Backend chat API returned HTTP ${res.status}.`);
     return chatErrorResponse();
-  } catch {
+  } catch (err) {
     console.warn('Backend chat API unavailable:', err.message);
     return chatErrorResponse();
   }
@@ -124,7 +124,7 @@ export async function createOrderOnServer(orderPayload) {
     }
     const errData = await res.json();
     throw new Error(errData.detail || 'Failed to create order.');
-  } catch {
+  } catch (err) {
     console.warn('Server order creation unavailable. Using local order simulation:', err.message);
     return createRazorpayOrderLocally(orderPayload);
   }
@@ -286,7 +286,7 @@ function createRazorpayOrderLocally(payload) {
   const totalAmount = item.price * qty;
 
   const orderId = `ORD-${Math.floor(100000 + Math.random() * 900000)}`;
-  const rzpOrderId = `rzp_order_${int(Date.now() / 1000)}`;
+  const rzpOrderId = `rzp_order_${Math.floor(Date.now() / 1000)}`;
 
   return {
     success: true,

@@ -708,35 +708,35 @@ def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
 # ---------- API Endpoints & Models ----------
 
 class ChatRequest(BaseModel):
-    message: str
-    session_id: Optional[str] = "session_default"
-    spend_cap: Optional[float] = 10000.0
+    message: str = Field(min_length=1, max_length=2_000)
+    session_id: Optional[str] = Field(default="session_default", min_length=1, max_length=100)
+    spend_cap: Optional[float] = Field(default=10000.0, ge=0, le=SPEND_CAP)
 
 class CreateOrderRequest(BaseModel):
-    sku: str
-    quantity: int = 1
-    customer_name: str
-    customer_phone: str
-    address_line1: str
-    address_line2: Optional[str] = ""
-    city: str
-    state: str
-    pin_code: str
-    session_id: Optional[str] = "session_default"
+    sku: str = Field(min_length=1, max_length=32)
+    quantity: int = Field(default=1, ge=1, le=100)
+    customer_name: str = Field(min_length=1, max_length=100)
+    customer_phone: str = Field(min_length=10, max_length=15)
+    address_line1: str = Field(min_length=1, max_length=200)
+    address_line2: Optional[str] = Field(default="", max_length=200)
+    city: str = Field(min_length=1, max_length=100)
+    state: str = Field(min_length=1, max_length=100)
+    pin_code: str = Field(min_length=6, max_length=10)
+    session_id: Optional[str] = Field(default="session_default", min_length=1, max_length=100)
 
 class VerifyPaymentRequest(BaseModel):
-    order_id: str
-    razorpay_order_id: str
-    razorpay_payment_id: str
-    razorpay_signature: str
+    order_id: str = Field(min_length=1, max_length=100)
+    razorpay_order_id: str = Field(min_length=1, max_length=100)
+    razorpay_payment_id: str = Field(min_length=1, max_length=100)
+    razorpay_signature: str = Field(min_length=1, max_length=256)
 
 class VerifyStockRequest(BaseModel):
-    sku: str
-    quantity: int = 1
-    session_id: Optional[str] = "session_default"
+    sku: str = Field(min_length=1, max_length=32)
+    quantity: int = Field(default=1, ge=1, le=100)
+    session_id: Optional[str] = Field(default="session_default", min_length=1, max_length=100)
 
 class ChatConsentRequest(BaseModel):
-    session_id: str
+    session_id: str = Field(min_length=1, max_length=100)
     consent: bool
 
 

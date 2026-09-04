@@ -402,6 +402,7 @@ export default function App() {
         {/* Right Column: Persistent Purchase Summary Panel */}
         <div className="purchase-summary-column">
           <PurchaseSummaryPanel
+            key={selectedProduct?.sku || 'empty-purchase'}
             selectedProduct={selectedProduct}
             quantity={selectedQty}
             onQtyChange={setSelectedQty}

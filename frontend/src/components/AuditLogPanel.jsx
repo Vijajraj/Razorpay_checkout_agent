@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, X, Download, Trash2, ShieldAlert } from 'lucide-react';
+import { ShieldCheck, X, Download, Trash2 } from 'lucide-react';
 
 export default function AuditLogPanel({ open, onClose, auditLogs, onClearLogs, spendCap = 10000 }) {
   const totalSpent = auditLogs
