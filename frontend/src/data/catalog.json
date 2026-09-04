@@ -34,7 +34,25 @@
       "sneakers",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Grey",
+      "Navy",
+      "Beige"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 35,
+    "size_system": "US/India footwear"
   },
   {
     "sku": "SH004",
@@ -47,7 +65,25 @@
       "sneakers",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Grey",
+      "Navy",
+      "Beige"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 35,
+    "size_system": "US/India footwear"
   },
   {
     "sku": "SH005",
@@ -108,7 +144,25 @@
       "shoes",
       "high-top"
     ],
-    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Grey",
+      "Navy",
+      "Beige"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 35,
+    "size_system": "US/India footwear"
   },
   {
     "sku": "SH010",
@@ -132,7 +186,25 @@
       "hoodie",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
   },
   {
     "sku": "SH012",
@@ -144,7 +216,25 @@
       "hoodie",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
   },
   {
     "sku": "SH013",
@@ -156,7 +246,26 @@
       "tshirt",
       "streetwear"
     ],
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon",
+      "Cream"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
   },
   {
     "sku": "SH014",
@@ -168,7 +277,26 @@
       "tshirt",
       "streetwear"
     ],
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon",
+      "Cream"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
   },
   {
     "sku": "SH015",
@@ -180,7 +308,26 @@
       "tshirt",
       "cotton"
     ],
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon",
+      "Cream"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
   },
   {
     "sku": "SH016",
@@ -192,7 +339,25 @@
       "jeans",
       "denim"
     ],
-    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Light Blue",
+      "Mid Blue",
+      "Dark Blue",
+      "Black",
+      "Grey"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 35,
+    "size_system": "Numeric waist"
   },
   {
     "sku": "SH017",
@@ -204,7 +369,25 @@
       "jeans",
       "denim"
     ],
-    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Light Blue",
+      "Mid Blue",
+      "Dark Blue",
+      "Black",
+      "Grey"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 35,
+    "size_system": "Numeric waist"
   },
   {
     "sku": "SH018",
@@ -216,7 +399,25 @@
       "jacket",
       "denim"
     ],
-    "image": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Olive",
+      "Tan",
+      "Blue",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
   },
   {
     "sku": "SH019",
@@ -228,7 +429,26 @@
       "shirt",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Sky Blue",
+      "Olive",
+      "Beige",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
   },
   {
     "sku": "SH020",
@@ -240,7 +460,25 @@
       "dress",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Red",
+      "Emerald",
+      "Ivory",
+      "Floral"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
   },
   {
     "sku": "SH021",
@@ -468,7 +706,16 @@
       "backpack",
       "travel"
     ],
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH040",
@@ -480,7 +727,16 @@
       "backpack",
       "laptop"
     ],
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH041",
@@ -492,7 +748,16 @@
       "backpack",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH042",
@@ -504,7 +769,19 @@
       "bag",
       "leather"
     ],
-    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Tan",
+      "Brown",
+      "Beige",
+      "Olive"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 5,
+    "size_system": "Standard"
   },
   {
     "sku": "SH043",
@@ -516,7 +793,16 @@
       "laptop",
       "sleeve"
     ],
-    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH044",
@@ -528,7 +814,19 @@
       "travel",
       "weekender"
     ],
-    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Tan",
+      "Brown",
+      "Beige",
+      "Cream"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 5,
+    "size_system": "Standard"
   },
   {
     "sku": "SH045",
@@ -540,7 +838,16 @@
       "luggage",
       "travel"
     ],
-    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH046",
@@ -552,7 +859,16 @@
       "luggage",
       "travel"
     ],
-    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH047",
@@ -564,7 +880,17 @@
       "wallet",
       "leather"
     ],
-    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Brown",
+      "Tan"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 3,
+    "size_system": "One Size"
   },
   {
     "sku": "SH048",
@@ -576,7 +902,17 @@
       "wallet",
       "leather"
     ],
-    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Brown",
+      "Tan"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 3,
+    "size_system": "One Size"
   },
   {
     "sku": "SH049",
@@ -588,7 +924,16 @@
       "sunglasses",
       "eyewear"
     ],
-    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH050",
@@ -600,7 +945,16 @@
       "glasses",
       "screen"
     ],
-    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH051",
@@ -612,7 +966,16 @@
       "belt",
       "leather"
     ],
-    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH052",
@@ -624,7 +987,16 @@
       "belt",
       "leather"
     ],
-    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH053",
@@ -636,7 +1008,16 @@
       "cap",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH054",
@@ -648,7 +1029,16 @@
       "cap",
       "casual"
     ],
-    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH055",
@@ -660,7 +1050,17 @@
       "wallet",
       "cardholder"
     ],
-    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Brown",
+      "Tan"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 3,
+    "size_system": "One Size"
   },
   {
     "sku": "SH056",
@@ -672,7 +1072,16 @@
       "organizer",
       "travel"
     ],
-    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 2,
+    "size_system": "One Size"
   },
   {
     "sku": "SH057",
@@ -889,5 +1298,1631 @@
       "fitness"
     ],
     "image": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH075",
+    "name": "Formal Oxford Shirt - White",
+    "category": "apparel",
+    "price": 1799,
+    "stock": 12,
+    "tags": [
+      "shirt",
+      "formal",
+      "office"
+    ],
+    "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Sky Blue",
+      "Olive",
+      "Beige",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH076",
+    "name": "Formal Oxford Shirt - Blue",
+    "category": "apparel",
+    "price": 1799,
+    "stock": 10,
+    "tags": [
+      "shirt",
+      "formal",
+      "office"
+    ],
+    "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Sky Blue",
+      "Olive",
+      "Beige",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH077",
+    "name": "Linen Shirt - Beige",
+    "category": "apparel",
+    "price": 1999,
+    "stock": 9,
+    "tags": [
+      "shirt",
+      "linen",
+      "summer"
+    ],
+    "image": "https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Sky Blue",
+      "Olive",
+      "Beige",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH078",
+    "name": "Linen Shirt - Olive",
+    "category": "apparel",
+    "price": 1999,
+    "stock": 8,
+    "tags": [
+      "shirt",
+      "linen",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Sky Blue",
+      "Olive",
+      "Beige",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH079",
+    "name": "Checked Casual Shirt",
+    "category": "apparel",
+    "price": 1499,
+    "stock": 14,
+    "tags": [
+      "shirt",
+      "checked",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Sky Blue",
+      "Olive",
+      "Beige",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH080",
+    "name": "Striped Casual Shirt",
+    "category": "apparel",
+    "price": 1499,
+    "stock": 13,
+    "tags": [
+      "shirt",
+      "striped",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Sky Blue",
+      "Olive",
+      "Beige",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH081",
+    "name": "Slim Polo T-Shirt - Navy",
+    "category": "apparel",
+    "price": 1299,
+    "stock": 16,
+    "tags": [
+      "polo",
+      "tshirt",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1625910513413-5fc45f9f5f4b?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Navy",
+      "Black",
+      "White",
+      "Maroon",
+      "Forest Green",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH082",
+    "name": "Slim Polo T-Shirt - Maroon",
+    "category": "apparel",
+    "price": 1299,
+    "stock": 11,
+    "tags": [
+      "polo",
+      "tshirt",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1625910513413-5fc45f9f5f4b?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Navy",
+      "Black",
+      "White",
+      "Maroon",
+      "Forest Green",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH083",
+    "name": "Graphic T-Shirt - Black",
+    "category": "apparel",
+    "price": 999,
+    "stock": 18,
+    "tags": [
+      "tshirt",
+      "graphic",
+      "streetwear"
+    ],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon",
+      "Cream"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH084",
+    "name": "Heavyweight T-Shirt - Cream",
+    "category": "apparel",
+    "price": 1199,
+    "stock": 15,
+    "tags": [
+      "tshirt",
+      "cotton",
+      "premium"
+    ],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "White",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon",
+      "Cream"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 42,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH085",
+    "name": "Straight Fit Jeans - Dark Blue",
+    "category": "apparel",
+    "price": 2299,
+    "stock": 10,
+    "tags": [
+      "jeans",
+      "denim"
+    ],
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Light Blue",
+      "Mid Blue",
+      "Dark Blue",
+      "Black",
+      "Grey"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 35,
+    "size_system": "Numeric waist"
+  },
+  {
+    "sku": "SH086",
+    "name": "Relaxed Fit Jeans - Light Blue",
+    "category": "apparel",
+    "price": 2399,
+    "stock": 12,
+    "tags": [
+      "jeans",
+      "denim",
+      "relaxed"
+    ],
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Light Blue",
+      "Mid Blue",
+      "Dark Blue",
+      "Black",
+      "Grey"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 35,
+    "size_system": "Numeric waist"
+  },
+  {
+    "sku": "SH087",
+    "name": "Cargo Trousers - Black",
+    "category": "apparel",
+    "price": 1999,
+    "stock": 14,
+    "tags": [
+      "trousers",
+      "cargo",
+      "streetwear"
+    ],
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Navy",
+      "Khaki",
+      "Olive",
+      "Beige"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 42,
+    "size_system": "Numeric waist"
+  },
+  {
+    "sku": "SH088",
+    "name": "Cargo Trousers - Olive",
+    "category": "apparel",
+    "price": 1999,
+    "stock": 9,
+    "tags": [
+      "trousers",
+      "cargo",
+      "utility"
+    ],
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Navy",
+      "Khaki",
+      "Olive",
+      "Beige"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 42,
+    "size_system": "Numeric waist"
+  },
+  {
+    "sku": "SH089",
+    "name": "Pleated Trousers - Charcoal",
+    "category": "apparel",
+    "price": 2499,
+    "stock": 8,
+    "tags": [
+      "trousers",
+      "formal"
+    ],
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Navy",
+      "Khaki",
+      "Olive",
+      "Beige"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 42,
+    "size_system": "Numeric waist"
+  },
+  {
+    "sku": "SH090",
+    "name": "Chinos - Khaki",
+    "category": "apparel",
+    "price": 1899,
+    "stock": 13,
+    "tags": [
+      "chinos",
+      "smart-casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH091",
+    "name": "Chinos - Navy",
+    "category": "apparel",
+    "price": 1899,
+    "stock": 12,
+    "tags": [
+      "chinos",
+      "smart-casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "sku": "SH092",
+    "name": "Tailored Trousers - Black",
+    "category": "apparel",
+    "price": 2599,
+    "stock": 7,
+    "tags": [
+      "trousers",
+      "formal",
+      "office"
+    ],
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Navy",
+      "Khaki",
+      "Olive",
+      "Beige"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 42,
+    "size_system": "Numeric waist"
+  },
+  {
+    "sku": "SH093",
+    "name": "Lightweight Bomber Jacket - Black",
+    "category": "apparel",
+    "price": 2999,
+    "stock": 7,
+    "tags": [
+      "jacket",
+      "bomber",
+      "streetwear"
+    ],
+    "image": "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Olive",
+      "Tan",
+      "Blue",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH094",
+    "name": "Denim Jacket - Washed Blue",
+    "category": "apparel",
+    "price": 2799,
+    "stock": 9,
+    "tags": [
+      "jacket",
+      "denim"
+    ],
+    "image": "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Olive",
+      "Tan",
+      "Blue",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH095",
+    "name": "Puffer Jacket - Black",
+    "category": "apparel",
+    "price": 4499,
+    "stock": 5,
+    "tags": [
+      "jacket",
+      "winter",
+      "puffer"
+    ],
+    "image": "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Olive",
+      "Tan",
+      "Blue",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH096",
+    "name": "Oversized Blazer - Beige",
+    "category": "apparel",
+    "price": 3999,
+    "stock": 6,
+    "tags": [
+      "blazer",
+      "formal",
+      "oversized"
+    ],
+    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Charcoal",
+      "Beige",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 30,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH097",
+    "name": "Tailored Blazer - Navy",
+    "category": "apparel",
+    "price": 4999,
+    "stock": 4,
+    "tags": [
+      "blazer",
+      "formal",
+      "office"
+    ],
+    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Charcoal",
+      "Beige",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 30,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH098",
+    "name": "Double-Breasted Blazer - Black",
+    "category": "apparel",
+    "price": 5499,
+    "stock": 4,
+    "tags": [
+      "blazer",
+      "formal",
+      "premium"
+    ],
+    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Charcoal",
+      "Beige",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 30,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH099",
+    "name": "Midi Dress - Black",
+    "category": "apparel",
+    "price": 2199,
+    "stock": 10,
+    "tags": [
+      "dress",
+      "midi",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Red",
+      "Emerald",
+      "Ivory",
+      "Floral"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH100",
+    "name": "Floral Maxi Dress",
+    "category": "apparel",
+    "price": 2499,
+    "stock": 8,
+    "tags": [
+      "dress",
+      "floral",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Red",
+      "Emerald",
+      "Ivory",
+      "Floral"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH101",
+    "name": "Bodycon Dress - Emerald",
+    "category": "apparel",
+    "price": 2299,
+    "stock": 7,
+    "tags": [
+      "dress",
+      "party",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Red",
+      "Emerald",
+      "Ivory",
+      "Floral"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH102",
+    "name": "A-Line Dress - Navy",
+    "category": "apparel",
+    "price": 2099,
+    "stock": 9,
+    "tags": [
+      "dress",
+      "casual",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Red",
+      "Emerald",
+      "Ivory",
+      "Floral"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH103",
+    "name": "Pleated Midi Skirt",
+    "category": "apparel",
+    "price": 1599,
+    "stock": 11,
+    "tags": [
+      "skirt",
+      "women",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1583496661160-fb5886a13d27?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Blue",
+      "Navy",
+      "Beige",
+      "Olive"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 30,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH104",
+    "name": "Denim Skirt - Blue",
+    "category": "apparel",
+    "price": 1499,
+    "stock": 12,
+    "tags": [
+      "skirt",
+      "denim",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1583496661160-fb5886a13d27?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Blue",
+      "Navy",
+      "Beige",
+      "Olive"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 30,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH105",
+    "name": "Cotton Saree - Blue",
+    "category": "apparel",
+    "price": 2299,
+    "stock": 8,
+    "tags": [
+      "saree",
+      "ethnic",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Blue",
+      "Green",
+      "Maroon",
+      "Pink",
+      "Black",
+      "Gold"
+    ],
+    "sizes": [
+      "Free Size"
+    ],
+    "variant_count": 6,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH106",
+    "name": "Printed Saree - Green",
+    "category": "apparel",
+    "price": 2599,
+    "stock": 7,
+    "tags": [
+      "saree",
+      "ethnic",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Blue",
+      "Green",
+      "Maroon",
+      "Pink",
+      "Black",
+      "Gold"
+    ],
+    "sizes": [
+      "Free Size"
+    ],
+    "variant_count": 6,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH107",
+    "name": "Straight Kurta - White",
+    "category": "apparel",
+    "price": 1399,
+    "stock": 13,
+    "tags": [
+      "kurta",
+      "ethnic",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1597983073493-88cd35cf93d0?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Mustard",
+      "Maroon",
+      "Green"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH108",
+    "name": "Printed Kurta Set",
+    "category": "apparel",
+    "price": 1999,
+    "stock": 10,
+    "tags": [
+      "kurta",
+      "ethnic",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1597983073493-88cd35cf93d0?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Mustard",
+      "Maroon",
+      "Green"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH109",
+    "name": "Men's Cotton Kurta - White",
+    "category": "apparel",
+    "price": 1599,
+    "stock": 9,
+    "tags": [
+      "kurta",
+      "ethnic",
+      "men"
+    ],
+    "image": "https://images.unsplash.com/photo-1597983073493-88cd35cf93d0?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Mustard",
+      "Maroon",
+      "Green"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH110",
+    "name": "Men's Festive Kurta - Navy",
+    "category": "apparel",
+    "price": 2199,
+    "stock": 7,
+    "tags": [
+      "kurta",
+      "ethnic",
+      "men"
+    ],
+    "image": "https://images.unsplash.com/photo-1597983073493-88cd35cf93d0?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Navy",
+      "Mustard",
+      "Maroon",
+      "Green"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH111",
+    "name": "Oversized Hoodie - Charcoal",
+    "category": "apparel",
+    "price": 1799,
+    "stock": 14,
+    "tags": [
+      "hoodie",
+      "oversized",
+      "streetwear"
+    ],
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH112",
+    "name": "Zip-Up Hoodie - Black",
+    "category": "apparel",
+    "price": 1899,
+    "stock": 11,
+    "tags": [
+      "hoodie",
+      "zip-up",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Grey",
+      "Navy",
+      "Olive",
+      "Maroon"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH113",
+    "name": "Cable Knit Sweater - Beige",
+    "category": "apparel",
+    "price": 2299,
+    "stock": 8,
+    "tags": [
+      "sweater",
+      "winter"
+    ],
+    "image": "https://images.unsplash.com/photo-1610652492500-ded49ceeb378?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Beige",
+      "Grey",
+      "Black",
+      "Navy",
+      "Brown",
+      "Cream"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH114",
+    "name": "Crewneck Sweater - Grey",
+    "category": "apparel",
+    "price": 1999,
+    "stock": 10,
+    "tags": [
+      "sweater",
+      "winter",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1610652492500-ded49ceeb378?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Beige",
+      "Grey",
+      "Black",
+      "Navy",
+      "Brown",
+      "Cream"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 36,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH115",
+    "name": "Running Shorts - Black",
+    "category": "apparel",
+    "price": 1099,
+    "stock": 13,
+    "tags": [
+      "shorts",
+      "running",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Grey",
+      "Olive",
+      "Khaki"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 35,
+    "size_system": "Numeric waist"
+  },
+  {
+    "sku": "SH116",
+    "name": "Training Shorts - Navy",
+    "category": "apparel",
+    "price": 1199,
+    "stock": 12,
+    "tags": [
+      "shorts",
+      "training",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Grey",
+      "Olive",
+      "Khaki"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38",
+      "40"
+    ],
+    "variant_count": 35,
+    "size_system": "Numeric waist"
+  },
+  {
+    "sku": "SH117",
+    "name": "Performance Leggings - Black",
+    "category": "apparel",
+    "price": 1499,
+    "stock": 10,
+    "tags": [
+      "activewear",
+      "leggings",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Grey",
+      "Olive",
+      "Burgundy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 30,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH118",
+    "name": "Training Joggers - Black",
+    "category": "apparel",
+    "price": 1699,
+    "stock": 12,
+    "tags": [
+      "activewear",
+      "joggers",
+      "fitness"
+    ],
+    "image": "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Navy",
+      "Grey",
+      "Olive",
+      "Burgundy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "variant_count": 30,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH119",
+    "name": "Classic Low-Top Sneakers - White",
+    "category": "footwear",
+    "price": 2399,
+    "stock": 10,
+    "tags": [
+      "sneakers",
+      "casual",
+      "shoes"
+    ],
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Grey",
+      "Navy",
+      "Beige"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 35,
+    "size_system": "US/India footwear"
+  },
+  {
+    "sku": "SH120",
+    "name": "Chunky Sneakers - Grey",
+    "category": "footwear",
+    "price": 2999,
+    "stock": 8,
+    "tags": [
+      "sneakers",
+      "streetwear"
+    ],
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "White",
+      "Black",
+      "Grey",
+      "Navy",
+      "Beige"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 35,
+    "size_system": "US/India footwear"
+  },
+  {
+    "sku": "SH121",
+    "name": "Chelsea Boots - Black",
+    "category": "footwear",
+    "price": 3499,
+    "stock": 6,
+    "tags": [
+      "boots",
+      "formal",
+      "shoes"
+    ],
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Brown",
+      "Tan",
+      "Dark Brown"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 28,
+    "size_system": "US/India footwear"
+  },
+  {
+    "sku": "SH122",
+    "name": "Ankle Boots - Brown",
+    "category": "footwear",
+    "price": 3299,
+    "stock": 7,
+    "tags": [
+      "boots",
+      "casual",
+      "shoes"
+    ],
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Brown",
+      "Tan",
+      "Dark Brown"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 28,
+    "size_system": "US/India footwear"
+  },
+  {
+    "sku": "SH123",
+    "name": "Block Heel Sandals - Nude",
+    "category": "footwear",
+    "price": 2299,
+    "stock": 8,
+    "tags": [
+      "heels",
+      "sandals",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Nude",
+      "Red",
+      "White",
+      "Tan"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 35,
+    "size_system": "US/India footwear"
+  },
+  {
+    "sku": "SH124",
+    "name": "Classic Heels - Black",
+    "category": "footwear",
+    "price": 2499,
+    "stock": 7,
+    "tags": [
+      "heels",
+      "formal",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Nude",
+      "Red",
+      "White",
+      "Tan"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "variant_count": 35,
+    "size_system": "US/India footwear"
+  },
+  {
+    "sku": "SH125",
+    "name": "Structured Tote Bag - Black",
+    "category": "bags",
+    "price": 2499,
+    "stock": 9,
+    "tags": [
+      "bag",
+      "tote",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Tan",
+      "Brown",
+      "Beige",
+      "Cream"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 5,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH126",
+    "name": "Mini Crossbody Bag - Tan",
+    "category": "bags",
+    "price": 1799,
+    "stock": 11,
+    "tags": [
+      "bag",
+      "crossbody",
+      "women"
+    ],
+    "image": "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Tan",
+      "Brown",
+      "Beige",
+      "Olive"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 5,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH127",
+    "name": "Canvas Sling Bag",
+    "category": "bags",
+    "price": 1299,
+    "stock": 14,
+    "tags": [
+      "bag",
+      "sling",
+      "casual"
+    ],
+    "image": "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Black",
+      "Tan",
+      "Brown",
+      "Beige",
+      "Cream"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 5,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH128",
+    "name": "Fashion Scarf - Beige",
+    "category": "accessories",
+    "price": 699,
+    "stock": 18,
+    "tags": [
+      "scarf",
+      "fashion"
+    ],
+    "image": "https://images.unsplash.com/photo-1601924928375-7b0f9a3a9a16?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Beige",
+      "Black",
+      "Maroon",
+      "Navy",
+      "Olive",
+      "Printed"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 6,
+    "size_system": "Standard"
+  },
+  {
+    "sku": "SH129",
+    "name": "Fashion Scarf - Printed",
+    "category": "accessories",
+    "price": 799,
+    "stock": 16,
+    "tags": [
+      "scarf",
+      "fashion",
+      "printed"
+    ],
+    "image": "https://images.unsplash.com/photo-1601924928375-7b0f9a3a9a16?auto=format&fit=crop&w=900&q=80",
+    "colors": [
+      "Beige",
+      "Black",
+      "Maroon",
+      "Navy",
+      "Olive",
+      "Printed"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "variant_count": 6,
+    "size_system": "Standard"
   }
 ]
