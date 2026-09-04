@@ -1,15 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowUp, User, ShieldAlert, ShoppingBag, Plus, Minus, CheckCircle2, Search, Database } from 'lucide-react';
+import { ArrowUp, User, ShieldAlert, ShoppingBag, Plus, Minus, CheckCircle2, Database } from 'lucide-react';
 import AgentWorkflowBar from './AgentWorkflowBar';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';
-
-const SUGGESTION_CHIPS = [
-  'Running shoes under ₹3000',
-  'Black sneakers',
-  'Oversized T-shirts',
-  'Show me products under ₹1500',
-];
 
 function ProductCard({ item, onSelectForPurchase }) {
   const [qty, setQty] = useState(1);
@@ -121,10 +114,6 @@ export default function ChatPanel({
     setInput('');
   };
 
-  const handleChipClick = (chipText) => {
-    onSendMessage(chipText);
-  };
-
   return (
     <div className="chat-panel-container">
       {/* Top Compact Workflow Indicator Bar */}
@@ -212,20 +201,6 @@ export default function ChatPanel({
       {/* Fixed Bottom Command Dock */}
       <div className="input-dock">
         <div className="input-box-wrapper">
-          <div className="suggestion-chips-row">
-            {SUGGESTION_CHIPS.map((chip, idx) => (
-              <button
-                key={idx}
-                type="button"
-                className="chip-pill"
-                onClick={() => handleChipClick(chip)}
-              >
-                <Search size={11} />
-                <span>{chip}</span>
-              </button>
-            ))}
-          </div>
-
           <form onSubmit={handleSubmit} className="input-form">
             <input
               type="text"
