@@ -9,7 +9,7 @@
       "shoes",
       "running"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=1&sh001=1"
+    "image": "https://images.pexels.com/photos/2286871/pexels-photo-2286871.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH002",
@@ -21,7 +21,7 @@
       "shoes",
       "running"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=2&sh002=1"
+    "image": "https://images.pexels.com/photos/2286871/pexels-photo-2286871.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH003",
@@ -34,7 +34,7 @@
       "sneakers",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=3&sh003=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -52,7 +52,44 @@
       "12"
     ],
     "variant_count": 35,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "White|6": 1,
+      "White|7": 1,
+      "White|8": 1,
+      "White|9": 1,
+      "White|10": 1,
+      "White|11": 1,
+      "White|12": 1,
+      "Black|6": 1,
+      "Black|7": 1,
+      "Black|8": 1,
+      "Black|9": 1,
+      "Black|10": 1,
+      "Black|11": 1,
+      "Black|12": 1,
+      "Grey|6": 1,
+      "Grey|7": 1,
+      "Grey|8": 1,
+      "Grey|9": 1,
+      "Grey|10": 1,
+      "Grey|11": 1,
+      "Grey|12": 1,
+      "Navy|6": 1,
+      "Navy|7": 1,
+      "Navy|8": 1,
+      "Navy|9": 1,
+      "Navy|10": 1,
+      "Navy|11": 1,
+      "Navy|12": 1,
+      "Beige|6": 1,
+      "Beige|7": 1,
+      "Beige|8": 1,
+      "Beige|9": 1,
+      "Beige|10": 1,
+      "Beige|11": 1,
+      "Beige|12": 1
+    }
   },
   {
     "sku": "SH004",
@@ -65,7 +102,7 @@
       "sneakers",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=4&sh004=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -83,7 +120,44 @@
       "12"
     ],
     "variant_count": 35,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "White|6": 2,
+      "White|7": 2,
+      "White|8": 2,
+      "White|9": 2,
+      "White|10": 2,
+      "White|11": 2,
+      "White|12": 2,
+      "Black|6": 2,
+      "Black|7": 2,
+      "Black|8": 2,
+      "Black|9": 2,
+      "Black|10": 2,
+      "Black|11": 2,
+      "Black|12": 2,
+      "Grey|6": 2,
+      "Grey|7": 2,
+      "Grey|8": 2,
+      "Grey|9": 2,
+      "Grey|10": 2,
+      "Grey|11": 2,
+      "Grey|12": 2,
+      "Navy|6": 2,
+      "Navy|7": 2,
+      "Navy|8": 2,
+      "Navy|9": 2,
+      "Navy|10": 2,
+      "Navy|11": 2,
+      "Navy|12": 2,
+      "Beige|6": 2,
+      "Beige|7": 2,
+      "Beige|8": 2,
+      "Beige|9": 2,
+      "Beige|10": 2,
+      "Beige|11": 2,
+      "Beige|12": 2
+    }
   },
   {
     "sku": "SH005",
@@ -96,7 +170,7 @@
       "training",
       "gym"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=5&sh005=1"
+    "image": "https://images.pexels.com/photos/2286871/pexels-photo-2286871.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH006",
@@ -108,7 +182,7 @@
       "shoes",
       "walking"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=6&sh006=1"
+    "image": "https://images.pexels.com/photos/2286871/pexels-photo-2286871.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH007",
@@ -120,7 +194,7 @@
       "loafers",
       "formal"
     ],
-    "image": "https://loremflickr.com/900/900/footwear?lock=7&sh007=1"
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH008",
@@ -132,7 +206,7 @@
       "shoes",
       "slip-ons"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=8&sh008=1"
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH009",
@@ -144,7 +218,7 @@
       "shoes",
       "high-top"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=9&sh009=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -162,7 +236,44 @@
       "12"
     ],
     "variant_count": 35,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "White|6": 1,
+      "White|7": 1,
+      "White|8": 1,
+      "White|9": 1,
+      "White|10": 1,
+      "White|11": 1,
+      "White|12": 1,
+      "Black|6": 1,
+      "Black|7": 1,
+      "Black|8": 1,
+      "Black|9": 1,
+      "Black|10": 1,
+      "Black|11": 1,
+      "Black|12": 1,
+      "Grey|6": 1,
+      "Grey|7": 1,
+      "Grey|8": 1,
+      "Grey|9": 1,
+      "Grey|10": 1,
+      "Grey|11": 1,
+      "Grey|12": 1,
+      "Navy|6": 1,
+      "Navy|7": 1,
+      "Navy|8": 1,
+      "Navy|9": 1,
+      "Navy|10": 1,
+      "Navy|11": 1,
+      "Navy|12": 1,
+      "Beige|6": 1,
+      "Beige|7": 1,
+      "Beige|8": 1,
+      "Beige|9": 1,
+      "Beige|10": 1,
+      "Beige|11": 1,
+      "Beige|12": 1
+    }
   },
   {
     "sku": "SH010",
@@ -174,7 +285,7 @@
       "sandals",
       "outdoor"
     ],
-    "image": "https://loremflickr.com/900/900/sandals?lock=10&sh010=1"
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH011",
@@ -186,7 +297,7 @@
       "hoodie",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/hoodie?lock=11&sh011=1",
+    "image": "https://images.pexels.com/photos/1322054/pexels-photo-1322054.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Charcoal",
@@ -204,7 +315,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 3,
+      "Black|S": 3,
+      "Black|M": 3,
+      "Black|L": 3,
+      "Black|XL": 3,
+      "Black|XXL": 3,
+      "Charcoal|XS": 3,
+      "Charcoal|S": 3,
+      "Charcoal|M": 3,
+      "Charcoal|L": 3,
+      "Charcoal|XL": 3,
+      "Charcoal|XXL": 3,
+      "Grey|XS": 3,
+      "Grey|S": 3,
+      "Grey|M": 3,
+      "Grey|L": 3,
+      "Grey|XL": 3,
+      "Grey|XXL": 3,
+      "Navy|XS": 3,
+      "Navy|S": 3,
+      "Navy|M": 3,
+      "Navy|L": 3,
+      "Navy|XL": 3,
+      "Navy|XXL": 3,
+      "Olive|XS": 3,
+      "Olive|S": 3,
+      "Olive|M": 3,
+      "Olive|L": 3,
+      "Olive|XL": 3,
+      "Olive|XXL": 3,
+      "Maroon|XS": 3,
+      "Maroon|S": 3,
+      "Maroon|M": 3,
+      "Maroon|L": 3,
+      "Maroon|XL": 3,
+      "Maroon|XXL": 3
+    }
   },
   {
     "sku": "SH012",
@@ -216,7 +365,7 @@
       "hoodie",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/hoodie?lock=12&sh012=1",
+    "image": "https://images.pexels.com/photos/1322054/pexels-photo-1322054.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Charcoal",
@@ -234,7 +383,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Charcoal|XS": 2,
+      "Charcoal|S": 2,
+      "Charcoal|M": 2,
+      "Charcoal|L": 2,
+      "Charcoal|XL": 2,
+      "Charcoal|XXL": 2,
+      "Grey|XS": 2,
+      "Grey|S": 2,
+      "Grey|M": 2,
+      "Grey|L": 2,
+      "Grey|XL": 2,
+      "Grey|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2
+    }
   },
   {
     "sku": "SH013",
@@ -246,7 +433,7 @@
       "tshirt",
       "streetwear"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=13&sh013=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "White",
@@ -265,7 +452,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 4,
+      "Black|S": 4,
+      "Black|M": 4,
+      "Black|L": 4,
+      "Black|XL": 4,
+      "Black|XXL": 4,
+      "White|XS": 4,
+      "White|S": 4,
+      "White|M": 4,
+      "White|L": 4,
+      "White|XL": 4,
+      "White|XXL": 4,
+      "Grey|XS": 4,
+      "Grey|S": 4,
+      "Grey|M": 4,
+      "Grey|L": 4,
+      "Grey|XL": 4,
+      "Grey|XXL": 4,
+      "Navy|XS": 4,
+      "Navy|S": 4,
+      "Navy|M": 4,
+      "Navy|L": 4,
+      "Navy|XL": 4,
+      "Navy|XXL": 4,
+      "Olive|XS": 4,
+      "Olive|S": 4,
+      "Olive|M": 4,
+      "Olive|L": 4,
+      "Olive|XL": 4,
+      "Olive|XXL": 4,
+      "Maroon|XS": 4,
+      "Maroon|S": 4,
+      "Maroon|M": 4,
+      "Maroon|L": 4,
+      "Maroon|XL": 4,
+      "Maroon|XXL": 4,
+      "Cream|XS": 4,
+      "Cream|S": 4,
+      "Cream|M": 4,
+      "Cream|L": 4,
+      "Cream|XL": 4,
+      "Cream|XXL": 4
+    }
   },
   {
     "sku": "SH014",
@@ -277,7 +508,7 @@
       "tshirt",
       "streetwear"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=14&sh014=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "White",
@@ -296,7 +527,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 3,
+      "Black|S": 3,
+      "Black|M": 3,
+      "Black|L": 3,
+      "Black|XL": 3,
+      "Black|XXL": 3,
+      "White|XS": 3,
+      "White|S": 3,
+      "White|M": 3,
+      "White|L": 3,
+      "White|XL": 3,
+      "White|XXL": 3,
+      "Grey|XS": 3,
+      "Grey|S": 3,
+      "Grey|M": 3,
+      "Grey|L": 3,
+      "Grey|XL": 3,
+      "Grey|XXL": 3,
+      "Navy|XS": 3,
+      "Navy|S": 3,
+      "Navy|M": 3,
+      "Navy|L": 3,
+      "Navy|XL": 3,
+      "Navy|XXL": 3,
+      "Olive|XS": 3,
+      "Olive|S": 3,
+      "Olive|M": 3,
+      "Olive|L": 3,
+      "Olive|XL": 3,
+      "Olive|XXL": 3,
+      "Maroon|XS": 3,
+      "Maroon|S": 3,
+      "Maroon|M": 3,
+      "Maroon|L": 3,
+      "Maroon|XL": 3,
+      "Maroon|XXL": 3,
+      "Cream|XS": 3,
+      "Cream|S": 3,
+      "Cream|M": 3,
+      "Cream|L": 3,
+      "Cream|XL": 3,
+      "Cream|XXL": 3
+    }
   },
   {
     "sku": "SH015",
@@ -308,7 +583,7 @@
       "tshirt",
       "cotton"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=15&sh015=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "White",
@@ -327,7 +602,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 3,
+      "Black|S": 3,
+      "Black|M": 3,
+      "Black|L": 3,
+      "Black|XL": 3,
+      "Black|XXL": 3,
+      "White|XS": 3,
+      "White|S": 3,
+      "White|M": 3,
+      "White|L": 3,
+      "White|XL": 3,
+      "White|XXL": 3,
+      "Grey|XS": 3,
+      "Grey|S": 3,
+      "Grey|M": 3,
+      "Grey|L": 3,
+      "Grey|XL": 3,
+      "Grey|XXL": 3,
+      "Navy|XS": 3,
+      "Navy|S": 3,
+      "Navy|M": 3,
+      "Navy|L": 3,
+      "Navy|XL": 3,
+      "Navy|XXL": 3,
+      "Olive|XS": 3,
+      "Olive|S": 3,
+      "Olive|M": 3,
+      "Olive|L": 3,
+      "Olive|XL": 3,
+      "Olive|XXL": 3,
+      "Maroon|XS": 3,
+      "Maroon|S": 3,
+      "Maroon|M": 3,
+      "Maroon|L": 3,
+      "Maroon|XL": 3,
+      "Maroon|XXL": 3,
+      "Cream|XS": 3,
+      "Cream|S": 3,
+      "Cream|M": 3,
+      "Cream|L": 3,
+      "Cream|XL": 3,
+      "Cream|XXL": 3
+    }
   },
   {
     "sku": "SH016",
@@ -339,7 +658,7 @@
       "jeans",
       "denim"
     ],
-    "image": "https://loremflickr.com/900/900/jeans?lock=16&sh016=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Light Blue",
       "Mid Blue",
@@ -357,7 +676,44 @@
       "40"
     ],
     "variant_count": 35,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Light Blue|28": 2,
+      "Light Blue|30": 2,
+      "Light Blue|32": 2,
+      "Light Blue|34": 2,
+      "Light Blue|36": 2,
+      "Light Blue|38": 2,
+      "Light Blue|40": 2,
+      "Mid Blue|28": 2,
+      "Mid Blue|30": 2,
+      "Mid Blue|32": 2,
+      "Mid Blue|34": 2,
+      "Mid Blue|36": 2,
+      "Mid Blue|38": 2,
+      "Mid Blue|40": 2,
+      "Dark Blue|28": 2,
+      "Dark Blue|30": 2,
+      "Dark Blue|32": 2,
+      "Dark Blue|34": 2,
+      "Dark Blue|36": 2,
+      "Dark Blue|38": 2,
+      "Dark Blue|40": 2,
+      "Black|28": 2,
+      "Black|30": 2,
+      "Black|32": 2,
+      "Black|34": 2,
+      "Black|36": 2,
+      "Black|38": 2,
+      "Black|40": 2,
+      "Grey|28": 2,
+      "Grey|30": 2,
+      "Grey|32": 2,
+      "Grey|34": 2,
+      "Grey|36": 2,
+      "Grey|38": 2,
+      "Grey|40": 2
+    }
   },
   {
     "sku": "SH017",
@@ -369,7 +725,7 @@
       "jeans",
       "denim"
     ],
-    "image": "https://loremflickr.com/900/900/jeans?lock=17&sh017=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Light Blue",
       "Mid Blue",
@@ -387,7 +743,44 @@
       "40"
     ],
     "variant_count": 35,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Light Blue|28": 1,
+      "Light Blue|30": 1,
+      "Light Blue|32": 1,
+      "Light Blue|34": 1,
+      "Light Blue|36": 1,
+      "Light Blue|38": 1,
+      "Light Blue|40": 1,
+      "Mid Blue|28": 1,
+      "Mid Blue|30": 1,
+      "Mid Blue|32": 1,
+      "Mid Blue|34": 1,
+      "Mid Blue|36": 1,
+      "Mid Blue|38": 1,
+      "Mid Blue|40": 1,
+      "Dark Blue|28": 1,
+      "Dark Blue|30": 1,
+      "Dark Blue|32": 1,
+      "Dark Blue|34": 1,
+      "Dark Blue|36": 1,
+      "Dark Blue|38": 1,
+      "Dark Blue|40": 1,
+      "Black|28": 1,
+      "Black|30": 1,
+      "Black|32": 1,
+      "Black|34": 1,
+      "Black|36": 1,
+      "Black|38": 1,
+      "Black|40": 1,
+      "Grey|28": 1,
+      "Grey|30": 1,
+      "Grey|32": 1,
+      "Grey|34": 1,
+      "Grey|36": 1,
+      "Grey|38": 1,
+      "Grey|40": 1
+    }
   },
   {
     "sku": "SH018",
@@ -399,7 +792,7 @@
       "jacket",
       "denim"
     ],
-    "image": "https://loremflickr.com/900/900/jacket?lock=18&sh018=1",
+    "image": "https://images.pexels.com/photos/16428589/pexels-photo-16428589.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -417,7 +810,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Olive|XS": 1,
+      "Olive|S": 1,
+      "Olive|M": 1,
+      "Olive|L": 1,
+      "Olive|XL": 1,
+      "Olive|XXL": 1,
+      "Tan|XS": 1,
+      "Tan|S": 1,
+      "Tan|M": 1,
+      "Tan|L": 1,
+      "Tan|XL": 1,
+      "Tan|XXL": 1,
+      "Blue|XS": 1,
+      "Blue|S": 1,
+      "Blue|M": 1,
+      "Blue|L": 1,
+      "Blue|XL": 1,
+      "Blue|XXL": 1,
+      "Grey|XS": 1,
+      "Grey|S": 1,
+      "Grey|M": 1,
+      "Grey|L": 1,
+      "Grey|XL": 1,
+      "Grey|XXL": 1
+    }
   },
   {
     "sku": "SH019",
@@ -429,7 +860,7 @@
       "shirt",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=19&sh019=1",
+    "image": "https://images.pexels.com/photos/9489817/pexels-photo-9489817.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -448,7 +879,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 2,
+      "White|S": 2,
+      "White|M": 2,
+      "White|L": 2,
+      "White|XL": 2,
+      "White|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Sky Blue|XS": 2,
+      "Sky Blue|S": 2,
+      "Sky Blue|M": 2,
+      "Sky Blue|L": 2,
+      "Sky Blue|XL": 2,
+      "Sky Blue|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Beige|XS": 2,
+      "Beige|S": 2,
+      "Beige|M": 2,
+      "Beige|L": 2,
+      "Beige|XL": 2,
+      "Beige|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2
+    }
   },
   {
     "sku": "SH020",
@@ -460,7 +935,7 @@
       "dress",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/dress?lock=20&sh020=1",
+    "image": "https://images.pexels.com/photos/12169001/pexels-photo-12169001.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -478,7 +953,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Red|XS": 1,
+      "Red|S": 1,
+      "Red|M": 1,
+      "Red|L": 1,
+      "Red|XL": 1,
+      "Red|XXL": 1,
+      "Emerald|XS": 1,
+      "Emerald|S": 1,
+      "Emerald|M": 1,
+      "Emerald|L": 1,
+      "Emerald|XL": 1,
+      "Emerald|XXL": 1,
+      "Ivory|XS": 1,
+      "Ivory|S": 1,
+      "Ivory|M": 1,
+      "Ivory|L": 1,
+      "Ivory|XL": 1,
+      "Ivory|XXL": 1,
+      "Floral|XS": 1,
+      "Floral|S": 1,
+      "Floral|M": 1,
+      "Floral|L": 1,
+      "Floral|XL": 1,
+      "Floral|XXL": 1
+    }
   },
   {
     "sku": "SH021",
@@ -490,7 +1003,7 @@
       "watch",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/watch?lock=21&sh021=1"
+    "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH022",
@@ -502,7 +1015,7 @@
       "fitness",
       "wearable"
     ],
-    "image": "https://loremflickr.com/900/900/electronics?lock=22&sh022=1"
+    "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH023",
@@ -514,7 +1027,7 @@
       "watch",
       "accessories"
     ],
-    "image": "https://loremflickr.com/900/900/watch?lock=23&sh023=1"
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH024",
@@ -526,7 +1039,7 @@
       "watch",
       "premium"
     ],
-    "image": "https://loremflickr.com/900/900/watch?lock=24&sh024=1"
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH025",
@@ -538,7 +1051,7 @@
       "audio",
       "earbuds"
     ],
-    "image": "https://loremflickr.com/900/900/earbuds?lock=25&sh025=1"
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH026",
@@ -550,7 +1063,7 @@
       "audio",
       "headphones"
     ],
-    "image": "https://loremflickr.com/900/900/headphones?lock=26&sh026=1"
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH027",
@@ -562,7 +1075,7 @@
       "speaker",
       "audio"
     ],
-    "image": "https://loremflickr.com/900/900/speaker?lock=27&sh027=1"
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH028",
@@ -574,7 +1087,7 @@
       "phone",
       "mobile"
     ],
-    "image": "https://loremflickr.com/900/900/smartphone?lock=28&sh028=1"
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH029",
@@ -586,7 +1099,7 @@
       "phone",
       "mobile"
     ],
-    "image": "https://loremflickr.com/900/900/smartphone?lock=29&sh029=1"
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH030",
@@ -598,7 +1111,7 @@
       "laptop",
       "computer"
     ],
-    "image": "https://loremflickr.com/900/900/laptop?lock=30&sh030=1"
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH031",
@@ -610,7 +1123,7 @@
       "laptop",
       "gaming"
     ],
-    "image": "https://loremflickr.com/900/900/laptop?lock=31&sh031=1"
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH032",
@@ -622,7 +1135,7 @@
       "keyboard",
       "gaming"
     ],
-    "image": "https://loremflickr.com/900/900/computer,keyboard?lock=32&sh032=1"
+    "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH033",
@@ -634,7 +1147,7 @@
       "mouse",
       "computer"
     ],
-    "image": "https://loremflickr.com/900/900/computer,mouse?lock=33&sh033=1"
+    "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH034",
@@ -646,7 +1159,7 @@
       "camera",
       "photography"
     ],
-    "image": "https://loremflickr.com/900/900/camera,photography?lock=34&sh034=1"
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH035",
@@ -658,7 +1171,7 @@
       "monitor",
       "display"
     ],
-    "image": "https://loremflickr.com/900/900/computer,monitor?lock=35&sh035=1"
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH036",
@@ -670,7 +1183,7 @@
       "tablet",
       "display"
     ],
-    "image": "https://loremflickr.com/900/900/tablet?lock=36&sh036=1"
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH037",
@@ -682,7 +1195,7 @@
       "charger",
       "usb-c"
     ],
-    "image": "https://loremflickr.com/900/900/electronics?lock=37&sh037=1"
+    "image": "https://images.unsplash.com/photo-1609592424748-2f0f73a8a2f7?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH038",
@@ -694,7 +1207,7 @@
       "powerbank",
       "travel"
     ],
-    "image": "https://loremflickr.com/900/900/electronics?lock=38&sh038=1"
+    "image": "https://images.unsplash.com/photo-1609592424748-2f0f73a8a2f7?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH039",
@@ -706,7 +1219,7 @@
       "backpack",
       "travel"
     ],
-    "image": "https://loremflickr.com/900/900/backpack?lock=39&sh039=1",
+    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "White"
@@ -727,7 +1240,7 @@
       "backpack",
       "laptop"
     ],
-    "image": "https://loremflickr.com/900/900/laptop?lock=40&sh040=1",
+    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "White"
@@ -748,7 +1261,7 @@
       "backpack",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/backpack?lock=41&sh041=1",
+    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "White"
@@ -769,7 +1282,7 @@
       "bag",
       "leather"
     ],
-    "image": "https://loremflickr.com/900/900/crossbody%20bag?lock=42&sh042=1",
+    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Tan",
@@ -781,7 +1294,14 @@
       "One Size"
     ],
     "variant_count": 5,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|One Size": 1,
+      "Tan|One Size": 1,
+      "Brown|One Size": 1,
+      "Beige|One Size": 1,
+      "Olive|One Size": 1
+    }
   },
   {
     "sku": "SH043",
@@ -793,7 +1313,7 @@
       "laptop",
       "sleeve"
     ],
-    "image": "https://loremflickr.com/900/900/laptop?lock=43&sh043=1",
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -814,7 +1334,7 @@
       "travel",
       "weekender"
     ],
-    "image": "https://loremflickr.com/900/900/bags?lock=44&sh044=1",
+    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Tan",
@@ -826,7 +1346,14 @@
       "One Size"
     ],
     "variant_count": 5,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|One Size": 1,
+      "Tan|One Size": 1,
+      "Brown|One Size": 1,
+      "Beige|One Size": 1,
+      "Cream|One Size": 1
+    }
   },
   {
     "sku": "SH045",
@@ -838,7 +1365,7 @@
       "luggage",
       "travel"
     ],
-    "image": "https://loremflickr.com/900/900/bags?lock=45&sh045=1",
+    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -859,7 +1386,7 @@
       "luggage",
       "travel"
     ],
-    "image": "https://loremflickr.com/900/900/bags?lock=46&sh046=1",
+    "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -880,7 +1407,7 @@
       "wallet",
       "leather"
     ],
-    "image": "https://loremflickr.com/900/900/wallet?lock=47&sh047=1",
+    "image": "https://images.pexels.com/photos/27467357/pexels-photo-27467357.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Brown",
@@ -902,7 +1429,7 @@
       "wallet",
       "leather"
     ],
-    "image": "https://loremflickr.com/900/900/wallet?lock=48&sh048=1",
+    "image": "https://images.pexels.com/photos/27467357/pexels-photo-27467357.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Brown",
@@ -924,7 +1451,7 @@
       "sunglasses",
       "eyewear"
     ],
-    "image": "https://loremflickr.com/900/900/sunglasses?lock=49&sh049=1",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -945,7 +1472,7 @@
       "glasses",
       "screen"
     ],
-    "image": "https://loremflickr.com/900/900/accessories?lock=50&sh050=1",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -966,7 +1493,7 @@
       "belt",
       "leather"
     ],
-    "image": "https://loremflickr.com/900/900/belt?lock=51&sh051=1",
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -987,7 +1514,7 @@
       "belt",
       "leather"
     ],
-    "image": "https://loremflickr.com/900/900/belt?lock=52&sh052=1",
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -1008,7 +1535,7 @@
       "cap",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/baseball%20cap?lock=53&sh053=1",
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -1029,7 +1556,7 @@
       "cap",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/baseball%20cap?lock=54&sh054=1",
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -1050,7 +1577,7 @@
       "wallet",
       "cardholder"
     ],
-    "image": "https://loremflickr.com/900/900/wallet?lock=55&sh055=1",
+    "image": "https://images.pexels.com/photos/27467357/pexels-photo-27467357.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Brown",
@@ -1072,7 +1599,7 @@
       "organizer",
       "travel"
     ],
-    "image": "https://loremflickr.com/900/900/accessories?lock=56&sh056=1",
+    "image": "https://images.unsplash.com/photo-1553531889-56a9a7f4d6e6?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Black",
       "White"
@@ -1093,7 +1620,7 @@
       "lamp",
       "desk"
     ],
-    "image": "https://loremflickr.com/900/900/desk%20lamp?lock=57&sh057=1"
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH058",
@@ -1105,7 +1632,7 @@
       "lamp",
       "home"
     ],
-    "image": "https://loremflickr.com/900/900/desk%20lamp?lock=58&sh058=1"
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH059",
@@ -1117,7 +1644,7 @@
       "mug",
       "kitchen"
     ],
-    "image": "https://loremflickr.com/900/900/coffee%20mug?lock=59&sh059=1"
+    "image": "https://images.unsplash.com/photo-1514228742587-6f7f2d3b1b1b?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH060",
@@ -1129,7 +1656,7 @@
       "mug",
       "travel"
     ],
-    "image": "https://loremflickr.com/900/900/coffee%20mug?lock=60&sh060=1"
+    "image": "https://images.unsplash.com/photo-1514228742587-6f7f2d3b1b1b?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH061",
@@ -1141,7 +1668,7 @@
       "chair",
       "office"
     ],
-    "image": "https://loremflickr.com/900/900/office%20chair?lock=61&sh061=1"
+    "image": "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH062",
@@ -1153,7 +1680,7 @@
       "cushion",
       "office"
     ],
-    "image": "https://loremflickr.com/900/900/home?lock=62&sh062=1"
+    "image": "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH063",
@@ -1165,7 +1692,7 @@
       "bedding",
       "bedroom"
     ],
-    "image": "https://loremflickr.com/900/900/bedding?lock=63&sh063=1"
+    "image": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH064",
@@ -1177,7 +1704,7 @@
       "plant",
       "home"
     ],
-    "image": "https://loremflickr.com/900/900/plant%20pot?lock=64&sh064=1"
+    "image": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH065",
@@ -1189,7 +1716,7 @@
       "cookware",
       "kitchen"
     ],
-    "image": "https://loremflickr.com/900/900/cookware?lock=65&sh065=1"
+    "image": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH066",
@@ -1201,7 +1728,7 @@
       "vacuum",
       "cleaning"
     ],
-    "image": "https://loremflickr.com/900/900/vacuum%20cleaner?lock=66&sh066=1"
+    "image": "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH067",
@@ -1213,7 +1740,7 @@
       "fitness",
       "workout"
     ],
-    "image": "https://loremflickr.com/900/900/resistance%20bands?lock=67&sh067=1"
+    "image": "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH068",
@@ -1225,7 +1752,7 @@
       "fitness",
       "weights"
     ],
-    "image": "https://loremflickr.com/900/900/dumbbells?lock=68&sh068=1"
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH069",
@@ -1237,7 +1764,7 @@
       "yoga",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/yoga%20mat?lock=69&sh069=1"
+    "image": "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH070",
@@ -1249,7 +1776,7 @@
       "yoga",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/yoga%20mat?lock=70&sh070=1"
+    "image": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH071",
@@ -1261,7 +1788,7 @@
       "bottle",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/water%20bottle?lock=71&sh071=1"
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH072",
@@ -1273,7 +1800,7 @@
       "bottle",
       "sports"
     ],
-    "image": "https://loremflickr.com/900/900/water%20bottle?lock=72&sh072=1"
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH073",
@@ -1285,7 +1812,7 @@
       "fitness",
       "gym"
     ],
-    "image": "https://loremflickr.com/900/900/fitness?lock=73&sh073=1"
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH074",
@@ -1297,7 +1824,7 @@
       "recovery",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/fitness?lock=74&sh074=1"
+    "image": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=900&q=80"
   },
   {
     "sku": "SH075",
@@ -1310,7 +1837,7 @@
       "formal",
       "office"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=75&sh075=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -1329,7 +1856,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 2,
+      "White|S": 2,
+      "White|M": 2,
+      "White|L": 2,
+      "White|XL": 2,
+      "White|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Sky Blue|XS": 2,
+      "Sky Blue|S": 2,
+      "Sky Blue|M": 2,
+      "Sky Blue|L": 2,
+      "Sky Blue|XL": 2,
+      "Sky Blue|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Beige|XS": 2,
+      "Beige|S": 2,
+      "Beige|M": 2,
+      "Beige|L": 2,
+      "Beige|XL": 2,
+      "Beige|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2
+    }
   },
   {
     "sku": "SH076",
@@ -1342,7 +1913,7 @@
       "formal",
       "office"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=76&sh076=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -1361,7 +1932,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 2,
+      "White|S": 2,
+      "White|M": 2,
+      "White|L": 2,
+      "White|XL": 2,
+      "White|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Sky Blue|XS": 2,
+      "Sky Blue|S": 2,
+      "Sky Blue|M": 2,
+      "Sky Blue|L": 2,
+      "Sky Blue|XL": 2,
+      "Sky Blue|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Beige|XS": 2,
+      "Beige|S": 2,
+      "Beige|M": 2,
+      "Beige|L": 2,
+      "Beige|XL": 2,
+      "Beige|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2
+    }
   },
   {
     "sku": "SH077",
@@ -1374,7 +1989,7 @@
       "linen",
       "summer"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=77&sh077=1",
+    "image": "https://images.pexels.com/photos/9489817/pexels-photo-9489817.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -1393,7 +2008,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 1,
+      "White|S": 1,
+      "White|M": 1,
+      "White|L": 1,
+      "White|XL": 1,
+      "White|XXL": 1,
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Sky Blue|XS": 1,
+      "Sky Blue|S": 1,
+      "Sky Blue|M": 1,
+      "Sky Blue|L": 1,
+      "Sky Blue|XL": 1,
+      "Sky Blue|XXL": 1,
+      "Olive|XS": 1,
+      "Olive|S": 1,
+      "Olive|M": 1,
+      "Olive|L": 1,
+      "Olive|XL": 1,
+      "Olive|XXL": 1,
+      "Beige|XS": 1,
+      "Beige|S": 1,
+      "Beige|M": 1,
+      "Beige|L": 1,
+      "Beige|XL": 1,
+      "Beige|XXL": 1,
+      "Maroon|XS": 1,
+      "Maroon|S": 1,
+      "Maroon|M": 1,
+      "Maroon|L": 1,
+      "Maroon|XL": 1,
+      "Maroon|XXL": 1
+    }
   },
   {
     "sku": "SH078",
@@ -1406,7 +2065,7 @@
       "linen",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=78&sh078=1",
+    "image": "https://images.pexels.com/photos/9489817/pexels-photo-9489817.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -1425,7 +2084,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 1,
+      "White|S": 1,
+      "White|M": 1,
+      "White|L": 1,
+      "White|XL": 1,
+      "White|XXL": 1,
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Sky Blue|XS": 1,
+      "Sky Blue|S": 1,
+      "Sky Blue|M": 1,
+      "Sky Blue|L": 1,
+      "Sky Blue|XL": 1,
+      "Sky Blue|XXL": 1,
+      "Olive|XS": 1,
+      "Olive|S": 1,
+      "Olive|M": 1,
+      "Olive|L": 1,
+      "Olive|XL": 1,
+      "Olive|XXL": 1,
+      "Beige|XS": 1,
+      "Beige|S": 1,
+      "Beige|M": 1,
+      "Beige|L": 1,
+      "Beige|XL": 1,
+      "Beige|XXL": 1,
+      "Maroon|XS": 1,
+      "Maroon|S": 1,
+      "Maroon|M": 1,
+      "Maroon|L": 1,
+      "Maroon|XL": 1,
+      "Maroon|XXL": 1
+    }
   },
   {
     "sku": "SH079",
@@ -1438,7 +2141,7 @@
       "checked",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=79&sh079=1",
+    "image": "https://images.pexels.com/photos/9489817/pexels-photo-9489817.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -1457,7 +2160,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 2,
+      "White|S": 2,
+      "White|M": 2,
+      "White|L": 2,
+      "White|XL": 2,
+      "White|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Sky Blue|XS": 2,
+      "Sky Blue|S": 2,
+      "Sky Blue|M": 2,
+      "Sky Blue|L": 2,
+      "Sky Blue|XL": 2,
+      "Sky Blue|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Beige|XS": 2,
+      "Beige|S": 2,
+      "Beige|M": 2,
+      "Beige|L": 2,
+      "Beige|XL": 2,
+      "Beige|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2
+    }
   },
   {
     "sku": "SH080",
@@ -1470,7 +2217,7 @@
       "striped",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=80&sh080=1",
+    "image": "https://images.pexels.com/photos/9489817/pexels-photo-9489817.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -1489,7 +2236,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 2,
+      "White|S": 2,
+      "White|M": 2,
+      "White|L": 2,
+      "White|XL": 2,
+      "White|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Sky Blue|XS": 2,
+      "Sky Blue|S": 2,
+      "Sky Blue|M": 2,
+      "Sky Blue|L": 2,
+      "Sky Blue|XL": 2,
+      "Sky Blue|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Beige|XS": 2,
+      "Beige|S": 2,
+      "Beige|M": 2,
+      "Beige|L": 2,
+      "Beige|XL": 2,
+      "Beige|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2
+    }
   },
   {
     "sku": "SH081",
@@ -1502,7 +2293,7 @@
       "tshirt",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=81&sh081=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Navy",
       "Black",
@@ -1520,7 +2311,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Navy|XS": 3,
+      "Navy|S": 3,
+      "Navy|M": 3,
+      "Navy|L": 3,
+      "Navy|XL": 3,
+      "Navy|XXL": 3,
+      "Black|XS": 3,
+      "Black|S": 3,
+      "Black|M": 3,
+      "Black|L": 3,
+      "Black|XL": 3,
+      "Black|XXL": 3,
+      "White|XS": 3,
+      "White|S": 3,
+      "White|M": 3,
+      "White|L": 3,
+      "White|XL": 3,
+      "White|XXL": 3,
+      "Maroon|XS": 3,
+      "Maroon|S": 3,
+      "Maroon|M": 3,
+      "Maroon|L": 3,
+      "Maroon|XL": 3,
+      "Maroon|XXL": 3,
+      "Forest Green|XS": 3,
+      "Forest Green|S": 3,
+      "Forest Green|M": 3,
+      "Forest Green|L": 3,
+      "Forest Green|XL": 3,
+      "Forest Green|XXL": 3,
+      "Grey|XS": 3,
+      "Grey|S": 3,
+      "Grey|M": 3,
+      "Grey|L": 3,
+      "Grey|XL": 3,
+      "Grey|XXL": 3
+    }
   },
   {
     "sku": "SH082",
@@ -1533,7 +2362,7 @@
       "tshirt",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=82&sh082=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Navy",
       "Black",
@@ -1551,7 +2380,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "White|XS": 2,
+      "White|S": 2,
+      "White|M": 2,
+      "White|L": 2,
+      "White|XL": 2,
+      "White|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2,
+      "Forest Green|XS": 2,
+      "Forest Green|S": 2,
+      "Forest Green|M": 2,
+      "Forest Green|L": 2,
+      "Forest Green|XL": 2,
+      "Forest Green|XXL": 2,
+      "Grey|XS": 2,
+      "Grey|S": 2,
+      "Grey|M": 2,
+      "Grey|L": 2,
+      "Grey|XL": 2,
+      "Grey|XXL": 2
+    }
   },
   {
     "sku": "SH083",
@@ -1564,7 +2431,7 @@
       "graphic",
       "streetwear"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=83&sh083=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "White",
@@ -1583,7 +2450,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 3,
+      "Black|S": 3,
+      "Black|M": 3,
+      "Black|L": 3,
+      "Black|XL": 3,
+      "Black|XXL": 3,
+      "White|XS": 3,
+      "White|S": 3,
+      "White|M": 3,
+      "White|L": 3,
+      "White|XL": 3,
+      "White|XXL": 3,
+      "Grey|XS": 3,
+      "Grey|S": 3,
+      "Grey|M": 3,
+      "Grey|L": 3,
+      "Grey|XL": 3,
+      "Grey|XXL": 3,
+      "Navy|XS": 3,
+      "Navy|S": 3,
+      "Navy|M": 3,
+      "Navy|L": 3,
+      "Navy|XL": 3,
+      "Navy|XXL": 3,
+      "Olive|XS": 3,
+      "Olive|S": 3,
+      "Olive|M": 3,
+      "Olive|L": 3,
+      "Olive|XL": 3,
+      "Olive|XXL": 3,
+      "Maroon|XS": 3,
+      "Maroon|S": 3,
+      "Maroon|M": 3,
+      "Maroon|L": 3,
+      "Maroon|XL": 3,
+      "Maroon|XXL": 3,
+      "Cream|XS": 3,
+      "Cream|S": 3,
+      "Cream|M": 3,
+      "Cream|L": 3,
+      "Cream|XL": 3,
+      "Cream|XXL": 3
+    }
   },
   {
     "sku": "SH084",
@@ -1596,7 +2507,7 @@
       "cotton",
       "premium"
     ],
-    "image": "https://loremflickr.com/900/900/shirt?lock=84&sh084=1",
+    "image": "https://images.pexels.com/photos/14059774/pexels-photo-14059774.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "White",
@@ -1615,7 +2526,51 @@
       "XXL"
     ],
     "variant_count": 42,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 3,
+      "Black|S": 3,
+      "Black|M": 3,
+      "Black|L": 3,
+      "Black|XL": 3,
+      "Black|XXL": 3,
+      "White|XS": 3,
+      "White|S": 3,
+      "White|M": 3,
+      "White|L": 3,
+      "White|XL": 3,
+      "White|XXL": 3,
+      "Grey|XS": 3,
+      "Grey|S": 3,
+      "Grey|M": 3,
+      "Grey|L": 3,
+      "Grey|XL": 3,
+      "Grey|XXL": 3,
+      "Navy|XS": 3,
+      "Navy|S": 3,
+      "Navy|M": 3,
+      "Navy|L": 3,
+      "Navy|XL": 3,
+      "Navy|XXL": 3,
+      "Olive|XS": 3,
+      "Olive|S": 3,
+      "Olive|M": 3,
+      "Olive|L": 3,
+      "Olive|XL": 3,
+      "Olive|XXL": 3,
+      "Maroon|XS": 3,
+      "Maroon|S": 3,
+      "Maroon|M": 3,
+      "Maroon|L": 3,
+      "Maroon|XL": 3,
+      "Maroon|XXL": 3,
+      "Cream|XS": 3,
+      "Cream|S": 3,
+      "Cream|M": 3,
+      "Cream|L": 3,
+      "Cream|XL": 3,
+      "Cream|XXL": 3
+    }
   },
   {
     "sku": "SH085",
@@ -1627,7 +2582,7 @@
       "jeans",
       "denim"
     ],
-    "image": "https://loremflickr.com/900/900/jeans?lock=85&sh085=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Light Blue",
       "Mid Blue",
@@ -1645,7 +2600,44 @@
       "40"
     ],
     "variant_count": 35,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Light Blue|28": 2,
+      "Light Blue|30": 2,
+      "Light Blue|32": 2,
+      "Light Blue|34": 2,
+      "Light Blue|36": 2,
+      "Light Blue|38": 2,
+      "Light Blue|40": 2,
+      "Mid Blue|28": 2,
+      "Mid Blue|30": 2,
+      "Mid Blue|32": 2,
+      "Mid Blue|34": 2,
+      "Mid Blue|36": 2,
+      "Mid Blue|38": 2,
+      "Mid Blue|40": 2,
+      "Dark Blue|28": 2,
+      "Dark Blue|30": 2,
+      "Dark Blue|32": 2,
+      "Dark Blue|34": 2,
+      "Dark Blue|36": 2,
+      "Dark Blue|38": 2,
+      "Dark Blue|40": 2,
+      "Black|28": 2,
+      "Black|30": 2,
+      "Black|32": 2,
+      "Black|34": 2,
+      "Black|36": 2,
+      "Black|38": 2,
+      "Black|40": 2,
+      "Grey|28": 2,
+      "Grey|30": 2,
+      "Grey|32": 2,
+      "Grey|34": 2,
+      "Grey|36": 2,
+      "Grey|38": 2,
+      "Grey|40": 2
+    }
   },
   {
     "sku": "SH086",
@@ -1658,7 +2650,7 @@
       "denim",
       "relaxed"
     ],
-    "image": "https://loremflickr.com/900/900/jeans?lock=86&sh086=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Light Blue",
       "Mid Blue",
@@ -1676,7 +2668,44 @@
       "40"
     ],
     "variant_count": 35,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Light Blue|28": 2,
+      "Light Blue|30": 2,
+      "Light Blue|32": 2,
+      "Light Blue|34": 2,
+      "Light Blue|36": 2,
+      "Light Blue|38": 2,
+      "Light Blue|40": 2,
+      "Mid Blue|28": 2,
+      "Mid Blue|30": 2,
+      "Mid Blue|32": 2,
+      "Mid Blue|34": 2,
+      "Mid Blue|36": 2,
+      "Mid Blue|38": 2,
+      "Mid Blue|40": 2,
+      "Dark Blue|28": 2,
+      "Dark Blue|30": 2,
+      "Dark Blue|32": 2,
+      "Dark Blue|34": 2,
+      "Dark Blue|36": 2,
+      "Dark Blue|38": 2,
+      "Dark Blue|40": 2,
+      "Black|28": 2,
+      "Black|30": 2,
+      "Black|32": 2,
+      "Black|34": 2,
+      "Black|36": 2,
+      "Black|38": 2,
+      "Black|40": 2,
+      "Grey|28": 2,
+      "Grey|30": 2,
+      "Grey|32": 2,
+      "Grey|34": 2,
+      "Grey|36": 2,
+      "Grey|38": 2,
+      "Grey|40": 2
+    }
   },
   {
     "sku": "SH087",
@@ -1689,7 +2718,7 @@
       "cargo",
       "streetwear"
     ],
-    "image": "https://loremflickr.com/900/900/trousers?lock=87&sh087=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Charcoal",
@@ -1708,7 +2737,51 @@
       "40"
     ],
     "variant_count": 42,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Black|28": 2,
+      "Black|30": 2,
+      "Black|32": 2,
+      "Black|34": 2,
+      "Black|36": 2,
+      "Black|38": 2,
+      "Black|40": 2,
+      "Charcoal|28": 2,
+      "Charcoal|30": 2,
+      "Charcoal|32": 2,
+      "Charcoal|34": 2,
+      "Charcoal|36": 2,
+      "Charcoal|38": 2,
+      "Charcoal|40": 2,
+      "Navy|28": 2,
+      "Navy|30": 2,
+      "Navy|32": 2,
+      "Navy|34": 2,
+      "Navy|36": 2,
+      "Navy|38": 2,
+      "Navy|40": 2,
+      "Khaki|28": 2,
+      "Khaki|30": 2,
+      "Khaki|32": 2,
+      "Khaki|34": 2,
+      "Khaki|36": 2,
+      "Khaki|38": 2,
+      "Khaki|40": 2,
+      "Olive|28": 2,
+      "Olive|30": 2,
+      "Olive|32": 2,
+      "Olive|34": 2,
+      "Olive|36": 2,
+      "Olive|38": 2,
+      "Olive|40": 2,
+      "Beige|28": 2,
+      "Beige|30": 2,
+      "Beige|32": 2,
+      "Beige|34": 2,
+      "Beige|36": 2,
+      "Beige|38": 2,
+      "Beige|40": 2
+    }
   },
   {
     "sku": "SH088",
@@ -1721,7 +2794,7 @@
       "cargo",
       "utility"
     ],
-    "image": "https://loremflickr.com/900/900/trousers?lock=88&sh088=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Charcoal",
@@ -1740,7 +2813,51 @@
       "40"
     ],
     "variant_count": 42,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Black|28": 1,
+      "Black|30": 1,
+      "Black|32": 1,
+      "Black|34": 1,
+      "Black|36": 1,
+      "Black|38": 1,
+      "Black|40": 1,
+      "Charcoal|28": 1,
+      "Charcoal|30": 1,
+      "Charcoal|32": 1,
+      "Charcoal|34": 1,
+      "Charcoal|36": 1,
+      "Charcoal|38": 1,
+      "Charcoal|40": 1,
+      "Navy|28": 1,
+      "Navy|30": 1,
+      "Navy|32": 1,
+      "Navy|34": 1,
+      "Navy|36": 1,
+      "Navy|38": 1,
+      "Navy|40": 1,
+      "Khaki|28": 1,
+      "Khaki|30": 1,
+      "Khaki|32": 1,
+      "Khaki|34": 1,
+      "Khaki|36": 1,
+      "Khaki|38": 1,
+      "Khaki|40": 1,
+      "Olive|28": 1,
+      "Olive|30": 1,
+      "Olive|32": 1,
+      "Olive|34": 1,
+      "Olive|36": 1,
+      "Olive|38": 1,
+      "Olive|40": 1,
+      "Beige|28": 1,
+      "Beige|30": 1,
+      "Beige|32": 1,
+      "Beige|34": 1,
+      "Beige|36": 1,
+      "Beige|38": 1,
+      "Beige|40": 1
+    }
   },
   {
     "sku": "SH089",
@@ -1752,7 +2869,7 @@
       "trousers",
       "formal"
     ],
-    "image": "https://loremflickr.com/900/900/trousers?lock=89&sh089=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Charcoal",
@@ -1771,7 +2888,51 @@
       "40"
     ],
     "variant_count": 42,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Black|28": 1,
+      "Black|30": 1,
+      "Black|32": 1,
+      "Black|34": 1,
+      "Black|36": 1,
+      "Black|38": 1,
+      "Black|40": 1,
+      "Charcoal|28": 1,
+      "Charcoal|30": 1,
+      "Charcoal|32": 1,
+      "Charcoal|34": 1,
+      "Charcoal|36": 1,
+      "Charcoal|38": 1,
+      "Charcoal|40": 1,
+      "Navy|28": 1,
+      "Navy|30": 1,
+      "Navy|32": 1,
+      "Navy|34": 1,
+      "Navy|36": 1,
+      "Navy|38": 1,
+      "Navy|40": 1,
+      "Khaki|28": 1,
+      "Khaki|30": 1,
+      "Khaki|32": 1,
+      "Khaki|34": 1,
+      "Khaki|36": 1,
+      "Khaki|38": 1,
+      "Khaki|40": 1,
+      "Olive|28": 1,
+      "Olive|30": 1,
+      "Olive|32": 1,
+      "Olive|34": 1,
+      "Olive|36": 1,
+      "Olive|38": 1,
+      "Olive|40": 1,
+      "Beige|28": 1,
+      "Beige|30": 1,
+      "Beige|32": 1,
+      "Beige|34": 1,
+      "Beige|36": 1,
+      "Beige|38": 1,
+      "Beige|40": 1
+    }
   },
   {
     "sku": "SH090",
@@ -1783,7 +2944,7 @@
       "chinos",
       "smart-casual"
     ],
-    "image": "https://loremflickr.com/900/900/chinos?lock=90&sh090=1"
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH091",
@@ -1795,7 +2956,7 @@
       "chinos",
       "smart-casual"
     ],
-    "image": "https://loremflickr.com/900/900/chinos?lock=91&sh091=1"
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900"
   },
   {
     "sku": "SH092",
@@ -1808,7 +2969,7 @@
       "formal",
       "office"
     ],
-    "image": "https://loremflickr.com/900/900/trousers?lock=92&sh092=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Charcoal",
@@ -1827,7 +2988,51 @@
       "40"
     ],
     "variant_count": 42,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Black|28": 1,
+      "Black|30": 1,
+      "Black|32": 1,
+      "Black|34": 1,
+      "Black|36": 1,
+      "Black|38": 1,
+      "Black|40": 1,
+      "Charcoal|28": 1,
+      "Charcoal|30": 1,
+      "Charcoal|32": 1,
+      "Charcoal|34": 1,
+      "Charcoal|36": 1,
+      "Charcoal|38": 1,
+      "Charcoal|40": 1,
+      "Navy|28": 1,
+      "Navy|30": 1,
+      "Navy|32": 1,
+      "Navy|34": 1,
+      "Navy|36": 1,
+      "Navy|38": 1,
+      "Navy|40": 1,
+      "Khaki|28": 1,
+      "Khaki|30": 1,
+      "Khaki|32": 1,
+      "Khaki|34": 1,
+      "Khaki|36": 1,
+      "Khaki|38": 1,
+      "Khaki|40": 1,
+      "Olive|28": 1,
+      "Olive|30": 1,
+      "Olive|32": 1,
+      "Olive|34": 1,
+      "Olive|36": 1,
+      "Olive|38": 1,
+      "Olive|40": 1,
+      "Beige|28": 1,
+      "Beige|30": 1,
+      "Beige|32": 1,
+      "Beige|34": 1,
+      "Beige|36": 1,
+      "Beige|38": 1,
+      "Beige|40": 1
+    }
   },
   {
     "sku": "SH093",
@@ -1840,7 +3045,7 @@
       "bomber",
       "streetwear"
     ],
-    "image": "https://loremflickr.com/900/900/jacket?lock=93&sh093=1",
+    "image": "https://images.pexels.com/photos/16428589/pexels-photo-16428589.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -1858,7 +3063,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Olive|XS": 1,
+      "Olive|S": 1,
+      "Olive|M": 1,
+      "Olive|L": 1,
+      "Olive|XL": 1,
+      "Olive|XXL": 1,
+      "Tan|XS": 1,
+      "Tan|S": 1,
+      "Tan|M": 1,
+      "Tan|L": 1,
+      "Tan|XL": 1,
+      "Tan|XXL": 1,
+      "Blue|XS": 1,
+      "Blue|S": 1,
+      "Blue|M": 1,
+      "Blue|L": 1,
+      "Blue|XL": 1,
+      "Blue|XXL": 1,
+      "Grey|XS": 1,
+      "Grey|S": 1,
+      "Grey|M": 1,
+      "Grey|L": 1,
+      "Grey|XL": 1,
+      "Grey|XXL": 1
+    }
   },
   {
     "sku": "SH094",
@@ -1870,7 +3113,7 @@
       "jacket",
       "denim"
     ],
-    "image": "https://loremflickr.com/900/900/jacket?lock=94&sh094=1",
+    "image": "https://images.pexels.com/photos/16428589/pexels-photo-16428589.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -1888,7 +3131,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Olive|XS": 1,
+      "Olive|S": 1,
+      "Olive|M": 1,
+      "Olive|L": 1,
+      "Olive|XL": 1,
+      "Olive|XXL": 1,
+      "Tan|XS": 1,
+      "Tan|S": 1,
+      "Tan|M": 1,
+      "Tan|L": 1,
+      "Tan|XL": 1,
+      "Tan|XXL": 1,
+      "Blue|XS": 1,
+      "Blue|S": 1,
+      "Blue|M": 1,
+      "Blue|L": 1,
+      "Blue|XL": 1,
+      "Blue|XXL": 1,
+      "Grey|XS": 1,
+      "Grey|S": 1,
+      "Grey|M": 1,
+      "Grey|L": 1,
+      "Grey|XL": 1,
+      "Grey|XXL": 1
+    }
   },
   {
     "sku": "SH095",
@@ -1901,7 +3182,7 @@
       "winter",
       "puffer"
     ],
-    "image": "https://loremflickr.com/900/900/jacket?lock=95&sh095=1",
+    "image": "https://images.pexels.com/photos/14810197/pexels-photo-14810197.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -1919,7 +3200,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Olive|XS": 1,
+      "Olive|S": 1,
+      "Olive|M": 1,
+      "Olive|L": 1,
+      "Olive|XL": 1,
+      "Olive|XXL": 1,
+      "Tan|XS": 1,
+      "Tan|S": 1,
+      "Tan|M": 1,
+      "Tan|L": 1,
+      "Tan|XL": 1,
+      "Tan|XXL": 1,
+      "Blue|XS": 1,
+      "Blue|S": 1,
+      "Blue|M": 1,
+      "Blue|L": 1,
+      "Blue|XL": 1,
+      "Blue|XXL": 1,
+      "Grey|XS": 1,
+      "Grey|S": 1,
+      "Grey|M": 1,
+      "Grey|L": 1,
+      "Grey|XL": 1,
+      "Grey|XXL": 1
+    }
   },
   {
     "sku": "SH096",
@@ -1932,7 +3251,7 @@
       "formal",
       "oversized"
     ],
-    "image": "https://loremflickr.com/900/900/blazer?lock=96&sh096=1",
+    "image": "https://images.pexels.com/photos/26761831/pexels-photo-26761831.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -1949,7 +3268,39 @@
       "XXL"
     ],
     "variant_count": 30,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Charcoal|XS": 1,
+      "Charcoal|S": 1,
+      "Charcoal|M": 1,
+      "Charcoal|L": 1,
+      "Charcoal|XL": 1,
+      "Charcoal|XXL": 1,
+      "Beige|XS": 1,
+      "Beige|S": 1,
+      "Beige|M": 1,
+      "Beige|L": 1,
+      "Beige|XL": 1,
+      "Beige|XXL": 1,
+      "Grey|XS": 1,
+      "Grey|S": 1,
+      "Grey|M": 1,
+      "Grey|L": 1,
+      "Grey|XL": 1,
+      "Grey|XXL": 1
+    }
   },
   {
     "sku": "SH097",
@@ -1962,7 +3313,7 @@
       "formal",
       "office"
     ],
-    "image": "https://loremflickr.com/900/900/blazer?lock=97&sh097=1",
+    "image": "https://images.pexels.com/photos/26761831/pexels-photo-26761831.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -1979,7 +3330,39 @@
       "XXL"
     ],
     "variant_count": 30,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Charcoal|XS": 1,
+      "Charcoal|S": 1,
+      "Charcoal|M": 1,
+      "Charcoal|L": 1,
+      "Charcoal|XL": 1,
+      "Charcoal|XXL": 1,
+      "Beige|XS": 1,
+      "Beige|S": 1,
+      "Beige|M": 1,
+      "Beige|L": 1,
+      "Beige|XL": 1,
+      "Beige|XXL": 1,
+      "Grey|XS": 1,
+      "Grey|S": 1,
+      "Grey|M": 1,
+      "Grey|L": 1,
+      "Grey|XL": 1,
+      "Grey|XXL": 1
+    }
   },
   {
     "sku": "SH098",
@@ -1992,7 +3375,7 @@
       "formal",
       "premium"
     ],
-    "image": "https://loremflickr.com/900/900/blazer?lock=98&sh098=1",
+    "image": "https://images.pexels.com/photos/26761831/pexels-photo-26761831.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2009,7 +3392,39 @@
       "XXL"
     ],
     "variant_count": 30,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Charcoal|XS": 1,
+      "Charcoal|S": 1,
+      "Charcoal|M": 1,
+      "Charcoal|L": 1,
+      "Charcoal|XL": 1,
+      "Charcoal|XXL": 1,
+      "Beige|XS": 1,
+      "Beige|S": 1,
+      "Beige|M": 1,
+      "Beige|L": 1,
+      "Beige|XL": 1,
+      "Beige|XXL": 1,
+      "Grey|XS": 1,
+      "Grey|S": 1,
+      "Grey|M": 1,
+      "Grey|L": 1,
+      "Grey|XL": 1,
+      "Grey|XXL": 1
+    }
   },
   {
     "sku": "SH099",
@@ -2022,7 +3437,7 @@
       "midi",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/dress?lock=99&sh099=1",
+    "image": "https://images.pexels.com/photos/12169001/pexels-photo-12169001.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2040,7 +3455,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Red|XS": 2,
+      "Red|S": 2,
+      "Red|M": 2,
+      "Red|L": 2,
+      "Red|XL": 2,
+      "Red|XXL": 2,
+      "Emerald|XS": 2,
+      "Emerald|S": 2,
+      "Emerald|M": 2,
+      "Emerald|L": 2,
+      "Emerald|XL": 2,
+      "Emerald|XXL": 2,
+      "Ivory|XS": 2,
+      "Ivory|S": 2,
+      "Ivory|M": 2,
+      "Ivory|L": 2,
+      "Ivory|XL": 2,
+      "Ivory|XXL": 2,
+      "Floral|XS": 2,
+      "Floral|S": 2,
+      "Floral|M": 2,
+      "Floral|L": 2,
+      "Floral|XL": 2,
+      "Floral|XXL": 2
+    }
   },
   {
     "sku": "SH100",
@@ -2053,7 +3506,7 @@
       "floral",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/dress?lock=100&sh100=1",
+    "image": "https://images.pexels.com/photos/12169001/pexels-photo-12169001.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2071,7 +3524,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Red|XS": 1,
+      "Red|S": 1,
+      "Red|M": 1,
+      "Red|L": 1,
+      "Red|XL": 1,
+      "Red|XXL": 1,
+      "Emerald|XS": 1,
+      "Emerald|S": 1,
+      "Emerald|M": 1,
+      "Emerald|L": 1,
+      "Emerald|XL": 1,
+      "Emerald|XXL": 1,
+      "Ivory|XS": 1,
+      "Ivory|S": 1,
+      "Ivory|M": 1,
+      "Ivory|L": 1,
+      "Ivory|XL": 1,
+      "Ivory|XXL": 1,
+      "Floral|XS": 1,
+      "Floral|S": 1,
+      "Floral|M": 1,
+      "Floral|L": 1,
+      "Floral|XL": 1,
+      "Floral|XXL": 1
+    }
   },
   {
     "sku": "SH101",
@@ -2084,7 +3575,7 @@
       "party",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/dress?lock=101&sh101=1",
+    "image": "https://images.pexels.com/photos/12169001/pexels-photo-12169001.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2102,7 +3593,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Red|XS": 1,
+      "Red|S": 1,
+      "Red|M": 1,
+      "Red|L": 1,
+      "Red|XL": 1,
+      "Red|XXL": 1,
+      "Emerald|XS": 1,
+      "Emerald|S": 1,
+      "Emerald|M": 1,
+      "Emerald|L": 1,
+      "Emerald|XL": 1,
+      "Emerald|XXL": 1,
+      "Ivory|XS": 1,
+      "Ivory|S": 1,
+      "Ivory|M": 1,
+      "Ivory|L": 1,
+      "Ivory|XL": 1,
+      "Ivory|XXL": 1,
+      "Floral|XS": 1,
+      "Floral|S": 1,
+      "Floral|M": 1,
+      "Floral|L": 1,
+      "Floral|XL": 1,
+      "Floral|XXL": 1
+    }
   },
   {
     "sku": "SH102",
@@ -2115,7 +3644,7 @@
       "casual",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/dress?lock=102&sh102=1",
+    "image": "https://images.pexels.com/photos/12169001/pexels-photo-12169001.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2133,7 +3662,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Red|XS": 1,
+      "Red|S": 1,
+      "Red|M": 1,
+      "Red|L": 1,
+      "Red|XL": 1,
+      "Red|XXL": 1,
+      "Emerald|XS": 1,
+      "Emerald|S": 1,
+      "Emerald|M": 1,
+      "Emerald|L": 1,
+      "Emerald|XL": 1,
+      "Emerald|XXL": 1,
+      "Ivory|XS": 1,
+      "Ivory|S": 1,
+      "Ivory|M": 1,
+      "Ivory|L": 1,
+      "Ivory|XL": 1,
+      "Ivory|XXL": 1,
+      "Floral|XS": 1,
+      "Floral|S": 1,
+      "Floral|M": 1,
+      "Floral|L": 1,
+      "Floral|XL": 1,
+      "Floral|XXL": 1
+    }
   },
   {
     "sku": "SH103",
@@ -2146,7 +3713,7 @@
       "women",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/skirt?lock=103&sh103=1",
+    "image": "https://images.pexels.com/photos/12169001/pexels-photo-12169001.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Blue",
@@ -2163,7 +3730,39 @@
       "XXL"
     ],
     "variant_count": 30,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Blue|XS": 2,
+      "Blue|S": 2,
+      "Blue|M": 2,
+      "Blue|L": 2,
+      "Blue|XL": 2,
+      "Blue|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Beige|XS": 2,
+      "Beige|S": 2,
+      "Beige|M": 2,
+      "Beige|L": 2,
+      "Beige|XL": 2,
+      "Beige|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2
+    }
   },
   {
     "sku": "SH104",
@@ -2176,7 +3775,7 @@
       "denim",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/skirt?lock=104&sh104=1",
+    "image": "https://images.pexels.com/photos/12169001/pexels-photo-12169001.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Blue",
@@ -2193,7 +3792,39 @@
       "XXL"
     ],
     "variant_count": 30,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Blue|XS": 2,
+      "Blue|S": 2,
+      "Blue|M": 2,
+      "Blue|L": 2,
+      "Blue|XL": 2,
+      "Blue|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Beige|XS": 2,
+      "Beige|S": 2,
+      "Beige|M": 2,
+      "Beige|L": 2,
+      "Beige|XL": 2,
+      "Beige|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2
+    }
   },
   {
     "sku": "SH105",
@@ -2206,7 +3837,7 @@
       "ethnic",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/saree?lock=105&sh105=1",
+    "image": "https://images.pexels.com/photos/27575174/pexels-photo-27575174.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Blue",
       "Green",
@@ -2219,7 +3850,15 @@
       "Free Size"
     ],
     "variant_count": 6,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Blue|Free Size": 1,
+      "Green|Free Size": 1,
+      "Maroon|Free Size": 1,
+      "Pink|Free Size": 1,
+      "Black|Free Size": 1,
+      "Gold|Free Size": 1
+    }
   },
   {
     "sku": "SH106",
@@ -2232,7 +3871,7 @@
       "ethnic",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/saree?lock=106&sh106=1",
+    "image": "https://images.pexels.com/photos/27575174/pexels-photo-27575174.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Blue",
       "Green",
@@ -2245,7 +3884,15 @@
       "Free Size"
     ],
     "variant_count": 6,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Blue|Free Size": 1,
+      "Green|Free Size": 1,
+      "Maroon|Free Size": 1,
+      "Pink|Free Size": 1,
+      "Black|Free Size": 1,
+      "Gold|Free Size": 1
+    }
   },
   {
     "sku": "SH107",
@@ -2258,7 +3905,7 @@
       "ethnic",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/kurta?lock=107&sh107=1",
+    "image": "https://images.pexels.com/photos/9502223/pexels-photo-9502223.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -2276,7 +3923,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 2,
+      "White|S": 2,
+      "White|M": 2,
+      "White|L": 2,
+      "White|XL": 2,
+      "White|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Mustard|XS": 2,
+      "Mustard|S": 2,
+      "Mustard|M": 2,
+      "Mustard|L": 2,
+      "Mustard|XL": 2,
+      "Mustard|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2,
+      "Green|XS": 2,
+      "Green|S": 2,
+      "Green|M": 2,
+      "Green|L": 2,
+      "Green|XL": 2,
+      "Green|XXL": 2
+    }
   },
   {
     "sku": "SH108",
@@ -2289,7 +3974,7 @@
       "ethnic",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/kurta?lock=108&sh108=1",
+    "image": "https://images.pexels.com/photos/9502223/pexels-photo-9502223.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -2307,7 +3992,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 2,
+      "White|S": 2,
+      "White|M": 2,
+      "White|L": 2,
+      "White|XL": 2,
+      "White|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Mustard|XS": 2,
+      "Mustard|S": 2,
+      "Mustard|M": 2,
+      "Mustard|L": 2,
+      "Mustard|XL": 2,
+      "Mustard|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2,
+      "Green|XS": 2,
+      "Green|S": 2,
+      "Green|M": 2,
+      "Green|L": 2,
+      "Green|XL": 2,
+      "Green|XXL": 2
+    }
   },
   {
     "sku": "SH109",
@@ -2320,7 +4043,7 @@
       "ethnic",
       "men"
     ],
-    "image": "https://loremflickr.com/900/900/kurta?lock=109&sh109=1",
+    "image": "https://images.pexels.com/photos/9502223/pexels-photo-9502223.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -2338,7 +4061,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 1,
+      "White|S": 1,
+      "White|M": 1,
+      "White|L": 1,
+      "White|XL": 1,
+      "White|XXL": 1,
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Mustard|XS": 1,
+      "Mustard|S": 1,
+      "Mustard|M": 1,
+      "Mustard|L": 1,
+      "Mustard|XL": 1,
+      "Mustard|XXL": 1,
+      "Maroon|XS": 1,
+      "Maroon|S": 1,
+      "Maroon|M": 1,
+      "Maroon|L": 1,
+      "Maroon|XL": 1,
+      "Maroon|XXL": 1,
+      "Green|XS": 1,
+      "Green|S": 1,
+      "Green|M": 1,
+      "Green|L": 1,
+      "Green|XL": 1,
+      "Green|XXL": 1
+    }
   },
   {
     "sku": "SH110",
@@ -2351,7 +4112,7 @@
       "ethnic",
       "men"
     ],
-    "image": "https://loremflickr.com/900/900/kurta?lock=110&sh110=1",
+    "image": "https://images.pexels.com/photos/9502223/pexels-photo-9502223.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -2369,7 +4130,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "White|XS": 1,
+      "White|S": 1,
+      "White|M": 1,
+      "White|L": 1,
+      "White|XL": 1,
+      "White|XXL": 1,
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Mustard|XS": 1,
+      "Mustard|S": 1,
+      "Mustard|M": 1,
+      "Mustard|L": 1,
+      "Mustard|XL": 1,
+      "Mustard|XXL": 1,
+      "Maroon|XS": 1,
+      "Maroon|S": 1,
+      "Maroon|M": 1,
+      "Maroon|L": 1,
+      "Maroon|XL": 1,
+      "Maroon|XXL": 1,
+      "Green|XS": 1,
+      "Green|S": 1,
+      "Green|M": 1,
+      "Green|L": 1,
+      "Green|XL": 1,
+      "Green|XXL": 1
+    }
   },
   {
     "sku": "SH111",
@@ -2382,7 +4181,7 @@
       "oversized",
       "streetwear"
     ],
-    "image": "https://loremflickr.com/900/900/hoodie?lock=111&sh111=1",
+    "image": "https://images.pexels.com/photos/1322054/pexels-photo-1322054.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Charcoal",
@@ -2400,7 +4199,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Charcoal|XS": 2,
+      "Charcoal|S": 2,
+      "Charcoal|M": 2,
+      "Charcoal|L": 2,
+      "Charcoal|XL": 2,
+      "Charcoal|XXL": 2,
+      "Grey|XS": 2,
+      "Grey|S": 2,
+      "Grey|M": 2,
+      "Grey|L": 2,
+      "Grey|XL": 2,
+      "Grey|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2
+    }
   },
   {
     "sku": "SH112",
@@ -2413,7 +4250,7 @@
       "zip-up",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/hoodie?lock=112&sh112=1",
+    "image": "https://images.pexels.com/photos/1322054/pexels-photo-1322054.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Charcoal",
@@ -2431,7 +4268,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Charcoal|XS": 2,
+      "Charcoal|S": 2,
+      "Charcoal|M": 2,
+      "Charcoal|L": 2,
+      "Charcoal|XL": 2,
+      "Charcoal|XXL": 2,
+      "Grey|XS": 2,
+      "Grey|S": 2,
+      "Grey|M": 2,
+      "Grey|L": 2,
+      "Grey|XL": 2,
+      "Grey|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Maroon|XS": 2,
+      "Maroon|S": 2,
+      "Maroon|M": 2,
+      "Maroon|L": 2,
+      "Maroon|XL": 2,
+      "Maroon|XXL": 2
+    }
   },
   {
     "sku": "SH113",
@@ -2443,7 +4318,7 @@
       "sweater",
       "winter"
     ],
-    "image": "https://loremflickr.com/900/900/sweater?lock=113&sh113=1",
+    "image": "https://images.pexels.com/photos/1322054/pexels-photo-1322054.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Beige",
       "Grey",
@@ -2461,7 +4336,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Beige|XS": 1,
+      "Beige|S": 1,
+      "Beige|M": 1,
+      "Beige|L": 1,
+      "Beige|XL": 1,
+      "Beige|XXL": 1,
+      "Grey|XS": 1,
+      "Grey|S": 1,
+      "Grey|M": 1,
+      "Grey|L": 1,
+      "Grey|XL": 1,
+      "Grey|XXL": 1,
+      "Black|XS": 1,
+      "Black|S": 1,
+      "Black|M": 1,
+      "Black|L": 1,
+      "Black|XL": 1,
+      "Black|XXL": 1,
+      "Navy|XS": 1,
+      "Navy|S": 1,
+      "Navy|M": 1,
+      "Navy|L": 1,
+      "Navy|XL": 1,
+      "Navy|XXL": 1,
+      "Brown|XS": 1,
+      "Brown|S": 1,
+      "Brown|M": 1,
+      "Brown|L": 1,
+      "Brown|XL": 1,
+      "Brown|XXL": 1,
+      "Cream|XS": 1,
+      "Cream|S": 1,
+      "Cream|M": 1,
+      "Cream|L": 1,
+      "Cream|XL": 1,
+      "Cream|XXL": 1
+    }
   },
   {
     "sku": "SH114",
@@ -2474,7 +4387,7 @@
       "winter",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/sweater?lock=114&sh114=1",
+    "image": "https://images.pexels.com/photos/1322054/pexels-photo-1322054.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Beige",
       "Grey",
@@ -2492,7 +4405,45 @@
       "XXL"
     ],
     "variant_count": 36,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Beige|XS": 2,
+      "Beige|S": 2,
+      "Beige|M": 2,
+      "Beige|L": 2,
+      "Beige|XL": 2,
+      "Beige|XXL": 2,
+      "Grey|XS": 2,
+      "Grey|S": 2,
+      "Grey|M": 2,
+      "Grey|L": 2,
+      "Grey|XL": 2,
+      "Grey|XXL": 2,
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Brown|XS": 2,
+      "Brown|S": 2,
+      "Brown|M": 2,
+      "Brown|L": 2,
+      "Brown|XL": 2,
+      "Brown|XXL": 2,
+      "Cream|XS": 2,
+      "Cream|S": 2,
+      "Cream|M": 2,
+      "Cream|L": 2,
+      "Cream|XL": 2,
+      "Cream|XXL": 2
+    }
   },
   {
     "sku": "SH115",
@@ -2505,7 +4456,7 @@
       "running",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/shorts?lock=115&sh115=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2523,7 +4474,44 @@
       "40"
     ],
     "variant_count": 35,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Black|28": 2,
+      "Black|30": 2,
+      "Black|32": 2,
+      "Black|34": 2,
+      "Black|36": 2,
+      "Black|38": 2,
+      "Black|40": 2,
+      "Navy|28": 2,
+      "Navy|30": 2,
+      "Navy|32": 2,
+      "Navy|34": 2,
+      "Navy|36": 2,
+      "Navy|38": 2,
+      "Navy|40": 2,
+      "Grey|28": 2,
+      "Grey|30": 2,
+      "Grey|32": 2,
+      "Grey|34": 2,
+      "Grey|36": 2,
+      "Grey|38": 2,
+      "Grey|40": 2,
+      "Olive|28": 2,
+      "Olive|30": 2,
+      "Olive|32": 2,
+      "Olive|34": 2,
+      "Olive|36": 2,
+      "Olive|38": 2,
+      "Olive|40": 2,
+      "Khaki|28": 2,
+      "Khaki|30": 2,
+      "Khaki|32": 2,
+      "Khaki|34": 2,
+      "Khaki|36": 2,
+      "Khaki|38": 2,
+      "Khaki|40": 2
+    }
   },
   {
     "sku": "SH116",
@@ -2536,7 +4524,7 @@
       "training",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/shorts?lock=116&sh116=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2554,7 +4542,44 @@
       "40"
     ],
     "variant_count": 35,
-    "size_system": "Numeric waist"
+    "size_system": "Numeric waist",
+    "variant_stock": {
+      "Black|28": 2,
+      "Black|30": 2,
+      "Black|32": 2,
+      "Black|34": 2,
+      "Black|36": 2,
+      "Black|38": 2,
+      "Black|40": 2,
+      "Navy|28": 2,
+      "Navy|30": 2,
+      "Navy|32": 2,
+      "Navy|34": 2,
+      "Navy|36": 2,
+      "Navy|38": 2,
+      "Navy|40": 2,
+      "Grey|28": 2,
+      "Grey|30": 2,
+      "Grey|32": 2,
+      "Grey|34": 2,
+      "Grey|36": 2,
+      "Grey|38": 2,
+      "Grey|40": 2,
+      "Olive|28": 2,
+      "Olive|30": 2,
+      "Olive|32": 2,
+      "Olive|34": 2,
+      "Olive|36": 2,
+      "Olive|38": 2,
+      "Olive|40": 2,
+      "Khaki|28": 2,
+      "Khaki|30": 2,
+      "Khaki|32": 2,
+      "Khaki|34": 2,
+      "Khaki|36": 2,
+      "Khaki|38": 2,
+      "Khaki|40": 2
+    }
   },
   {
     "sku": "SH117",
@@ -2567,7 +4592,7 @@
       "leggings",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/leggings?lock=117&sh117=1",
+    "image": "https://images.pexels.com/photos/1322054/pexels-photo-1322054.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2584,7 +4609,39 @@
       "XXL"
     ],
     "variant_count": 30,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Grey|XS": 2,
+      "Grey|S": 2,
+      "Grey|M": 2,
+      "Grey|L": 2,
+      "Grey|XL": 2,
+      "Grey|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Burgundy|XS": 2,
+      "Burgundy|S": 2,
+      "Burgundy|M": 2,
+      "Burgundy|L": 2,
+      "Burgundy|XL": 2,
+      "Burgundy|XXL": 2
+    }
   },
   {
     "sku": "SH118",
@@ -2597,7 +4654,7 @@
       "joggers",
       "fitness"
     ],
-    "image": "https://loremflickr.com/900/900/joggers?lock=118&sh118=1",
+    "image": "https://images.pexels.com/photos/24513229/pexels-photo-24513229.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Navy",
@@ -2614,7 +4671,39 @@
       "XXL"
     ],
     "variant_count": 30,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|XS": 2,
+      "Black|S": 2,
+      "Black|M": 2,
+      "Black|L": 2,
+      "Black|XL": 2,
+      "Black|XXL": 2,
+      "Navy|XS": 2,
+      "Navy|S": 2,
+      "Navy|M": 2,
+      "Navy|L": 2,
+      "Navy|XL": 2,
+      "Navy|XXL": 2,
+      "Grey|XS": 2,
+      "Grey|S": 2,
+      "Grey|M": 2,
+      "Grey|L": 2,
+      "Grey|XL": 2,
+      "Grey|XXL": 2,
+      "Olive|XS": 2,
+      "Olive|S": 2,
+      "Olive|M": 2,
+      "Olive|L": 2,
+      "Olive|XL": 2,
+      "Olive|XXL": 2,
+      "Burgundy|XS": 2,
+      "Burgundy|S": 2,
+      "Burgundy|M": 2,
+      "Burgundy|L": 2,
+      "Burgundy|XL": 2,
+      "Burgundy|XXL": 2
+    }
   },
   {
     "sku": "SH119",
@@ -2627,7 +4716,7 @@
       "casual",
       "shoes"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=119&sh119=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -2645,7 +4734,44 @@
       "12"
     ],
     "variant_count": 35,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "White|6": 2,
+      "White|7": 2,
+      "White|8": 2,
+      "White|9": 2,
+      "White|10": 2,
+      "White|11": 2,
+      "White|12": 2,
+      "Black|6": 2,
+      "Black|7": 2,
+      "Black|8": 2,
+      "Black|9": 2,
+      "Black|10": 2,
+      "Black|11": 2,
+      "Black|12": 2,
+      "Grey|6": 2,
+      "Grey|7": 2,
+      "Grey|8": 2,
+      "Grey|9": 2,
+      "Grey|10": 2,
+      "Grey|11": 2,
+      "Grey|12": 2,
+      "Navy|6": 2,
+      "Navy|7": 2,
+      "Navy|8": 2,
+      "Navy|9": 2,
+      "Navy|10": 2,
+      "Navy|11": 2,
+      "Navy|12": 2,
+      "Beige|6": 2,
+      "Beige|7": 2,
+      "Beige|8": 2,
+      "Beige|9": 2,
+      "Beige|10": 2,
+      "Beige|11": 2,
+      "Beige|12": 2
+    }
   },
   {
     "sku": "SH120",
@@ -2657,7 +4783,7 @@
       "sneakers",
       "streetwear"
     ],
-    "image": "https://loremflickr.com/900/900/sneakers?lock=120&sh120=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "White",
       "Black",
@@ -2675,7 +4801,44 @@
       "12"
     ],
     "variant_count": 35,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "White|6": 1,
+      "White|7": 1,
+      "White|8": 1,
+      "White|9": 1,
+      "White|10": 1,
+      "White|11": 1,
+      "White|12": 1,
+      "Black|6": 1,
+      "Black|7": 1,
+      "Black|8": 1,
+      "Black|9": 1,
+      "Black|10": 1,
+      "Black|11": 1,
+      "Black|12": 1,
+      "Grey|6": 1,
+      "Grey|7": 1,
+      "Grey|8": 1,
+      "Grey|9": 1,
+      "Grey|10": 1,
+      "Grey|11": 1,
+      "Grey|12": 1,
+      "Navy|6": 1,
+      "Navy|7": 1,
+      "Navy|8": 1,
+      "Navy|9": 1,
+      "Navy|10": 1,
+      "Navy|11": 1,
+      "Navy|12": 1,
+      "Beige|6": 1,
+      "Beige|7": 1,
+      "Beige|8": 1,
+      "Beige|9": 1,
+      "Beige|10": 1,
+      "Beige|11": 1,
+      "Beige|12": 1
+    }
   },
   {
     "sku": "SH121",
@@ -2688,7 +4851,7 @@
       "formal",
       "shoes"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=121&sh121=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Brown",
@@ -2705,7 +4868,37 @@
       "12"
     ],
     "variant_count": 28,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "Black|6": 1,
+      "Black|7": 1,
+      "Black|8": 1,
+      "Black|9": 1,
+      "Black|10": 1,
+      "Black|11": 1,
+      "Black|12": 1,
+      "Brown|6": 1,
+      "Brown|7": 1,
+      "Brown|8": 1,
+      "Brown|9": 1,
+      "Brown|10": 1,
+      "Brown|11": 1,
+      "Brown|12": 1,
+      "Tan|6": 1,
+      "Tan|7": 1,
+      "Tan|8": 1,
+      "Tan|9": 1,
+      "Tan|10": 1,
+      "Tan|11": 1,
+      "Tan|12": 1,
+      "Dark Brown|6": 1,
+      "Dark Brown|7": 1,
+      "Dark Brown|8": 1,
+      "Dark Brown|9": 1,
+      "Dark Brown|10": 1,
+      "Dark Brown|11": 1,
+      "Dark Brown|12": 1
+    }
   },
   {
     "sku": "SH122",
@@ -2718,7 +4911,7 @@
       "casual",
       "shoes"
     ],
-    "image": "https://loremflickr.com/900/900/shoes?lock=122&sh122=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Brown",
@@ -2735,7 +4928,37 @@
       "12"
     ],
     "variant_count": 28,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "Black|6": 1,
+      "Black|7": 1,
+      "Black|8": 1,
+      "Black|9": 1,
+      "Black|10": 1,
+      "Black|11": 1,
+      "Black|12": 1,
+      "Brown|6": 1,
+      "Brown|7": 1,
+      "Brown|8": 1,
+      "Brown|9": 1,
+      "Brown|10": 1,
+      "Brown|11": 1,
+      "Brown|12": 1,
+      "Tan|6": 1,
+      "Tan|7": 1,
+      "Tan|8": 1,
+      "Tan|9": 1,
+      "Tan|10": 1,
+      "Tan|11": 1,
+      "Tan|12": 1,
+      "Dark Brown|6": 1,
+      "Dark Brown|7": 1,
+      "Dark Brown|8": 1,
+      "Dark Brown|9": 1,
+      "Dark Brown|10": 1,
+      "Dark Brown|11": 1,
+      "Dark Brown|12": 1
+    }
   },
   {
     "sku": "SH123",
@@ -2748,7 +4971,7 @@
       "sandals",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/heels?lock=123&sh123=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Nude",
@@ -2766,7 +4989,44 @@
       "12"
     ],
     "variant_count": 35,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "Black|6": 1,
+      "Black|7": 1,
+      "Black|8": 1,
+      "Black|9": 1,
+      "Black|10": 1,
+      "Black|11": 1,
+      "Black|12": 1,
+      "Nude|6": 1,
+      "Nude|7": 1,
+      "Nude|8": 1,
+      "Nude|9": 1,
+      "Nude|10": 1,
+      "Nude|11": 1,
+      "Nude|12": 1,
+      "Red|6": 1,
+      "Red|7": 1,
+      "Red|8": 1,
+      "Red|9": 1,
+      "Red|10": 1,
+      "Red|11": 1,
+      "Red|12": 1,
+      "White|6": 1,
+      "White|7": 1,
+      "White|8": 1,
+      "White|9": 1,
+      "White|10": 1,
+      "White|11": 1,
+      "White|12": 1,
+      "Tan|6": 1,
+      "Tan|7": 1,
+      "Tan|8": 1,
+      "Tan|9": 1,
+      "Tan|10": 1,
+      "Tan|11": 1,
+      "Tan|12": 1
+    }
   },
   {
     "sku": "SH124",
@@ -2779,7 +5039,7 @@
       "formal",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/heels?lock=124&sh124=1",
+    "image": "https://images.pexels.com/photos/20298288/pexels-photo-20298288.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Nude",
@@ -2797,7 +5057,44 @@
       "12"
     ],
     "variant_count": 35,
-    "size_system": "US/India footwear"
+    "size_system": "US/India footwear",
+    "variant_stock": {
+      "Black|6": 1,
+      "Black|7": 1,
+      "Black|8": 1,
+      "Black|9": 1,
+      "Black|10": 1,
+      "Black|11": 1,
+      "Black|12": 1,
+      "Nude|6": 1,
+      "Nude|7": 1,
+      "Nude|8": 1,
+      "Nude|9": 1,
+      "Nude|10": 1,
+      "Nude|11": 1,
+      "Nude|12": 1,
+      "Red|6": 1,
+      "Red|7": 1,
+      "Red|8": 1,
+      "Red|9": 1,
+      "Red|10": 1,
+      "Red|11": 1,
+      "Red|12": 1,
+      "White|6": 1,
+      "White|7": 1,
+      "White|8": 1,
+      "White|9": 1,
+      "White|10": 1,
+      "White|11": 1,
+      "White|12": 1,
+      "Tan|6": 1,
+      "Tan|7": 1,
+      "Tan|8": 1,
+      "Tan|9": 1,
+      "Tan|10": 1,
+      "Tan|11": 1,
+      "Tan|12": 1
+    }
   },
   {
     "sku": "SH125",
@@ -2810,7 +5107,7 @@
       "tote",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/tote%20bag?lock=125&sh125=1",
+    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Tan",
@@ -2822,7 +5119,14 @@
       "One Size"
     ],
     "variant_count": 5,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|One Size": 1,
+      "Tan|One Size": 1,
+      "Brown|One Size": 1,
+      "Beige|One Size": 1,
+      "Cream|One Size": 1
+    }
   },
   {
     "sku": "SH126",
@@ -2835,7 +5139,7 @@
       "crossbody",
       "women"
     ],
-    "image": "https://loremflickr.com/900/900/crossbody%20bag?lock=126&sh126=1",
+    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Tan",
@@ -2847,7 +5151,14 @@
       "One Size"
     ],
     "variant_count": 5,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|One Size": 2,
+      "Tan|One Size": 2,
+      "Brown|One Size": 2,
+      "Beige|One Size": 2,
+      "Olive|One Size": 2
+    }
   },
   {
     "sku": "SH127",
@@ -2860,7 +5171,7 @@
       "sling",
       "casual"
     ],
-    "image": "https://loremflickr.com/900/900/bags?lock=127&sh127=1",
+    "image": "https://images.pexels.com/photos/5658856/pexels-photo-5658856.jpeg?auto=compress&cs=tinysrgb&w=900",
     "colors": [
       "Black",
       "Tan",
@@ -2872,7 +5183,14 @@
       "One Size"
     ],
     "variant_count": 5,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Black|One Size": 2,
+      "Tan|One Size": 2,
+      "Brown|One Size": 2,
+      "Beige|One Size": 2,
+      "Cream|One Size": 2
+    }
   },
   {
     "sku": "SH128",
@@ -2884,7 +5202,7 @@
       "scarf",
       "fashion"
     ],
-    "image": "https://loremflickr.com/900/900/fashion%20scarf?lock=128&sh128=1",
+    "image": "https://images.unsplash.com/photo-1601924928375-7b0f9a3a9a16?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Beige",
       "Black",
@@ -2897,7 +5215,15 @@
       "One Size"
     ],
     "variant_count": 6,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Beige|One Size": 3,
+      "Black|One Size": 3,
+      "Maroon|One Size": 3,
+      "Navy|One Size": 3,
+      "Olive|One Size": 3,
+      "Printed|One Size": 3
+    }
   },
   {
     "sku": "SH129",
@@ -2910,7 +5236,7 @@
       "fashion",
       "printed"
     ],
-    "image": "https://loremflickr.com/900/900/fashion%20scarf?lock=129&sh129=1",
+    "image": "https://images.unsplash.com/photo-1601924928375-7b0f9a3a9a16?auto=format&fit=crop&w=900&q=80",
     "colors": [
       "Beige",
       "Black",
@@ -2923,6 +5249,14 @@
       "One Size"
     ],
     "variant_count": 6,
-    "size_system": "Standard"
+    "size_system": "Standard",
+    "variant_stock": {
+      "Beige|One Size": 3,
+      "Black|One Size": 3,
+      "Maroon|One Size": 3,
+      "Navy|One Size": 3,
+      "Olive|One Size": 3,
+      "Printed|One Size": 3
+    }
   }
 ]
