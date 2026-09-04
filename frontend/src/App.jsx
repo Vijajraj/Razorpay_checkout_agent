@@ -210,23 +210,29 @@ export default function App() {
     }
 
     const res = await sendChatMessage(userText, { sessionId });
+    const responseData = res?.data;
 
-    if (res.success) {
-      if (res.data.needs_consent && consentGiven === null) {
+    if (res?.success && responseData) {
+      if (responseData.needs_consent && consentGiven === null) {
         setShowConsentPrompt(true);
       }
 
-      const returnedProducts = res.data.products || [];
+      const returnedProducts = Array.isArray(responseData.products) ? responseData.products : [];
       const botMsg = {
         id: Date.now() + 1,
         sender: 'assistant',
-        text: res.data.reply,
+        text: typeof responseData.reply === 'string' && responseData.reply.trim()
+          ? responseData.reply
+          : 'Something went wrong, please try again',
         products: returnedProducts,
-        blocked: res.data.blocked || false,
+        blocked: responseData.blocked || false,
+        error: responseData.type === 'error',
         agentActivity: returnedProducts.length > 0
           ? `Searched catalog: Found ${returnedProducts.length} matching products`
-          : res.data.blocked
+          : responseData.blocked
           ? `Guardrail enforcement blocked action`
+          : responseData.type === 'error'
+          ? 'Chat request failed'
           : null,
       };
 
@@ -236,15 +242,24 @@ export default function App() {
         setActiveStep(1); // Step 1: Product Searched
       }
 
-      if (res.data.auditEntry) {
-        setAuditLogs((prev) => [res.data.auditEntry, ...prev]);
-        if (res.data.blocked) {
+      if (responseData.auditEntry) {
+        setAuditLogs((prev) => [responseData.auditEntry, ...prev]);
+        if (responseData.blocked) {
           setAuditOpen(true);
         }
       }
 
       // Refresh saved sessions list
       refreshSessionsList();
+    } else {
+      setMessages((prev) => [...prev, {
+        id: Date.now() + 1,
+        sender: 'assistant',
+        text: 'Something went wrong, please try again',
+        products: [],
+        error: true,
+        agentActivity: 'Chat request failed',
+      }]);
     }
   };
 

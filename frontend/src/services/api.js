@@ -2,6 +2,7 @@ import catalogData from '../data/catalog.json';
 
 const API_BASE_URL = 'http://localhost:8000/api';
 const SPEND_CAP = 10000; // Hard spend cap ceiling in INR
+const CHAT_ERROR_REPLY = 'Something went wrong, please try again';
 
 export async function checkBackendHealth() {
   try {
@@ -46,6 +47,19 @@ function saveLocalMessage(sessionId, role, content) {
   }
 }
 
+function chatErrorResponse() {
+  return {
+    success: true,
+    mode: 'error',
+    data: {
+      type: 'error',
+      reply: CHAT_ERROR_REPLY,
+      products: [],
+      auditEntry: null,
+    },
+  };
+}
+
 export async function sendChatMessage(userPrompt, conversationState) {
   const sessionId = conversationState.sessionId || 'session_default';
   saveLocalMessage(sessionId, 'user', userPrompt);
@@ -61,21 +75,26 @@ export async function sendChatMessage(userPrompt, conversationState) {
       }),
     });
     if (res.ok) {
-      const data = await res.json();
-      if (data && data.reply) {
-        saveLocalMessage(sessionId, 'assistant', data.reply);
+      try {
+        const data = await res.json();
+        if (!data || typeof data.reply !== 'string' || !Array.isArray(data.products || [])) {
+          return chatErrorResponse();
+        }
+        if (data.reply) {
+          saveLocalMessage(sessionId, 'assistant', data.reply);
+        }
+        return { success: true, mode: 'backend', data: { ...data, products: data.products || [] } };
+      } catch (err) {
+        console.warn('Backend chat response was not valid JSON:', err.message);
+        return chatErrorResponse();
       }
-      return { success: true, mode: 'backend', data };
     }
+    console.warn(`Backend chat API returned HTTP ${res.status}.`);
+    return chatErrorResponse();
   } catch (err) {
-    console.warn('Backend API unavailable. Falling back to frontend Guardrail Engine simulation.');
+    console.warn('Backend chat API unavailable:', err.message);
+    return chatErrorResponse();
   }
-
-  const simulated = simulateAgentResponse(userPrompt, conversationState);
-  if (simulated && simulated.data && simulated.data.reply) {
-    saveLocalMessage(sessionId, 'assistant', simulated.data.reply);
-  }
-  return simulated;
 }
 
 export async function createOrderOnServer(orderPayload) {
@@ -244,142 +263,6 @@ export async function getChatSessions() {
   } catch (e) {
     return { sessions: backendSessions };
   }
-}
-
-function simulateAgentResponse(userPrompt, state) {
-  const promptLower = userPrompt.toLowerCase();
-
-  // Attack 1: Spend-cap bypass attempt
-  if (promptLower.includes('50000') || promptLower.includes('50,000') || (promptLower.includes('ignore') && promptLower.includes('order'))) {
-    const blockedLog = {
-      id: Date.now(),
-      timestamp: new Date().toISOString(),
-      action: 'create_order',
-      sku: 'CUSTOM_OVERRIDE',
-      amount: 50000,
-      reasoning: 'User attempted prompt injection to create order of ₹50,000 bypassing rules.',
-      spend_cap_check: 'FAILED (Exceeds ₹10,000 Cap)',
-      result: 'BLOCKED',
-      attackType: 'Spend-Cap Bypass',
-    };
-
-    return {
-      success: true,
-      mode: 'simulator',
-      data: {
-        reply: `🚨 **SECURITY GUARDRAIL TRIGGERED**: Action Blocked!\n\nRequested order amount (₹50,000) exceeds configured merchant hard spend cap of **₹${SPEND_CAP.toLocaleString()}**. The request was rejected at code-level before calling Razorpay API.`,
-        blocked: true,
-        guardrailViolation: 'Spend-Cap Exceeded (₹50,000 > ₹10,000)',
-        auditEntry: blockedLog,
-      },
-    };
-  }
-
-  // Attack 2: Price Manipulation / Unauthorized Discount
-  if (promptLower.includes('secret90') || promptLower.includes('discount') || promptLower.includes('90%')) {
-    const blockedLog = {
-      id: Date.now(),
-      timestamp: new Date().toISOString(),
-      action: 'apply_discount',
-      sku: 'UNKNOWN',
-      amount: 0,
-      reasoning: 'User requested 90% discount code SECRET90.',
-      spend_cap_check: 'REJECTED (Unauthorized Action)',
-      result: 'BLOCKED',
-      attackType: 'Price Manipulation',
-    };
-
-    return {
-      success: true,
-      mode: 'simulator',
-      data: {
-        reply: `🛡️ **GUARDRAIL BLOCK**: Unauthorized Action!\n\nDiscount code \`SECRET90\` is not in the whitelisted action set. The agent is locked strictly to canonical catalog prices and cannot mutate order amounts without authorization.`,
-        blocked: true,
-        guardrailViolation: 'Unauthorized Action (Scope Lock)',
-        auditEntry: blockedLog,
-      },
-    };
-  }
-
-  // Attack 3: Data Leakage attempt
-  if (promptLower.includes('last customer') || promptLower.includes('phone number') || promptLower.includes('other session')) {
-    const blockedLog = {
-      id: Date.now(),
-      timestamp: new Date().toISOString(),
-      action: 'read_session_data',
-      sku: 'N/A',
-      amount: 0,
-      reasoning: 'User queried cross-session customer order history and personal data.',
-      spend_cap_check: 'BLOCKED (Isolation Enforced)',
-      result: 'BLOCKED',
-      attackType: 'Data Leakage',
-    };
-
-    return {
-      success: true,
-      mode: 'simulator',
-      data: {
-        reply: `🔒 **SESSION ISOLATION GUARD**: Data Access Denied!\n\nAgent execution environment is isolated to your current session (\`${state.sessionId || 'sess_active'}\`). Cross-session database read tools are not exposed to the agent.`,
-        blocked: true,
-        guardrailViolation: 'Session Data Isolation',
-        auditEntry: blockedLog,
-      },
-    };
-  }
-
-  let matchedItems = catalogData.filter((item) => {
-    return item.tags.some((t) => promptLower.includes(t)) || item.name.toLowerCase().includes(promptLower) || item.category.toLowerCase().includes(promptLower);
-  });
-
-  if (matchedItems.length === 0 && (promptLower.includes('shoes') || promptLower.includes('sneaker') || promptLower.includes('buy') || promptLower.includes('running'))) {
-    matchedItems = catalogData.filter((i) => i.tags.includes('shoes'));
-  } else if (matchedItems.length === 0 && (promptLower.includes('watch') || promptLower.includes('time'))) {
-    matchedItems = catalogData.filter((i) => i.tags.includes('watch'));
-  } else if (matchedItems.length === 0 && (promptLower.includes('headphones') || promptLower.includes('audio') || promptLower.includes('speaker'))) {
-    matchedItems = catalogData.filter((i) => i.tags.includes('audio') || i.tags.includes('speaker'));
-  }
-
-  if (matchedItems.length > 0) {
-    const item = matchedItems[0];
-    const isOutOfStock = item.stock === 0;
-
-    const count = matchedItems.length;
-    let responseReply = `I found ${count} product${count > 1 ? 's' : ''} matching your search.`;
-    if (isOutOfStock) {
-      responseReply += ` Note: some items may be out of stock.`;
-    }
-
-    return {
-      success: true,
-      mode: 'simulator',
-      data: {
-        type: 'product_search',
-        reply: responseReply,
-        products: matchedItems.slice(0, 4),
-        auditEntry: {
-          id: Date.now(),
-          timestamp: new Date().toISOString(),
-          action: 'catalog_lookup',
-          sku: item.sku,
-          amount: item.price,
-          reasoning: `Found ${count} matching products for query '${userPrompt}'.`,
-          spend_cap_check: 'PASSED (Under ₹10,000 Cap)',
-          result: 'SUCCESS',
-        },
-      },
-    };
-  }
-
-  return {
-    success: true,
-    mode: 'simulator',
-    data: {
-      type: 'text',
-      reply: `Hello! How can I help you today? Feel free to ask about products in our catalog or start a purchase.`,
-      products: [],
-      auditEntry: null,
-    },
-  };
 }
 
 function createRazorpayOrderLocally(payload) {

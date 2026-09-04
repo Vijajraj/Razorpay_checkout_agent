@@ -238,4 +238,22 @@ def test_pant_category_accuracy():
     assert any(t in ["jeans", "trousers", "chinos", "joggers", "shorts"] for t in tags)
 
 
+def test_empty_catalog_search_returns_reply_and_empty_products():
+    from backend.main import _fallback_chat, ChatRequest
+    req = ChatRequest(message="show me purple hoverboards", session_id="test_empty_search_sess")
+    res = _fallback_chat(req)
+
+    assert res["type"] == "text"
+    assert res["reply"]
+    assert "I found 0 products" in res["reply"]
+    assert res["products"] == []
+
+
+def test_catalog_search_reply_count_matches_returned_products():
+    from backend.main import search_catalog_items, search_reply
+    products = search_catalog_items("shirt")[:6]
+    reply = search_reply("shirt", products)
+
+    assert len(products) <= 6
+    assert f"I found {len(products)} product" in reply
 

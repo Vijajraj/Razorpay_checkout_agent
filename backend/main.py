@@ -523,6 +523,27 @@ def search_catalog_items(query: str, max_price: Optional[float] = None) -> List[
     return matched
 
 
+def available_category_suggestions(limit: int = 3) -> str:
+    categories = []
+    seen = set()
+    for item in catalog:
+        category = item.get("category")
+        if category and category not in seen:
+            categories.append(category)
+            seen.add(category)
+        if len(categories) >= limit:
+            break
+    return ", ".join(categories) if categories else "a few other categories"
+
+
+def search_reply(query: str, products: List[Dict[str, Any]]) -> str:
+    count = len(products)
+    if count == 0:
+        suggestions = available_category_suggestions()
+        return f"I found 0 products matching '{query}' in our catalog. We have {suggestions} - want to try one of those?"
+    return f"I found {count} product{'s' if count != 1 else ''} matching your search."
+
+
 def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
     """Execute a tool call from the LLM and return structured JSON."""
     if tool_name == "search_catalog":
@@ -535,7 +556,8 @@ def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
         if matched:
             entry = log_audit_entry("catalog_lookup", matched[0]["sku"], matched[0]["price"],
                                      f"Catalog search for '{query}'. Found {len(matched)} result(s).", "PASSED", "SUCCESS", session_id=session_id)
-        return {"products": matched[:6], "count": len(matched), "auditEntry": entry}
+        products = matched[:6]
+        return {"products": products, "count": len(products), "auditEntry": entry, "query": query}
 
     elif tool_name == "create_order":
         sku = tool_args.get("sku", "")
@@ -1058,11 +1080,14 @@ def chat_endpoint(req: ChatRequest):
             all_products = []
             audit_entry = None
             order_result = None
+            search_query = req.message
 
             for tool_call in msg.tool_calls:
                 fn_name = tool_call.function.name
                 fn_args = json.loads(tool_call.function.arguments)
                 result = execute_tool_call(fn_name, fn_args, session_id)
+                if fn_name == "search_catalog":
+                    search_query = result.get("query") or fn_args.get("query") or req.message
 
                 history.append({
                     "role": "tool",
@@ -1086,8 +1111,9 @@ def chat_endpoint(req: ChatRequest):
 
             raw_reply = follow_up.choices[0].message.content or ""
             clean_reply = clean_agent_reply(raw_reply)
-            if all_products:
-                clean_reply = f"I found {len(all_products)} product{'s' if len(all_products)!=1 else ''} matching your search."
+            returned_products = all_products[:6]
+            if all_products or any(tool_call.function.name == "search_catalog" for tool_call in msg.tool_calls):
+                clean_reply = search_reply(search_query, returned_products)
 
             history.append({"role": "assistant", "content": clean_reply})
             persist_chat_message(session_id, "assistant", clean_reply)
@@ -1095,12 +1121,11 @@ def chat_endpoint(req: ChatRequest):
             response_type = "product_search" if all_products else "text"
             response_data = {
                 "type": response_type,
-                "reply": clean_reply or f"I found {len(all_products)} matching product{'s' if len(all_products)!=1 else ''} in the catalog.",
+                "reply": clean_reply or search_reply(search_query, returned_products),
+                "products": returned_products,
                 "auditEntry": audit_entry,
                 "needs_consent": needs_consent,
             }
-            if all_products:
-                response_data["products"] = all_products[:6]
             if order_result and order_result.get("success"):
                 response_data["type"] = "order_created"
                 response_data["order"] = order_result
@@ -1180,19 +1205,20 @@ def _fallback_chat(req: ChatRequest):
 
     if matched:
         item = matched[0]
+        products = matched[:6]
         entry = log_audit_entry("catalog_lookup", item["sku"], item["price"],
                                  f"Catalog search for '{req.message}'. Found {len(matched)} result(s).", "PASSED", "SUCCESS", session_id=session_id)
-        res_reply = f"I found {len(matched)} product{'s' if len(matched)>1 else ''} matching your search."
+        res_reply = search_reply(req.message, products)
         persist_chat_message(session_id, "assistant", res_reply)
         return {
             "type": "product_search",
             "reply": res_reply,
-            "products": matched[:6],
+            "products": products,
             "auditEntry": entry,
             "needs_consent": needs_consent,
         }
 
-    res_reply = "I couldn't find any items matching your request. Feel free to search for shoes, hoodies, jeans, smart watches, or backpacks."
+    res_reply = search_reply(req.message, [])
     persist_chat_message(session_id, "assistant", res_reply)
     return {
         "type": "text",
