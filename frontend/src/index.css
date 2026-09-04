@@ -1119,6 +1119,30 @@ body {
 }
 .audit-drawer.open { transform: translateX(0); }
 
+.catalog-drawer {
+  left: 0;
+  right: auto;
+  width: min(720px, 92vw);
+  transform: translateX(-100%);
+}
+
+.catalog-metrics {
+  grid-template-columns: 1fr;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  align-content: start;
+}
+
+.comparison-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
 .drawer-header {
   height: 56px;
   padding: 0 16px;

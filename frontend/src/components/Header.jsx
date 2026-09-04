@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Moon, Sun, ShieldCheck, Settings, CheckCircle2, PanelLeft } from 'lucide-react';
+import { ShoppingBag, Moon, Sun, ShieldCheck, Settings, CheckCircle2, PanelLeft, Library } from 'lucide-react';
 
 export default function Header({
   theme,
@@ -8,6 +8,8 @@ export default function Header({
   spendCap = 10000,
   auditOpen,
   onToggleAudit,
+  catalogOpen,
+  onToggleCatalog,
   blockedCount = 0,
   onClearChatHistory,
   sidebarCollapsed = false,
@@ -41,6 +43,15 @@ export default function Header({
       </div>
 
       <div className="header-controls">
+        <button
+          className={`icon-btn ${catalogOpen ? 'active' : ''}`}
+          onClick={onToggleCatalog}
+          title="Open Catalog Browser"
+        >
+          <Library size={16} />
+          <span>Browse Catalog</span>
+        </button>
+
         <button
           className={`icon-btn ${auditOpen ? 'active' : ''}`}
           onClick={onToggleAudit}
@@ -102,7 +113,7 @@ export default function Header({
             <div className="settings-row">
               <span>Backend Connection:</span>
               <span style={{ color: backendConnected ? 'var(--accent-success)' : 'var(--accent-blocked)', fontWeight: 600 }}>
-                {backendConnected ? 'FastAPI Active' : 'Fallback Simulator Active'}
+                {backendConnected ? 'FastAPI Active' : 'Reconnecting'}
               </span>
             </div>
 

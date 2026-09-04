@@ -245,7 +245,7 @@ def test_empty_catalog_search_returns_reply_and_empty_products():
 
     assert res["type"] == "text"
     assert res["reply"]
-    assert "I found 0 products" in res["reply"]
+    assert "I couldn't find that" in res["reply"]
     assert res["products"] == []
 
 
@@ -256,4 +256,39 @@ def test_catalog_search_reply_count_matches_returned_products():
 
     assert len(products) <= 6
     assert f"I found {len(products)} product" in reply
+
+
+def test_broad_catalog_request_bypasses_llm_with_browse_reply():
+    response = client.post("/api/chat", json={
+        "message": "what are the things in catalog",
+        "session_id": "test_catalog_browse_sess",
+    })
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["type"] == "catalog_browse"
+    assert data["reply"]
+    assert data["products"] == []
+
+
+def test_ambiguous_compare_two_shirts_asks_for_specific_products():
+    response = client.post("/api/chat", json={
+        "message": "compare two shirts",
+        "session_id": "test_compare_shirts_sess",
+    })
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["type"] == "text"
+    assert "Which 2" in data["reply"]
+    assert len(data["products"]) > 2
+
+
+def test_compare_products_returns_structured_catalog_items():
+    from backend.main import execute_tool_call
+    res = execute_tool_call("compare_products", {"skus": ["SH001", "SH003"]}, "test_compare_tool_sess")
+
+    assert res["count"] == 2
+    assert [item["sku"] for item in res["comparison"]] == ["SH001", "SH003"]
+    assert all("name" in item and "price" in item and "stock" in item and "tags" in item for item in res["comparison"])
 

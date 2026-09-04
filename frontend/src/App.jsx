@@ -4,14 +4,31 @@ import ChatSidebar from './components/ChatSidebar';
 import ChatPanel from './components/ChatPanel';
 import PurchaseSummaryPanel from './components/PurchaseSummaryPanel';
 import AuditLogPanel from './components/AuditLogPanel';
+import CatalogPanel from './components/CatalogPanel';
 import {
   sendChatMessage,
   checkBackendHealth,
+  getCatalog,
   sendChatConsent,
   getChatHistory,
   deleteChatHistory,
   getChatSessions,
 } from './services/api';
+
+function isCatalogBrowsePrompt(text) {
+  const normalized = text.toLowerCase();
+  const patterns = [
+    'what are the things',
+    "what's in",
+    'what is in',
+    'what do you have',
+    'show me everything',
+    'all products',
+    'browse catalog',
+    'browse catalogue',
+  ];
+  return (normalized.includes('catalog') || normalized.includes('catalogue')) && patterns.some((pattern) => normalized.includes(pattern));
+}
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -20,6 +37,8 @@ export default function App() {
 
   const [backendConnected, setBackendConnected] = useState(false);
   const [auditOpen, setAuditOpen] = useState(false);
+  const [catalogOpen, setCatalogOpen] = useState(false);
+  const [catalogProducts, setCatalogProducts] = useState([]);
 
   // Dynamic active session ID & saved sessions list
   const [sessionId, setSessionId] = useState(() => `sess_${Math.random().toString(36).substring(2, 9)}`);
@@ -73,12 +92,20 @@ export default function App() {
     }
   }, []);
 
+  const openCatalogPanel = useCallback(async () => {
+    setCatalogOpen(true);
+    const products = await getCatalog();
+    setCatalogProducts(products);
+  }, []);
+
   useEffect(() => {
     async function verifyHealthAndLoad() {
       const health = await checkBackendHealth();
       setBackendConnected(health.online);
 
       await refreshSessionsList();
+      const products = await getCatalog();
+      setCatalogProducts(products);
 
       // Check if stored chat history exists for active sessionId
       const historyRes = await getChatHistory(sessionId);
@@ -173,6 +200,17 @@ export default function App() {
     setMessages((prev) => [...prev, userMsg]);
     const lowerText = userText.toLowerCase().trim();
 
+    if (isCatalogBrowsePrompt(userText)) {
+      await openCatalogPanel();
+      setMessages((prev) => [...prev, {
+        id: Date.now() + 1,
+        sender: 'assistant',
+        text: "You can browse everything in the catalog panel on the left - or tell me what you're looking for and I'll help you find it.",
+        products: [],
+      }]);
+      return;
+    }
+
     // Handle quantity update from chat if product is selected
     if (selectedProduct) {
       const qtyMatch = lowerText.match(/^(?:buy\s+|qty\s+|quantity\s+)?(\d+)$/i) || lowerText.match(/(?:buy|set|make\s+it)\s+(\d+)/i);
@@ -218,21 +256,25 @@ export default function App() {
       }
 
       const returnedProducts = Array.isArray(responseData.products) ? responseData.products : [];
+      const comparisonProducts = Array.isArray(responseData.comparison) ? responseData.comparison : [];
       const botMsg = {
         id: Date.now() + 1,
         sender: 'assistant',
         text: typeof responseData.reply === 'string' && responseData.reply.trim()
           ? responseData.reply
-          : 'Something went wrong, please try again',
+          : "I'm having a little trouble processing that right now - mind trying again in a moment?",
         products: returnedProducts,
+        comparison: comparisonProducts,
         blocked: responseData.blocked || false,
         error: responseData.type === 'error',
-        agentActivity: returnedProducts.length > 0
+        agentActivity: comparisonProducts.length > 0
+          ? `Compared ${comparisonProducts.length} catalog products`
+          : returnedProducts.length > 0
           ? `Searched catalog: Found ${returnedProducts.length} matching products`
           : responseData.blocked
           ? `Guardrail enforcement blocked action`
           : responseData.type === 'error'
-          ? 'Chat request failed'
+          ? 'Chat request needs a retry'
           : null,
       };
 
@@ -255,10 +297,10 @@ export default function App() {
       setMessages((prev) => [...prev, {
         id: Date.now() + 1,
         sender: 'assistant',
-        text: 'Something went wrong, please try again',
+        text: "I'm having a little trouble processing that right now - mind trying again in a moment?",
         products: [],
         error: true,
-        agentActivity: 'Chat request failed',
+        agentActivity: 'Chat request needs a retry',
       }]);
     }
   };
@@ -318,6 +360,14 @@ export default function App() {
         spendCap={10000}
         auditOpen={auditOpen}
         onToggleAudit={() => setAuditOpen(!auditOpen)}
+        catalogOpen={catalogOpen}
+        onToggleCatalog={() => {
+          if (catalogOpen) {
+            setCatalogOpen(false);
+          } else {
+            openCatalogPanel();
+          }
+        }}
         blockedCount={blockedCount}
         onClearChatHistory={handleClearChatHistory}
         sidebarCollapsed={sidebarCollapsed}
@@ -370,6 +420,13 @@ export default function App() {
         auditLogs={auditLogs}
         onClearLogs={handleClearLogs}
         spendCap={10000}
+      />
+
+      <CatalogPanel
+        open={catalogOpen}
+        onClose={() => setCatalogOpen(false)}
+        products={catalogProducts}
+        onSelectProduct={handleSelectProduct}
       />
     </div>
   );

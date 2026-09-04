@@ -4,7 +4,7 @@ import AgentWorkflowBar from './AgentWorkflowBar';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';
 
-function ProductCard({ item, onSelectForPurchase }) {
+export function ProductCard({ item, onSelectForPurchase }) {
   const [qty, setQty] = useState(1);
   const [imgSrc, setImgSrc] = useState(item.image || DEFAULT_FALLBACK_IMAGE);
 
@@ -178,6 +178,18 @@ export default function ChatPanel({
               {msg.products && msg.products.length > 0 && (
                 <div className="products-container">
                   {msg.products.map((item) => (
+                    <ProductCard
+                      key={item.sku}
+                      item={item}
+                      onSelectForPurchase={onSelectProduct}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {msg.comparison && msg.comparison.length > 0 && (
+                <div className="comparison-container">
+                  {msg.comparison.map((item) => (
                     <ProductCard
                       key={item.sku}
                       item={item}

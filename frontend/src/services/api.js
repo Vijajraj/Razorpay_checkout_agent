@@ -2,7 +2,7 @@ import catalogData from '../data/catalog.json';
 
 const API_BASE_URL = 'http://localhost:8000/api';
 const SPEND_CAP = 10000; // Hard spend cap ceiling in INR
-const CHAT_ERROR_REPLY = 'Something went wrong, please try again';
+const CHAT_HELP_REPLY = "I'm having a little trouble processing that right now - mind trying again in a moment?";
 
 export async function checkBackendHealth() {
   try {
@@ -11,10 +11,23 @@ export async function checkBackendHealth() {
       const data = await res.json();
       return { online: true, details: data };
     }
-  } catch (err) {
+  } catch {
     // Backend offline
   }
   return { online: false };
+}
+
+export async function getCatalog() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/catalog`, { method: 'GET' });
+    if (res.ok) {
+      const data = await res.json();
+      return Array.isArray(data) ? data : [];
+    }
+  } catch (err) {
+    console.warn('Catalog fetch is temporarily unavailable:', err.message);
+  }
+  return catalogData;
 }
 
 function saveLocalMessage(sessionId, role, content) {
@@ -53,8 +66,9 @@ function chatErrorResponse() {
     mode: 'error',
     data: {
       type: 'error',
-      reply: CHAT_ERROR_REPLY,
+      reply: CHAT_HELP_REPLY,
       products: [],
+      comparison: [],
       auditEntry: null,
     },
   };
@@ -77,13 +91,13 @@ export async function sendChatMessage(userPrompt, conversationState) {
     if (res.ok) {
       try {
         const data = await res.json();
-        if (!data || typeof data.reply !== 'string' || !Array.isArray(data.products || [])) {
+        if (!data || typeof data.reply !== 'string' || !Array.isArray(data.products || []) || !Array.isArray(data.comparison || [])) {
           return chatErrorResponse();
         }
         if (data.reply) {
           saveLocalMessage(sessionId, 'assistant', data.reply);
         }
-        return { success: true, mode: 'backend', data: { ...data, products: data.products || [] } };
+        return { success: true, mode: 'backend', data: { ...data, products: data.products || [], comparison: data.comparison || [] } };
       } catch (err) {
         console.warn('Backend chat response was not valid JSON:', err.message);
         return chatErrorResponse();
@@ -91,7 +105,7 @@ export async function sendChatMessage(userPrompt, conversationState) {
     }
     console.warn(`Backend chat API returned HTTP ${res.status}.`);
     return chatErrorResponse();
-  } catch (err) {
+  } catch {
     console.warn('Backend chat API unavailable:', err.message);
     return chatErrorResponse();
   }
@@ -110,7 +124,7 @@ export async function createOrderOnServer(orderPayload) {
     }
     const errData = await res.json();
     throw new Error(errData.detail || 'Failed to create order.');
-  } catch (err) {
+  } catch {
     console.warn('Server order creation unavailable. Using local order simulation:', err.message);
     return createRazorpayOrderLocally(orderPayload);
   }
@@ -154,7 +168,7 @@ export async function verifyStock(sku, quantity = 1, sessionId = 'session_defaul
       available_stock: 0,
       message: errData.detail || 'Stock verification failed.',
     };
-  } catch (err) {
+  } catch {
     // Fallback: check local catalog
     const item = catalogData.find((i) => i.sku === sku);
     if (!item) {
@@ -211,7 +225,7 @@ export async function getChatHistory(sessionId) {
     if (localMsgs.length > 0) {
       return { session_id: sessionId, consent_given: true, messages: localMsgs };
     }
-  } catch (e) {}
+  } catch {}
 
   return { session_id: sessionId, consent_given: true, messages: [] };
 }
@@ -223,7 +237,7 @@ export async function deleteChatHistory(sessionId) {
     const sessions = JSON.parse(localStorage.getItem(indexKey) || '[]');
     const filtered = sessions.filter((s) => s.session_id !== sessionId);
     localStorage.setItem(indexKey, JSON.stringify(filtered));
-  } catch (e) {}
+  } catch {}
 
   try {
     const res = await fetch(`${API_BASE_URL}/chat-history/${sessionId}`, { method: 'DELETE' });
@@ -260,7 +274,7 @@ export async function getChatSessions() {
     const combined = Array.from(map.values());
     combined.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
     return { sessions: combined };
-  } catch (e) {
+  } catch {
     return { sessions: backendSessions };
   }
 }

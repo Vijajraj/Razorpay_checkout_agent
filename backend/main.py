@@ -405,6 +405,24 @@ TOOL_DEFINITIONS = [
     {
         "type": "function",
         "function": {
+            "name": "compare_products",
+            "description": "Compare specific catalog products by SKU. Returns canonical product details in a structured array.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "skus": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "description": "Two or more product SKUs from the canonical catalog.",
+                    },
+                },
+                "required": ["skus"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "create_order",
             "description": "Create a Razorpay order for a product SKU after customer confirms. Enforced by guardrail engine.",
             "parameters": {
@@ -440,6 +458,10 @@ PRODUCT MATCHING & CLARIFYING QUESTION RULES:
 
 4. Fast Path for Specific Queries:
    - If the user's initial message is already specific enough (e.g. "show me running shoes under Rs 3000" or "black oversized t-shirt"), skip the clarifying question and call search_catalog immediately on turn 1.
+
+5. Product Comparison:
+   - Use compare_products only when the user gives specific SKUs to compare.
+   - If the user asks vaguely (e.g. "compare two shirts"), ask which specific products they want to compare.
 
 ABSOLUTE RESPONSE CONTRACT - VIOLATION = SYSTEM FAILURE:
 
@@ -540,8 +562,119 @@ def search_reply(query: str, products: List[Dict[str, Any]]) -> str:
     count = len(products)
     if count == 0:
         suggestions = available_category_suggestions()
-        return f"I found 0 products matching '{query}' in our catalog. We have {suggestions} - want to try one of those?"
+        return f"I couldn't find that in our catalog - here's what we do have: {suggestions}. Want to see one of those?"
     return f"I found {count} product{'s' if count != 1 else ''} matching your search."
+
+
+def catalog_browse_reply() -> str:
+    return "You can browse everything in the catalog panel on the left - or tell me what you're looking for and I'll help you find it."
+
+
+def is_catalog_browse_request(message: str) -> bool:
+    text = message.lower()
+    browse_patterns = [
+        "what are the things",
+        "what is in",
+        "what's in",
+        "what do you have",
+        "show me everything",
+        "all products",
+        "browse catalog",
+        "browse catalogue",
+    ]
+    return ("catalog" in text or "catalogue" in text) and any(pattern in text for pattern in browse_patterns)
+
+
+def extract_skus(message: str) -> List[str]:
+    seen = set()
+    skus = []
+    for sku in re.findall(r'\bSH\d{3}\b', message.upper()):
+        if sku not in seen:
+            skus.append(sku)
+            seen.add(sku)
+    return skus
+
+
+def requested_compare_count(message: str) -> int:
+    text = message.lower()
+    if re.search(r'\b3\b|\bthree\b', text):
+        return 3
+    return 2
+
+
+def compare_products_by_sku(skus: List[str]) -> List[Dict[str, Any]]:
+    requested = [sku.upper() for sku in skus]
+    products = []
+    for sku in requested:
+        item = next((catalog_item for catalog_item in catalog if catalog_item["sku"] == sku), None)
+        if item:
+            products.append(item)
+    return products
+
+
+def ambiguous_compare_response(req: ChatRequest, needs_consent: bool):
+    text = req.message.lower()
+    if "compare" not in text:
+        return None
+
+    skus = extract_skus(req.message)
+    if len(skus) >= 2:
+        products = compare_products_by_sku(skus)
+        reply = f"Here are {len(products)} products side by side for comparison."
+        return {
+            "type": "comparison",
+            "reply": reply,
+            "products": [],
+            "comparison": products,
+            "auditEntry": None,
+            "needs_consent": needs_consent,
+        }
+
+    compare_query = re.sub(r'\b(compare|two|three|2|3|products?|items?|things?|please|me|the|a|an)\b', ' ', text)
+    compare_query = re.sub(r'\s+', ' ', compare_query).strip() or req.message
+    matches = search_catalog_items(compare_query)
+    count = requested_compare_count(req.message)
+
+    history = session_histories.get(req.session_id or "session_default", [])
+    already_asked = any(
+        isinstance(m, dict)
+        and m.get("role") == "assistant"
+        and "which" in m.get("content", "").lower()
+        and "compare" in m.get("content", "").lower()
+        for m in history
+    )
+
+    if len(matches) > count and not already_asked:
+        options = matches[:6]
+        reply = f"I found several {compare_query} options. Which {count} would you like to compare?"
+        return {
+            "type": "text",
+            "reply": reply,
+            "products": options,
+            "comparison": [],
+            "auditEntry": None,
+            "needs_consent": needs_consent,
+        }
+
+    products = matches[:count]
+    if products:
+        return {
+            "type": "comparison",
+            "reply": f"Here are {len(products)} products side by side for comparison.",
+            "products": [],
+            "comparison": products,
+            "auditEntry": None,
+            "needs_consent": needs_consent,
+        }
+
+    return {
+        "type": "text",
+        "reply": search_reply(compare_query, []),
+        "products": [],
+        "comparison": [],
+        "auditEntry": None,
+        "needs_consent": needs_consent,
+    }
 
 
 def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
@@ -558,6 +691,10 @@ def execute_tool_call(tool_name: str, tool_args: dict, session_id: str):
                                      f"Catalog search for '{query}'. Found {len(matched)} result(s).", "PASSED", "SUCCESS", session_id=session_id)
         products = matched[:6]
         return {"products": products, "count": len(products), "auditEntry": entry, "query": query}
+
+    elif tool_name == "compare_products":
+        products = compare_products_by_sku(tool_args.get("skus", []))
+        return {"comparison": products, "count": len(products), "auditEntry": None}
 
     elif tool_name == "create_order":
         sku = tool_args.get("sku", "")
@@ -1057,6 +1194,18 @@ def chat_endpoint(req: ChatRequest):
     history.append({"role": "user", "content": req.message})
     persist_chat_message(session_id, "user", req.message)
 
+    if is_catalog_browse_request(req.message):
+        res_reply = catalog_browse_reply()
+        history.append({"role": "assistant", "content": res_reply})
+        persist_chat_message(session_id, "assistant", res_reply)
+        return {"type": "catalog_browse", "reply": res_reply, "products": [], "comparison": [], "auditEntry": None, "needs_consent": needs_consent}
+
+    compare_res = ambiguous_compare_response(req, needs_consent)
+    if compare_res:
+        history.append({"role": "assistant", "content": compare_res["reply"]})
+        persist_chat_message(session_id, "assistant", compare_res["reply"])
+        return compare_res
+
     if not groq_client:
         res = _fallback_chat(req)
         res["needs_consent"] = needs_consent
@@ -1078,6 +1227,8 @@ def chat_endpoint(req: ChatRequest):
             history.append(msg)
 
             all_products = []
+            comparison_products = []
+            comparison_called = False
             audit_entry = None
             order_result = None
             search_query = req.message
@@ -1097,6 +1248,9 @@ def chat_endpoint(req: ChatRequest):
 
                 if "products" in result:
                     all_products.extend(result["products"])
+                if "comparison" in result:
+                    comparison_products.extend(result["comparison"])
+                    comparison_called = True
                 if "auditEntry" in result:
                     audit_entry = result["auditEntry"]
                 if "order_id" in result:
@@ -1112,17 +1266,20 @@ def chat_endpoint(req: ChatRequest):
             raw_reply = follow_up.choices[0].message.content or ""
             clean_reply = clean_agent_reply(raw_reply)
             returned_products = all_products[:6]
-            if all_products or any(tool_call.function.name == "search_catalog" for tool_call in msg.tool_calls):
+            if comparison_called:
+                clean_reply = f"Here are {len(comparison_products)} products side by side for comparison."
+            elif all_products or any(tool_call.function.name == "search_catalog" for tool_call in msg.tool_calls):
                 clean_reply = search_reply(search_query, returned_products)
 
             history.append({"role": "assistant", "content": clean_reply})
             persist_chat_message(session_id, "assistant", clean_reply)
 
-            response_type = "product_search" if all_products else "text"
+            response_type = "comparison" if comparison_called else "product_search" if all_products else "text"
             response_data = {
                 "type": response_type,
                 "reply": clean_reply or search_reply(search_query, returned_products),
                 "products": returned_products,
+                "comparison": comparison_products,
                 "auditEntry": audit_entry,
                 "needs_consent": needs_consent,
             }
@@ -1139,7 +1296,7 @@ def chat_endpoint(req: ChatRequest):
             clean_reply = clean_agent_reply(raw_reply)
             history.append({"role": "assistant", "content": clean_reply})
             persist_chat_message(session_id, "assistant", clean_reply)
-            return {"type": "text", "reply": clean_reply, "auditEntry": None, "needs_consent": needs_consent}
+            return {"type": "text", "reply": clean_reply, "products": [], "comparison": [], "auditEntry": None, "needs_consent": needs_consent}
 
     except Exception as e:
         safe_log(f"Groq API error: {e}")
@@ -1188,17 +1345,17 @@ def _fallback_chat(req: ChatRequest):
         if clean_prompt in ["pant", "pants", "trouser", "trousers", "bottom", "bottoms"]:
             res_reply = "Are you looking for casual jeans, formal trousers, cargo pants, or chinos?"
             persist_chat_message(session_id, "assistant", res_reply)
-            return {"type": "text", "reply": res_reply, "products": [], "auditEntry": None, "needs_consent": needs_consent}
+            return {"type": "text", "reply": res_reply, "products": [], "comparison": [], "auditEntry": None, "needs_consent": needs_consent}
 
         elif clean_prompt in ["shoe", "shoes", "sneaker", "sneakers", "footwear"]:
             res_reply = "Are you looking for running shoes, casual sneakers, training shoes, or formal loafers?"
             persist_chat_message(session_id, "assistant", res_reply)
-            return {"type": "text", "reply": res_reply, "products": [], "auditEntry": None, "needs_consent": needs_consent}
+            return {"type": "text", "reply": res_reply, "products": [], "comparison": [], "auditEntry": None, "needs_consent": needs_consent}
 
         elif clean_prompt in ["shirt", "tshirt", "t-shirt", "top", "apparel", "clothes"]:
             res_reply = "Are you looking for casual T-shirts, formal Oxford shirts, hoodies, or polo shirts?"
             persist_chat_message(session_id, "assistant", res_reply)
-            return {"type": "text", "reply": res_reply, "products": [], "auditEntry": None, "needs_consent": needs_consent}
+            return {"type": "text", "reply": res_reply, "products": [], "comparison": [], "auditEntry": None, "needs_consent": needs_consent}
 
     # Execute intelligent catalog search
     matched = search_catalog_items(req.message)
@@ -1214,6 +1371,7 @@ def _fallback_chat(req: ChatRequest):
             "type": "product_search",
             "reply": res_reply,
             "products": products,
+            "comparison": [],
             "auditEntry": entry,
             "needs_consent": needs_consent,
         }
@@ -1224,6 +1382,7 @@ def _fallback_chat(req: ChatRequest):
         "type": "text",
         "reply": res_reply,
         "products": [],
+        "comparison": [],
         "auditEntry": None,
         "needs_consent": needs_consent,
     }
