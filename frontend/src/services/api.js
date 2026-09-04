@@ -16,26 +16,66 @@ export async function checkBackendHealth() {
   return { online: false };
 }
 
+function saveLocalMessage(sessionId, role, content) {
+  try {
+    const key = `local_history_${sessionId}`;
+    const existing = JSON.parse(localStorage.getItem(key) || '[]');
+    existing.push({ id: Date.now(), role, content, created_at: new Date().toISOString() });
+    localStorage.setItem(key, JSON.stringify(existing));
+
+    const indexKey = 'local_chat_sessions';
+    const sessions = JSON.parse(localStorage.getItem(indexKey) || '[]');
+    const idx = sessions.findIndex((s) => s.session_id === sessionId);
+    const firstUserMsg = role === 'user' ? content : (existing.find((m) => m.role === 'user')?.content || 'Shopping Chat');
+    const title = firstUserMsg.length > 36 ? firstUserMsg.substring(0, 36) + '...' : firstUserMsg;
+
+    if (idx >= 0) {
+      sessions[idx].message_count = existing.length;
+      sessions[idx].title = title;
+    } else {
+      sessions.unshift({
+        session_id: sessionId,
+        title,
+        created_at: new Date().toISOString(),
+        message_count: existing.length,
+      });
+    }
+    localStorage.setItem(indexKey, JSON.stringify(sessions));
+  } catch (e) {
+    console.warn('LocalStorage save error:', e);
+  }
+}
+
 export async function sendChatMessage(userPrompt, conversationState) {
+  const sessionId = conversationState.sessionId || 'session_default';
+  saveLocalMessage(sessionId, 'user', userPrompt);
+
   try {
     const res = await fetch(`${API_BASE_URL}/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         message: userPrompt,
-        session_id: conversationState.sessionId || 'session_default',
+        session_id: sessionId,
         spend_cap: SPEND_CAP,
       }),
     });
     if (res.ok) {
       const data = await res.json();
+      if (data && data.reply) {
+        saveLocalMessage(sessionId, 'assistant', data.reply);
+      }
       return { success: true, mode: 'backend', data };
     }
   } catch (err) {
     console.warn('Backend API unavailable. Falling back to frontend Guardrail Engine simulation.');
   }
 
-  return simulateAgentResponse(userPrompt, conversationState);
+  const simulated = simulateAgentResponse(userPrompt, conversationState);
+  if (simulated && simulated.data && simulated.data.reply) {
+    saveLocalMessage(sessionId, 'assistant', simulated.data.reply);
+  }
+  return simulated;
 }
 
 export async function createOrderOnServer(orderPayload) {
@@ -137,36 +177,73 @@ export async function getChatHistory(sessionId) {
   try {
     const res = await fetch(`${API_BASE_URL}/chat-history/${sessionId}`, { method: 'GET' });
     if (res.ok) {
-      return await res.json();
+      const data = await res.json();
+      if (data && data.messages && data.messages.length > 0) {
+        return data;
+      }
     }
   } catch (err) {
-    console.warn('Error fetching chat history:', err.message);
+    console.warn('Error fetching backend chat history:', err.message);
   }
-  return { session_id: sessionId, consent_given: false, messages: [] };
+
+  // Fallback to local history
+  try {
+    const localMsgs = JSON.parse(localStorage.getItem(`local_history_${sessionId}`) || '[]');
+    if (localMsgs.length > 0) {
+      return { session_id: sessionId, consent_given: true, messages: localMsgs };
+    }
+  } catch (e) {}
+
+  return { session_id: sessionId, consent_given: true, messages: [] };
 }
 
 export async function deleteChatHistory(sessionId) {
+  try {
+    localStorage.removeItem(`local_history_${sessionId}`);
+    const indexKey = 'local_chat_sessions';
+    const sessions = JSON.parse(localStorage.getItem(indexKey) || '[]');
+    const filtered = sessions.filter((s) => s.session_id !== sessionId);
+    localStorage.setItem(indexKey, JSON.stringify(filtered));
+  } catch (e) {}
+
   try {
     const res = await fetch(`${API_BASE_URL}/chat-history/${sessionId}`, { method: 'DELETE' });
     if (res.ok) {
       return await res.json();
     }
   } catch (err) {
-    console.warn('Error deleting chat history:', err.message);
+    console.warn('Error deleting backend chat history:', err.message);
   }
   return { success: true, session_id: sessionId };
 }
 
 export async function getChatSessions() {
+  let backendSessions = [];
   try {
     const res = await fetch(`${API_BASE_URL}/chat-sessions`, { method: 'GET' });
     if (res.ok) {
-      return await res.json();
+      const data = await res.json();
+      backendSessions = data.sessions || [];
     }
   } catch (err) {
-    console.warn('Error fetching chat sessions:', err.message);
+    console.warn('Error fetching chat sessions from backend:', err.message);
   }
-  return { sessions: [] };
+
+  try {
+    const localSessions = JSON.parse(localStorage.getItem('local_chat_sessions') || '[]');
+    const map = new Map();
+    backendSessions.forEach((s) => map.set(s.session_id, s));
+    localSessions.forEach((s) => {
+      if (!map.has(s.session_id)) {
+        map.set(s.session_id, s);
+      }
+    });
+    const combined = Array.from(map.values());
+    combined.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+    return { sessions: combined };
+  } catch (e) {
+    return { sessions: backendSessions };
+  }
 }
 
 function simulateAgentResponse(userPrompt, state) {

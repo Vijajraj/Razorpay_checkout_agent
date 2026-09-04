@@ -168,7 +168,7 @@ def trim_in_memory_caches():
 
 
 def get_session_consent(session_id: str) -> Optional[bool]:
-    """Check if session consent has been given, declined, or is undecided."""
+    """Check if session consent has been given, declined, or is default True."""
     if session_id in session_consent_status:
         return session_consent_status[session_id]
 
@@ -183,14 +183,15 @@ def get_session_consent(session_id: str) -> Optional[bool]:
         except Exception as e:
             safe_log(f"Error checking session consent: {e}")
 
-    return None
+    # Default to True so chats save automatically
+    return True
 
 
 def persist_chat_message(session_id: str, role: str, content: Optional[str]):
-    """Store chat message in Neon Postgres DB if consent is given. Never store if consent is declined/undecided."""
+    """Store chat message in Neon Postgres DB unless consent was explicitly declined."""
     consent = get_session_consent(session_id)
-    if consent is not True:
-        return  # Privacy guard: Do NOT write message content if consent is not explicitly True
+    if consent is False:
+        return  # Privacy guard: Do NOT write message content if consent was explicitly declined
 
     if not content:
         return
