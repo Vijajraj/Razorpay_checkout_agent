@@ -173,9 +173,14 @@ export async function createOrderOnServer(orderPayload) {
     } catch {
       // Keep the generic message for a non-JSON error response.
     }
-    throw new Error(detail);
+    const error = new Error(detail);
+    // A static frontend deployment has no API route. Treat only missing or
+    // unavailable infrastructure as demo mode; preserve real validation
+    // responses such as 400 stock/spend-cap checks as user-visible errors.
+    error.isServiceUnavailable = [404, 502, 503, 504].includes(res.status);
+    throw error;
   } catch (err) {
-    if (!(err instanceof TypeError)) {
+    if (!(err instanceof TypeError) && !err.isServiceUnavailable) {
       throw err;
     }
     console.warn('Server order creation unavailable. Using local order simulation:', err.message);
