@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Moon, Sun, ShieldCheck, Settings, PanelLeft, Library } from 'lucide-react';
+import { Moon, Sun, ShieldCheck, Settings, PanelLeft, Library, ShoppingBag } from 'lucide-react';
 
 export default function Header({
   theme,
@@ -14,6 +14,9 @@ export default function Header({
   onClearChatHistory,
   sidebarCollapsed = false,
   onToggleSidebar,
+  mobileSummaryOpen = false,
+  onToggleMobileSummary,
+  hasSelectedItem = false,
 }) {
   const [showSettings, setShowSettings] = useState(false);
 
@@ -25,7 +28,6 @@ export default function Header({
             className={`icon-btn sidebar-toggle-header ${!sidebarCollapsed ? 'active' : ''}`}
             onClick={onToggleSidebar}
             title="Toggle Saved Chats Sidebar"
-            style={{ marginRight: '6px' }}
           >
             <PanelLeft size={16} />
           </button>
@@ -33,23 +35,35 @@ export default function Header({
         <div className="brand-icon">
           <img src="/agent-logo.png" alt="Agent Logo" className="brand-logo-img" />
         </div>
-        <h1>Razorpay Agentic Store</h1>
+        <h1 className="brand-heading">Razorpay Agentic Store</h1>
 
         {/* Compact Agent Status Badge */}
         <div className="agent-status-pill">
           <span className="status-dot green"></span>
-          <span>Agent Online</span>
+          <span className="status-text">Agent Online</span>
         </div>
       </div>
 
       <div className="header-controls">
+        {onToggleMobileSummary && (
+          <button
+            className={`icon-btn mobile-summary-btn ${mobileSummaryOpen ? 'active' : ''}`}
+            onClick={onToggleMobileSummary}
+            title="Toggle Purchase Summary"
+          >
+            <ShoppingBag size={16} />
+            <span className="btn-label">Summary</span>
+            {hasSelectedItem && <span className="badge-count active-item">•</span>}
+          </button>
+        )}
+
         <button
           className={`icon-btn ${catalogOpen ? 'active' : ''}`}
           onClick={onToggleCatalog}
           title="Open Catalog Browser"
         >
           <Library size={16} />
-          <span>Browse Catalog</span>
+          <span className="btn-label">Catalog</span>
         </button>
 
         <button
@@ -58,7 +72,7 @@ export default function Header({
           title="Open Audit Log Drawer"
         >
           <ShieldCheck size={16} />
-          <span>Audit Trail</span>
+          <span className="btn-label">Audit Trail</span>
           {blockedCount > 0 && (
             <span className="badge-count blocked">{blockedCount}</span>
           )}

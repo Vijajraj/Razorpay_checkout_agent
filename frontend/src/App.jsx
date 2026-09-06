@@ -45,10 +45,10 @@ export default function App() {
   const [sessions, setSessions] = useState([]);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  // Selected product & checkout state for Right Column Purchase Summary Panel
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedQty, setSelectedQty] = useState(1);
   const [activeStep, setActiveStep] = useState(1); // 1: SEARCH, 2: SELECT, 3: VERIFY, 4: ORDER, 5: PAY
+  const [mobileSummaryOpen, setMobileSummaryOpen] = useState(false);
 
   // Privacy Consent & Chat History State
   const [showConsentPrompt, setShowConsentPrompt] = useState(false);
@@ -173,6 +173,7 @@ export default function App() {
     setSelectedProduct(product);
     setSelectedQty(initialQty);
     setActiveStep(2); // Step 2: Product Selected
+    setMobileSummaryOpen(true);
 
     const selectMsg = {
       id: Date.now(),
@@ -188,6 +189,7 @@ export default function App() {
     setSelectedProduct(null);
     setSelectedQty(1);
     setActiveStep(1);
+    setMobileSummaryOpen(false);
   };
 
   const handleSendMessage = async (userText) => {
@@ -372,6 +374,9 @@ export default function App() {
         onClearChatHistory={handleClearChatHistory}
         sidebarCollapsed={sidebarCollapsed}
         onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
+        mobileSummaryOpen={mobileSummaryOpen}
+        onToggleMobileSummary={() => setMobileSummaryOpen(!mobileSummaryOpen)}
+        hasSelectedItem={!!selectedProduct}
       />
 
       <div className="app-main-layout">
@@ -379,8 +384,14 @@ export default function App() {
         <ChatSidebar
           sessions={sessions}
           activeSessionId={sessionId}
-          onSelectSession={handleSelectSession}
-          onNewChat={handleNewChat}
+          onSelectSession={(sid) => {
+            handleSelectSession(sid);
+            setSidebarCollapsed(true);
+          }}
+          onNewChat={() => {
+            handleNewChat();
+            setSidebarCollapsed(true);
+          }}
           onDeleteSession={handleDeleteSession}
           collapsed={sidebarCollapsed}
           onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -400,7 +411,7 @@ export default function App() {
         </div>
 
         {/* Right Column: Persistent Purchase Summary Panel */}
-        <div className="purchase-summary-column">
+        <div className={`purchase-summary-column ${mobileSummaryOpen ? 'mobile-open' : ''}`}>
           <PurchaseSummaryPanel
             key={selectedProduct?.sku || 'empty-purchase'}
             selectedProduct={selectedProduct}
@@ -413,6 +424,14 @@ export default function App() {
             sessionId={sessionId}
           />
         </div>
+
+        {/* Mobile Backdrop Overlays */}
+        {!sidebarCollapsed && (
+          <div className="mobile-overlay-backdrop sidebar-backdrop" onClick={() => setSidebarCollapsed(true)} />
+        )}
+        {mobileSummaryOpen && (
+          <div className="mobile-overlay-backdrop summary-backdrop" onClick={() => setMobileSummaryOpen(false)} />
+        )}
       </div>
 
       <AuditLogPanel

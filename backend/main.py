@@ -516,7 +516,8 @@ SYNONYM_MAP = {
     "tees": ["tshirt"],
     "t-shirt": ["tshirt"],
     "tshirt": ["tshirt"],
-    "shirt": ["shirt", "tshirt", "polo", "kurta"],
+    "shirt": ["shirt", "tshirt", "t-shirt", "polo", "kurta", "top"],
+    "shirts": ["shirt", "tshirt", "t-shirt", "polo", "kurta", "top"],
     "top": ["tshirt", "shirt", "hoodie", "sweater", "blazer", "dress", "kurta"],
     "tops": ["tshirt", "shirt", "hoodie", "sweater", "blazer", "dress", "kurta"],
 }
@@ -530,6 +531,8 @@ def search_catalog_items(query: str, max_price: Optional[float] = None) -> List[
     for w in words:
         if w in SYNONYM_MAP:
             search_keywords.update(SYNONYM_MAP[w])
+        elif w.endswith("s") and w[:-1] in SYNONYM_MAP:
+            search_keywords.update(SYNONYM_MAP[w[:-1]])
 
     matched_dict = {}
     for item in catalog:
@@ -721,7 +724,7 @@ class ChatRequest(BaseModel):
 
 class CreateOrderRequest(BaseModel):
     sku: str = Field(min_length=1, max_length=32)
-    quantity: int = Field(default=1, ge=1, le=100)
+    quantity: int = Field(default=1)
     customer_name: str = Field(min_length=1, max_length=100)
     customer_phone: str = Field(min_length=10, max_length=15)
     address_line1: str = Field(min_length=1, max_length=200)
@@ -739,7 +742,7 @@ class VerifyPaymentRequest(BaseModel):
 
 class VerifyStockRequest(BaseModel):
     sku: str = Field(min_length=1, max_length=32)
-    quantity: int = Field(default=1, ge=1, le=100)
+    quantity: int = Field(default=1)
     session_id: Optional[str] = Field(default="session_default", min_length=1, max_length=100)
 
 class ChatConsentRequest(BaseModel):
