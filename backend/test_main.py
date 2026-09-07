@@ -272,9 +272,11 @@ def test_broad_catalog_request_bypasses_llm_with_browse_reply():
 
 
 def test_ambiguous_compare_two_shirts_asks_for_specific_products():
+    import time
+    sess_id = f"test_compare_shirts_sess_{int(time.time()*1000)}"
     response = client.post("/api/chat", json={
         "message": "compare two shirts",
-        "session_id": "test_compare_shirts_sess",
+        "session_id": sess_id,
     })
 
     assert response.status_code == 200

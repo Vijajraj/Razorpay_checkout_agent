@@ -40,10 +40,12 @@ export default function App() {
   const [catalogOpen, setCatalogOpen] = useState(false);
   const [catalogProducts, setCatalogProducts] = useState([]);
 
-  // Dynamic active session ID & saved sessions list
-  const [sessionId, setSessionId] = useState(() => `sess_${Math.random().toString(36).substring(2, 9)}`);
+  // Dynamic active session ID & saved sessions list (persisted across reloads)
+  const [sessionId, setSessionId] = useState(() => {
+    return localStorage.getItem('active_session_id') || `sess_${Math.random().toString(36).substring(2, 9)}`;
+  });
   const [sessions, setSessions] = useState([]);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => window.innerWidth < 768);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedQty, setSelectedQty] = useState(1);
@@ -52,12 +54,20 @@ export default function App() {
 
   // Privacy Consent & Chat History State
   const [showConsentPrompt, setShowConsentPrompt] = useState(false);
-  const [consentGiven, setConsentGiven] = useState(null);
+  const [consentGiven, setConsentGiven] = useState(() => {
+    return localStorage.getItem('chat_consent_pref') === 'true' ? true : null;
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme_pref', theme);
   }, [theme]);
+
+  useEffect(() => {
+    if (sessionId) {
+      localStorage.setItem('active_session_id', sessionId);
+    }
+  }, [sessionId]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -107,15 +117,22 @@ export default function App() {
       const products = await getCatalog();
       setCatalogProducts(products);
 
+      const savedConsentPref = localStorage.getItem('chat_consent_pref');
+
       // Check if stored chat history exists for active sessionId
       const historyRes = await getChatHistory(sessionId);
-      if (historyRes && historyRes.consent_given && historyRes.messages && historyRes.messages.length > 0) {
+      if (historyRes && historyRes.messages && historyRes.messages.length > 0) {
         const loaded = historyRes.messages.map((m, idx) => ({
           id: m.id || idx + 10,
           sender: m.role === 'user' ? 'user' : 'assistant',
           text: m.content,
         }));
         setMessages(loaded);
+        setConsentGiven(true);
+        setShowConsentPrompt(false);
+      } else if (savedConsentPref === 'true') {
+        // Auto-enable consent for new sessions if user already granted global consent
+        await sendChatConsent(sessionId, true);
         setConsentGiven(true);
         setShowConsentPrompt(false);
       }
@@ -127,6 +144,7 @@ export default function App() {
   const handleSelectSession = async (sid) => {
     if (sid === sessionId) return;
     setSessionId(sid);
+    localStorage.setItem('active_session_id', sid);
     setSelectedProduct(null);
     setSelectedQty(1);
     setActiveStep(1);
@@ -147,15 +165,24 @@ export default function App() {
   };
 
   // Handle starting a fresh session (+ New Chat)
-  const handleNewChat = () => {
+  const handleNewChat = async () => {
     const newId = `sess_${Math.random().toString(36).substring(2, 9)}`;
     setSessionId(newId);
+    localStorage.setItem('active_session_id', newId);
     setMessages([DEFAULT_WELCOME_MESSAGE]);
     setSelectedProduct(null);
     setSelectedQty(1);
     setActiveStep(1);
-    setConsentGiven(null);
-    setShowConsentPrompt(false);
+
+    const savedConsentPref = localStorage.getItem('chat_consent_pref');
+    if (savedConsentPref === 'true') {
+      await sendChatConsent(newId, true);
+      setConsentGiven(true);
+      setShowConsentPrompt(false);
+    } else {
+      setConsentGiven(null);
+      setShowConsentPrompt(false);
+    }
   };
 
   // Handle deleting a session
@@ -310,12 +337,18 @@ export default function App() {
   const handleConsentChoice = async (consent) => {
     setShowConsentPrompt(false);
     setConsentGiven(consent);
+    if (consent) {
+      localStorage.setItem('chat_consent_pref', 'true');
+    } else {
+      localStorage.setItem('chat_consent_pref', 'false');
+    }
     await sendChatConsent(sessionId, consent);
     refreshSessionsList();
   };
 
   const handleClearChatHistory = async () => {
     await deleteChatHistory(sessionId);
+    localStorage.removeItem('chat_consent_pref');
     setMessages([DEFAULT_WELCOME_MESSAGE]);
     setConsentGiven(null);
     setShowConsentPrompt(false);

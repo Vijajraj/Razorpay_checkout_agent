@@ -1201,7 +1201,23 @@ def chat_endpoint(req: ChatRequest):
     needs_consent = (get_session_consent(session_id) is None)
 
     if session_id not in session_histories:
-        session_histories[session_id] = [{"role": "system", "content": SYSTEM_PROMPT}]
+        hist = [{"role": "system", "content": SYSTEM_PROMPT}]
+        if SessionLocal:
+            try:
+                db = SessionLocal()
+                records = db.query(ChatHistoryModel)\
+                    .filter(ChatHistoryModel.session_id == session_id)\
+                    .filter(ChatHistoryModel.consent_given == True)\
+                    .filter(ChatHistoryModel.content.isnot(None))\
+                    .order_by(ChatHistoryModel.id.asc())\
+                    .all()
+                db.close()
+                for r in records:
+                    if r.role in ["user", "assistant"] and r.content:
+                        hist.append({"role": r.role, "content": r.content})
+            except Exception as e:
+                safe_log(f"Error hydrating session history from DB: {e}")
+        session_histories[session_id] = hist
 
     history = session_histories[session_id]
     history.append({"role": "user", "content": req.message})
