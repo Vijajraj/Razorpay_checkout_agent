@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Plus, Minus, ArrowRight, ArrowLeft, CheckCircle2, CreditCard, Loader2, AlertCircle, RefreshCw, X } from 'lucide-react';
-import { createOrderOnServer, verifyPaymentOnServer, verifyStock } from '../services/api';
+import { ShoppingBag, Plus, Minus, ArrowRight, ArrowLeft, CheckCircle2, CreditCard, Loader2, AlertCircle, RefreshCw, X, ShieldCheck } from 'lucide-react';
+import { createOrderOnServer, verifyPaymentOnServer, verifyStock, loadRazorpaySDK } from '../services/api';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';
 
@@ -144,7 +144,12 @@ export default function PurchaseSummaryPanel({
         return;
       }
 
+      if (serverRes.payment_mode === 'razorpay' && serverRes.razorpay_key_id && serverRes.razorpay_key_id !== 'rzp_test_mockkey123') {
+        await loadRazorpaySDK();
+      }
+
       const canLaunchRazorpay =
+        typeof window !== 'undefined' &&
         window.Razorpay &&
         serverRes.payment_mode === 'razorpay' &&
         serverRes.razorpay_key_id &&
@@ -266,7 +271,15 @@ export default function PurchaseSummaryPanel({
         {step === 1 && (
           <div className="panel-step">
             <div className="selected-product-card">
-              <img src={imgSrc} alt={selectedProduct.name} className="product-thumb" onError={() => setImgSrc(DEFAULT_FALLBACK_IMAGE)} />
+              <img
+                src={imgSrc}
+                alt={selectedProduct.name}
+                className="product-thumb"
+                loading="lazy"
+                decoding="async"
+                referrerPolicy="no-referrer"
+                onError={() => setImgSrc(DEFAULT_FALLBACK_IMAGE)}
+              />
               <div>
                 <span className="product-sku">{selectedProduct.sku}</span>
                 <h4 className="product-name">{selectedProduct.name}</h4>

@@ -142,17 +142,19 @@ export default function App() {
   }, []);
 
   const refreshAuditLogs = useCallback(async () => {
-    const logs = await getAuditLogs();
-    if (logs && Array.isArray(logs) && logs.length > 0) {
+    const logs = await getAuditLogs(sessionId);
+    if (logs && Array.isArray(logs)) {
       setAuditLogs(logs);
     }
-  }, []);
+  }, [sessionId]);
 
   const openCatalogPanel = useCallback(async () => {
     setCatalogOpen(true);
-    const products = await getCatalog();
-    setCatalogProducts(products);
-  }, []);
+    if (catalogProducts.length === 0) {
+      const products = await getCatalog();
+      setCatalogProducts(products);
+    }
+  }, [catalogProducts.length]);
 
   useEffect(() => {
     async function verifyHealthAndLoad() {
@@ -161,8 +163,6 @@ export default function App() {
 
       await refreshSessionsList();
       await refreshAuditLogs();
-      const products = await getCatalog();
-      setCatalogProducts(products);
 
       const savedConsentPref = localStorage.getItem('chat_consent_pref');
 
@@ -421,7 +421,7 @@ export default function App() {
 
   const handleClearLogs = async () => {
     await clearAuditLogs();
-    const logs = await getAuditLogs();
+    const logs = await getAuditLogs(sessionId);
     if (logs && Array.isArray(logs)) {
       setAuditLogs(logs);
     } else {

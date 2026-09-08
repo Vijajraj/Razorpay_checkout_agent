@@ -4,7 +4,9 @@ dist/
 
 # Environment variables (NEVER commit secrets)
 .env
+*.env
 *.env.local
+backend/.env
 
 # OS files
 .DS_Store

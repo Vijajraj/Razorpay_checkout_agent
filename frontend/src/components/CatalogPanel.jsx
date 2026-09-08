@@ -13,6 +13,8 @@ function CatalogCard({ item, onSelectProduct }) {
           className="catalog-product-image"
           src={imageSrc}
           alt={item.name}
+          loading="lazy"
+          decoding="async"
           referrerPolicy="no-referrer"
           onError={() => setImageSrc(null)}
         />
@@ -83,8 +85,12 @@ export default function CatalogPanel({ open, onClose, products, onSelectProduct 
     setVisibleCount((prev) => prev + PAGE_SIZE);
   };
 
+  if (!open) {
+    return <aside className="audit-drawer catalog-drawer" aria-hidden="true" />;
+  }
+
   return (
-    <aside className={`audit-drawer catalog-drawer ${open ? 'open' : ''}`}>
+    <aside className="audit-drawer catalog-drawer open">
       <div className="drawer-header">
         <div className="drawer-title">
           <Library size={16} color="#6366f1" />

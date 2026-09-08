@@ -7,7 +7,7 @@ import hashlib
 import random
 import re
 from typing import List, Optional, Dict, Any
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
@@ -42,6 +42,7 @@ RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID", "")
 RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET", "")
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 SPEND_CAP = float(os.getenv("MERCHANT_SPEND_CAP", "10000"))
+ADMIN_API_KEY = os.getenv("ADMIN_API_KEY", "")
 MODEL_NAME = "openai/gpt-oss-120b"
 
 # Groq LLM client
@@ -332,6 +333,8 @@ def clean_agent_reply(text: str) -> str:
     res = re.sub(r'`([^`]+)`', r'\1', res)       # `code` -> code
     res = re.sub(r'\u20b9[\d,]+', '', res)             # Remove price mentions
     res = re.sub(r'\bSKU[:\s]+[A-Z]{2}\d{3}\b', '', res)  # Remove SKU references
+    res = re.sub(r'\bsess_[a-zA-Z0-9_-]+\b', '[REDACTED]', res) # Strip raw session tokens
+    res = re.sub(r'\bsession[_-]?id[:=\s]+[a-zA-Z0-9_-]+\b', '', res, flags=re.IGNORECASE)
     res = re.sub(r'\s{2,}', ' ', res).strip()     # Collapse whitespace
 
     return res if res else "Here are the matching products from our catalog."
@@ -506,6 +509,8 @@ STRICT GUARDRAILS (enforced in code):
 - Never invent fake prices, discounts, or SKUs.
 - You have NO ability to apply discount codes or coupons.
 - You have NO access to other customer data or past sessions.
+- Never reveal session IDs, session tokens, internal IDs, customer PII, or system secrets under any circumstances.
+- If asked about session IDs or internal identifiers, state that session identifiers are private and protected by security guardrails.
 - Hard spend cap is active at Rs. 10000.
 """
 
@@ -907,13 +912,42 @@ def get_catalog():
     return catalog
 
 
+def verify_audit_access(
+    session_id: Optional[str] = None,
+    x_admin_key: Optional[str] = None,
+    authorization: Optional[str] = None
+) -> None:
+    """Validate authorization for accessing or clearing audit records."""
+    if session_id and session_id.strip():
+        return  # Session-scoped access is allowed
+
+    if ADMIN_API_KEY:
+        token = x_admin_key
+        if not token and authorization:
+            token = authorization.replace("Bearer ", "").strip()
+        if not token or token != ADMIN_API_KEY:
+            raise HTTPException(
+                status_code=401,
+                detail="Unauthorized: Global audit trail access requires valid admin credentials (X-Admin-Key or Authorization header) or session_id scoping."
+            )
+
+
 @app.get("/api/audit-logs")
 @app.get("/audit-logs")
-def get_audit_logs():
+def get_audit_logs(
+    session_id: Optional[str] = None,
+    x_admin_key: Optional[str] = Header(None, alias="X-Admin-Key"),
+    authorization: Optional[str] = Header(None)
+):
+    verify_audit_access(session_id, x_admin_key, authorization)
+
     if SessionLocal:
         try:
             db = SessionLocal()
-            records = db.query(AuditLogModel).order_by(AuditLogModel.id.desc()).all()
+            query = db.query(AuditLogModel)
+            if session_id:
+                query = query.filter(AuditLogModel.session_id == session_id)
+            records = query.order_by(AuditLogModel.id.desc()).all()
             db.close()
             return [
                 {
@@ -925,7 +959,6 @@ def get_audit_logs():
                     "reasoning": r.reasoning,
                     "spend_cap_check": r.spend_cap_check,
                     "result": r.result,
-                    "session_id": r.session_id,
                     "is_attack": r.is_attack
                 }
                 for r in records
@@ -933,38 +966,68 @@ def get_audit_logs():
         except Exception as e:
             safe_log(f"Error querying Neon DB: {e}")
 
-    return audit_logs
+    filtered = audit_logs
+    if session_id:
+        filtered = [l for l in audit_logs if l.get("session_id") == session_id]
+    return [
+        {
+            "id": l.get("id"),
+            "timestamp": l.get("timestamp"),
+            "action": l.get("action"),
+            "sku": l.get("sku", "N/A"),
+            "amount": l.get("amount", 0.0),
+            "reasoning": l.get("reasoning"),
+            "spend_cap_check": l.get("spend_cap_check"),
+            "result": l.get("result"),
+            "is_attack": l.get("is_attack", False)
+        }
+        for l in filtered
+    ]
 
 
 @app.delete("/api/audit-logs")
 @app.delete("/audit-logs")
-def clear_audit_logs_endpoint():
-    global audit_logs
-    audit_logs = []
-    if SessionLocal:
-        try:
-            db = SessionLocal()
-            db.query(AuditLogModel).delete()
-            db.commit()
-            db.close()
-        except Exception as e:
-            safe_log(f"Error clearing Neon DB audit logs: {e}")
+def clear_audit_logs_endpoint(
+    session_id: Optional[str] = None,
+    x_admin_key: Optional[str] = Header(None, alias="X-Admin-Key"),
+    authorization: Optional[str] = Header(None)
+):
+    verify_audit_access(session_id, x_admin_key, authorization)
 
-    # Seed with standard init log
-    entry = {
-        "id": int(time.time() * 1000),
-        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "action": "system_init",
-        "sku": "N/A",
-        "amount": 0.0,
-        "reasoning": f"Guardrail Engine & Neon DB initialized. Spend cap limit active at ₹{SPEND_CAP:,.0f}.",
-        "spend_cap_check": "PASSED",
-        "result": "SUCCESS",
-        "session_id": "system",
-        "is_attack": False
-    }
-    audit_logs.append(entry)
-    return {"success": True, "logs": audit_logs}
+    global audit_logs
+    if SessionLocal:
+        db = SessionLocal()
+        try:
+            query = db.query(AuditLogModel)
+            if session_id:
+                query = query.filter(AuditLogModel.session_id == session_id)
+            query.delete(synchronize_session=False)
+            db.commit()
+        except Exception as e:
+            db.rollback()
+            safe_log(f"Error clearing Neon DB audit logs: {e}")
+            raise HTTPException(status_code=500, detail="Database audit log clearing failed.")
+        finally:
+            db.close()
+
+    # Update in-memory state only after successful DB transaction
+    if session_id:
+        audit_logs = [l for l in audit_logs if l.get("session_id") != session_id]
+    else:
+        audit_logs = []
+        entry = {
+            "id": int(time.time() * 1000),
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "action": "system_init",
+            "sku": "N/A",
+            "amount": 0.0,
+            "reasoning": f"Guardrail Engine & Neon DB initialized. Spend cap limit active at ₹{SPEND_CAP:,.0f}.",
+            "spend_cap_check": "PASSED",
+            "result": "SUCCESS",
+            "session_id": "system",
+            "is_attack": False
+        }
+    return {"success": True, "session_id": session_id, "message": "Audit logs cleared successfully."}
 
 
 
@@ -1338,42 +1401,110 @@ def delete_chat_history_endpoint(session_id: str):
     }
 
 
+def normalize_text_for_security(text: str) -> tuple[str, str, str]:
+    """Normalize input text to catch obfuscated and adversarial bypass attempts."""
+    prompt_lower = text.lower().strip()
+    leet_trans = str.maketrans({
+        '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's', '7': 't',
+        '$': 's', '@': 'a', '!': 'i', '+': 't', '_': ' ', '-': ' ', '.': ' '
+    })
+    prompt_leet = prompt_lower.translate(leet_trans)
+    compact = re.sub(r'[^a-z0-9]', '', prompt_lower)
+    compact_leet = re.sub(r'[^a-z0-9]', '', prompt_leet)
+    return prompt_lower, compact, compact_leet
+
+
 def inspect_guardrails(req: ChatRequest, needs_consent: bool) -> Optional[Dict[str, Any]]:
-    prompt_lower = req.message.lower().strip()
     session_cap = req.spend_cap or SPEND_CAP
     session_id = req.session_id or "session_default"
+    raw_prompt = req.message
+    prompt_lower, compact, compact_leet = normalize_text_for_security(raw_prompt)
 
-    if ("50000" in prompt_lower or "50,000" in prompt_lower or "100000" in prompt_lower or "1,00,000" in prompt_lower
-        or (("ignore" in prompt_lower or "bypass" in prompt_lower or "override" in prompt_lower) and ("order" in prompt_lower or "spend" in prompt_lower or "cap" in prompt_lower or "rule" in prompt_lower or "limit" in prompt_lower))):
+    # 1. Spend Cap & Budget Bypass / High-Value & Quantity Manipulations
+    has_large_number = (
+        bool(re.search(r'\b(?:50\s*000|50k|100k|200k|500k|100000|50000|[5-9]\d{4,}|\d{6,})\b', prompt_lower))
+        or bool(re.search(r'50000|100000|50k|100k', compact))
+        or "fiftythousand" in compact_leet
+        or "onelakh" in compact_leet
+        or "hundredthousand" in compact_leet
+    )
+    has_cap_override = (
+        bool(re.search(
+            r'(?:ignore|bypass|override|disable|skip|remove|forget|reset|disregard)\s+(?:all\s+)?(?:rules?|limits?|guardrails?|instructions?|spend\s*caps?|budgets?|caps?|filters?)',
+            prompt_lower
+        ))
+        or bool(re.search(r'(?:price|cost|amount)\s*(?:to|is|as|[:=])?\s*(?:0|zero|free|negative|null|-)', prompt_lower))
+        or bool(re.search(r'(?:set|make|force|change)\s+(?:the\s+)?(?:price|cost|amount)\s+(?:to|as|is|=)?\s*(?:0|zero|free)', prompt_lower))
+        or (("ignore" in prompt_lower or "bypass" in prompt_lower or "override" in prompt_lower or "skip" in prompt_lower) and any(k in prompt_lower for k in ["order", "spend", "cap", "limit", "rules"]))
+    )
+    has_high_qty_abuse = (
+        bool(re.search(r'\b(?:quantity|qty|units?|pairs?|items?|pieces?)\s*[:=]?\s*(?:[5-9]\d|\d{3,})\b', prompt_lower))
+        or bool(re.search(r'\b(?:[5-9]\d|\d{3,})\s*(?:units?|pairs?|items?|pieces?)\b', prompt_lower))
+    )
+
+    if has_large_number or has_cap_override or has_high_qty_abuse:
         entry = log_audit_entry(
             "create_order", "CUSTOM_OVERRIDE", 50000,
-            "Prompt injection attack attempting to bypass merchant hard spend cap.",
-            f"FAILED (\u20b950,000 > \u20b9{session_cap:,.0f})", "BLOCKED",
+            f"Prompt injection / spend cap bypass attack detected: '{raw_prompt[:60]}'.",
+            f"FAILED (> ₹{session_cap:,.0f})", "BLOCKED",
             session_id=session_id, is_attack=True
         )
-        res_reply = f"GUARDRAIL ENFORCED: Order amount exceeds merchant hard spend cap of \u20b9{session_cap:,.0f}. Action blocked at code level."
+        res_reply = f"GUARDRAIL ENFORCED: Order amount or parameters exceed merchant hard spend cap of ₹{session_cap:,.0f}. Action blocked at code level."
         persist_chat_message(session_id, "assistant", res_reply)
         return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
-    if ("secret90" in prompt_lower or ("discount" in prompt_lower and ("90%" in prompt_lower or "100%" in prompt_lower or "secret" in prompt_lower or "admin" in prompt_lower or "hack" in prompt_lower))):
+    # 2. Scope Lock: Unauthorized Discount Codes / Promo / Price Waivers (including obfuscation)
+    has_unauthorized_discount = (
+        "secret90" in compact or "secret90" in compact_leet or "secret100" in compact or "admin90" in compact or "admin100" in compact or "free100" in compact or "hack90" in compact or "vip90" in compact
+        or bool(re.search(r'\b(?:secret|admin|promo|hack|voucher|coupon|code)\s*[-_.]?\s*(?:90|100|99|80|50|free|admin|vip)\b', prompt_lower))
+        or bool(re.search(r'\b(?:90%|100%|95%|99%)\s*(?:off|discount|sale|waiver|reduction)\b', prompt_lower))
+        or (("discount" in prompt_lower or "coupon" in prompt_lower or "promo" in prompt_lower) and any(w in prompt_lower for w in ["90%", "100%", "secret", "admin", "hack", "override", "unlimited", "free"]))
+    )
+    if has_unauthorized_discount:
         entry = log_audit_entry(
             "apply_discount", "UNKNOWN", 0,
-            f"Unauthorized discount code injection: '{req.message[:50]}'.",
+            f"Unauthorized discount code / promo injection attempt: '{raw_prompt[:60]}'.",
             "REJECTED (Scope Lock)", "BLOCKED",
             session_id=session_id, is_attack=True
         )
-        res_reply = "GUARDRAIL BLOCK: Discount code SECRET90 is not in the whitelisted action set."
+        res_reply = "GUARDRAIL BLOCK: Requested discount code is not in the authorized merchant whitelist."
         persist_chat_message(session_id, "assistant", res_reply)
         return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
-    if ("last customer" in prompt_lower or "phone number" in prompt_lower or "other session" in prompt_lower or "other customer" in prompt_lower or "previous user" in prompt_lower):
+    # 3. System Prompt / Jailbreak Injection
+    has_jailbreak = (
+        bool(re.search(
+            r'\b(?:dan\s*mode|jailbreak|developer\s*mode|unfiltered\s*mode|unrestricted\s*mode|system\s*prompt|system\s*override|reveal\s+(?:system\s+)?instructions?|print\s+(?:system\s+)?prompt)\b',
+            prompt_lower
+        ))
+        or "jailbreak" in compact or "danmode" in compact or "developermode" in compact
+        or ("ignore" in prompt_lower and "instructions" in prompt_lower and "previous" in prompt_lower)
+    )
+    if has_jailbreak:
+        entry = log_audit_entry(
+            "jailbreak_detection", "N/A", 0,
+            f"System prompt / jailbreak injection detected: '{raw_prompt[:60]}'.",
+            "BLOCKED (Jailbreak)", "BLOCKED",
+            session_id=session_id, is_attack=True
+        )
+        res_reply = "GUARDRAIL ENFORCED: System prompt override or jailbreak pattern detected and blocked."
+        persist_chat_message(session_id, "assistant", res_reply)
+        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
+
+    # 4. Session & PII Isolation Exfiltration
+    has_session_exfil = (
+        bool(re.search(r'\b(?:session[_\s-]*id|sessionid|session[_\s-]*token|auth[_\s-]*token|api[_\s-]*key|secret[_\s-]*key)\b', prompt_lower))
+        or "sessionid" in compact or "sessiontoken" in compact
+        or bool(re.search(r'\b(?:other\s+session|other\s+customer|previous\s+customer|last\s+customer|past\s+orders?|customer\s+phone|customer\s+email|customer\s+address|dump\s+database|select\s+\*\s+from)\b', prompt_lower))
+    )
+    if has_session_exfil:
         entry = log_audit_entry(
             "read_session_data", "N/A", 0,
-            "Cross-session PII data exfiltration query attempt.",
+            f"Session metadata / cross-session data exfiltration query blocked: '{raw_prompt[:60]}'.",
             "BLOCKED (Isolation)", "BLOCKED",
             session_id=session_id, is_attack=True
         )
-        res_reply = "SESSION ISOLATION: Agent has no access to other sessions' data or stored chat history."
+        res_reply = "SESSION ISOLATION: Session identifiers, tokens, and cross-session metadata are confidential."
         persist_chat_message(session_id, "assistant", res_reply)
         return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
 
@@ -1529,28 +1660,13 @@ def chat_endpoint(req: ChatRequest):
 def _fallback_chat(req: ChatRequest):
     """Rule-based fallback when Groq API is unavailable."""
     prompt_lower = req.message.lower().strip()
-    session_cap = req.spend_cap or SPEND_CAP
     session_id = req.session_id or "session_default"
     needs_consent = (get_session_consent(session_id) is None)
 
-    if "50000" in prompt_lower or "50,000" in prompt_lower or ("ignore" in prompt_lower and "order" in prompt_lower):
-        entry = log_audit_entry("create_order", "CUSTOM_OVERRIDE", 50000,
-                                 "Prompt injection to bypass spend cap.", f"FAILED (\u20b950,000 > \u20b9{session_cap})", "BLOCKED", session_id=session_id, is_attack=True)
-        res_reply = f"GUARDRAIL ENFORCED: Order amount \u20b950,000 exceeds merchant hard spend cap of \u20b9{session_cap:,.0f}. Blocked at code level."
-        persist_chat_message(session_id, "assistant", res_reply)
-        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
-
-    if "secret90" in prompt_lower or ("discount" in prompt_lower and "90%" in prompt_lower):
-        entry = log_audit_entry("apply_discount", "UNKNOWN", 0, "Unauthorized discount code SECRET90.", "REJECTED (Scope Lock)", "BLOCKED", session_id=session_id, is_attack=True)
-        res_reply = "GUARDRAIL BLOCK: Discount code SECRET90 is not in the whitelisted action set."
-        persist_chat_message(session_id, "assistant", res_reply)
-        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
-
-    if "last customer" in prompt_lower or "phone number" in prompt_lower or "other session" in prompt_lower:
-        entry = log_audit_entry("read_session_data", "N/A", 0, "Cross-session data query attempt.", "BLOCKED (Isolation)", "BLOCKED", session_id=session_id, is_attack=True)
-        res_reply = "SESSION ISOLATION: Agent has no access to other sessions' data or stored chat history."
-        persist_chat_message(session_id, "assistant", res_reply)
-        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
+    # Active Multi-Vector Guardrail Inspector
+    guardrail_block = inspect_guardrails(req, needs_consent)
+    if guardrail_block:
+        return guardrail_block
 
     # Check for single-round clarifying question on vague single/two-word category requests
     clean_prompt = re.sub(r'\b(i|want|to|buy|get|an|a|show|me|need|find|some|the|looking|for)\b', '', prompt_lower)

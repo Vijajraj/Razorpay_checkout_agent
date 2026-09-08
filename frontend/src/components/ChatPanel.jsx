@@ -27,6 +27,8 @@ export function ProductCard({ item, onSelectForPurchase }) {
           alt={item.name}
           className="product-img"
           loading="lazy"
+          decoding="async"
+          referrerPolicy="no-referrer"
           onError={() => setImgSrc(DEFAULT_FALLBACK_IMAGE)}
         />
         {item.category && <span className="category-pill">{item.category}</span>}
