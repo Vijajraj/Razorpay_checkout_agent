@@ -177,10 +177,15 @@ def test_get_order_by_id():
 
 
 def test_audit_logs():
-    response = client.get("/api/audit-logs")
+    # Session-scoped access
+    response = client.get("/api/audit-logs?session_id=test_scoped_session")
     assert response.status_code == 200
     logs = response.json()
     assert isinstance(logs, list)
+
+    # Unauthenticated request without session_id or admin key must return 401
+    unauth_response = client.get("/api/audit-logs")
+    assert unauth_response.status_code == 401
 
 
 def test_chat_history_consent_flow():
@@ -424,7 +429,7 @@ def test_audit_logs_session_scoping_and_clearing():
 
 
 def test_audit_logs_do_not_expose_session_ids():
-    response = client.get("/api/audit-logs")
+    response = client.get("/api/audit-logs?session_id=test_scoped_session")
     assert response.status_code == 200
     logs = response.json()
     assert isinstance(logs, list)
