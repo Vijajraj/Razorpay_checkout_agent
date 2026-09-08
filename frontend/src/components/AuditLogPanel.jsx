@@ -47,7 +47,7 @@ export default function AuditLogPanel({ open, onClose, auditLogs, onClearLogs, s
         <div className="stat-box">
           <span className="label">Blocked Threats</span>
           <span className="val" style={{ color: blockedCount > 0 ? '#ef4444' : '#10b981' }}>
-            {blockedCount} Atttempts
+            {blockedCount} Attempts
           </span>
         </div>
       </div>

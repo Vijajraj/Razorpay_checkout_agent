@@ -13,7 +13,46 @@ import {
   getChatHistory,
   deleteChatHistory,
   getChatSessions,
+  getAuditLogs,
+  clearAuditLogs,
 } from './services/api';
+import catalogData from './data/catalog.json';
+
+function hydrateMessages(rawMessages) {
+  if (!Array.isArray(rawMessages)) return [];
+  return rawMessages.map((m, idx) => {
+    let products = Array.isArray(m.products) ? m.products : [];
+    let comparison = Array.isArray(m.comparison) ? m.comparison : [];
+
+    // Robust fallback: if legacy history record only preserved text without products array
+    if (products.length === 0 && comparison.length === 0 && (m.role === 'assistant' || m.sender === 'assistant')) {
+      const prevMsg = idx > 0 ? rawMessages[idx - 1] : null;
+      if (prevMsg && (prevMsg.role === 'user' || prevMsg.sender === 'user') && (prevMsg.content || prevMsg.text)) {
+        const queryText = (prevMsg.content || prevMsg.text || '').toLowerCase();
+        const words = queryText.match(/[a-z0-9]+/g)?.filter((t) => !['show', 'me', 'the', 'for', 'a', 'an', 'under', 'below', 'in', 'want', 'buy', 'get', 'some', 'products', 'item', 'items'].includes(t)) || [];
+        if (words.length > 0) {
+          const matched = catalogData.filter((item) => {
+            const searchable = `${item.name} ${item.category} ${(item.tags || []).join(' ')}`.toLowerCase();
+            return words.some((w) => searchable.includes(w));
+          }).slice(0, 6);
+          if (matched.length > 0) {
+            products = matched;
+          }
+        }
+      }
+    }
+
+    return {
+      id: m.id || idx + 10,
+      sender: m.role === 'user' || m.sender === 'user' ? 'user' : 'assistant',
+      text: m.content || m.text || '',
+      products,
+      comparison,
+      blocked: m.blocked || false,
+      agentActivity: m.agentActivity || (products.length > 0 ? `Searched catalog: Found ${products.length} matching products` : null),
+    };
+  });
+}
 
 function isCatalogBrowsePrompt(text) {
   const normalized = text.toLowerCase();
@@ -102,11 +141,20 @@ export default function App() {
     }
   }, []);
 
+  const refreshAuditLogs = useCallback(async () => {
+    const logs = await getAuditLogs(sessionId);
+    if (logs && Array.isArray(logs)) {
+      setAuditLogs(logs);
+    }
+  }, [sessionId]);
+
   const openCatalogPanel = useCallback(async () => {
     setCatalogOpen(true);
-    const products = await getCatalog();
-    setCatalogProducts(products);
-  }, []);
+    if (catalogProducts.length === 0) {
+      const products = await getCatalog();
+      setCatalogProducts(products);
+    }
+  }, [catalogProducts.length]);
 
   useEffect(() => {
     async function verifyHealthAndLoad() {
@@ -114,19 +162,14 @@ export default function App() {
       setBackendConnected(health.online);
 
       await refreshSessionsList();
-      const products = await getCatalog();
-      setCatalogProducts(products);
+      await refreshAuditLogs();
 
       const savedConsentPref = localStorage.getItem('chat_consent_pref');
 
       // Check if stored chat history exists for active sessionId
       const historyRes = await getChatHistory(sessionId);
       if (historyRes && historyRes.messages && historyRes.messages.length > 0) {
-        const loaded = historyRes.messages.map((m, idx) => ({
-          id: m.id || idx + 10,
-          sender: m.role === 'user' ? 'user' : 'assistant',
-          text: m.content,
-        }));
+        const loaded = hydrateMessages(historyRes.messages);
         setMessages(loaded);
         setConsentGiven(true);
         setShowConsentPrompt(false);
@@ -151,11 +194,7 @@ export default function App() {
 
     const historyRes = await getChatHistory(sid);
     if (historyRes && historyRes.messages && historyRes.messages.length > 0) {
-      const loaded = historyRes.messages.map((m, idx) => ({
-        id: m.id || idx + 10,
-        sender: m.role === 'user' ? 'user' : 'assistant',
-        text: m.content,
-      }));
+      const loaded = hydrateMessages(historyRes.messages);
       setMessages(loaded);
       setConsentGiven(true);
       setShowConsentPrompt(false);
@@ -380,8 +419,14 @@ export default function App() {
     }
   };
 
-  const handleClearLogs = () => {
-    setAuditLogs([]);
+  const handleClearLogs = async () => {
+    await clearAuditLogs();
+    const logs = await getAuditLogs(sessionId);
+    if (logs && Array.isArray(logs)) {
+      setAuditLogs(logs);
+    } else {
+      setAuditLogs([]);
+    }
   };
 
   const blockedCount = auditLogs.filter((l) => l.result === 'BLOCKED').length;
@@ -394,7 +439,12 @@ export default function App() {
         backendConnected={backendConnected}
         spendCap={10000}
         auditOpen={auditOpen}
-        onToggleAudit={() => setAuditOpen(!auditOpen)}
+        onToggleAudit={() => {
+          if (!auditOpen) {
+            refreshAuditLogs();
+          }
+          setAuditOpen(!auditOpen);
+        }}
         catalogOpen={catalogOpen}
         onToggleCatalog={() => {
           if (catalogOpen) {
@@ -443,19 +493,21 @@ export default function App() {
           />
         </div>
 
-        {/* Right Column: Persistent Purchase Summary Panel */}
-        <div className={`purchase-summary-column ${mobileSummaryOpen ? 'mobile-open' : ''}`}>
-          <PurchaseSummaryPanel
-            key={selectedProduct?.sku || 'empty-purchase'}
-            selectedProduct={selectedProduct}
-            quantity={selectedQty}
-            onQtyChange={setSelectedQty}
-            onResetSelection={handleResetSelection}
-            onStockVerified={handleStockVerified}
-            onOrderCreated={handleOrderCreated}
-            onOrderSuccess={handleOrderSuccess}
-            sessionId={sessionId}
-          />
+        {/* Right Column: Checkout Sheet Panel (Slides in when item is selected) */}
+        <div className={`purchase-summary-column ${selectedProduct ? 'has-selected-item' : ''} ${mobileSummaryOpen ? 'mobile-open' : ''}`}>
+          {selectedProduct && (
+            <PurchaseSummaryPanel
+              key={selectedProduct?.sku || 'empty-purchase'}
+              selectedProduct={selectedProduct}
+              quantity={selectedQty}
+              onQtyChange={setSelectedQty}
+              onResetSelection={handleResetSelection}
+              onStockVerified={handleStockVerified}
+              onOrderCreated={handleOrderCreated}
+              onOrderSuccess={handleOrderSuccess}
+              sessionId={sessionId}
+            />
+          )}
         </div>
 
         {/* Mobile Backdrop Overlays */}

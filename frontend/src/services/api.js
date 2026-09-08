@@ -76,11 +76,18 @@ export async function getCatalog() {
   return catalogData;
 }
 
-function saveLocalMessage(sessionId, role, content) {
+function saveLocalMessage(sessionId, role, content, products = [], comparison = []) {
   try {
     const key = `local_history_${sessionId}`;
     const existing = JSON.parse(localStorage.getItem(key) || '[]');
-    existing.push({ id: Date.now(), role, content, created_at: new Date().toISOString() });
+    existing.push({
+      id: Date.now(),
+      role,
+      content,
+      products: Array.isArray(products) ? products : [],
+      comparison: Array.isArray(comparison) ? comparison : [],
+      created_at: new Date().toISOString()
+    });
     localStorage.setItem(key, JSON.stringify(existing));
 
     const indexKey = 'local_chat_sessions';
@@ -141,7 +148,7 @@ export async function sendChatMessage(userPrompt, conversationState) {
           return chatErrorResponse();
         }
         if (data.reply) {
-          saveLocalMessage(sessionId, 'assistant', data.reply);
+          saveLocalMessage(sessionId, 'assistant', data.reply, data.products || [], data.comparison || []);
         }
         return { success: true, mode: 'backend', data: { ...data, products: data.products || [], comparison: data.comparison || [] } };
       } catch (err) {
@@ -150,10 +157,18 @@ export async function sendChatMessage(userPrompt, conversationState) {
       }
     }
     console.warn(`Backend chat API returned HTTP ${res.status}; using local catalog search.`);
-    return localCatalogSearchReply(userPrompt);
+    const fallbackRes = localCatalogSearchReply(userPrompt);
+    if (fallbackRes?.data) {
+      saveLocalMessage(sessionId, 'assistant', fallbackRes.data.reply, fallbackRes.data.products || [], fallbackRes.data.comparison || []);
+    }
+    return fallbackRes;
   } catch (err) {
     console.warn('Backend chat API unavailable; using local catalog search:', err.message);
-    return localCatalogSearchReply(userPrompt);
+    const fallbackRes = localCatalogSearchReply(userPrompt);
+    if (fallbackRes?.data) {
+      saveLocalMessage(sessionId, 'assistant', fallbackRes.data.reply, fallbackRes.data.products || [], fallbackRes.data.comparison || []);
+    }
+    return fallbackRes;
   }
 }
 
@@ -338,6 +353,33 @@ export async function getChatSessions() {
   }
 }
 
+export async function getAuditLogs(sessionId = null) {
+  try {
+    const url = sessionId
+      ? `${API_BASE_URL}/audit-logs?session_id=${encodeURIComponent(sessionId)}`
+      : `${API_BASE_URL}/audit-logs`;
+    const res = await fetch(url, { method: 'GET' });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Error fetching audit logs from backend:', err.message);
+  }
+  return null;
+}
+
+export async function clearAuditLogs() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/audit-logs`, { method: 'DELETE' });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Error clearing audit logs on backend:', err.message);
+  }
+  return { success: true };
+}
+
 function createRazorpayOrderLocally(payload) {
   const item = catalogData.find((i) => i.sku === payload.sku);
   if (!item) throw new Error('Invalid SKU');
@@ -377,3 +419,25 @@ function createRazorpayOrderLocally(payload) {
     },
   };
 }
+
+export function loadRazorpaySDK() {
+  return new Promise((resolve) => {
+    if (typeof window !== 'undefined' && window.Razorpay) {
+      resolve(true);
+      return;
+    }
+    const existing = document.querySelector('script[src*="checkout.razorpay.com"]');
+    if (existing) {
+      existing.addEventListener('load', () => resolve(true), { once: true });
+      existing.addEventListener('error', () => resolve(false), { once: true });
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+}
+

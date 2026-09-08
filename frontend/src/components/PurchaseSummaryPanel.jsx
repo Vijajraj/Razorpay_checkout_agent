@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Plus, Minus, ArrowRight, ArrowLeft, CheckCircle2, CreditCard, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
-import { createOrderOnServer, verifyPaymentOnServer, verifyStock } from '../services/api';
+import { ShoppingBag, Plus, Minus, ArrowRight, ArrowLeft, CheckCircle2, CreditCard, Loader2, AlertCircle, RefreshCw, X, ShieldCheck } from 'lucide-react';
+import { createOrderOnServer, verifyPaymentOnServer, verifyStock, loadRazorpaySDK } from '../services/api';
 
 const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?w=800&auto=format&fit=crop&q=80';
 
@@ -144,7 +144,12 @@ export default function PurchaseSummaryPanel({
         return;
       }
 
+      if (serverRes.payment_mode === 'razorpay' && serverRes.razorpay_key_id && serverRes.razorpay_key_id !== 'rzp_test_mockkey123') {
+        await loadRazorpaySDK();
+      }
+
       const canLaunchRazorpay =
+        typeof window !== 'undefined' &&
         window.Razorpay &&
         serverRes.payment_mode === 'razorpay' &&
         serverRes.razorpay_key_id &&
@@ -245,12 +250,20 @@ export default function PurchaseSummaryPanel({
   return (
     <aside className="purchase-summary-panel">
       <div className="panel-header">
-        <h3>PURCHASE SUMMARY</h3>
-        {step < 4 && (
-          <button className="text-link-btn" onClick={onResetSelection}>
-            Change
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <ShoppingBag size={16} color="var(--accent-primary)" />
+          <h3>PURCHASE SUMMARY</h3>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          {step < 4 && (
+            <button className="text-link-btn" onClick={onResetSelection} style={{ fontSize: '11px' }}>
+              Change
+            </button>
+          )}
+          <button className="icon-btn" onClick={onResetSelection} title="Close Panel" style={{ padding: '4px' }}>
+            <X size={15} />
           </button>
-        )}
+        </div>
       </div>
 
       <div className="panel-body">
@@ -258,7 +271,15 @@ export default function PurchaseSummaryPanel({
         {step === 1 && (
           <div className="panel-step">
             <div className="selected-product-card">
-              <img src={imgSrc} alt={selectedProduct.name} className="product-thumb" onError={() => setImgSrc(DEFAULT_FALLBACK_IMAGE)} />
+              <img
+                src={imgSrc}
+                alt={selectedProduct.name}
+                className="product-thumb"
+                loading="lazy"
+                decoding="async"
+                referrerPolicy="no-referrer"
+                onError={() => setImgSrc(DEFAULT_FALLBACK_IMAGE)}
+              />
               <div>
                 <span className="product-sku">{selectedProduct.sku}</span>
                 <h4 className="product-name">{selectedProduct.name}</h4>
