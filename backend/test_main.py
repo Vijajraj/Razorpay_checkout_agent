@@ -1,16 +1,43 @@
+import os
+import sys
 import pytest
 from fastapi.testclient import TestClient
-from backend.main import app, catalog, SPEND_CAP
+
+# Ensure the backend directory is in sys.path
+backend_dir = os.path.dirname(os.path.abspath(__file__))
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
+from main import (
+    app,
+    catalog,
+    SPEND_CAP,
+    _fallback_chat,
+    ChatRequest,
+    search_catalog_items,
+    search_reply,
+    execute_tool_call,
+)
 
 client = TestClient(app)
 
+def test_root_and_api_root():
+    for path in ["/", "/api", "/api/"]:
+        response = client.get(path)
+        assert response.status_code == 200
+        data = response.json()
+        assert data["status"] == "online"
+
+
 def test_health_check():
-    response = client.get("/api/health")
-    assert response.status_code == 200
-    data = response.json()
-    assert data["status"] == "online"
-    assert "spend_cap" in data
-    assert data["spend_cap"] == SPEND_CAP
+    for path in ["/api/health", "/health"]:
+        response = client.get(path)
+        assert response.status_code == 200
+        data = response.json()
+        assert data["status"] == "online"
+        assert "spend_cap" in data
+        assert data["spend_cap"] == SPEND_CAP
+
 
 
 def test_get_catalog():
@@ -180,8 +207,6 @@ def test_chat_history_consent_flow():
 
 
 def test_chat_guardrail_attacks():
-    from backend.main import _fallback_chat, ChatRequest
-
     sess_id = "test_guardrail_attacks"
 
     # Test fallback guardrail enforcement
@@ -215,7 +240,6 @@ def test_get_chat_sessions():
 
 
 def test_vague_pant_query_clarifying():
-    from backend.main import _fallback_chat, ChatRequest
     sess_id = "test_vague_pant_sess"
     req = ChatRequest(message="i want to get an pant", session_id=sess_id)
     res = _fallback_chat(req)
@@ -226,7 +250,6 @@ def test_vague_pant_query_clarifying():
 
 
 def test_pant_category_accuracy():
-    from backend.main import search_catalog_items
     items = search_catalog_items("i want to buy an pant")
     assert len(items) > 0
     categories = [i.get("category", "") for i in items]
@@ -239,7 +262,6 @@ def test_pant_category_accuracy():
 
 
 def test_empty_catalog_search_returns_reply_and_empty_products():
-    from backend.main import _fallback_chat, ChatRequest
     req = ChatRequest(message="show me purple hoverboards", session_id="test_empty_search_sess")
     res = _fallback_chat(req)
 
@@ -250,7 +272,6 @@ def test_empty_catalog_search_returns_reply_and_empty_products():
 
 
 def test_catalog_search_reply_count_matches_returned_products():
-    from backend.main import search_catalog_items, search_reply
     products = search_catalog_items("shirt")[:6]
     reply = search_reply("shirt", products)
 
@@ -287,10 +308,10 @@ def test_ambiguous_compare_two_shirts_asks_for_specific_products():
 
 
 def test_compare_products_returns_structured_catalog_items():
-    from backend.main import execute_tool_call
     res = execute_tool_call("compare_products", {"skus": ["SH001", "SH003"]}, "test_compare_tool_sess")
 
     assert res["count"] == 2
     assert [item["sku"] for item in res["comparison"]] == ["SH001", "SH003"]
     assert all("name" in item and "price" in item and "stock" in item and "tags" in item for item in res["comparison"])
+
 

@@ -36,12 +36,6 @@ export default function Header({
           <img src="/agent-logo.png" alt="Agent Logo" className="brand-logo-img" />
         </div>
         <h1 className="brand-heading">Razorpay Agentic Store</h1>
-
-        {/* Compact Agent Status Badge */}
-        <div className="agent-status-pill">
-          <span className="status-dot green"></span>
-          <span className="status-text">Agent Online</span>
-        </div>
       </div>
 
       <div className="header-controls">

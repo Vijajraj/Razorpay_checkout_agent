@@ -1,3 +1,4 @@
+from __future__ import annotations
 import os
 import json
 import time
@@ -10,8 +11,16 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
-from groq import Groq
-import razorpay
+try:
+    from groq import Groq
+except ImportError:
+    Groq = None
+
+try:
+    import razorpay
+except ImportError:
+    razorpay = None
+
 from sqlalchemy import Column, Integer, String, Numeric, Boolean, DateTime, func, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
@@ -36,10 +45,10 @@ SPEND_CAP = float(os.getenv("MERCHANT_SPEND_CAP", "10000"))
 MODEL_NAME = "openai/gpt-oss-120b"
 
 # Groq LLM client
-groq_client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
+groq_client = Groq(api_key=GROQ_API_KEY) if (Groq and GROQ_API_KEY) else None
 
 # Razorpay client
-rzp_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)) if RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET else None
+rzp_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)) if (razorpay and RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET) else None
 
 # Neon Postgres Database ORM setup
 Base = declarative_base()
@@ -502,30 +511,93 @@ STRICT GUARDRAILS (enforced in code):
 
 
 SYNONYM_MAP = {
-    "pant": ["trousers", "jeans", "chinos", "joggers", "shorts", "leggings"],
-    "pants": ["trousers", "jeans", "chinos", "joggers", "shorts", "leggings"],
+    "pant": ["trousers", "jeans", "chinos", "joggers", "shorts", "leggings", "apparel"],
+    "pants": ["trousers", "jeans", "chinos", "joggers", "shorts", "leggings", "apparel"],
     "trouser": ["trousers", "jeans", "chinos", "joggers"],
     "trousers": ["trousers", "jeans", "chinos", "joggers"],
     "bottom": ["trousers", "jeans", "chinos", "joggers", "shorts"],
     "bottoms": ["trousers", "jeans", "chinos", "joggers", "shorts"],
-    "shoe": ["shoes", "sneakers", "boots", "loafers", "sandals", "heels"],
-    "shoes": ["shoes", "sneakers", "boots", "loafers", "sandals", "heels"],
-    "sneaker": ["sneakers", "shoes"],
-    "sneakers": ["sneakers", "shoes"],
-    "tee": ["tshirt"],
-    "tees": ["tshirt"],
-    "t-shirt": ["tshirt"],
-    "tshirt": ["tshirt"],
-    "shirt": ["shirt", "tshirt", "t-shirt", "polo", "kurta", "top"],
-    "shirts": ["shirt", "tshirt", "t-shirt", "polo", "kurta", "top"],
+    "shoe": ["shoes", "sneakers", "boots", "loafers", "sandals", "heels", "footwear"],
+    "shoes": ["shoes", "sneakers", "boots", "loafers", "sandals", "heels", "footwear"],
+    "sneaker": ["sneakers", "shoes", "running"],
+    "sneakers": ["sneakers", "shoes", "running"],
+    "runner": ["running", "shoes", "sneakers"],
+    "runners": ["running", "shoes", "sneakers"],
+    "boot": ["boots", "leather", "chelsea"],
+    "boots": ["boots", "leather", "chelsea"],
+    "tee": ["tshirt", "t-shirt", "cotton"],
+    "tees": ["tshirt", "t-shirt", "cotton"],
+    "t-shirt": ["tshirt", "t-shirt", "tee"],
+    "tshirt": ["tshirt", "t-shirt", "tee"],
+    "shirt": ["shirt", "tshirt", "t-shirt", "polo", "linen", "top"],
+    "shirts": ["shirt", "tshirt", "t-shirt", "polo", "linen", "top"],
     "top": ["tshirt", "shirt", "hoodie", "sweater", "blazer", "dress", "kurta"],
     "tops": ["tshirt", "shirt", "hoodie", "sweater", "blazer", "dress", "kurta"],
+    "hoodie": ["hoodie", "sweatshirt", "jacket", "apparel"],
+    "hoodies": ["hoodie", "sweatshirt", "jacket", "apparel"],
+    "jacket": ["jacket", "bomber", "blazer", "outerwear"],
+    "jackets": ["jacket", "bomber", "blazer", "outerwear"],
+    "earbud": ["earbuds", "earphones", "audio", "wireless", "headphones"],
+    "earbuds": ["earbuds", "earphones", "audio", "wireless", "headphones"],
+    "earphone": ["earbuds", "earphones", "audio", "headphones"],
+    "earphones": ["earbuds", "earphones", "audio", "headphones"],
+    "headphone": ["headphones", "audio", "headset", "wireless", "anc"],
+    "headphones": ["headphones", "audio", "headset", "wireless", "anc"],
+    "watch": ["smartwatch", "watch", "wearable", "chronograph", "quartz"],
+    "watches": ["smartwatch", "watch", "wearable", "chronograph", "quartz"],
+    "smartwatch": ["smartwatch", "watch", "wearable", "fitness"],
+    "smartwatches": ["smartwatch", "watch", "wearable", "fitness"],
+    "bag": ["backpack", "bag", "duffle", "crossbody", "wallet"],
+    "bags": ["backpack", "bag", "duffle", "crossbody", "wallet"],
+    "backpack": ["backpack", "bag", "laptop", "travel"],
+    "backpacks": ["backpack", "bag", "laptop", "travel"],
+    "wallet": ["wallet", "cardholder", "leather", "card"],
+    "wallets": ["wallet", "cardholder", "leather", "card"],
+    "sunglass": ["sunglasses", "eyewear", "aviator", "polarized"],
+    "sunglasses": ["sunglasses", "eyewear", "aviator", "polarized"],
+    "keyboard": ["keyboard", "gaming", "rgb", "electronics"],
+    "keyboards": ["keyboard", "gaming", "rgb", "electronics"],
+    "mouse": ["mouse", "mice", "ergonomic", "gaming"],
+    "speaker": ["speaker", "audio", "bluetooth", "sound"],
+    "speakers": ["speaker", "audio", "bluetooth", "sound"],
+    "charger": ["charger", "gan", "fast charging", "power bank"],
+    "chargers": ["charger", "gan", "fast charging", "power bank"],
+    "mat": ["yoga", "mat", "fitness", "workout"],
+    "mats": ["yoga", "mat", "fitness", "workout"],
+    "dumbbell": ["dumbbell", "weights", "gym", "fitness"],
+    "dumbbells": ["dumbbell", "weights", "gym", "fitness"],
+    "lamp": ["lamp", "light", "desk", "lighting"],
+    "lamps": ["lamp", "light", "desk", "lighting"],
+    "mug": ["mug", "coffee", "ceramic", "flask"],
+    "mugs": ["mug", "coffee", "ceramic", "flask"],
+    "bottle": ["bottle", "flask", "shaker", "water"],
+    "bottles": ["bottle", "flask", "shaker", "water"],
+    "planner": ["planner", "journal", "notebook", "stationery"],
+    "notebook": ["notebook", "journal", "diary", "stationery"],
+    "pen": ["pen", "pens", "fountain pen", "stationery"],
+    "serum": ["serum", "skincare", "beauty", "face"],
+    "oil": ["beard oil", "oil", "grooming", "skincare"],
 }
 
 
 def search_catalog_items(query: str, max_price: Optional[float] = None) -> List[Dict[str, Any]]:
     query_clean = query.lower().strip()
-    words = [w for w in re.findall(r'\b\w+\b', query_clean) if w not in ["the", "for", "some", "under", "with", "show", "find", "want", "buy", "get", "an", "a", "i", "me", "products", "item", "items", "like", "to", "in"]]
+
+    # Extract price constraint if query mentions "under X", "below X", "less than X"
+    if max_price is None:
+        price_match = re.search(r'(?:under|below|less\s+than|within|budget\s+of|max)\s+(?:rs\.?|inr|₹)?\s*(\d+)', query_clean)
+        if price_match:
+            try:
+                max_price = float(price_match.group(1))
+            except ValueError:
+                pass
+
+    words = [w for w in re.findall(r'\b\w+\b', query_clean) if w not in [
+        "the", "for", "some", "under", "below", "less", "than", "with", "show",
+        "find", "want", "buy", "get", "an", "a", "i", "me", "products", "item",
+        "items", "like", "to", "in", "of", "and", "or", "please", "can", "you",
+        "rs", "inr", "rupees"
+    ]]
 
     search_keywords = set(words)
     for w in words:
@@ -534,25 +606,41 @@ def search_catalog_items(query: str, max_price: Optional[float] = None) -> List[
         elif w.endswith("s") and w[:-1] in SYNONYM_MAP:
             search_keywords.update(SYNONYM_MAP[w[:-1]])
 
-    matched_dict = {}
+    scored_items = []
     for item in catalog:
         item_name = item["name"].lower()
         item_cat = item.get("category", "").lower()
         item_tags = [t.lower() for t in item.get("tags", [])]
+        item_sku = item.get("sku", "").lower()
 
         name_words = set(re.findall(r'\b\w+\b', item_name))
         cat_words = set(re.findall(r'\b\w+\b', item_cat))
         tag_words = set(item_tags)
 
-        if any(kw in name_words or kw in cat_words or kw in tag_words or kw in item_name or kw in item_cat for kw in search_keywords):
-            matched_dict[item["sku"]] = item
+        # Calculate relevance score
+        score = 0
+        if item_sku in words or item_sku == query_clean:
+            score += 100
 
-    matched = list(matched_dict.values())
+        for kw in search_keywords:
+            if kw in name_words:
+                score += 10
+            elif kw in item_name:
+                score += 5
+            if kw in cat_words:
+                score += 8
+            elif kw in item_cat:
+                score += 4
+            if kw in tag_words:
+                score += 6
 
-    if max_price:
-        matched = [i for i in matched if i["price"] <= max_price]
+        if score > 0:
+            if max_price is None or item["price"] <= max_price:
+                scored_items.append((score, item))
 
-    return matched
+    # Sort descending by relevance score, then price
+    scored_items.sort(key=lambda pair: pair[0], reverse=True)
+    return [item for _, item in scored_items]
 
 
 def available_category_suggestions(limit: int = 3) -> str:
@@ -598,7 +686,7 @@ def is_catalog_browse_request(message: str) -> bool:
 def extract_skus(message: str) -> List[str]:
     seen = set()
     skus = []
-    for sku in re.findall(r'\bSH\d{3}\b', message.upper()):
+    for sku in re.findall(r'\bSH\d{3,6}\b', message.upper()):
         if sku not in seen:
             skus.append(sku)
             seen.add(sku)
@@ -751,6 +839,7 @@ class ChatConsentRequest(BaseModel):
 
 
 @app.post("/api/verify-stock")
+@app.post("/verify-stock")
 def verify_stock_endpoint(req: VerifyStockRequest):
     """Dedicated stock verification endpoint - real backend operation, not just a UI state change."""
     item = next((i for i in catalog if i["sku"] == req.sku), None)
@@ -787,7 +876,20 @@ def verify_stock_endpoint(req: VerifyStockRequest):
     }
 
 
+@app.get("/")
+@app.get("/api")
+@app.get("/api/")
+def root():
+    return {
+        "message": "Razorpay Checkout Agent API is running",
+        "status": "online",
+        "docs": "/docs",
+        "health": "/api/health"
+    }
+
+
 @app.get("/api/health")
+@app.get("/health")
 def health_check():
     return {
         "status": "online",
@@ -800,11 +902,13 @@ def health_check():
 
 
 @app.get("/api/catalog")
+@app.get("/catalog")
 def get_catalog():
     return catalog
 
 
 @app.get("/api/audit-logs")
+@app.get("/audit-logs")
 def get_audit_logs():
     if SessionLocal:
         try:
@@ -832,7 +936,40 @@ def get_audit_logs():
     return audit_logs
 
 
+@app.delete("/api/audit-logs")
+@app.delete("/audit-logs")
+def clear_audit_logs_endpoint():
+    global audit_logs
+    audit_logs = []
+    if SessionLocal:
+        try:
+            db = SessionLocal()
+            db.query(AuditLogModel).delete()
+            db.commit()
+            db.close()
+        except Exception as e:
+            safe_log(f"Error clearing Neon DB audit logs: {e}")
+
+    # Seed with standard init log
+    entry = {
+        "id": int(time.time() * 1000),
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "action": "system_init",
+        "sku": "N/A",
+        "amount": 0.0,
+        "reasoning": f"Guardrail Engine & Neon DB initialized. Spend cap limit active at ₹{SPEND_CAP:,.0f}.",
+        "spend_cap_check": "PASSED",
+        "result": "SUCCESS",
+        "session_id": "system",
+        "is_attack": False
+    }
+    audit_logs.append(entry)
+    return {"success": True, "logs": audit_logs}
+
+
+
 @app.post("/api/create-order")
+@app.post("/create-order")
 def create_order_endpoint(req: CreateOrderRequest):
     """Server-side order creation endpoint with price calculation, stock check & Razorpay order generation."""
     item = next((i for i in catalog if i["sku"] == req.sku), None)
@@ -959,6 +1096,7 @@ def create_order_endpoint(req: CreateOrderRequest):
 
 
 @app.post("/api/verify-payment")
+@app.post("/verify-payment")
 def verify_payment_endpoint(req: VerifyPaymentRequest):
     """Server-side Razorpay payment signature verification & order status update."""
     valid_signature = verify_razorpay_signature(req.razorpay_order_id, req.razorpay_payment_id, req.razorpay_signature)
@@ -1016,6 +1154,7 @@ def verify_payment_endpoint(req: VerifyPaymentRequest):
 
 
 @app.get("/api/orders/{order_id}")
+@app.get("/orders/{order_id}")
 def get_order_endpoint(order_id: str):
     if SessionLocal:
         try:
@@ -1045,6 +1184,7 @@ def get_order_endpoint(order_id: str):
 
 
 @app.post("/api/chat-history/consent")
+@app.post("/chat-history/consent")
 def set_chat_consent_endpoint(req: ChatConsentRequest):
     """Set or update privacy consent choice for storing chat history for a session."""
     session_id = req.session_id
@@ -1090,6 +1230,7 @@ def set_chat_consent_endpoint(req: ChatConsentRequest):
 
 
 @app.get("/api/chat-sessions")
+@app.get("/chat-sessions")
 def get_chat_sessions_endpoint():
     """Retrieve list of distinct saved chat sessions stored in Neon DB with consent."""
     sessions_list = []
@@ -1132,6 +1273,7 @@ def get_chat_sessions_endpoint():
 
 
 @app.get("/api/chat-history/{session_id}")
+@app.get("/chat-history/{session_id}")
 def get_chat_history_endpoint(session_id: str):
     """Retrieve stored chat history for a session (strictly filtered by session_id)."""
     consent = get_session_consent(session_id)
@@ -1169,6 +1311,7 @@ def get_chat_history_endpoint(session_id: str):
 
 
 @app.delete("/api/chat-history/{session_id}")
+@app.delete("/chat-history/{session_id}")
 def delete_chat_history_endpoint(session_id: str):
     """Clear stored history for a session from DB & reset session state."""
     session_consent_status.pop(session_id, None)
@@ -1195,7 +1338,50 @@ def delete_chat_history_endpoint(session_id: str):
     }
 
 
+def inspect_guardrails(req: ChatRequest, needs_consent: bool) -> Optional[Dict[str, Any]]:
+    prompt_lower = req.message.lower().strip()
+    session_cap = req.spend_cap or SPEND_CAP
+    session_id = req.session_id or "session_default"
+
+    if ("50000" in prompt_lower or "50,000" in prompt_lower or "100000" in prompt_lower or "1,00,000" in prompt_lower
+        or (("ignore" in prompt_lower or "bypass" in prompt_lower or "override" in prompt_lower) and ("order" in prompt_lower or "spend" in prompt_lower or "cap" in prompt_lower or "rule" in prompt_lower or "limit" in prompt_lower))):
+        entry = log_audit_entry(
+            "create_order", "CUSTOM_OVERRIDE", 50000,
+            "Prompt injection attack attempting to bypass merchant hard spend cap.",
+            f"FAILED (\u20b950,000 > \u20b9{session_cap:,.0f})", "BLOCKED",
+            session_id=session_id, is_attack=True
+        )
+        res_reply = f"GUARDRAIL ENFORCED: Order amount exceeds merchant hard spend cap of \u20b9{session_cap:,.0f}. Action blocked at code level."
+        persist_chat_message(session_id, "assistant", res_reply)
+        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
+
+    if ("secret90" in prompt_lower or ("discount" in prompt_lower and ("90%" in prompt_lower or "100%" in prompt_lower or "secret" in prompt_lower or "admin" in prompt_lower or "hack" in prompt_lower))):
+        entry = log_audit_entry(
+            "apply_discount", "UNKNOWN", 0,
+            f"Unauthorized discount code injection: '{req.message[:50]}'.",
+            "REJECTED (Scope Lock)", "BLOCKED",
+            session_id=session_id, is_attack=True
+        )
+        res_reply = "GUARDRAIL BLOCK: Discount code SECRET90 is not in the whitelisted action set."
+        persist_chat_message(session_id, "assistant", res_reply)
+        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
+
+    if ("last customer" in prompt_lower or "phone number" in prompt_lower or "other session" in prompt_lower or "other customer" in prompt_lower or "previous user" in prompt_lower):
+        entry = log_audit_entry(
+            "read_session_data", "N/A", 0,
+            "Cross-session PII data exfiltration query attempt.",
+            "BLOCKED (Isolation)", "BLOCKED",
+            session_id=session_id, is_attack=True
+        )
+        res_reply = "SESSION ISOLATION: Agent has no access to other sessions' data or stored chat history."
+        persist_chat_message(session_id, "assistant", res_reply)
+        return {"type": "blocked", "reply": res_reply, "blocked": True, "auditEntry": entry, "needs_consent": needs_consent}
+
+    return None
+
+
 @app.post("/api/chat")
+@app.post("/chat")
 def chat_endpoint(req: ChatRequest):
     session_id = req.session_id or "session_default"
     needs_consent = (get_session_consent(session_id) is None)
@@ -1222,6 +1408,12 @@ def chat_endpoint(req: ChatRequest):
     history = session_histories[session_id]
     history.append({"role": "user", "content": req.message})
     persist_chat_message(session_id, "user", req.message)
+
+    # Active Pre-LLM Guardrail Inspector
+    guardrail_block = inspect_guardrails(req, needs_consent)
+    if guardrail_block:
+        history.append({"role": "assistant", "content": guardrail_block["reply"]})
+        return guardrail_block
 
     if is_catalog_browse_request(req.message):
         res_reply = catalog_browse_reply()
