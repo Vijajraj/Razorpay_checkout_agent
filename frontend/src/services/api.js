@@ -439,5 +439,59 @@ export function loadRazorpaySDK() {
     script.onerror = () => resolve(false);
     document.body.appendChild(script);
   });
+
+// ---------------------------------------------------------------------------
+// Vasool Recovery API Services (Spec v0.2)
+// ---------------------------------------------------------------------------
+
+export async function getRecoveryPayDetails(token) {
+  const res = await fetch(`${API_BASE_URL}/recovery/pay/${token}`, {
+    method: 'GET',
+    headers: { 'Accept': 'application/json' },
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const error = new Error(data?.detail?.message || data?.message || 'Failed to load payment details');
+    error.status = res.status;
+    error.code = data?.detail?.code || (res.status === 410 ? 'ORDER_EXPIRED' : 'AUTH_INVALID');
+    throw error;
+  }
+  return data;
+}
+
+export async function verifyRecoveryPayment(payload) {
+  const res = await fetch(`${API_BASE_URL}/recovery/verify-payment`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const error = new Error(data?.detail?.message || data?.message || 'Payment verification failed');
+    error.status = res.status;
+    error.code = data?.detail?.code || 'AUTH_INVALID';
+    throw error;
+  }
+  return data;
+}
+
+export async function getRecoveryOrderStatus(orderId, serviceToken = 'vasool-service-secret-token') {
+  const res = await fetch(`${API_BASE_URL}/recovery/orders/${orderId}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'X-Service-Token': serviceToken,
+    },
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const error = new Error(data?.detail?.message || 'Failed to fetch recovery order status');
+    error.status = res.status;
+    throw error;
+  }
+  return data;
 }
 

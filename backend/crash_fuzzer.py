@@ -117,6 +117,64 @@ def run_fuzzer(num_runs=100):
         except Exception:
             pass  # Skip invalid URL fuzz cases
 
+        # 7. Fuzz POST /api/recovery/orders (Vasool Edge)
+        total_tests += 1
+        recovery_order_payload = {
+            "case_id": fuzz_str[:30],
+            "attempt_no": random.choice([-1, 0, 1, 99999]),
+            "amount_minor": random.choice([-500, 0, 420000, 999999999]),
+            "currency": random.choice(["INR", "USD", fuzz_str[:5]])
+        }
+        headers = {
+            "Authorization": f"Bearer {fuzz_str[:100]}",
+            "X-Service-Token": random.choice(["vasool-service-secret-token", fuzz_str[:20]]),
+            "Idempotency-Key": fuzz_str[:30]
+        }
+        try:
+            res = client.post("/api/recovery/orders", json=recovery_order_payload, headers=headers)
+            if res.status_code == 500:
+                crashes.append(("/api/recovery/orders", recovery_order_payload, res.text))
+        except Exception:
+            pass
+
+        # 8. Fuzz GET /api/recovery/pay/{token}
+        total_tests += 1
+        safe_token = "".join(c for c in fuzz_str if c.isalnum() or c in "-_")[:40] or "test_tok"
+        try:
+            res = client.get(f"/api/recovery/pay/{safe_token}")
+            if res.status_code == 500:
+                crashes.append((f"/api/recovery/pay/{safe_token}", None, res.text))
+        except Exception:
+            pass
+
+        # 9. Fuzz POST /api/recovery/verify-payment
+        total_tests += 1
+        rec_verify_payload = {
+            "razorpay_order_id": fuzz_str[:30],
+            "razorpay_payment_id": fuzz_str[:30],
+            "razorpay_signature": fuzz_str[:70],
+            "pay_token": safe_token
+        }
+        try:
+            res = client.post("/api/recovery/verify-payment", json=rec_verify_payload)
+            if res.status_code == 500:
+                crashes.append(("/api/recovery/verify-payment", rec_verify_payload, res.text))
+        except Exception:
+            pass
+
+        # 10. Fuzz POST /api/webhooks/razorpay
+        total_tests += 1
+        try:
+            res = client.post(
+                "/api/webhooks/razorpay",
+                content=fuzz_str.encode("utf-8", errors="ignore"),
+                headers={"X-Razorpay-Signature": fuzz_str[:64]}
+            )
+            if res.status_code == 500:
+                crashes.append(("/api/webhooks/razorpay", fuzz_str[:100], res.text))
+        except Exception:
+            pass
+
     elapsed = time.time() - start_time
     print("=" * 60, flush=True)
     print("CRASH FUZZER REPORT", flush=True)

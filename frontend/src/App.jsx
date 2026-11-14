@@ -5,6 +5,8 @@ import ChatPanel from './components/ChatPanel';
 import PurchaseSummaryPanel from './components/PurchaseSummaryPanel';
 import AuditLogPanel from './components/AuditLogPanel';
 import CatalogPanel from './components/CatalogPanel';
+import RecoveryPayPage from './components/RecoveryPayPage';
+import VasoolConsole from './components/VasoolConsole';
 import {
   sendChatMessage,
   checkBackendHealth,
@@ -70,6 +72,16 @@ function isCatalogBrowsePrompt(text) {
 }
 
 export default function App() {
+  // Vasool Route Dispatching (Spec v0.2: /pay/:token and /console)
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+  if (currentPath.startsWith('/pay/')) {
+    const payToken = currentPath.split('/pay/')[1]?.split('/')[0] || '';
+    return <RecoveryPayPage payToken={payToken} />;
+  }
+  if (currentPath === '/console' || currentPath.startsWith('/console/')) {
+    return <VasoolConsole />;
+  }
+
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme_pref') || 'dark';
   });

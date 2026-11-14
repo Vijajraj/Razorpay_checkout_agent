@@ -1,9 +1,10 @@
 name: Render Anti-Cold-Start Keep-Alive
 
 on:
-  schedule:
-    # Run every 10 minutes to prevent Render free-tier from sleeping (Render sleeps after 15 minutes of inactivity)
-    - cron: '*/10 * * * *'
+  # Temporarily disabled scheduled cron to prevent automated keep-alive pings
+  # schedule:
+  #   # Run every 10 minutes to prevent Render free-tier from sleeping (Render sleeps after 15 minutes of inactivity)
+  #   - cron: '*/10 * * * *'
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 jobs:

@@ -72,6 +72,16 @@ export default function Header({
           )}
         </button>
 
+        <a
+          href="/console"
+          className="icon-btn"
+          style={{ textDecoration: 'none', color: '#38bdf8' }}
+          title="Open Vasool Operations Console"
+        >
+          <ShieldCheck size={16} color="#38bdf8" />
+          <span className="btn-label" style={{ color: '#38bdf8', fontWeight: 600 }}>Vasool Console</span>
+        </a>
+
         <button
           className="icon-btn"
           onClick={onToggleTheme}

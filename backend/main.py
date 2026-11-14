@@ -135,6 +135,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Vasool Recovery Router (Mounted per Spec v0.2)
+try:
+    from .recovery import router as recovery_router
+    app.include_router(recovery_router)
+except ImportError:
+    from recovery import router as recovery_router
+    app.include_router(recovery_router)
+
 # Load catalog data
 CATALOG_FILE = os.path.join(os.path.dirname(__file__), "..", "frontend", "src", "data", "catalog.json")
 
