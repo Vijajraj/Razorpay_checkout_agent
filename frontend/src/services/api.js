@@ -439,6 +439,7 @@ export function loadRazorpaySDK() {
     script.onerror = () => resolve(false);
     document.body.appendChild(script);
   });
+}
 
 // ---------------------------------------------------------------------------
 // Vasool Recovery API Services (Spec v0.2)

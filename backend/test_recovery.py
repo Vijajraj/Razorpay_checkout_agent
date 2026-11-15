@@ -21,25 +21,67 @@ import pytest
 import jwt
 from fastapi import HTTPException
 
-from backend.recovery import (
-    router,
-    ledger,
-    reset_recovery_state,
-    create_recovery_order,
-    get_pay_page_details,
-    verify_payment,
-    razorpay_webhook,
-    get_recovery_order_status,
-    cancel_recovery_order,
-    CreateRecoveryOrderRequest,
-    PaymentVerificationRequest,
-    AUTH_VERIFY_KEY,
-    SERVICE_TOKEN,
-    RAZORPAY_KEY_SECRET,
-    RAZORPAY_WEBHOOK_SECRET,
-    RECOVERY_MAX_ORDER_MINOR,
-    compute_canonical_entry_hash,
-)
+try:
+    from app.recovery import (
+        router,
+        ledger,
+        reset_recovery_state,
+        create_recovery_order,
+        get_pay_page_details,
+        verify_payment,
+        razorpay_webhook,
+        get_recovery_order_status,
+        cancel_recovery_order,
+        CreateRecoveryOrderRequest,
+        PaymentVerificationRequest,
+        AUTH_VERIFY_KEY,
+        SERVICE_TOKEN,
+        RAZORPAY_KEY_SECRET,
+        RAZORPAY_WEBHOOK_SECRET,
+        RECOVERY_MAX_ORDER_MINOR,
+        compute_canonical_entry_hash,
+    )
+except ImportError:
+    try:
+        from backend.recovery import (
+            router,
+            ledger,
+            reset_recovery_state,
+            create_recovery_order,
+            get_pay_page_details,
+            verify_payment,
+            razorpay_webhook,
+            get_recovery_order_status,
+            cancel_recovery_order,
+            CreateRecoveryOrderRequest,
+            PaymentVerificationRequest,
+            AUTH_VERIFY_KEY,
+            SERVICE_TOKEN,
+            RAZORPAY_KEY_SECRET,
+            RAZORPAY_WEBHOOK_SECRET,
+            RECOVERY_MAX_ORDER_MINOR,
+            compute_canonical_entry_hash,
+        )
+    except ImportError:
+        from recovery import (
+            router,
+            ledger,
+            reset_recovery_state,
+            create_recovery_order,
+            get_pay_page_details,
+            verify_payment,
+            razorpay_webhook,
+            get_recovery_order_status,
+            cancel_recovery_order,
+            CreateRecoveryOrderRequest,
+            PaymentVerificationRequest,
+            AUTH_VERIFY_KEY,
+            SERVICE_TOKEN,
+            RAZORPAY_KEY_SECRET,
+            RAZORPAY_WEBHOOK_SECRET,
+            RECOVERY_MAX_ORDER_MINOR,
+            compute_canonical_entry_hash,
+        )
 
 def make_token(
     case_id: str = "RX-2026-0042",
@@ -437,3 +479,55 @@ def test_ledger_integrity_and_tamper_detection():
     target_entry["payload"] = original_payload
     is_restored, restored_report = ledger.verify_chain()
     assert is_restored is True
+
+# ---------------------------------------------------------------------------
+# LangGraph Recovery Agent Workflow Tests
+# ---------------------------------------------------------------------------
+
+def test_langgraph_recovery_agent_auto_flow():
+    try:
+        from app.recovery_langgraph import recovery_langgraph_agent
+    except ImportError:
+        try:
+            from backend.recovery_langgraph import recovery_langgraph_agent
+        except ImportError:
+            from recovery_langgraph import recovery_langgraph_agent
+    initial_state = {
+        "case_id": "RX-2026-LG01",
+        "attempt_no": 1,
+        "amount_minor": 420000,
+        "currency": "INR",
+        "debtor_name": "Aarav Sharma"
+    }
+    result = recovery_langgraph_agent.invoke(initial_state)
+    assert result.get("policy_decision") == "AUTO"
+    assert result.get("payment_status") == "RECOVERED"
+    assert result.get("recovery_order") is not None
+    assert "pay_url" in result["recovery_order"]
+
+def test_langgraph_recovery_agent_hitl_flow():
+    try:
+        from app.recovery_langgraph import recovery_langgraph_agent
+    except ImportError:
+        try:
+            from backend.recovery_langgraph import recovery_langgraph_agent
+        except ImportError:
+            from recovery_langgraph import recovery_langgraph_agent
+    # High amount requires human approval
+    hitl_state = {
+        "case_id": "RX-2026-LG02",
+        "attempt_no": 1,
+        "amount_minor": 1850000,
+        "currency": "INR",
+        "debtor_name": "Meera Nambiar",
+        "approval_record": {
+            "id": "apr_lg_9042",
+            "status": "approved",
+            "approver_id": "usr_admin_001",
+            "readback_hash": "rbh_lg_verified"
+        }
+    }
+    result = recovery_langgraph_agent.invoke(hitl_state)
+    assert result.get("policy_decision") == "HUMAN_APPROVED"
+    assert result.get("payment_status") == "RECOVERED"
+    assert result.get("recovery_order") is not None

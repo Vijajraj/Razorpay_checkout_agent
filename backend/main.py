@@ -143,6 +143,22 @@ except ImportError:
     from recovery import router as recovery_router
     app.include_router(recovery_router)
 
+# Gnani.ai Voice Router (Prisma ASR / Timbre TTS)
+try:
+    from .gnani_service import router as voice_router
+    app.include_router(voice_router)
+except ImportError:
+    from gnani_service import router as voice_router
+    app.include_router(voice_router)
+
+# PayPal Disputes Router (Integrated Edge)
+try:
+    from .disputes_router import router as disputes_router
+    app.include_router(disputes_router)
+except ImportError:
+    from disputes_router import router as disputes_router
+    app.include_router(disputes_router)
+
 # Load catalog data
 CATALOG_FILE = os.path.join(os.path.dirname(__file__), "..", "frontend", "src", "data", "catalog.json")
 

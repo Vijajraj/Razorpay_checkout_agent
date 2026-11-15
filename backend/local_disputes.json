@@ -1,0 +1,2951 @@
+[
+  {
+    "id": "PP-D-12345",
+    "status": "UNDER_REVIEW",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "89.50",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-02T10:00:00Z",
+    "respond_by": "2026-11-09T10:00:00Z",
+    "order": {
+      "id": "5O190127TN364715T",
+      "items": [
+        {
+          "name": "Handmade ceramic mug",
+          "qty": 2
+        }
+      ],
+      "shipping": {
+        "carrier": "FEDEX",
+        "tracking_number": "123456789012",
+        "address_summary": "Chennai, IN",
+        "status": "DELIVERED",
+        "delivery_date": "2026-10-30T14:00:00Z",
+        "signed_by": "Authorized Recipient",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Updated evidence statement from test.",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_page",
+          "summary": "Delivered 2026-10-30 to Chennai, IN"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature",
+          "summary": "Signature on file"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via FEDEX",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "pending",
+    "dispute_id": "PP-D-12345",
+    "dispute_amount": {
+      "value": "89.50",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-09T10:00:00Z",
+    "ai_drafted_evidence": "Updated evidence statement from test.",
+    "seller_approval": {
+      "approved": true,
+      "conceded": false,
+      "approved_at": "2026-11-15T15:44:22.124563+00:00",
+      "approver_id": "Authorized Merchant Manager",
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Authorized Recipient",
+      "email": "customer@example.com",
+      "shipping_address": {
+        "line1": "Chennai, IN",
+        "city": "Chennai",
+        "state": "TN",
+        "postal_code": "600001",
+        "country_code": "IN"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "FEDEX",
+      "tracking_number": "123456789012",
+      "status": "DELIVERED",
+      "delivery_date": "2026-10-30T14:00:00Z",
+      "signed_by": "Authorized Recipient",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-FEDEX-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-002",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "89.50",
+          "currency": "USD"
+        },
+        "item_name": "Handmade ceramic mug set",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Online tracking shows delivered to buyer city/zip",
+          "Order value under $750 so signature not mandatory"
+        ],
+        "evidence_summary": "FedEx online tracking proof showing delivered status to confirmed city.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-010",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "60.00",
+          "currency": "USD"
+        },
+        "item_name": "Running Shoes Size 10",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Delivered to residential front door confirmed by GPS coordinate scan"
+        ],
+        "evidence_summary": "FedEx Ground delivery scan matching buyer zip code.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-020",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "299.00",
+          "currency": "USD"
+        },
+        "item_name": "Office Desk Chair",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "P. ADAMS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Carrier freight proof with recipient sign-off"
+        ],
+        "evidence_summary": "FedEx freight bill signed by recipient.",
+        "similarity_score": 0.99
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "7363d5a40fb652cc51c730ce1f0b3c0f09be859a4209e069a8334f935e9984a2",
+    "approval": null
+  },
+  {
+    "id": "PP-D-1094821",
+    "status": "RESOLVED",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "849.50",
+      "currency": "USD"
+    },
+    "created_at": "2026-10-20T08:30:00Z",
+    "respond_by": "2026-10-24T08:30:00Z",
+    "order": {
+      "id": "ORD-99321",
+      "items": [
+        {
+          "name": "Sony Alpha a7 IV Mirrorless Camera Body",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z9999999999999999",
+        "address_summary": "742 Evergreen Terrace, Springfield, OR 97477",
+        "status": "DELIVERED",
+        "delivery_date": "2026-10-20T14:22:10Z",
+        "signed_by": "M. VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Resolution Team,\n\nWe respectfully contest Dispute PP-D-1094821 regarding Order ORD-99321 (Sony Alpha a7 IV Mirrorless Camera Body).\n\n1. PROOF OF SHIPMENT & DELIVERY:\nThe package was fulfilled via UPS (Tracking: 1Z9999999999999999) and delivered to the registered PayPal address on file.\n\n2. INDEPENDENT CARRIER CONFIRMATION:\nCarrier records confirm delivery with signature status: M. VANCE. Proof of fulfillment is verified.\n\n3. SELLER PROTECTION ELIGIBILITY:\nAll requirements under PayPal Seller Protection Policy (Section 11) have been satisfied. Physical transit and destination scans verify complete fulfillment.\n\nWe kindly request that PayPal release the reserved funds and resolve this case in the seller's favor.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_page",
+          "summary": "Delivered 2026-10-20 to Springfield, OR"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature",
+          "summary": "Direct signature obtained: M. VANCE"
+        }
+      ]
+    },
+    "win_score": 89,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "80% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "pending",
+    "dispute_id": "PP-D-1094821",
+    "dispute_amount": {
+      "value": "849.50",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-10-24T08:30:00Z",
+    "ai_drafted_evidence": "Dear PayPal Dispute Resolution Team,\n\nWe respectfully contest Dispute PP-D-1094821 regarding Order ORD-99321 (Sony Alpha a7 IV Mirrorless Camera Body).\n\n1. PROOF OF SHIPMENT & DELIVERY:\nThe package was fulfilled via UPS (Tracking: 1Z9999999999999999) and delivered to the registered PayPal address on file.\n\n2. INDEPENDENT CARRIER CONFIRMATION:\nCarrier records confirm delivery with signature status: M. VANCE. Proof of fulfillment is verified.\n\n3. SELLER PROTECTION ELIGIBILITY:\nAll requirements under PayPal Seller Protection Policy (Section 11) have been satisfied. Physical transit and destination scans verify complete fulfillment.\n\nWe kindly request that PayPal release the reserved funds and resolve this case in the seller's favor.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T03:38:40.001041+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": "Seller accepted claim liability"
+    },
+    "buyer": {
+      "name": "M. VANCE",
+      "email": "customer@example.com",
+      "shipping_address": {
+        "line1": "742 Evergreen Terrace, Springfield, OR 97477",
+        "city": "Chennai",
+        "state": "TN",
+        "postal_code": "600001",
+        "country_code": "IN"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z9999999999999999",
+      "status": "DELIVERED",
+      "delivery_date": "2026-10-20T14:22:10Z",
+      "signed_by": "M. VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-001",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "129.00",
+          "currency": "USD"
+        },
+        "item_name": "Ergonomic Mechanical Keyboard",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "J. MILLER",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Carrier GPS matches postal code",
+          "Direct signature on file",
+          "Satisfies Section 11.3 Seller Protection"
+        ],
+        "evidence_summary": "UPS delivery confirmation with signature to confirmed buyer address.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-003",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "950.00",
+          "currency": "USD"
+        },
+        "item_name": "Mirrorless Camera Body",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "LOST",
+        "win_reasons": [
+          "High value order (> $750) missing mandatory signature confirmation"
+        ],
+        "evidence_summary": "Delivered to porch without signature; policy strictly requires signature over $750.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-008",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "820.00",
+          "currency": "USD"
+        },
+        "item_name": "4K Ultra HD Gaming Monitor",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "D. CHEN",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Direct signature confirmation satisfied $750 threshold",
+          "Carrier delivery receipt verified"
+        ],
+        "evidence_summary": "UPS proof of delivery with adult recipient signature.",
+        "similarity_score": 0.99
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "715be9f7d1b83ad2c18564c9433266e2c2ee91948e27a1a70ccff23ecc46dc7b",
+    "approval": null
+  },
+  {
+    "id": "PP-D-2049182",
+    "status": "RESOLVED",
+    "reason": "UNAUTHORIZED",
+    "amount": {
+      "value": "129.99",
+      "currency": "USD"
+    },
+    "created_at": "2026-10-18T11:05:00Z",
+    "respond_by": "2026-10-23T23:59:00Z",
+    "order": {
+      "id": "ORD-88102",
+      "items": [
+        {
+          "name": "Bose QuietComfort 45 Wireless Headphones",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "FEDEX",
+        "tracking_number": "782910492811",
+        "address_summary": "1204 Pine Hollow Way, Austin, TX 78704",
+        "status": "DELIVERED",
+        "delivery_date": "2026-10-18T11:05:00Z",
+        "signed_by": "S. JENKINS",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Claims Team,\n\nWe dispute the unauthorized claim for Order ORD-88102.\n\n1. CONFIRMED ADDRESS FULFILLMENT:\nThe merchandise was shipped to the buyer's PayPal registered address in Austin, TX.\n\n2. CARRIER AUDIT:\nFedEx tracking 782910492811 confirms delivery prior to claim filing.\n\n3. SECTION 11.2 PROTECTION:\nTransactions delivered to confirmed account addresses qualify for full unauthorized claim defense.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_page",
+          "summary": "Delivered to Austin, TX 78704"
+        }
+      ]
+    },
+    "win_score": 91,
+    "win_reasons": [
+      "Delivered to account confirmed shipping address",
+      "91% win rate on unauthorized precedents"
+    ],
+    "approval_state": "rejected",
+    "dispute_id": "PP-D-2049182",
+    "dispute_amount": {
+      "value": "129.99",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-10-23T23:59:00Z",
+    "ai_drafted_evidence": "Dear PayPal Claims Team,\n\nWe dispute the unauthorized claim for Order ORD-88102.\n\n1. CONFIRMED ADDRESS FULFILLMENT:\nThe merchandise was shipped to the buyer's PayPal registered address in Austin, TX.\n\n2. CARRIER AUDIT:\nFedEx tracking 782910492811 confirms delivery prior to claim filing.\n\n3. SECTION 11.2 PROTECTION:\nTransactions delivered to confirmed account addresses qualify for full unauthorized claim defense.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T18:01:34.960709+00:00",
+      "approver_id": "Authorized Merchant Manager",
+      "rejection_reason": "Merchant confirmed package returned damaged."
+    },
+    "buyer": {
+      "name": "S. JENKINS",
+      "email": "customer@example.com",
+      "shipping_address": {
+        "line1": "1204 Pine Hollow Way, Austin, TX 78704",
+        "city": "Chennai",
+        "state": "TN",
+        "postal_code": "600001",
+        "country_code": "IN"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "FEDEX",
+      "tracking_number": "782910492811",
+      "status": "DELIVERED",
+      "delivery_date": "2026-10-18T11:05:00Z",
+      "signed_by": "S. JENKINS",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-FEDEX-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": null,
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "3de175243ed92997b444b8d416c4e099c8308b6c907c2101edd81a1f79445fed",
+    "approval": null
+  },
+  {
+    "id": "PP-D-8455015",
+    "status": "UNDER_REVIEW",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-11T16:39:18.017026+00:00",
+    "respond_by": "2026-11-13T04:39:14.914099+00:00",
+    "order": {
+      "id": "ORD-93215",
+      "items": [
+        {
+          "name": "Ultra-Wide Gaming Display",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z3546519894",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-09T16:39:14.914123+00:00",
+        "signed_by": "ELEANOR VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-8455015 regarding the purchase of an Ultra-Wide Gaming Display (order ORD-93215) for $349.99. The item was shipped via UPS with tracking number 1Z3546519894. According to UPS tracking, the package was delivered on 2026-11-09 at 16:39 UTC to the address provided by the buyer (120 Market Street, Seattle, WA 98101). A signature was required for delivery and was obtained; the signed delivery receipt lists the recipient as ELEANOR VANCE.\n\nWe have attached the following proofs:\n1. UPS tracking record confirming delivery to the buyer\u2019s address.\n2. The carrier\u2019s signature file showing the direct signature of ELEANOR VANCE.\n\nSimilar past cases (CASE-PAST-023, CASE-PAST-030, CASE-PAST-008) were resolved in the seller\u2019s favor when a UPS\u2011provided proof of delivery with a recipient signature was supplied. Those decisions cite Section 11.3 of PayPal\u2019s Seller Protection policy, which is satisfied here because the carrier delivered the item to the confirmed address and obtained a signature.\n\nBased on the documented delivery and signature, we respectfully request that the dispute be closed in our favor and the funds released.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z3546519894 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ELEANOR VANCE"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "submitted",
+    "dispute_id": "PP-D-8455015",
+    "dispute_amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-13T04:39:14.914099+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-8455015 regarding the purchase of an Ultra-Wide Gaming Display (order ORD-93215) for $349.99. The item was shipped via UPS with tracking number 1Z3546519894. According to UPS tracking, the package was delivered on 2026-11-09 at 16:39 UTC to the address provided by the buyer (120 Market Street, Seattle, WA 98101). A signature was required for delivery and was obtained; the signed delivery receipt lists the recipient as ELEANOR VANCE.\n\nWe have attached the following proofs:\n1. UPS tracking record confirming delivery to the buyer\u2019s address.\n2. The carrier\u2019s signature file showing the direct signature of ELEANOR VANCE.\n\nSimilar past cases (CASE-PAST-023, CASE-PAST-030, CASE-PAST-008) were resolved in the seller\u2019s favor when a UPS\u2011provided proof of delivery with a recipient signature was supplied. Those decisions cite Section 11.3 of PayPal\u2019s Seller Protection policy, which is satisfied here because the carrier delivered the item to the confirmed address and obtained a signature.\n\nBased on the documented delivery and signature, we respectfully request that the dispute be closed in our favor and the funds released.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+    "seller_approval": {
+      "approved": true,
+      "conceded": false,
+      "approved_at": "2026-11-12T03:32:31.163986+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Eleanor Vance",
+      "email": "eleanor.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z3546519894",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-09T16:39:14.914123+00:00",
+      "signed_by": "ELEANOR VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-008",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "820.00",
+          "currency": "USD"
+        },
+        "item_name": "4K Ultra HD Gaming Monitor",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "D. CHEN",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Direct signature confirmation satisfied $750 threshold",
+          "Carrier delivery receipt verified"
+        ],
+        "evidence_summary": "UPS proof of delivery with adult recipient signature.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "4623a3f6c3b5b3d18f93f54321d2a2fbef727880a4b38e56c99bf93e5167f1ef",
+    "approval": null
+  },
+  {
+    "id": "PP-D-4199932",
+    "status": "RESOLVED",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "550.00",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-11T17:18:06.565810+00:00",
+    "respond_by": "2026-11-13T05:18:02.869211+00:00",
+    "order": {
+      "id": "ORD-78931",
+      "items": [
+        {
+          "name": "Sony WH-1000XM5 Wireless Headphones",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z1682953087",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-09T17:18:02.869234+00:00",
+        "signed_by": "ROBERT TAYLOR",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nI am writing in response to dispute PP-D-4199932 (Item Not Received) for order ORD-78931. The order was for one Sony WH-1000XM5 Wireless Headphones, total amount $550.00.\n\nThe item was shipped via UPS with tracking number 1Z1682953087. According to UPS tracking, the package was delivered on 2026-11-09 at 17:18 UTC to the buyer\u2019s confirmed address (120 Market Street, Seattle, WA 98101). A signature was required and was obtained; the delivery receipt shows the package was signed for by **ROBERT TAYLOR**, which matches the name on the shipping address.\n\nThese documents satisfy PayPal\u2019s Seller Protection criteria (Section 11.3):\n- Proof of delivery from the carrier showing a delivered status.\n- Signature confirmation matching the recipient\u2019s name.\n- Delivery to the buyer\u2019s confirmed shipping address.\n\nSimilar past cases (CASE-PAST-023 and CASE-PAST-030) were also resolved in the seller\u2019s favor when UPS delivery proof with a matching signature was provided. Therefore, I respectfully request that this dispute be closed in favor of the seller and the payment released.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z1682953087 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ROBERT TAYLOR"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "rejected",
+    "dispute_id": "PP-D-4199932",
+    "dispute_amount": {
+      "value": "550.00",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-13T05:18:02.869211+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nI am writing in response to dispute PP-D-4199932 (Item Not Received) for order ORD-78931. The order was for one Sony WH-1000XM5 Wireless Headphones, total amount $550.00.\n\nThe item was shipped via UPS with tracking number 1Z1682953087. According to UPS tracking, the package was delivered on 2026-11-09 at 17:18 UTC to the buyer\u2019s confirmed address (120 Market Street, Seattle, WA 98101). A signature was required and was obtained; the delivery receipt shows the package was signed for by **ROBERT TAYLOR**, which matches the name on the shipping address.\n\nThese documents satisfy PayPal\u2019s Seller Protection criteria (Section 11.3):\n- Proof of delivery from the carrier showing a delivered status.\n- Signature confirmation matching the recipient\u2019s name.\n- Delivery to the buyer\u2019s confirmed shipping address.\n\nSimilar past cases (CASE-PAST-023 and CASE-PAST-030) were also resolved in the seller\u2019s favor when UPS delivery proof with a matching signature was provided. Therefore, I respectfully request that this dispute be closed in favor of the seller and the payment released.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T04:26:37.487866+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": "Seller accepted claim liability"
+    },
+    "buyer": {
+      "name": "Robert Taylor",
+      "email": "robert.taylor@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z1682953087",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-09T17:18:02.869234+00:00",
+      "signed_by": "ROBERT TAYLOR",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-025",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "55.00",
+          "currency": "USD"
+        },
+        "item_name": "Wireless Ergonomic Mouse",
+        "carrier": "USPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Postal delivery timestamp precedes dispute notification"
+        ],
+        "evidence_summary": "USPS tracking proof showing delivery completed 3 days prior.",
+        "similarity_score": 0.37
+      },
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "cedab39462851c224573679abf24bfeb80ab425e61ba50580d7ad84abe89d899",
+    "approval": null
+  },
+  {
+    "id": "PP-D-7137707",
+    "status": "UNDER_REVIEW",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "849.50",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T03:33:28.656938+00:00",
+    "respond_by": "2026-11-14T03:33:21.313101+00:00",
+    "order": {
+      "id": "ORD-82229",
+      "items": [
+        {
+          "name": "Sony Alpha a7 IV Full-Frame Camera",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z5876703128",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T03:33:21.313146+00:00",
+        "signed_by": "MARCUS VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-7137707 regarding the purchase of a Sony Alpha a7 IV Full-Frame Camera (order ORD-82229) for USD 849.50. The item was shipped via UPS with tracking number 1Z5876703128. According to UPS tracking, the package was delivered on 2026-11-10 at 03:33 UTC to the address on file (120 Market Street, Seattle, WA 98101). A signature was required for this delivery and the signed receipt shows the recipient as MARCUS VANCE, which matches the signature on file provided by UPS.\n\nOur records therefore demonstrate that:\n1. The item was delivered to the buyer\u2019s confirmed shipping address.\n2. A valid signature was obtained at the time of delivery, satisfying PayPal\u2019s Section 11.3 requirement for high\u2011value orders (>$750) that mandate signature confirmation.\n3. The delivery was completed within the expected timeframe and no subsequent return or claim has been reported.\n\nWe have attached the UPS proof of delivery and the signature file as supporting documentation. Based on this evidence, we respectfully request that the dispute be resolved in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]\n[Seller Contact Information]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z5876703128 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: MARCUS VANCE"
+        }
+      ]
+    },
+    "win_score": 89,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "80% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "submitted",
+    "dispute_id": "PP-D-7137707",
+    "dispute_amount": {
+      "value": "849.50",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T03:33:21.313101+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-7137707 regarding the purchase of a Sony Alpha a7 IV Full-Frame Camera (order ORD-82229) for USD 849.50. The item was shipped via UPS with tracking number 1Z5876703128. According to UPS tracking, the package was delivered on 2026-11-10 at 03:33 UTC to the address on file (120 Market Street, Seattle, WA 98101). A signature was required for this delivery and the signed receipt shows the recipient as MARCUS VANCE, which matches the signature on file provided by UPS.\n\nOur records therefore demonstrate that:\n1. The item was delivered to the buyer\u2019s confirmed shipping address.\n2. A valid signature was obtained at the time of delivery, satisfying PayPal\u2019s Section 11.3 requirement for high\u2011value orders (>$750) that mandate signature confirmation.\n3. The delivery was completed within the expected timeframe and no subsequent return or claim has been reported.\n\nWe have attached the UPS proof of delivery and the signature file as supporting documentation. Based on this evidence, we respectfully request that the dispute be resolved in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]\n[Seller Contact Information]",
+    "seller_approval": {
+      "approved": true,
+      "conceded": false,
+      "approved_at": "2026-11-12T03:36:35.458825+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Marcus Vance",
+      "email": "marcus.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z5876703128",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T03:33:21.313146+00:00",
+      "signed_by": "MARCUS VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-003",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "950.00",
+          "currency": "USD"
+        },
+        "item_name": "Mirrorless Camera Body",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "LOST",
+        "win_reasons": [
+          "High value order (> $750) missing mandatory signature confirmation"
+        ],
+        "evidence_summary": "Delivered to porch without signature; policy strictly requires signature over $750.",
+        "similarity_score": 0.28
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "5118b23aa41f36249da90150a9dc9b0e2354ef9488760e57cfbdd449bd704531",
+    "approval": null
+  },
+  {
+    "id": "PP-D-5703650",
+    "status": "RESOLVED",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "499.00",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T03:37:23.224855+00:00",
+    "respond_by": "2026-11-14T03:37:18.586261+00:00",
+    "order": {
+      "id": "ORD-86711",
+      "items": [
+        {
+          "name": "MacBook Pro M3 USB-C Docking Station",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z4542579520",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T03:37:18.586306+00:00",
+        "signed_by": "ALEXANDER WRIGHT",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Team,\n\nWe are providing the requested evidence for dispute PP-D-5703650 (Item Not Received) regarding Order ORD-86711 for a MacBook Pro M3 USB\u2011C Docking Station (USD\u202f499.00).\n\n1. **Proof of Fulfillment** \u2013 UPS tracking number 1Z4542579520 shows the package was delivered on 2026\u201111\u201110 at 03:37\u202fUTC to the address provided by the buyer (120 Market Street, Seattle, WA\u202f98101).\n2. **Recipient Signature** \u2013 The delivery required a signature, and the signed receipt records the recipient as **ALEXANDER WRIGHT**, matching the signature file on file.\n3. **Delivery Confirmation** \u2013 The delivery status is marked \u201cDELIVERED\u201d in UPS\u2019s system, confirming that the item reached the buyer\u2019s confirmed shipping address.\n\nThese documents satisfy PayPal\u2019s Section\u202f11.3 requirements for proof of delivery with a verified signature. We therefore request that the dispute be resolved in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z4542579520 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ALEXANDER WRIGHT"
+        }
+      ]
+    },
+    "win_score": 89,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "80% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "rejected",
+    "dispute_id": "PP-D-5703650",
+    "dispute_amount": {
+      "value": "499.00",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T03:37:18.586261+00:00",
+    "ai_drafted_evidence": "Dear PayPal Team,\n\nWe are providing the requested evidence for dispute PP-D-5703650 (Item Not Received) regarding Order ORD-86711 for a MacBook Pro M3 USB\u2011C Docking Station (USD\u202f499.00).\n\n1. **Proof of Fulfillment** \u2013 UPS tracking number 1Z4542579520 shows the package was delivered on 2026\u201111\u201110 at 03:37\u202fUTC to the address provided by the buyer (120 Market Street, Seattle, WA\u202f98101).\n2. **Recipient Signature** \u2013 The delivery required a signature, and the signed receipt records the recipient as **ALEXANDER WRIGHT**, matching the signature file on file.\n3. **Delivery Confirmation** \u2013 The delivery status is marked \u201cDELIVERED\u201d in UPS\u2019s system, confirming that the item reached the buyer\u2019s confirmed shipping address.\n\nThese documents satisfy PayPal\u2019s Section\u202f11.3 requirements for proof of delivery with a verified signature. We therefore request that the dispute be resolved in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T03:38:00.263400+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": "Seller accepted claim liability"
+    },
+    "buyer": {
+      "name": "Alexander Wright",
+      "email": "alexander.wright@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z4542579520",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T03:37:18.586306+00:00",
+      "signed_by": "ALEXANDER WRIGHT",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-013",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "35.00",
+          "currency": "USD"
+        },
+        "item_name": "USB-C Fast Charging Cable",
+        "carrier": "USPS",
+        "tracking_status": "RETURNED_TO_SENDER",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": false,
+        "outcome": "LOST",
+        "win_reasons": [
+          "Incorrect address provided; package returned to merchant"
+        ],
+        "evidence_summary": "Package returned to seller by postal service.",
+        "similarity_score": 0.46
+      },
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "69ceecb2b9ca633b30cdb90ac5c2198fa4096e1f282071a317feaef3a493cfde",
+    "approval": null
+  },
+  {
+    "id": "PP-D-6371248",
+    "status": "RESOLVED",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "499.00",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T03:39:34.073528+00:00",
+    "respond_by": "2026-11-14T03:39:26.119892+00:00",
+    "order": {
+      "id": "ORD-93103",
+      "items": [
+        {
+          "name": "MacBook Pro M3 USB-C Docking Station",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z5684374167",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T03:39:26.119946+00:00",
+        "signed_by": "ALEXANDER WRIGHT",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Team,\n\nWe are writing to provide evidence that the item purchased by the buyer was successfully delivered. The UPS tracking number 1Z5684374167 shows a delivery status of **DELIVERED** on 2026-11-10 to the address on file (120 Market Street, Seattle, WA 98101). A signature was obtained at the time of delivery and the signed name matches the recipient listed on the order: **ALEXANDER WRIGHT**. Both the delivery confirmation and the signature record are attached as proof of fulfillment.\n\nBecause the carrier\u2019s records confirm delivery to the correct address with a verified signature, we respectfully request that this dispute be resolved in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z5684374167 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ALEXANDER WRIGHT"
+        }
+      ]
+    },
+    "win_score": 89,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "80% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "rejected",
+    "dispute_id": "PP-D-6371248",
+    "dispute_amount": {
+      "value": "499.00",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T03:39:26.119892+00:00",
+    "ai_drafted_evidence": "Dear PayPal Team,\n\nWe are writing to provide evidence that the item purchased by the buyer was successfully delivered. The UPS tracking number 1Z5684374167 shows a delivery status of **DELIVERED** on 2026-11-10 to the address on file (120 Market Street, Seattle, WA 98101). A signature was obtained at the time of delivery and the signed name matches the recipient listed on the order: **ALEXANDER WRIGHT**. Both the delivery confirmation and the signature record are attached as proof of fulfillment.\n\nBecause the carrier\u2019s records confirm delivery to the correct address with a verified signature, we respectfully request that this dispute be resolved in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T03:39:54.733822+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": "Seller accepted claim liability"
+    },
+    "buyer": {
+      "name": "Alexander Wright",
+      "email": "alexander.wright@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z5684374167",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T03:39:26.119946+00:00",
+      "signed_by": "ALEXANDER WRIGHT",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-013",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "35.00",
+          "currency": "USD"
+        },
+        "item_name": "USB-C Fast Charging Cable",
+        "carrier": "USPS",
+        "tracking_status": "RETURNED_TO_SENDER",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": false,
+        "outcome": "LOST",
+        "win_reasons": [
+          "Incorrect address provided; package returned to merchant"
+        ],
+        "evidence_summary": "Package returned to seller by postal service.",
+        "similarity_score": 0.46
+      },
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "3015663cba3a0905fbc96fcaa96678e7c8afd6e1adf2e1157e28a25b0e3adfec",
+    "approval": null
+  },
+  {
+    "id": "PP-D-5610438",
+    "status": "RESOLVED",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T04:10:38.344719+00:00",
+    "respond_by": "2026-11-13T16:10:34.761676+00:00",
+    "order": {
+      "id": "ORD-47723",
+      "items": [
+        {
+          "name": "Ultra-Wide Gaming Display",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z6598331056",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T04:10:34.761700+00:00",
+        "signed_by": "ELEANOR VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nWe are writing in response to dispute PP-D-5610438 regarding the purchase of the Ultra-Wide Gaming Display (Order ID: ORD-47723). The item was shipped via UPS with tracking number 1Z6598331056. According to UPS tracking, the package was delivered on 2026-11-10 at 04:10:34 UTC to the address on file (120 Market Street, Seattle, WA 98101). A signature was required upon delivery and was obtained from ELEANOR VANCE, as recorded in the carrier\u2019s delivery receipt. The delivery status is marked \"DELIVERED\" and the signature file is on record.\n\nWe have attached the UPS proof of fulfillment and the recipient signature as supporting documentation. This evidence satisfies PayPal\u2019s Section 11.3 requirements for proof of delivery, and aligns with prior cases where signed delivery proof resulted in a favorable outcome for the seller.\n\nThank you for reviewing this information. We trust that the provided evidence demonstrates that the buyer received the item as described.\n\nSincerely,\n[Seller Name]\n[Seller Contact Information]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z6598331056 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ELEANOR VANCE"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "rejected",
+    "dispute_id": "PP-D-5610438",
+    "dispute_amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-13T16:10:34.761676+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nWe are writing in response to dispute PP-D-5610438 regarding the purchase of the Ultra-Wide Gaming Display (Order ID: ORD-47723). The item was shipped via UPS with tracking number 1Z6598331056. According to UPS tracking, the package was delivered on 2026-11-10 at 04:10:34 UTC to the address on file (120 Market Street, Seattle, WA 98101). A signature was required upon delivery and was obtained from ELEANOR VANCE, as recorded in the carrier\u2019s delivery receipt. The delivery status is marked \"DELIVERED\" and the signature file is on record.\n\nWe have attached the UPS proof of fulfillment and the recipient signature as supporting documentation. This evidence satisfies PayPal\u2019s Section 11.3 requirements for proof of delivery, and aligns with prior cases where signed delivery proof resulted in a favorable outcome for the seller.\n\nThank you for reviewing this information. We trust that the provided evidence demonstrates that the buyer received the item as described.\n\nSincerely,\n[Seller Name]\n[Seller Contact Information]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T08:05:36.885031+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": "Seller accepted claim liability"
+    },
+    "buyer": {
+      "name": "Eleanor Vance",
+      "email": "eleanor.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z6598331056",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T04:10:34.761700+00:00",
+      "signed_by": "ELEANOR VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-008",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "820.00",
+          "currency": "USD"
+        },
+        "item_name": "4K Ultra HD Gaming Monitor",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "D. CHEN",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Direct signature confirmation satisfied $750 threshold",
+          "Carrier delivery receipt verified"
+        ],
+        "evidence_summary": "UPS proof of delivery with adult recipient signature.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "553542edc4563dac926d78f2020266d685d436fa0c2b914fe182f5f9284383dc",
+    "approval": null
+  },
+  {
+    "id": "PP-D-4084245",
+    "status": "RESOLVED",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T04:13:55.591340+00:00",
+    "respond_by": "2026-11-13T16:13:51.175677+00:00",
+    "order": {
+      "id": "ORD-61795",
+      "items": [
+        {
+          "name": "Ultra-Wide Gaming Display",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z2748635139",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T04:13:51.175708+00:00",
+        "signed_by": "ELEANOR VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-4084245 regarding order ORD-61795 for the Ultra-Wide Gaming Display (USD 349.99). The item was shipped via UPS with tracking number 1Z2748635139. According to UPS tracking, the package was delivered on 2026-11-10 to the address on file (120 Market Street, Seattle, WA 98101). A signature was obtained at delivery and the signed receipt lists the recipient as ELEANOR VANCE, which matches the name on the shipping address.\n\nThe attached UPS proof of delivery and the recipient signature file confirm that the seller fulfilled the order in accordance with PayPal\u2019s Seller Protection requirements (Section 11.3). Similar past cases (CASE-PAST-023, CASE-PAST-030, CASE-PAST-008) involving UPS delivery with a recipient signature were all resolved in the seller\u2019s favor.\n\nBased on the documented delivery and signature, we respectfully request that this dispute be closed in favor of the seller.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z2748635139 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ELEANOR VANCE"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "rejected",
+    "dispute_id": "PP-D-4084245",
+    "dispute_amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-13T16:13:51.175677+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-4084245 regarding order ORD-61795 for the Ultra-Wide Gaming Display (USD 349.99). The item was shipped via UPS with tracking number 1Z2748635139. According to UPS tracking, the package was delivered on 2026-11-10 to the address on file (120 Market Street, Seattle, WA 98101). A signature was obtained at delivery and the signed receipt lists the recipient as ELEANOR VANCE, which matches the name on the shipping address.\n\nThe attached UPS proof of delivery and the recipient signature file confirm that the seller fulfilled the order in accordance with PayPal\u2019s Seller Protection requirements (Section 11.3). Similar past cases (CASE-PAST-023, CASE-PAST-030, CASE-PAST-008) involving UPS delivery with a recipient signature were all resolved in the seller\u2019s favor.\n\nBased on the documented delivery and signature, we respectfully request that this dispute be closed in favor of the seller.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T08:14:42.051682+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": "Seller accepted claim liability"
+    },
+    "buyer": {
+      "name": "Eleanor Vance",
+      "email": "eleanor.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z2748635139",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T04:13:51.175708+00:00",
+      "signed_by": "ELEANOR VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-008",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "820.00",
+          "currency": "USD"
+        },
+        "item_name": "4K Ultra HD Gaming Monitor",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "D. CHEN",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Direct signature confirmation satisfied $750 threshold",
+          "Carrier delivery receipt verified"
+        ],
+        "evidence_summary": "UPS proof of delivery with adult recipient signature.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "cd5c5cbb7e3fffd431e6e8f6ae607add86937e3f21c31f55bc3505d655c527d0",
+    "approval": null
+  },
+  {
+    "id": "PP-D-9882313",
+    "status": "RESOLVED",
+    "reason": "UNAUTHORIZED",
+    "amount": {
+      "value": "499.00",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T04:32:00.439696+00:00",
+    "respond_by": "2026-11-14T04:31:40.637984+00:00",
+    "order": {
+      "id": "ORD-97000",
+      "items": [
+        {
+          "name": "MacBook Pro M3 USB-C Docking Station",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "FEDEX",
+        "tracking_number": "1Z6077105633",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T04:31:40.638047+00:00",
+        "signed_by": "ALEXANDER WRIGHT",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nWe are writing to provide the required evidence for dispute PP-D-9882313 (UNAUTHORIZED) regarding Order ORD-97000 for the MacBook Pro M3 USB\u2011C Docking Station in the amount of $499.00.\n\n**Order and Fulfillment Details**\n- **Order ID:** ORD-97000\n- **Item:** MacBook Pro M3 USB\u2011C Docking Station (Qty: 1)\n- **Shipping Carrier:** FEDEX\n- **Tracking Number:** 1Z6077105633\n- **Shipping Address:** 120 Market Street, Seattle, WA 98101 (the address listed on the buyer\u2019s PayPal account)\n- **Delivery Status:** DELIVERED\n- **Delivery Date:** 2026\u201111\u201110 (04:31:40 UTC)\n- **Recipient Signature:** ALEXANDER WRIGHT (signature captured by FedEx)\n\n**Evidence Provided**\n1. **Proof of Fulfillment** \u2013 FedEx tracking record (tracking number 1Z6077105633) confirms the package was delivered to the address above on 2026\u201111\u201110.\n2. **Recipient Signature** \u2013 FedEx signature file shows the package was signed for by ALEXANDER WRIGHT, matching the name on the shipping label.\n\nThese documents satisfy PayPal\u2019s Seller Protection requirements (Section\u202f11.2) because the item was shipped to the buyer\u2019s confirmed shipping address, was delivered with a valid tracking number, and required a signature upon receipt.\n\n**Conclusion**\nGiven the clear delivery proof and signature confirmation, we respectfully request that this unauthorized\u2011charge dispute be resolved in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]\n[Seller Contact Information]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "FEDEX tracking 1Z6077105633 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ALEXANDER WRIGHT"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via FEDEX",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "rejected",
+    "dispute_id": "PP-D-9882313",
+    "dispute_amount": {
+      "value": "499.00",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T04:31:40.637984+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nWe are writing to provide the required evidence for dispute PP-D-9882313 (UNAUTHORIZED) regarding Order ORD-97000 for the MacBook Pro M3 USB\u2011C Docking Station in the amount of $499.00.\n\n**Order and Fulfillment Details**\n- **Order ID:** ORD-97000\n- **Item:** MacBook Pro M3 USB\u2011C Docking Station (Qty: 1)\n- **Shipping Carrier:** FEDEX\n- **Tracking Number:** 1Z6077105633\n- **Shipping Address:** 120 Market Street, Seattle, WA 98101 (the address listed on the buyer\u2019s PayPal account)\n- **Delivery Status:** DELIVERED\n- **Delivery Date:** 2026\u201111\u201110 (04:31:40 UTC)\n- **Recipient Signature:** ALEXANDER WRIGHT (signature captured by FedEx)\n\n**Evidence Provided**\n1. **Proof of Fulfillment** \u2013 FedEx tracking record (tracking number 1Z6077105633) confirms the package was delivered to the address above on 2026\u201111\u201110.\n2. **Recipient Signature** \u2013 FedEx signature file shows the package was signed for by ALEXANDER WRIGHT, matching the name on the shipping label.\n\nThese documents satisfy PayPal\u2019s Seller Protection requirements (Section\u202f11.2) because the item was shipped to the buyer\u2019s confirmed shipping address, was delivered with a valid tracking number, and required a signature upon receipt.\n\n**Conclusion**\nGiven the clear delivery proof and signature confirmation, we respectfully request that this unauthorized\u2011charge dispute be resolved in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]\n[Seller Contact Information]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T04:32:33.904260+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": "Seller accepted claim liability"
+    },
+    "buyer": {
+      "name": "Alexander Wright",
+      "email": "alexander.wright@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "FEDEX",
+      "tracking_number": "1Z6077105633",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T04:31:40.638047+00:00",
+      "signed_by": "ALEXANDER WRIGHT",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-FEDEX-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-007",
+        "reason": "UNAUTHORIZED",
+        "amount": {
+          "value": "310.00",
+          "currency": "USD"
+        },
+        "item_name": "Graphics Tablet Pro",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "R. DAVIS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Shipped to PayPal confirmed address",
+          "Section 11.2 protection applied"
+        ],
+        "evidence_summary": "Confirmed address shipping proof protects seller against unauthorized chargebacks.",
+        "similarity_score": 0.56
+      },
+      {
+        "id": "CASE-PAST-024",
+        "reason": "UNAUTHORIZED",
+        "amount": {
+          "value": "240.00",
+          "currency": "USD"
+        },
+        "item_name": "Bluetooth Soundbar",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "L. MARTINEZ",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Seller shipped to confirmed address with tracking"
+        ],
+        "evidence_summary": "FedEx delivery record to account holder address.",
+        "similarity_score": 0.46
+      },
+      {
+        "id": "CASE-PAST-015",
+        "reason": "UNAUTHORIZED",
+        "amount": {
+          "value": "450.00",
+          "currency": "USD"
+        },
+        "item_name": "Dual Screen Docking Station",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "A. WRIGHT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Delivered to confirmed shipping address with signature",
+          "Precedent matches 94% win rate"
+        ],
+        "evidence_summary": "FedEx signed delivery proof matching PayPal transaction record.",
+        "similarity_score": 0.46
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "d0e58b0747f854efa3c5bddee93f96aa7e81415c9985be52a1a021db39a04962",
+    "approval": null
+  },
+  {
+    "id": "PP-D-4136554",
+    "status": "UNDER_REVIEW",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "849.50",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T14:15:25.684832+00:00",
+    "respond_by": "2026-11-14T14:15:21.552539+00:00",
+    "order": {
+      "id": "ORD-65152",
+      "items": [
+        {
+          "name": "Sony Alpha a7 IV Full-Frame Camera",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z6650706770",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T14:15:21.552575+00:00",
+        "signed_by": "MARCUS VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Order ORD-65152 for a Sony Alpha a7 IV Full-Frame Camera (1 unit) was shipped via UPS with tracking number 1Z6650706770. UPS tracking shows the package was DELIVERED on 2026-11-10 at 14:15 UTC to the address on file (120 Market Street, Seattle, WA 98101). A signature was required and obtained; the delivery receipt records the signature of MARCUS VANCE, matching the recipient name on the UPS signature file. The delivery was made to the confirmed shipping address and the signature requirement satisfies PayPal\u2019s Seller Protection criteria for high\u2011value items (Section 11.3). Similar past disputes (Case\u2011PAST\u2011023 and Case\u2011PAST\u2011030) were resolved in the seller\u2019s favor when a UPS\u2011provided signed delivery proof was submitted. Therefore, the buyer\u2019s claim of non\u2011receipt is not supported by the available delivery evidence.",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z6650706770 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: MARCUS VANCE"
+        }
+      ]
+    },
+    "win_score": 89,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "80% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "submitted",
+    "dispute_id": "PP-D-4136554",
+    "dispute_amount": {
+      "value": "849.50",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T14:15:21.552539+00:00",
+    "ai_drafted_evidence": "Order ORD-65152 for a Sony Alpha a7 IV Full-Frame Camera (1 unit) was shipped via UPS with tracking number 1Z6650706770. UPS tracking shows the package was DELIVERED on 2026-11-10 at 14:15 UTC to the address on file (120 Market Street, Seattle, WA 98101). A signature was required and obtained; the delivery receipt records the signature of MARCUS VANCE, matching the recipient name on the UPS signature file. The delivery was made to the confirmed shipping address and the signature requirement satisfies PayPal\u2019s Seller Protection criteria for high\u2011value items (Section 11.3). Similar past disputes (Case\u2011PAST\u2011023 and Case\u2011PAST\u2011030) were resolved in the seller\u2019s favor when a UPS\u2011provided signed delivery proof was submitted. Therefore, the buyer\u2019s claim of non\u2011receipt is not supported by the available delivery evidence.",
+    "seller_approval": {
+      "approved": true,
+      "conceded": false,
+      "approved_at": "2026-11-12T14:15:36.571695+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Marcus Vance",
+      "email": "marcus.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z6650706770",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T14:15:21.552575+00:00",
+      "signed_by": "MARCUS VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-003",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "950.00",
+          "currency": "USD"
+        },
+        "item_name": "Mirrorless Camera Body",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "LOST",
+        "win_reasons": [
+          "High value order (> $750) missing mandatory signature confirmation"
+        ],
+        "evidence_summary": "Delivered to porch without signature; policy strictly requires signature over $750.",
+        "similarity_score": 0.28
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "5d5836606080217bbf75e0a0d6391111ea16294e74df1d1f1b7edc910d792b8e",
+    "approval": null
+  },
+  {
+    "id": "PP-D-5579251",
+    "status": "RESOLVED",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T14:32:42.461010+00:00",
+    "respond_by": "2026-11-14T02:32:40.497869+00:00",
+    "order": {
+      "id": "ORD-15600",
+      "items": [
+        {
+          "name": "Ultra-Wide Gaming Display",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z9257316358",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T14:32:40.497899+00:00",
+        "signed_by": "ELEANOR VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Team,\n\nWe are responding to dispute PP\u2011D\u20115579251 (Item Not Received) for order ORD\u201115600. The purchased item, an Ultra\u2011Wide Gaming Display, was shipped via UPS with tracking number 1Z9257316358. According to UPS tracking, the package was **delivered on 2026\u201111\u201110 at 14:32 UTC** to the address on file (120 Market Street, Seattle, WA 98101). A signature was required and was obtained; the delivery receipt shows the package was signed for by **ELEANOR VANCE**, matching the recipient name on the order.\n\nWe have attached the following proof documents:\n1. UPS tracking record confirming delivery to the correct address.\n2. The carrier\u2019s signature file showing Eleanor Vance\u2019s signature.\n\nThese documents satisfy PayPal\u2019s Section\u202f11.3 requirements for proof of fulfillment and receipt. Similar past cases (CASE\u2011PAST\u2011023, CASE\u2011PAST\u2011030, CASE\u2011PAST\u2011008) were all resolved in the seller\u2019s favor when a signed UPS delivery receipt was provided, and the outcomes were based on the same evidentiary criteria.\n\nNo contrary evidence has been presented by the buyer. Accordingly, we respectfully request that the dispute be closed in our favor and the funds released.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z9257316358 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ELEANOR VANCE"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "rejected",
+    "dispute_id": "PP-D-5579251",
+    "dispute_amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T02:32:40.497869+00:00",
+    "ai_drafted_evidence": "Dear PayPal Team,\n\nWe are responding to dispute PP\u2011D\u20115579251 (Item Not Received) for order ORD\u201115600. The purchased item, an Ultra\u2011Wide Gaming Display, was shipped via UPS with tracking number 1Z9257316358. According to UPS tracking, the package was **delivered on 2026\u201111\u201110 at 14:32 UTC** to the address on file (120 Market Street, Seattle, WA 98101). A signature was required and was obtained; the delivery receipt shows the package was signed for by **ELEANOR VANCE**, matching the recipient name on the order.\n\nWe have attached the following proof documents:\n1. UPS tracking record confirming delivery to the correct address.\n2. The carrier\u2019s signature file showing Eleanor Vance\u2019s signature.\n\nThese documents satisfy PayPal\u2019s Section\u202f11.3 requirements for proof of fulfillment and receipt. Similar past cases (CASE\u2011PAST\u2011023, CASE\u2011PAST\u2011030, CASE\u2011PAST\u2011008) were all resolved in the seller\u2019s favor when a signed UPS delivery receipt was provided, and the outcomes were based on the same evidentiary criteria.\n\nNo contrary evidence has been presented by the buyer. Accordingly, we respectfully request that the dispute be closed in our favor and the funds released.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": true,
+      "approved_at": "2026-11-12T14:36:42.575710+00:00",
+      "approver_id": "Authorized Seller Representative",
+      "rejection_reason": "Seller accepted claim liability"
+    },
+    "buyer": {
+      "name": "Eleanor Vance",
+      "email": "eleanor.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z9257316358",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T14:32:40.497899+00:00",
+      "signed_by": "ELEANOR VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-008",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "820.00",
+          "currency": "USD"
+        },
+        "item_name": "4K Ultra HD Gaming Monitor",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "D. CHEN",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Direct signature confirmation satisfied $750 threshold",
+          "Carrier delivery receipt verified"
+        ],
+        "evidence_summary": "UPS proof of delivery with adult recipient signature.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "da0a445932ac467730a7f62197e37e86a69cc2af628635928e7505a848c716a7",
+    "approval": null
+  },
+  {
+    "id": "PP-D-6278273",
+    "status": "WAITING_FOR_SELLER_RESPONSE",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T17:25:27.692931+00:00",
+    "respond_by": "2026-11-14T05:25:25.199961+00:00",
+    "order": {
+      "id": "ORD-53955",
+      "items": [
+        {
+          "name": "Ultra-Wide Gaming Display",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z5085396822",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T17:25:25.200005+00:00",
+        "signed_by": "ELEANOR VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-6278273 (Item Not Received) for order ORD-53955. The buyer purchased one Ultra-Wide Gaming Display for $349.99.\n\nAccording to UPS tracking number 1Z5085396822, the package was **delivered** on 2026-11-10 at 17:25 UTC to the address on file (120 Market Street, Seattle, WA 98101). A **signature** was required and was obtained from **ELEANOR VANCE**, which matches the name on the delivery receipt.\n\nWe have attached the following proofs:\n1. UPS tracking record confirming delivery to the correct address.\n2. Carrier\u2011provided signature file showing ELEANOR VANCE\u2019s signature.\n\nThese documents demonstrate that we fulfilled our obligations under PayPal\u2019s Seller Protection (Section 11.3) \u2013 the item was shipped, delivered to the buyer\u2019s confirmed address, and a valid adult signature was captured.\n\nFor reference, similar cases where sellers provided UPS delivery confirmation with a recipient signature (e.g., CASE\u2011PAST\u2011023, CASE\u2011PAST\u2011030, CASE\u2011PAST\u2011008) were all decided in the seller\u2019s favor.\n\nBased on the clear proof of delivery and signature, we respectfully request that this dispute be closed in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z5085396822 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ELEANOR VANCE"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "pending",
+    "dispute_id": "PP-D-6278273",
+    "dispute_amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T05:25:25.199961+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-6278273 (Item Not Received) for order ORD-53955. The buyer purchased one Ultra-Wide Gaming Display for $349.99.\n\nAccording to UPS tracking number 1Z5085396822, the package was **delivered** on 2026-11-10 at 17:25 UTC to the address on file (120 Market Street, Seattle, WA 98101). A **signature** was required and was obtained from **ELEANOR VANCE**, which matches the name on the delivery receipt.\n\nWe have attached the following proofs:\n1. UPS tracking record confirming delivery to the correct address.\n2. Carrier\u2011provided signature file showing ELEANOR VANCE\u2019s signature.\n\nThese documents demonstrate that we fulfilled our obligations under PayPal\u2019s Seller Protection (Section 11.3) \u2013 the item was shipped, delivered to the buyer\u2019s confirmed address, and a valid adult signature was captured.\n\nFor reference, similar cases where sellers provided UPS delivery confirmation with a recipient signature (e.g., CASE\u2011PAST\u2011023, CASE\u2011PAST\u2011030, CASE\u2011PAST\u2011008) were all decided in the seller\u2019s favor.\n\nBased on the clear proof of delivery and signature, we respectfully request that this dispute be closed in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": false,
+      "approved_at": null,
+      "approver_id": null,
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Eleanor Vance",
+      "email": "eleanor.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z5085396822",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T17:25:25.200005+00:00",
+      "signed_by": "ELEANOR VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-008",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "820.00",
+          "currency": "USD"
+        },
+        "item_name": "4K Ultra HD Gaming Monitor",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "D. CHEN",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Direct signature confirmation satisfied $750 threshold",
+          "Carrier delivery receipt verified"
+        ],
+        "evidence_summary": "UPS proof of delivery with adult recipient signature.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "1ba554862e9a520cf0c51a37d94fe0514e1b94bc60a43742dc0fdeb967b6b08d",
+    "approval": null
+  },
+  {
+    "id": "PP-D-7243285",
+    "status": "WAITING_FOR_SELLER_RESPONSE",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T17:59:20.863548+00:00",
+    "respond_by": "2026-11-14T05:59:18.890041+00:00",
+    "order": {
+      "id": "ORD-11228",
+      "items": [
+        {
+          "name": "Ultra-Wide Gaming Display",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z4454130732",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T17:59:18.890076+00:00",
+        "signed_by": "ELEANOR VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-7243285 (Item Not Received) for order ORD-11228, which was for one Ultra-Wide Gaming Display in the amount of $349.99.\n\nAccording to UPS tracking number 1Z4454130732, the package was delivered on 2026-11-10 at 17:59 UTC to the shipping address on file (120 Market Street, Seattle, WA 98101). The delivery required a signature, and the signature on file was captured as \"ELEANOR VANCE\". This signature matches the name of the recipient listed on the order.\n\nThe delivery receipt from UPS confirms:\n- Status: DELIVERED\n- Delivery date and time: 2026-11-10T17:59:18.890076+00:00\n- Delivered to the confirmed address on the order\n- Recipient signature obtained and recorded\n\nThese details satisfy PayPal\u2019s Section 11.3 requirements for proof of fulfillment and delivery, and are consistent with prior cases (e.g., CASE-PAST-023, CASE-PAST-030, CASE-PAST-008) where the seller provided UPS delivery proof with a recipient signature and the disputes were resolved in the seller\u2019s favor.\n\nWe have attached the UPS proof of delivery and the signature file as supporting evidence.\n\nThank you for reviewing this information. We respectfully request that the dispute be closed in our favor.\n\nSincerely,\n[Seller Name]\n[Seller Contact Information]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z4454130732 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ELEANOR VANCE"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "pending",
+    "dispute_id": "PP-D-7243285",
+    "dispute_amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T05:59:18.890041+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-7243285 (Item Not Received) for order ORD-11228, which was for one Ultra-Wide Gaming Display in the amount of $349.99.\n\nAccording to UPS tracking number 1Z4454130732, the package was delivered on 2026-11-10 at 17:59 UTC to the shipping address on file (120 Market Street, Seattle, WA 98101). The delivery required a signature, and the signature on file was captured as \"ELEANOR VANCE\". This signature matches the name of the recipient listed on the order.\n\nThe delivery receipt from UPS confirms:\n- Status: DELIVERED\n- Delivery date and time: 2026-11-10T17:59:18.890076+00:00\n- Delivered to the confirmed address on the order\n- Recipient signature obtained and recorded\n\nThese details satisfy PayPal\u2019s Section 11.3 requirements for proof of fulfillment and delivery, and are consistent with prior cases (e.g., CASE-PAST-023, CASE-PAST-030, CASE-PAST-008) where the seller provided UPS delivery proof with a recipient signature and the disputes were resolved in the seller\u2019s favor.\n\nWe have attached the UPS proof of delivery and the signature file as supporting evidence.\n\nThank you for reviewing this information. We respectfully request that the dispute be closed in our favor.\n\nSincerely,\n[Seller Name]\n[Seller Contact Information]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": false,
+      "approved_at": null,
+      "approver_id": null,
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Eleanor Vance",
+      "email": "eleanor.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z4454130732",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T17:59:18.890076+00:00",
+      "signed_by": "ELEANOR VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-008",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "820.00",
+          "currency": "USD"
+        },
+        "item_name": "4K Ultra HD Gaming Monitor",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "D. CHEN",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Direct signature confirmation satisfied $750 threshold",
+          "Carrier delivery receipt verified"
+        ],
+        "evidence_summary": "UPS proof of delivery with adult recipient signature.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "938c2083789777e86efc14f524ee69789b5d734984aafde68a8d119812129867",
+    "approval": null
+  },
+  {
+    "id": "PP-D-6782059",
+    "status": "WAITING_FOR_SELLER_RESPONSE",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-12T18:01:39.070476+00:00",
+    "respond_by": "2026-11-14T06:01:36.882642+00:00",
+    "order": {
+      "id": "ORD-66039",
+      "items": [
+        {
+          "name": "Ultra-Wide Gaming Display",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "UPS",
+        "tracking_number": "1Z9444072165",
+        "address_summary": "120 Market Street, Seattle, WA 98101",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-10T18:01:36.882673+00:00",
+        "signed_by": "ELEANOR VANCE",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-6782059 (Item Not Received) for order ORD-66039, which was for one Ultra-Wide Gaming Display valued at $349.99.\n\nAccording to UPS tracking number 1Z9444072165, the package was delivered on 2026-11-10 at 18:01:36 UTC to the address on file (120 Market Street, Seattle, WA 98101). A signature was required and was obtained; the delivery receipt shows the package was signed for by **ELEANOR VANCE**. The delivery status is \"DELIVERED\" and the signature file is on record.\n\nWe have attached the following proofs:\n1. UPS tracking record confirming delivery to the correct address.\n2. The recipient signature file confirming the signature of ELEANOR VANCE.\n\nThese documents satisfy PayPal\u2019s Seller Protection requirements (Section 11.3) for items that require a signature. Similar past cases (CASE-PAST-023, CASE-PAST-030, CASE-PAST-008) were all resolved in the seller\u2019s favor when a UPS\u2011provided signature matched the recipient\u2019s name and the delivery was to the confirmed address.\n\nBased on the provided evidence, we respectfully request that the dispute be closed in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "UPS tracking 1Z9444072165 shows DELIVERED to 120 Market Street, Seattle, WA 98101"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: ELEANOR VANCE"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via UPS",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "pending",
+    "dispute_id": "PP-D-6782059",
+    "dispute_amount": {
+      "value": "349.99",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-14T06:01:36.882642+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Team,\n\nWe are responding to dispute PP-D-6782059 (Item Not Received) for order ORD-66039, which was for one Ultra-Wide Gaming Display valued at $349.99.\n\nAccording to UPS tracking number 1Z9444072165, the package was delivered on 2026-11-10 at 18:01:36 UTC to the address on file (120 Market Street, Seattle, WA 98101). A signature was required and was obtained; the delivery receipt shows the package was signed for by **ELEANOR VANCE**. The delivery status is \"DELIVERED\" and the signature file is on record.\n\nWe have attached the following proofs:\n1. UPS tracking record confirming delivery to the correct address.\n2. The recipient signature file confirming the signature of ELEANOR VANCE.\n\nThese documents satisfy PayPal\u2019s Seller Protection requirements (Section 11.3) for items that require a signature. Similar past cases (CASE-PAST-023, CASE-PAST-030, CASE-PAST-008) were all resolved in the seller\u2019s favor when a UPS\u2011provided signature matched the recipient\u2019s name and the delivery was to the confirmed address.\n\nBased on the provided evidence, we respectfully request that the dispute be closed in our favor.\n\nThank you for your consideration.\n\nSincerely,\n[Seller Name]",
+    "seller_approval": {
+      "approved": false,
+      "conceded": false,
+      "approved_at": null,
+      "approver_id": null,
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Eleanor Vance",
+      "email": "eleanor.vance@example.com",
+      "shipping_address": {
+        "line1": "120 Market Street",
+        "city": "Seattle",
+        "state": "WA",
+        "postal_code": "98101",
+        "country_code": "US"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "UPS",
+      "tracking_number": "1Z9444072165",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-10T18:01:36.882673+00:00",
+      "signed_by": "ELEANOR VANCE",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-UPS-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-023",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "189.00",
+          "currency": "USD"
+        },
+        "item_name": "Smart Watch Sport Edition",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "T. BROOKS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signature obtained and matches buyer name",
+          "Section 11.3 fulfilled"
+        ],
+        "evidence_summary": "UPS proof of delivery with signed delivery receipt.",
+        "similarity_score": 0.36
+      },
+      {
+        "id": "CASE-PAST-030",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "340.00",
+          "currency": "USD"
+        },
+        "item_name": "Portable Monitor 15.6 Inch",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "H. SCOTT",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Signed delivery proof provided before response deadline"
+        ],
+        "evidence_summary": "UPS proof of delivery with signature on file.",
+        "similarity_score": 0.29
+      },
+      {
+        "id": "CASE-PAST-008",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "820.00",
+          "currency": "USD"
+        },
+        "item_name": "4K Ultra HD Gaming Monitor",
+        "carrier": "UPS",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "D. CHEN",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Direct signature confirmation satisfied $750 threshold",
+          "Carrier delivery receipt verified"
+        ],
+        "evidence_summary": "UPS proof of delivery with adult recipient signature.",
+        "similarity_score": 0.29
+      }
+    ],
+    "case_id": null,
+    "source": "vasool_voice",
+    "transcript_ref": null,
+    "draft_hash": "cf0c800da6a5cec9d16aaf6d4b7275e033c8e84df8714062b2934db638fa2eaf",
+    "approval": null
+  },
+  {
+    "id": "PP-D-TEST-DIRECT",
+    "status": "PENDING_REVIEW",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "89.50",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-13T16:12:09.128670+00:00",
+    "respond_by": "2026-11-20T16:12:09.128691+00:00",
+    "order": {
+      "id": "ORD-1",
+      "items": [
+        {
+          "name": "E-Commerce Merchandise",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "FEDEX",
+        "tracking_number": "TRK-7E1BA44C90",
+        "address_summary": "Customer Address, Verified",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-13T16:12:09.128670+00:00",
+        "signed_by": "RECIPIENT",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Resolution Team,\n\nWe respectfully contest Dispute PP-D-TEST-DIRECT regarding Order ORD-1 (E-Commerce Merchandise).\n\n1. PROOF OF SHIPMENT & DELIVERY:\nThe package was fulfilled via FEDEX (Tracking: TRK-7E1BA44C90) and delivered to the registered PayPal address on file.\n\n2. INDEPENDENT CARRIER CONFIRMATION:\nCarrier records confirm delivery with signature status: RECIPIENT. Proof of fulfillment is verified.\n\n3. SELLER PROTECTION ELIGIBILITY:\nAll requirements under PayPal Seller Protection Policy (Section 11) have been satisfied. Physical transit and destination scans verify complete fulfillment.\n\nWe kindly request that PayPal release the reserved funds and resolve this case in the seller's favor.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "FEDEX tracking TRK-7E1BA44C90 shows DELIVERED to Customer Address, Verified"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: RECIPIENT"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via FEDEX",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "pending",
+    "dispute_id": "PP-D-TEST-DIRECT",
+    "dispute_amount": {
+      "value": "89.50",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-20T16:12:09.128691+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Resolution Team,\n\nWe respectfully contest Dispute PP-D-TEST-DIRECT regarding Order ORD-1 (E-Commerce Merchandise).\n\n1. PROOF OF SHIPMENT & DELIVERY:\nThe package was fulfilled via FEDEX (Tracking: TRK-7E1BA44C90) and delivered to the registered PayPal address on file.\n\n2. INDEPENDENT CARRIER CONFIRMATION:\nCarrier records confirm delivery with signature status: RECIPIENT. Proof of fulfillment is verified.\n\n3. SELLER PROTECTION ELIGIBILITY:\nAll requirements under PayPal Seller Protection Policy (Section 11) have been satisfied. Physical transit and destination scans verify complete fulfillment.\n\nWe kindly request that PayPal release the reserved funds and resolve this case in the seller's favor.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+    "seller_approval": {
+      "approved": false,
+      "conceded": false,
+      "approved_at": null,
+      "approver_id": null,
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "RECIPIENT",
+      "email": "customer@example.com",
+      "shipping_address": {
+        "line1": "Customer Address, Verified",
+        "city": "Chennai",
+        "state": "TN",
+        "postal_code": "600001",
+        "country_code": "IN"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "FEDEX",
+      "tracking_number": "TRK-7E1BA44C90",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-13T16:12:09.128670+00:00",
+      "signed_by": "RECIPIENT",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-FEDEX-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-002",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "89.50",
+          "currency": "USD"
+        },
+        "item_name": "Handmade ceramic mug set",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Online tracking shows delivered to buyer city/zip",
+          "Order value under $750 so signature not mandatory"
+        ],
+        "evidence_summary": "FedEx online tracking proof showing delivered status to confirmed city.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-010",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "60.00",
+          "currency": "USD"
+        },
+        "item_name": "Running Shoes Size 10",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Delivered to residential front door confirmed by GPS coordinate scan"
+        ],
+        "evidence_summary": "FedEx Ground delivery scan matching buyer zip code.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-020",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "299.00",
+          "currency": "USD"
+        },
+        "item_name": "Office Desk Chair",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "P. ADAMS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Carrier freight proof with recipient sign-off"
+        ],
+        "evidence_summary": "FedEx freight bill signed by recipient.",
+        "similarity_score": 0.99
+      }
+    ],
+    "case_id": "TEST-DIRECT",
+    "source": "vasool_voice",
+    "transcript_ref": "call-TEST-DIRECT",
+    "draft_hash": "25c7e225081566dca9af2f395db87d6fec46c2c65d42d93b86e8db9804537d26",
+    "approval": null
+  },
+  {
+    "id": "PP-D-VASOOL-DEMO-01",
+    "status": "UNDER_REVIEW",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "89.50",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-13T16:12:51.323206+00:00",
+    "respond_by": "2026-11-20T16:12:51.323216+00:00",
+    "order": {
+      "id": "ORD-VASOOL-8899",
+      "items": [
+        {
+          "name": "E-Commerce Merchandise",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "FEDEX",
+        "tracking_number": "789123456789",
+        "address_summary": "Customer Address, Verified",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-13T16:12:51.323206+00:00",
+        "signed_by": "Rohan Sharma",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Resolution Team,\n\nWe respectfully contest Dispute PP-D-VASOOL-DEMO-01 regarding Order ORD-VASOOL-8899 (E-Commerce Merchandise).\n\n1. PROOF OF SHIPMENT & DELIVERY:\nThe package was fulfilled via FEDEX (Tracking: 789123456789) and delivered to the registered PayPal address on file.\n\n2. INDEPENDENT CARRIER CONFIRMATION:\nCarrier records confirm delivery with signature status: Rohan Sharma. Proof of fulfillment is verified.\n\n3. SELLER PROTECTION ELIGIBILITY:\nAll requirements under PayPal Seller Protection Policy (Section 11) have been satisfied. Physical transit and destination scans verify complete fulfillment.\n\nWe kindly request that PayPal release the reserved funds and resolve this case in the seller's favor.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "FEDEX tracking 789123456789 shows DELIVERED to Customer Address, Verified"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: Rohan Sharma"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via FEDEX",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "submitted",
+    "dispute_id": "PP-D-VASOOL-DEMO-01",
+    "dispute_amount": {
+      "value": "89.50",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-20T16:12:51.323216+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Resolution Team,\n\nWe respectfully contest Dispute PP-D-VASOOL-DEMO-01 regarding Order ORD-VASOOL-8899 (E-Commerce Merchandise).\n\n1. PROOF OF SHIPMENT & DELIVERY:\nThe package was fulfilled via FEDEX (Tracking: 789123456789) and delivered to the registered PayPal address on file.\n\n2. INDEPENDENT CARRIER CONFIRMATION:\nCarrier records confirm delivery with signature status: Rohan Sharma. Proof of fulfillment is verified.\n\n3. SELLER PROTECTION ELIGIBILITY:\nAll requirements under PayPal Seller Protection Policy (Section 11) have been satisfied. Physical transit and destination scans verify complete fulfillment.\n\nWe kindly request that PayPal release the reserved funds and resolve this case in the seller's favor.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+    "seller_approval": {
+      "approved": true,
+      "conceded": false,
+      "approved_at": "2026-11-13T16:48:29.361100+00:00",
+      "approver_id": "merchant_owner_rohan",
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Rohan Sharma",
+      "email": "customer@example.com",
+      "shipping_address": {
+        "line1": "Customer Address, Verified",
+        "city": "Chennai",
+        "state": "TN",
+        "postal_code": "600001",
+        "country_code": "IN"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "FEDEX",
+      "tracking_number": "789123456789",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-13T16:12:51.323206+00:00",
+      "signed_by": "Rohan Sharma",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-FEDEX-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-002",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "89.50",
+          "currency": "USD"
+        },
+        "item_name": "Handmade ceramic mug set",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Online tracking shows delivered to buyer city/zip",
+          "Order value under $750 so signature not mandatory"
+        ],
+        "evidence_summary": "FedEx online tracking proof showing delivered status to confirmed city.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-010",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "60.00",
+          "currency": "USD"
+        },
+        "item_name": "Running Shoes Size 10",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Delivered to residential front door confirmed by GPS coordinate scan"
+        ],
+        "evidence_summary": "FedEx Ground delivery scan matching buyer zip code.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-020",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "299.00",
+          "currency": "USD"
+        },
+        "item_name": "Office Desk Chair",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "P. ADAMS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Carrier freight proof with recipient sign-off"
+        ],
+        "evidence_summary": "FedEx freight bill signed by recipient.",
+        "similarity_score": 0.99
+      }
+    ],
+    "case_id": "VASOOL-DEMO-01",
+    "source": "vasool_voice",
+    "transcript_ref": "call-vasool-8899",
+    "draft_hash": "cf553f9784231d900a5b78067d6a8a5f053386a85e6b4264fed328dd803618f8",
+    "approval": {
+      "id": "apr_voice_demo",
+      "action": "submit_evidence",
+      "amount": {
+        "value": "89.50",
+        "currency": "USD"
+      },
+      "channel": "voice",
+      "approved_by": "merchant_owner_rohan",
+      "readback_hash": "9baa644cb7058e845bf04e729b59d9d8a0ec1e61d6dc3203fbb1608abd6ddbab",
+      "expires_at": "2026-11-13T16:58:29.347609+00:00",
+      "draft_hash": "cf553f9784231d900a5b78067d6a8a5f053386a85e6b4264fed328dd803618f8"
+    }
+  },
+  {
+    "id": "PP-D-DEMO-66D24A",
+    "status": "UNDER_REVIEW",
+    "reason": "ITEM_NOT_RECEIVED",
+    "amount": {
+      "value": "89.50",
+      "currency": "USD"
+    },
+    "created_at": "2026-11-13T16:49:34.756986+00:00",
+    "respond_by": "2026-11-20T16:49:34.757000+00:00",
+    "order": {
+      "id": "ORD-DEMO-66D24A",
+      "items": [
+        {
+          "name": "E-Commerce Merchandise",
+          "qty": 1
+        }
+      ],
+      "shipping": {
+        "carrier": "FEDEX",
+        "tracking_number": "789123456789",
+        "address_summary": "Customer Address, Verified",
+        "status": "DELIVERED",
+        "delivery_date": "2026-11-13T16:49:34.756986+00:00",
+        "signed_by": "Rohan Sharma",
+        "has_signature": true
+      }
+    },
+    "evidence_draft": {
+      "text": "Dear PayPal Dispute Resolution Team,\n\nWe respectfully contest Dispute PP-D-DEMO-66D24A regarding Order ORD-DEMO-66D24A (E-Commerce Merchandise).\n\n1. PROOF OF SHIPMENT & DELIVERY:\nThe package was fulfilled via FEDEX (Tracking: 789123456789) and delivered to the registered PayPal address on file.\n\n2. INDEPENDENT CARRIER CONFIRMATION:\nCarrier records confirm delivery with signature status: Rohan Sharma. Proof of fulfillment is verified.\n\n3. SELLER PROTECTION ELIGIBILITY:\nAll requirements under PayPal Seller Protection Policy (Section 11) have been satisfied. Physical transit and destination scans verify complete fulfillment.\n\nWe kindly request that PayPal release the reserved funds and resolve this case in the seller's favor.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+      "proofs": [
+        {
+          "type": "PROOF_OF_FULFILLMENT",
+          "source": "carrier_tracking",
+          "summary": "FEDEX tracking 789123456789 shows DELIVERED to Customer Address, Verified"
+        },
+        {
+          "type": "RECIPIENT_SIGNATURE",
+          "source": "carrier_signature_file",
+          "summary": "Direct signature confirmation on file: Rohan Sharma"
+        }
+      ]
+    },
+    "win_score": 98,
+    "win_reasons": [
+      "Online tracking shows delivery via FEDEX",
+      "Direct recipient signature matches transaction record",
+      "100% of similar historical cases resolved in merchant's favor"
+    ],
+    "approval_state": "submitted",
+    "dispute_id": "PP-D-DEMO-66D24A",
+    "dispute_amount": {
+      "value": "89.50",
+      "currency": "USD"
+    },
+    "seller_response_due_date": "2026-11-20T16:49:34.757000+00:00",
+    "ai_drafted_evidence": "Dear PayPal Dispute Resolution Team,\n\nWe respectfully contest Dispute PP-D-DEMO-66D24A regarding Order ORD-DEMO-66D24A (E-Commerce Merchandise).\n\n1. PROOF OF SHIPMENT & DELIVERY:\nThe package was fulfilled via FEDEX (Tracking: 789123456789) and delivered to the registered PayPal address on file.\n\n2. INDEPENDENT CARRIER CONFIRMATION:\nCarrier records confirm delivery with signature status: Rohan Sharma. Proof of fulfillment is verified.\n\n3. SELLER PROTECTION ELIGIBILITY:\nAll requirements under PayPal Seller Protection Policy (Section 11) have been satisfied. Physical transit and destination scans verify complete fulfillment.\n\nWe kindly request that PayPal release the reserved funds and resolve this case in the seller's favor.\n\nRespectfully submitted,\nAuthorized Merchant Representative",
+    "seller_approval": {
+      "approved": true,
+      "conceded": false,
+      "approved_at": "2026-11-13T16:49:36.027627+00:00",
+      "approver_id": "merchant_owner_rohan",
+      "rejection_reason": null
+    },
+    "buyer": {
+      "name": "Rohan Sharma",
+      "email": "customer@example.com",
+      "shipping_address": {
+        "line1": "Customer Address, Verified",
+        "city": "Chennai",
+        "state": "TN",
+        "postal_code": "600001",
+        "country_code": "IN"
+      }
+    },
+    "carrier_proof": {
+      "carrier": "FEDEX",
+      "tracking_number": "789123456789",
+      "status": "DELIVERED",
+      "delivery_date": "2026-11-13T16:49:34.756986+00:00",
+      "signed_by": "Rohan Sharma",
+      "has_signature": true,
+      "carrier_verified": true,
+      "kernel_audit_id": "KERNEL-FEDEX-9921",
+      "delivery_address_verified": true
+    },
+    "elastic_precedent": null,
+    "win_score_breakdown": null,
+    "similar_cases": [
+      {
+        "id": "CASE-PAST-002",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "89.50",
+          "currency": "USD"
+        },
+        "item_name": "Handmade ceramic mug set",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Online tracking shows delivered to buyer city/zip",
+          "Order value under $750 so signature not mandatory"
+        ],
+        "evidence_summary": "FedEx online tracking proof showing delivered status to confirmed city.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-010",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "60.00",
+          "currency": "USD"
+        },
+        "item_name": "Running Shoes Size 10",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": false,
+        "recipient_name": null,
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Delivered to residential front door confirmed by GPS coordinate scan"
+        ],
+        "evidence_summary": "FedEx Ground delivery scan matching buyer zip code.",
+        "similarity_score": 0.99
+      },
+      {
+        "id": "CASE-PAST-020",
+        "reason": "ITEM_NOT_RECEIVED",
+        "amount": {
+          "value": "299.00",
+          "currency": "USD"
+        },
+        "item_name": "Office Desk Chair",
+        "carrier": "FEDEX",
+        "tracking_status": "DELIVERED",
+        "signature_present": true,
+        "recipient_name": "P. ADAMS",
+        "delivered_to_confirmed_address": true,
+        "outcome": "WON",
+        "win_reasons": [
+          "Carrier freight proof with recipient sign-off"
+        ],
+        "evidence_summary": "FedEx freight bill signed by recipient.",
+        "similarity_score": 0.99
+      }
+    ],
+    "case_id": "DEMO-66D24A",
+    "source": "vasool_voice",
+    "transcript_ref": "call-DEMO-66D24A",
+    "draft_hash": "fa06167c21afd72ee0c43aceb50e65140b81883b2bef5105e2ad4b6f4caacaee",
+    "approval": {
+      "id": "apr_voice_demo",
+      "action": "submit_evidence",
+      "amount": {
+        "value": "89.50",
+        "currency": "USD"
+      },
+      "channel": "voice",
+      "approved_by": "merchant_owner_rohan",
+      "readback_hash": "9baa644cb7058e845bf04e729b59d9d8a0ec1e61d6dc3203fbb1608abd6ddbab",
+      "expires_at": "2026-11-13T16:59:36.013551+00:00",
+      "draft_hash": "fa06167c21afd72ee0c43aceb50e65140b81883b2bef5105e2ad4b6f4caacaee"
+    }
+  }
+]

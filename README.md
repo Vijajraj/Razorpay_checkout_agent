@@ -40,9 +40,9 @@ This project delivers a production-grade Conversational Checkout Agent built on 
 - Structured Data Flow: The agent never outputs product listings as unstructured Markdown text or raw Markdown tables. Products are returned in typed JSON payloads and rendered natively as interactive React components.
 - Code-Enforced Guardrail Engine: Order processing bypasses LLM text decisions. Every purchase request must satisfy non-bypassable code checks (Merchant Spend Cap ceiling of Rs. 10,000, Catalog Validation, Real-Time Stock Verification, Session Isolation, and HMAC SHA256 Signature Verification).
 - 3-Column Interactive SPA Layout:
-  - Left Column: Collapsible Chat History Sidebar with session switching, session creation, and session deletion.
-  - Center Column: Conversational thread featuring the Agent Workflow Bar, Privacy Consent Banner, Product Cards, and Command Dock.
-  - Right Column: Persistent Purchase Summary Panel handling item quantity, address form, stock verification, and Razorpay modal integration.
+- Left Column: Collapsible Chat History Sidebar with session switching, session creation, and session deletion.
+- Center Column: Conversational thread featuring the Agent Workflow Bar, Privacy Consent Banner, Product Cards, and Command Dock.
+- Right Column: Persistent Purchase Summary Panel handling item quantity, address form, stock verification, and Razorpay modal integration.
 - Hybrid Data Persistence: Dual-synced persistence leveraging Neon Postgres DB for persistent backend storage and LocalStorage for immediate zero-latency local fallback.
 - Keep-Alive System: Dedicated Python keep-alive runner (`keep_alive.py`) and a scheduled 24/7 GitHub Actions cron workflow (`keep_alive.yml`) to prevent server cold-start delays on free-tier hosting.
 

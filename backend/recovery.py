@@ -922,3 +922,36 @@ def reset_recovery_endpoint(
     verify_service_auth(x_service_token, authorization)
     reset_recovery_state()
     return {"status": "reset_complete"}
+
+class RunRecoveryAgentRequest(BaseModel):
+    case_id: str
+    attempt_no: Optional[int] = 1
+    amount_minor: Optional[int] = 420000
+    currency: Optional[str] = "INR"
+    debtor_name: Optional[str] = "Valued Customer"
+    debtor_phone: Optional[str] = None
+    approval_record: Optional[Dict[str, Any]] = None
+
+@router.post("/api/recovery/agent/run")
+def run_recovery_agent(req: RunRecoveryAgentRequest):
+    """
+    Executes the autonomous Recovery Agent LangGraph workflow.
+    Handles risk scoring, 7-rule policy check, Gnani voice briefing,
+    authorization signing, payment order generation, and confirm-by-GET verification.
+    """
+    try:
+        from .recovery_langgraph import recovery_langgraph_agent
+    except ImportError:
+        from recovery_langgraph import recovery_langgraph_agent
+
+    initial_state = {
+        "case_id": req.case_id,
+        "attempt_no": req.attempt_no or 1,
+        "amount_minor": req.amount_minor or 420000,
+        "currency": req.currency or "INR",
+        "debtor_name": req.debtor_name or "Valued Customer",
+        "debtor_phone": req.debtor_phone or "",
+        "approval_record": req.approval_record,
+    }
+    result = recovery_langgraph_agent.invoke(initial_state)
+    return result
